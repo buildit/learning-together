@@ -4,12 +4,15 @@ import { AuthenticatedUserRoute, UnauthenticatedUserRoute } from '../auth'
 import { RegisterComponent } from '../register'
 import { LoginComponent } from '../login'
 import { Page404Component } from '../page404'
+import { LandingComponent } from '../landing'
+
 export default class RoutesComponent extends React.Component {
   render() {
 
     return (
       <Router>
         <Switch>
+          <Route path='/' component={LandingComponent} />
           <UnauthenticatedUserRoute exact path="/login" component={LoginComponent} />
           <UnauthenticatedUserRoute exact path="/register" component={RegisterComponent} />
           <Route component={Page404Component} />
