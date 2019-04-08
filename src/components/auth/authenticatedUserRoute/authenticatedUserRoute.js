@@ -3,9 +3,7 @@ import { Route, Redirect } from 'react-router-dom'
 
 const AuthenticatedUserRoute = ({ component: Component }) => {
   //authentication stuff
-  console.log('hi')
-  const user = false
-  console.log(user)
+  const user = false //change when authentication is done
   return (
     <Route user={user} render={() =>
       user ? <Component /> : <Redirect to='/login' />} />
