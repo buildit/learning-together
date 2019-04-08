@@ -3,6 +3,7 @@ import "./App.css";
 import Navbar from "./components/navbar/navbar";
 import Jumbotron from "./components/jumbotron/jumbotron";
 import Preview from "./components/preview/preview";
+import CategoryList from "./components/categoryList/categoryList";
 
 class App extends Component {
   constructor(props) {
@@ -31,7 +32,7 @@ class App extends Component {
           time: "1200",
           image: "https://via.placeholder.com/40",
           image_desc: "course image",
-          category: "1"
+          category: "2"
         },
         {
           id: "3",
@@ -66,13 +67,10 @@ class App extends Component {
 
     return (
       <div className="App">
-<<<<<<< HEAD
         <Navbar />
         <Jumbotron />
         {wrkshopPreview}
-=======
-        <h1>Learning Together Test Pull</h1>
->>>>>>> e6e4339860bbbd1841f112b0455b25addf22d92c
+        <CategoryList workshop={this.state.workshops} />
       </div>
     );
   }
