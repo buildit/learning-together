@@ -1,0 +1,1 @@
+export { default as AuthenticatedUserRoute } from './authenticatedUserRoute'

@@ -5,7 +5,7 @@ const Jumbotron = () => {
   return (
     <img
       className="responsive"
-      src="https://via.placeholder.com/500"
+      src="https://placeimg.com/640/480/people"
       alt="buildit employees"
     />
   );
