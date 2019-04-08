@@ -66,9 +66,13 @@ class App extends Component {
 
     return (
       <div className="App">
+<<<<<<< HEAD
         <Navbar />
         <Jumbotron />
         {wrkshopPreview}
+=======
+        <h1>Learning Together Test Pull</h1>
+>>>>>>> e6e4339860bbbd1841f112b0455b25addf22d92c
       </div>
     );
   }
