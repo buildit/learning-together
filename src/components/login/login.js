@@ -24,7 +24,7 @@ export default class LoginComponent extends React.Component {
     return (
       <div className="grid-container">
         <div className="grid-y medium-grid-frame">
-          <div className="grid-x grid-padding-x">
+          <div className="grid-x grid-padding-x align-middle">
             <form className='cell medium-6' onSubmit={this.submitHandler.bind(this)}>
               <div className='row'>
                 <div className="small-12 columns">
@@ -40,9 +40,13 @@ export default class LoginComponent extends React.Component {
                   </label>
                 </div>
               </div>
-              <input type="submit" className="button success" value="Submit" />
-              <div className='cell auto'>
-                <Link to='' >Forgot your password?</Link>
+              <div>
+                <div className='grid-x grid-padding-x align-center'>
+                  <input type="submit" className="button success align-center cell medium-6" value="Submit" />
+                </div>
+                <div className='grid-x grid-padding-x align-center'>
+                  <Link to='' >Forgot your password?</Link>
+                </div>
               </div>
             </form>
             <div className='cell medium-6'>
