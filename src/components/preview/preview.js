@@ -1,7 +1,6 @@
 import React from "react";
 
 const Preview = props => {
-  console.log(props);
   return (
     <div>
       <img src={props.workshop.image} alt={props.workshop.image_desc} />
