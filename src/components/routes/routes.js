@@ -12,7 +12,7 @@ export default class RoutesComponent extends React.Component {
     return (
       <Router>
         <Switch>
-          <Route path='/' component={LandingComponent} />
+          <Route exact path='/' component={LandingComponent} />
           <UnauthenticatedUserRoute exact path="/login" component={LoginComponent} />
           <UnauthenticatedUserRoute exact path="/register" component={RegisterComponent} />
           <Route component={Page404Component} />
