@@ -2,7 +2,7 @@ import React from "react";
 
 const Preview = ({ workshop }) => {
   return (
-    <div className="cell small-2">
+    <div className="cell small-3">
       <div class="card" style={{ width: "300px" }}>
         <div classname="card-section">
           <img src={workshop.image} alt={workshop.image_desc} />

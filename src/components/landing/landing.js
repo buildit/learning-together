@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { NavbarComponent } from "../navbar";
 import { JumbotronComponent } from "../jumbotron";
 import { PreviewComponent } from "../preview";
+import './landing.css'
 
 export default class Landing extends Component {
   constructor(props) {
@@ -68,8 +69,8 @@ export default class Landing extends Component {
       <div>
         <NavbarComponent />
         <JumbotronComponent />
-        <div className="grid-container fluid">
-          <div className="grid-x grid-padding-x">
+        <div className="grid-container full landing-preview">
+          <div className="grid-x grid-margin-x">
             {wrkshopPreview}
           </div>
         </div>
