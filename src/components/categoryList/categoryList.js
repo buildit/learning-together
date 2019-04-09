@@ -1,18 +1,26 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "./categoryList.scss";
 
 const WORKSHOP_CATEGORIES = ["Tech", "Design", "Soft skills", "Misc"];
 
-export default class categoryList extends Component {
+class CategoryList extends Component {
   render() {
     const WrkshpCategories = WORKSHOP_CATEGORIES.map((category, index) => {
       return (
         <div key={index} className="cell small-6 ">
-          <div className="card custom-cards">
+          <Link
+            to={{
+              pathname: "/workshops",
+              category,
+              state: this.props.workshop
+            }}
+            className="card custom-cards"
+          >
             <div className="card-section">
               <h4>{category}</h4>
             </div>
-          </div>
+          </Link>
         </div>
       );
     });
@@ -27,3 +35,5 @@ export default class categoryList extends Component {
     );
   }
 }
+
+export default CategoryList;
