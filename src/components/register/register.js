@@ -68,17 +68,14 @@ export default class RegisterComponent extends React.Component {
     let isValidatedName = this.validateName(name)
     let isValidatedEmail = this.validateEmail(email)
     let isValidatedPassword = this.validatePassword(password)
-    console.log(isValidatedPassword)
     let isValidatedPasswordConfirm = this.comparePassword(password, passwordConfirmation)
     let isValidatedLocation = this.validateLocation(selectedLocation)
     let isValidatedRole = this.validateRole(selectedRole)
     if (!isValidatedName || !isValidatedEmail || !isValidatedPassword || !isValidatedPasswordConfirm || !isValidatedLocation || !isValidatedRole) {
       this.setState({ nameError: !isValidatedName, emailError: !isValidatedEmail, passwordError: !isValidatedPassword, passwordConfirmationError: !isValidatedPasswordConfirm, locationError: !isValidatedLocation, roleError: !isValidatedRole })
     }
-    console.log(isValidatedName, isValidatedEmail, isValidatedPassword, isValidatedPasswordConfirm)
 
     // api handler
-    console.log(name, email, password, passwordConfirmation, selectedLocation.value, selectedRole.value, interests)
   }
   onChangeHandler(e) {
     this.setState({ [e.target.name]: e.target.value })

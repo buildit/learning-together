@@ -20,7 +20,6 @@ export default class LoginComponent extends React.Component {
     e.preventDefault()
     const { email, password } = this.state
     const formattedEmail = this.formatEmail(email)
-    console.log(formattedEmail, password)
     //add logic for api call
   }
   render() {
