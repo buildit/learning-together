@@ -1,0 +1,29 @@
+.user-profile {
+    justify-content: center;
+
+    .cell {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.profile-pic {
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.profile-frame {
+    border-radius: 100px;
+    width: 118px;
+    overflow: hidden;
+ 
+
+    img {
+        object-fit: cover;
+    }
+}
+
+.user-info {
+    text-align: center;
+}

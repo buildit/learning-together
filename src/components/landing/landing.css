@@ -1,0 +1,7 @@
+.landing-preview {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  padding-top: .3em;
+  padding-bottom: .3em;
+}

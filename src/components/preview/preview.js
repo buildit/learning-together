@@ -1,14 +1,20 @@
 import React from "react";
 
-const Preview = props => {
+const Preview = ({ workshop }) => {
   return (
-    <div>
-      <img src={props.workshop.image} alt={props.workshop.image_desc} />
-      <h4>{props.workshop.name}</h4>
-      <p>{props.workshop.date}</p>
-      <p>{props.workshop.description}</p>
-      <p>{props.workshop.instructor}</p>
+    <div className="cell small-3">
+      <div class="card" style={{ width: "300px" }}>
+        <div classname="card-section">
+          <img src={workshop.image} alt={workshop.image_desc} />
+        </div>
+        <div class="card-section">
+          <h4>{workshop.name}</h4>
+          <p>{workshop.date}</p>
+          <p>{workshop.description}</p>
+          <p>{workshop.instructor}</p>
+        </div>
+      </div>
     </div>
-  );
+  )
 };
 export default Preview;

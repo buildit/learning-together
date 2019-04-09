@@ -3,6 +3,7 @@ import { NavbarComponent } from "../navbar";
 import { JumbotronComponent } from "../jumbotron";
 import { PreviewComponent } from "../preview";
 import { CategoryListComponent } from "../categoryList";
+import "./landing.css";
 
 export default class Landing extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ export default class Landing extends Component {
           instructor: "John Smith",
           location: "Brooklyn",
           time: "1400",
-          image: "https://via.placeholder.com/40",
+          image: "https://placeimg.com/300/300/arch",
           image_desc: "course image",
           category: "1"
         },
@@ -29,7 +30,7 @@ export default class Landing extends Component {
           instructor: "Jasmin Smith",
           location: "Brooklyn",
           time: "1200",
-          image: "https://via.placeholder.com/40",
+          image: "https://placeimg.com/300/300/arch",
           image_desc: "course image",
           category: "1"
         },
@@ -40,7 +41,7 @@ export default class Landing extends Component {
           instructor: "Jane Smith",
           location: "Brooklyn",
           time: "1000",
-          image: "https://via.placeholder.com/40",
+          image: "https://placeimg.com/300/300/arch",
           image_desc: "course image",
           category: "2"
         },
@@ -51,7 +52,7 @@ export default class Landing extends Component {
           instructor: "Jazmin Smith",
           location: "Brooklyn",
           time: "1400",
-          image: "https://via.placeholder.com/40",
+          image: "https://placeimg.com/300/300/arch",
           image_desc: "course image",
           category: "3"
         }
@@ -68,7 +69,9 @@ export default class Landing extends Component {
       <div>
         <NavbarComponent />
         <JumbotronComponent />
-        {wrkshopPreview}
+        <div className="grid-container full landing-preview">
+          <div className="grid-x grid-margin-x">{wrkshopPreview}</div>
+        </div>
         <CategoryListComponent workshop={this.state.workshops} />
       </div>
     );
