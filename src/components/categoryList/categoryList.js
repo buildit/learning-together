@@ -1,18 +1,29 @@
 import React, { Component } from "react";
-import ShortPreview from "../shortPreview/shortPreview";
+import "./categoryList.scss";
 
-const WORKSHOP_CATEGORIES = ["1", "2", "3"];
+const WORKSHOP_CATEGORIES = ["Tech", "Design", "Soft skills", "Misc"];
 
 export default class categoryList extends Component {
-  renderWorkshops() {
-    return WORKSHOP_CATEGORIES.map((category, index) => {
-      const wkshop = this.props.workshop.filter(
-        workshop => workshop.category === category
-      );
-      return <ShortPreview key={index} category={category} workshop={wkshop} />;
-    });
-  }
   render() {
-    return <div>{this.renderWorkshops()}</div>;
+    const WrkshpCategories = WORKSHOP_CATEGORIES.map((category, index) => {
+      return (
+        <div key={index} className="cell small-6 ">
+          <div className="card custom-cards">
+            <div className="card-section">
+              <h4>{category}</h4>
+            </div>
+          </div>
+        </div>
+      );
+    });
+
+    return (
+      <div>
+        <h2>Categories:</h2>
+        <div className="grid-container">
+          <div className="grid-x grid-padding-x ">{WrkshpCategories}</div>
+        </div>
+      </div>
+    );
   }
 }
