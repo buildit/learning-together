@@ -116,7 +116,7 @@ export default class RegisterComponent extends React.Component {
               <div className='row'>
                 <div className="small-12 columns">
                   <label>Email:</label>
-                  <input type="text" placeholder="Please Enter Your Email." name='emailUsername' value={emailUsername} onChange={this.onChangeHandler.bind(this)} />
+                  <input type="text" placeholder="Please Enter Your Email." autoComplete="username" name='emailUsername' value={emailUsername} onChange={this.onChangeHandler.bind(this)} />
                   <input type="radio" value="wipro" checked={isWipro} onChange={this.onChangeEmailHandler.bind(this, true)} />
                   <label>@wipro.com</label>
                   <input type="radio" value="designit" checked={!isWipro} onChange={this.onChangeEmailHandler.bind(this, false)} />
@@ -129,7 +129,7 @@ export default class RegisterComponent extends React.Component {
               <div className='row'>
                 <div className="small-12 columns">
                   <label>Password:</label>
-                  <input type="password" placeholder="Please Enter Your Password." name='password' value={password} onChange={this.onChangeHandler.bind(this)} />
+                  <input type="password" autoComplete="new-password" placeholder="Please Enter Your Password." name='password' value={password} onChange={this.onChangeHandler.bind(this)} />
                   {passwordError && (
                     <div>Your password must have one lower case letter, one upper case letter, one digit, and one special character.</div>
                   )}
@@ -138,7 +138,7 @@ export default class RegisterComponent extends React.Component {
               <div className='row'>
                 <div className="small-12 columns">
                   <label>Confirm Password:</label>
-                  <input type="password" placeholder="Please Confirm Your Password." name='passwordConfirmation' value={passwordConfirmation} onChange={this.onChangeHandler.bind(this)} />
+                  <input type="password" autoComplete="new-password" placeholder="Please Confirm Your Password." name='passwordConfirmation' value={passwordConfirmation} onChange={this.onChangeHandler.bind(this)} />
                   {passwordConfirmationError && (
                     <div>Your passwords must match.</div>
                   )}
