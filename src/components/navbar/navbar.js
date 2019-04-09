@@ -11,8 +11,14 @@ export default class Navbar extends Component {
         </div>
         <div className="top-bar-right">
           <ul className="menu">
-            <li><input type="search" placeholder="Search" /></li>
-            <li><button type="button" className="button">Search</button></li>
+            <li>
+              <input type="search" placeholder="Search" />
+            </li>
+            <li>
+              <button type="button" className="button">
+                Search
+              </button>
+            </li>
           </ul>
         </div>
       </div>

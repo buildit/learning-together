@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { NavbarComponent } from "../navbar";
 import { JumbotronComponent } from "../jumbotron";
 import { PreviewComponent } from "../preview";
+import { CategoryListComponent } from "../categoryList";
 import './landing.scss'
 
 export default class Landing extends Component {
@@ -105,7 +106,6 @@ export default class Landing extends Component {
     };
   }
 
-
   render() {
     const wrkshopPreview = this.state.workshops.map(workshop => {
       return <PreviewComponent key={workshop.id} workshop={workshop} />;
@@ -121,8 +121,8 @@ export default class Landing extends Component {
             {wrkshopPreview}
           </div>
         </div>
+        <CategoryListComponent workshop={this.state.workshops} />
       </div>
     );
   }
 }
-
