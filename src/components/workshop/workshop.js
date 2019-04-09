@@ -37,14 +37,14 @@ Personality he The Magnises is both card that star and the credit/debit executiv
             <p><strong>Instructor: Alex Kalinovsky</strong></p>
             <div className="grid-x full grid-padding-x">
               <h4 className="cell">Attending: </h4>
-              <FontAwesomeIcon icon="male" className="fa-3x fa-w-15" />
-              <FontAwesomeIcon icon="male" className="fa-3x fa-w-15" />
-              <FontAwesomeIcon icon="male" className="fa-3x fa-w-15" />
-              <FontAwesomeIcon icon="male" className="fa-3x fa-w-15" />
-              <FontAwesomeIcon icon="male" className="fa-3x fa-w-15" />
-              <FontAwesomeIcon icon="male" className="fa-3x fa-w-15" />
-              <FontAwesomeIcon icon="male" className="fa-3x fa-w-15" />
-              <FontAwesomeIcon icon="male" className="fa-3x fa-w-15" />
+              <FontAwesomeIcon icon="user-circle" className="fa-3x fa-w-15" />
+              <FontAwesomeIcon icon="user-circle" className="fa-3x fa-w-15" />
+              <FontAwesomeIcon icon="user-circle" className="fa-3x fa-w-15" />
+              <FontAwesomeIcon icon="user-circle" className="fa-3x fa-w-15" />
+              <FontAwesomeIcon icon="user-circle" className="fa-3x fa-w-15" />
+              <FontAwesomeIcon icon="user-circle" className="fa-3x fa-w-15" />
+              <FontAwesomeIcon icon="user-circle" className="fa-3x fa-w-15" />
+              <FontAwesomeIcon icon="user-circle" className="fa-3x fa-w-15" />
             </div>
             <p className="feedback">Send Instructor Feedback: </p> {/*hidden until after user has attended*/}
             <a href="#" className="email">Instructor email</a>

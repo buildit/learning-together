@@ -2,11 +2,11 @@ import React, { Component, Fragment } from "react";
 import { RoutesComponent } from "./components";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMapMarker, faMale } from "@fortawesome/free-solid-svg-icons";
+import { faMapMarker, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { NavbarComponent } from "./components/navbar";
 import './App.scss'
 
-library.add(faMapMarker, faMale);
+library.add(faMapMarker, faUserCircle);
 class App extends Component {
   render() {
     return (
