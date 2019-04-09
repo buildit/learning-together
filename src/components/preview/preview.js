@@ -1,13 +1,12 @@
 import React from "react";
+import './preview.scss'
 
 const Preview = ({ workshop }) => {
   return (
-    <div className="cell small-3">
-      <div class="card" style={{ width: "300px" }}>
-        <div classname="card-section">
-          <img src={workshop.image} alt={workshop.image_desc} />
-        </div>
-        <div class="card-section">
+    <div className="card-scroll">
+      <div className="card" style={{ width: "300px" }}>
+        <img src={workshop.image} alt={workshop.image_desc} />
+        <div className="card-section" style={{ height: "15rem" }}>
           <h4>{workshop.name}</h4>
           <p>{workshop.date}</p>
           <p>{workshop.description}</p>
