@@ -31,19 +31,41 @@ export default class UserProfileComponent extends React.Component {
                             <option value="">Attending</option>
                         </select>
                         <section className="workshops">
-                            <div className="grid-x">
+                            
+                            <article className="workshop grid-x">
                                 <div className="date cell small-3">
-                                <date>May 3rd 2019</date>
+
+                                <date><span>September</span> <span>20th</span> <span>2019</span></date>
+                                
                                 </div>
-                                <div className="date cell small-6">
-                                uBuildit Knowledge Sharing Session : Enterprise Architecture<br />
-                                <span className="location">Brooklyn</span>
-                                <span className="conference-room">Brooklyn</span>
+                                <div className="workshop-info cell small-6">
+                                <h3><strong>uBuildit Knowledge Sharing Session : Enterprise Architecture</strong></h3>
+                                <span className="location"><FontAwesomeIcon icon="map-marker" /> Buildit Brooklyn</span>
+                                <span className="conference-room">Black</span>
                                 <span className="instructor">Alex Kalinovsky</span>
                                 </div>
-                                
+                                <div className="cell small-3 button-container"> 
                                 <button className="button">Learn More</button>
-                            </div>
+                                </div>
+                            </article>
+
+                            <article className="workshop grid-x">
+                                <div className="date cell small-3">
+
+                                <date><span>September</span> <span>20th</span> <span>2019</span></date>
+                                
+                                </div>
+                                <div className="workshop-info cell small-6">
+                                <h3><strong>uBuildit Knowledge Sharing Session : Enterprise Architecture</strong></h3>
+                                <span className="location"><FontAwesomeIcon icon="map-marker" /> Buildit Brooklyn</span>
+                                <span className="conference-room">Black</span>
+                                <span className="instructor">Clarence Morris</span>
+                                </div>
+                                <div className="cell small-3 button-container"> 
+                                <button className="button">Learn More</button>
+                                </div>
+                            </article>
+
                         </section>
                     </div>
                 </div>

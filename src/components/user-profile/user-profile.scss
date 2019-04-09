@@ -8,6 +8,48 @@
     }
 }
 
+.date,
+.button-container {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.date {
+    align-items: flex-start;
+}
+
+.workshops {
+    .workshop {
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 1em;
+    }
+    .button {
+        max-height: 2.5em;
+    }
+
+    date {
+        border: 1px solid #000;
+        padding: .5em;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        width: 100%;
+        margin: 1em;
+
+        span:nth-child(2){
+            font-weight: 900;
+            font-size: 2rem;
+        }
+    }
+}
+
+.workshop-info {
+    display: flex;
+    flex-direction: column;
+
+}
+
 .profile-pic {
     text-align: center;
     margin-bottom: 1em;
