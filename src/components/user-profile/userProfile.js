@@ -3,7 +3,7 @@ import './user-profile.scss';
 import profile from './pics/2.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-export default class UserProfileComponent extends React.Component {
+export default class UserProfileComponent extends Component {
     render() {
         return (
             <section class="grid-container full">
@@ -11,7 +11,7 @@ export default class UserProfileComponent extends React.Component {
                     <div className="cell small-6">
                         <div className="profile-pic">
                             <div className="profile-frame">
-                                <img src={profile} />
+                                <img src={profile} alt="" />
                             </div>
                             <a href="/">Edit</a>
                         </div>
@@ -31,38 +31,38 @@ export default class UserProfileComponent extends React.Component {
                             <option value="">Attending</option>
                         </select>
                         <section className="workshops">
-                            
+
                             <article className="workshop grid-x">
                                 <div className="date cell small-3">
 
-                                <date><span>September</span> <span>20th</span> <span>2019</span></date>
-                                
+                                    <date><span>September</span> <span>20th</span> <span>2019</span></date>
+
                                 </div>
                                 <div className="workshop-info cell small-6">
-                                <h3><strong>uBuildit Knowledge Sharing Session : Enterprise Architecture</strong></h3>
-                                <span className="location"><FontAwesomeIcon icon="map-marker" /> Buildit Brooklyn</span>
-                                <span className="conference-room">Black</span>
-                                <span className="instructor">Alex Kalinovsky</span>
+                                    <h3><strong>uBuildit Knowledge Sharing Session : Enterprise Architecture</strong></h3>
+                                    <span className="location"><FontAwesomeIcon icon="map-marker" /> Buildit Brooklyn</span>
+                                    <span className="conference-room">Black</span>
+                                    <span className="instructor">Alex Kalinovsky</span>
                                 </div>
-                                <div className="cell small-3 button-container"> 
-                                <button className="button">Learn More</button>
+                                <div className="cell small-3 button-container">
+                                    <button className="button">Learn More</button>
                                 </div>
                             </article>
 
                             <article className="workshop grid-x">
                                 <div className="date cell small-3">
 
-                                <date><span>September</span> <span>20th</span> <span>2019</span></date>
-                                
+                                    <date><span>September</span> <span>20th</span> <span>2019</span></date>
+
                                 </div>
                                 <div className="workshop-info cell small-6">
-                                <h3><strong>uBuildit Knowledge Sharing Session : Enterprise Architecture</strong></h3>
-                                <span className="location"><FontAwesomeIcon icon="map-marker" /> Buildit Brooklyn</span>
-                                <span className="conference-room">Black</span>
-                                <span className="instructor">Clarence Morris</span>
+                                    <h3><strong>uBuildit Knowledge Sharing Session : Enterprise Architecture</strong></h3>
+                                    <span className="location"><FontAwesomeIcon icon="map-marker" /> Buildit Brooklyn</span>
+                                    <span className="conference-room">Black</span>
+                                    <span className="instructor">Clarence Morris</span>
                                 </div>
-                                <div className="cell small-3 button-container"> 
-                                <button className="button">Learn More</button>
+                                <div className="cell small-3 button-container">
+                                    <button className="button">Learn More</button>
                                 </div>
                             </article>
 

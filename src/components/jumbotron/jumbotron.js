@@ -1,7 +1,7 @@
 import React from "react";
 import "./jumbotron.scss";
 
-const Jumbotron = () => {
+const Jumbotron = ({ image }) => {
   return (
     <img
       className="responsive"

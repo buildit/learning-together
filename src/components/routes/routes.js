@@ -6,6 +6,7 @@ import { LoginComponent } from '../login'
 import { UserProfileComponent } from '../user-profile'
 import { Page404Component } from '../page404'
 import { LandingComponent } from '../landing'
+import { WorkshopComponent } from '../workshop'
 
 export default class RoutesComponent extends React.Component {
   render() {
@@ -17,6 +18,7 @@ export default class RoutesComponent extends React.Component {
           <UnauthenticatedUserRoute exact path="/login" component={LoginComponent} />
           <UnauthenticatedUserRoute exact path="/register" component={RegisterComponent} />
           <Route exact path="/user" component={UserProfileComponent} />
+          <Route exact path="/workshop" component={WorkshopComponent} />
           <Route component={Page404Component} />
         </Switch>
       </Router>
