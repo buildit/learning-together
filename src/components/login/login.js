@@ -13,10 +13,14 @@ export default class LoginComponent extends React.Component {
   passwordHandler(e) {
     this.setState({ password: e.target.value })
   }
+  formatEmail(email) {
+    return email.trim()
+  }
   submitHandler(e) {
     e.preventDefault()
     const { email, password } = this.state
-    console.log(email, password)
+    const formattedEmail = this.formatEmail(email)
+    console.log(formattedEmail, password)
     //add logic for api call
   }
   render() {
