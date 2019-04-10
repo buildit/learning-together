@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { NavbarComponent } from "../navbar";
 import { JumbotronComponent } from "../jumbotron";
 import { PreviewComponent } from "../preview";
 import { CategoryListComponent } from "../categoryList";
-import "./landing.scss";
+import { FooterComponent } from "../footer"
+import './landing.scss'
 
 export default class Landing extends Component {
   constructor(props) {
@@ -117,7 +117,6 @@ export default class Landing extends Component {
 
     return (
       <div>
-        <NavbarComponent />
         <JumbotronComponent />
         <h3>Upcoming workshops:</h3>
         <div className="grid-container full landing-preview">
@@ -126,6 +125,7 @@ export default class Landing extends Component {
           </div>
         </div>
         <CategoryListComponent workshop={this.state.workshops} />
+        <FooterComponent />
       </div>
     );
   }
