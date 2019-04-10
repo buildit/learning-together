@@ -1,13 +1,14 @@
 import React, { Component } from "react";
-import './navbar.scss'
+import { Link } from 'react-router-dom'
 
 export default class Navbar extends Component {
   render() {
+    const { user } = this.props
     return (
-      <div className="top-bar sticky">
+      <div className="top-bar">
         <div className="top-bar-left">
           <ul className="dropdown menu" data-dropdown-menu>
-            <li className="menu-text">BetterTogether</li>
+            <Link to="/"><li className="menu-text">BetterTogether</li></Link>
           </ul>
         </div>
         <div className="top-bar-right">
@@ -21,7 +22,11 @@ export default class Navbar extends Component {
               </button>
             </li>
             <li>
-              <a href>Logout</a>
+              {
+                user
+                  ? <Link to="/logout">Logout</Link>
+                  : <Link to="/login">Login</Link>
+              }
             </li>
           </ul>
         </div>
