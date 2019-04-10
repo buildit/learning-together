@@ -1,10 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
+import { signIn } from '../../api'
 
 export default class LoginComponent extends React.Component {
   constructor() {
     super()
-    this.state = { email: '', password: '' }
+    this.state = { email: '', password: '', loginSuccess: false }
+    this.submitCallback = this.submitCallback.bind(this)
   }
 
   emailHandler(e) {
@@ -21,9 +23,13 @@ export default class LoginComponent extends React.Component {
     const { email, password } = this.state
     const formattedEmail = this.formatEmail(email)
     //add logic for api call
+    signIn({ Username: formattedEmail, Password: password }, this.submitCallback)
+  }
+  submitCallback() {
+    this.setState({ loginSuccess: true })
   }
   render() {
-    const { email, password } = this.state
+    const { email, password, loginSuccess } = this.state
     return (
       <div className="grid-container">
         <div className="grid-y medium-grid-frame">
@@ -59,6 +65,9 @@ export default class LoginComponent extends React.Component {
           <div className='row'>
           </div>
         </div>
+        {loginSuccess && (
+          <Redirect to='/' />
+        )}
       </div >
     )
   }

@@ -1,3 +1,4 @@
+
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { AuthenticatedUserRoute, UnauthenticatedUserRoute } from "../auth";
@@ -10,9 +11,6 @@ import { WorkshopListComponent } from "../workshopList";
 import { WorkshopComponent } from '../workshop'
 import { NavbarComponent } from '../navbar';
 import { ConfirmationComponent } from "../confirmation";
-
-
-
 
 export default class RoutesComponent extends React.Component {
   render() {
