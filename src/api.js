@@ -4,7 +4,6 @@ export async function signIn(data, callback) {
   return new Promise((resolve, reject) => {
     axios.post(url, data)
       .then(response => {
-        console.log(response.data.token)
         localStorage.setItem('token', response.data.token)
         callback()
       })
@@ -20,7 +19,6 @@ export function signUp(data, callback) {
   return new Promise((resolve, reject) => {
     axios.post(url, data)
       .then(response => {
-        console.log(response)
         callback()
       })
       .catch(error => {
