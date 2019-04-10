@@ -9,6 +9,7 @@ import { LandingComponent } from "../landing";
 import { WorkshopListComponent } from "../workshopList";
 import { WorkshopComponent } from '../workshop'
 import { NavbarComponent } from '../navbar';
+import { ConfirmationComponent } from "../confirmation";
 
 
 
@@ -18,26 +19,29 @@ export default class RoutesComponent extends React.Component {
     return (
       <Router>
         <NavbarComponent />
-        <Switch>
-          <Route exact path="/" component={LandingComponent} />
-          <UnauthenticatedUserRoute
-            exact
-            path="/login"
-            component={LoginComponent}
-          />
-          <UnauthenticatedUserRoute
-            exact
-            path="/register"
-            component={RegisterComponent}
-          />
-          <Route exact path="/user" component={UserProfileComponent} />
+        <div className="main">
+          <Switch>
+            <Route exact path="/" component={LandingComponent} />
+            <UnauthenticatedUserRoute
+              exact
+              path="/login"
+              component={LoginComponent}
+            />
+            <UnauthenticatedUserRoute
+              exact
+              path="/register"
+              component={RegisterComponent}
+            />
+            <Route exact path="/user" component={UserProfileComponent} />
 
-          <Route path="/workshops" component={WorkshopListComponent} />
+            <Route path="/workshops" component={WorkshopListComponent} />
 
-          <Route exact path="/workshop" component={WorkshopComponent} />
+            <Route exact path="/workshop" component={WorkshopComponent} />
+            <Route exact path="/confirmation/enroll" component={ConfirmationComponent} />
 
-          <Route component={Page404Component} />
-        </Switch>
+            <Route component={Page404Component} />
+          </Switch>
+        </div>
       </Router>
     );
   }

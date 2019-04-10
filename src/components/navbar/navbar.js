@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default class Navbar extends Component {
   render() {
+    const { user } = this.props
     return (
       <div className="top-bar">
         <div className="top-bar-left">
@@ -21,7 +22,11 @@ export default class Navbar extends Component {
               </button>
             </li>
             <li>
-              <a href>Logout</a>
+              {
+                user
+                  ? <Link to="/logout">Logout</Link>
+                  : <Link to="/login">Login</Link>
+              }
             </li>
           </ul>
         </div>
