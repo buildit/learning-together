@@ -7,12 +7,14 @@ import { UserProfileComponent } from '../user-profile'
 import { Page404Component } from '../page404'
 import { LandingComponent } from '../landing'
 import { WorkshopComponent } from '../workshop'
+import { NavbarComponent } from '../navbar';
 
 export default class RoutesComponent extends React.Component {
   render() {
 
     return (
       <Router>
+        <NavbarComponent />
         <Switch>
           <Route exact path='/' component={LandingComponent} />
           <UnauthenticatedUserRoute exact path="/login" component={LoginComponent} />

@@ -4,7 +4,7 @@ export default class Page404Component extends React.Component {
 
   render() {
     return (
-      <div >
+      <div className="main">
         <h1>404 Page not found. </h1>
       </div >
     )
