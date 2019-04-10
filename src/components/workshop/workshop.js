@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
+import { Link } from 'react-router-dom'
 import { JumbotronComponent } from '../jumbotron'
 import './workshop.scss'
-import BrooklynOffice from './pics/BrooklynOffice.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { UserPreviewComponent } from  '../userpreview'
 import workshopData from "./mock-workshops.json"
@@ -81,7 +81,7 @@ updateImage(location) {
                 </section>
             </div>
             <p className="feedback">Send Instructor Feedback: </p> {/*hidden until after user has attended*/}
-            <a href="#" className="email">Instructor email</a>
+            <a href="true" className="email">Instructor email</a>
           </div>
        
       </Fragment>
