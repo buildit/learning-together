@@ -62,7 +62,7 @@ export default class UserProfileComponent extends React.Component {
                     <div className="cell small-6">
                         <div className="profile-pic">
                             <div className="profile-frame">
-                                <img src={profile} />
+                                <img src={profile} alt="" />
                             </div>
                             <a href="/">Edit</a>
                         </div>
