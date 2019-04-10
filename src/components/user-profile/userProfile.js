@@ -102,9 +102,9 @@ export default class UserProfileComponent extends React.Component {
                             ))}
 
                         </section>
+                        </div>
                     </div>
-                </section>
-            </div>
+                    </section>
         )
     }
 }
