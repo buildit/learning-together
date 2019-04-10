@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./workshopPreview.scss";
 
@@ -24,7 +25,7 @@ const WorkshopPreview = props => {
           <span className="instructor">{instructor}</span>
         </div>
         <div className="cell small-3 button-container">
-          <button className="button">Learn More</button>
+          <Link to="/workshop"><button className="button">Learn More</button></Link>
         </div>
       </article>
     </section>
