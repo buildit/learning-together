@@ -57,7 +57,7 @@ export default class UserProfileComponent extends React.Component {
     
     render() {
         return (
-            <section className="grid-container full">
+            <section className="user grid-container full">
                 <div className="grid-x user-profile">
                     <div className="cell small-6">
                         <div className="profile-pic">
@@ -83,7 +83,7 @@ export default class UserProfileComponent extends React.Component {
                             <option value="teaching">Teaching</option>
                             <option value="attending">Attending</option>
                         </select>
-                        <section className="workshops">
+                        <section className="workshops-list">
                             
                             {this.state.classes.map((workshop,index) => (
                                 <article className="workshop grid-x grid-margin-x">
