@@ -8,3 +8,18 @@
     }
 }
 
+.preview-card {
+  padding: .5rem;
+}
+
+.card-scroll {
+  // border: 1px solid orange
+}
+
+.card-scroll-single {
+  display: inline-block;
+}
+
+.card-scroll-single:hover {
+  opacity: 0.7;
+}
