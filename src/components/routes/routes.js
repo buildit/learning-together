@@ -10,9 +10,6 @@ import { WorkshopListComponent } from "../workshopList";
 import { WorkshopComponent } from '../workshop'
 import { NavbarComponent } from '../navbar';
 
-
-
-
 export default class RoutesComponent extends React.Component {
   render() {
     return (
