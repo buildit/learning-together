@@ -64,12 +64,6 @@ export default class UserProfileComponent extends React.Component {
                             <div className="profile-frame">
                                 <img src={profile} alt="" />
                             </div>
-                            <a href="/">Edit</a>
-                        </div>
-                        <div className="user-info">
-                            <h2>Clarence Morris</h2>
-                            <h3><FontAwesomeIcon icon="map-marker" /> <strong>Buildit Brooklyn</strong></h3>
-                            <h3>Creative Tech</h3>
                         </div>
                     </div>
                 </div>
@@ -109,8 +103,8 @@ export default class UserProfileComponent extends React.Component {
 
                         </section>
                     </div>
-                </div>
-            </section>
+                </section>
+            </div>
         )
     }
 }

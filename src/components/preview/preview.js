@@ -3,7 +3,7 @@ import './preview.scss'
 
 const Preview = ({ workshop }) => {
   return (
-    <div className="card-scroll">
+    <div className="card-scroll-single">
       <div className="card" style={{ width: "300px" }}>
         <img src={workshop.image} alt={workshop.image_desc} />
         <div className="card-section" style={{ height: "15rem" }}>

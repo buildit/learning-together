@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import { NavLink } from 'react-router-dom'
 import { JumbotronComponent } from "../jumbotron";
 import { PreviewComponent } from "../preview";
 import { CategoryListComponent } from "../categoryList";
 import { FooterComponent } from "../footer"
 import './landing.scss'
+
 
 export default class Landing extends Component {
   constructor(props) {
@@ -112,19 +114,21 @@ export default class Landing extends Component {
 
   render() {
     const wrkshopPreview = this.state.workshops.map(workshop => {
-      return <PreviewComponent key={workshop.id} workshop={workshop} />;
+      return <NavLink to="/workshop" className="preview-card"><PreviewComponent key={workshop.id} workshop={workshop} /></NavLink>
     });
 
     return (
       <div>
-        <JumbotronComponent />
-        <h3>Upcoming workshops:</h3>
-        <div className="grid-container full landing-preview">
-          <div className="grid-x grid-padding-x card-scroll">
-            {wrkshopPreview}
+        <div className="main">
+          <JumbotronComponent />
+          <h3>Upcoming workshops:</h3>
+          <div className="grid-container full landing-preview">
+            <div className="grid-x grid-padding-x card-scroll">
+              {wrkshopPreview}
+            </div>
           </div>
+          <CategoryListComponent workshop={this.state.workshops} />
         </div>
-        <CategoryListComponent workshop={this.state.workshops} />
         <FooterComponent />
       </div>
     );
