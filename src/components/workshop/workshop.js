@@ -6,6 +6,7 @@ import { UserPreviewComponent } from '../userpreview'
 import workshopData from "./mock-workshops.json"
 import Moment from 'react-moment';
 import { NavbarComponent } from '../navbar';
+import { Link, withRouter } from 'react-router-dom';
 
 export default class Workshop extends Component {
 
@@ -60,8 +61,8 @@ export default class Workshop extends Component {
           <div className="grid-y grid-padding-y enroll">
           {
             isUser ?
-            <button type="button" className="button success">ENROLL</button>
-            : <button type="button" className="button success">LOGIN TO ENROLL</button>
+            <Link type="button" to="/create-workshop" className="button success">ENROLL</Link>
+            : <Link type="button" to="/login" className="button success">LOGIN TO ENROLL</Link>
           }
             
             <p className="description">
