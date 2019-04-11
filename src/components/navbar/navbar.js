@@ -18,7 +18,6 @@ class Navbar extends Component {
             <nav className='logo'>
               <Link to="/"><img src={logo} alt="logo"></img></Link>
             </nav>
-
           </div>
           <div className="cell small-7">
             <div className="search-container">
