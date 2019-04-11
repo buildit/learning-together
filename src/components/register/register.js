@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import Select from 'react-select'
 import makeAnimated from 'react-select/lib/animated'
-import { signUp } from '../../api'
+import { signUp, signIn } from '../../api'
 
 export default class RegisterComponent extends React.Component {
 
