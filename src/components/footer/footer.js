@@ -3,16 +3,19 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./footer.scss";
 
-const FooterComponent = () => {
+const FooterComponent = ({ isUser }) => {
   return (
     <div className="footer">
-      <Link
-        to="/create-workshop"
-        className="flex flex-column justify-center align-items-center"
-      >
-        <FontAwesomeIcon icon="pencil-alt" />
-        <p>Create Class</p>
-      </Link>
+      {
+        isUser &&
+        <Link
+          to="/create-workshop"
+          className="flex flex-column justify-center align-items-center"
+        >
+          <FontAwesomeIcon icon="pencil-alt" />
+          <p>Create Class</p>
+        </Link>
+      }
       <Link
         to="/workshops"
         className="flex flex-column justify-center align-items-center"
