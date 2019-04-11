@@ -1,0 +1,13 @@
+.current-category {
+    background: #e890b4;
+    height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2em;
+
+    .section-title {
+        color: #fff;
+        font-size: 2em;
+    }
+}

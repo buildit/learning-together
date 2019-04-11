@@ -27,14 +27,14 @@ export default class Landing extends Component {
         <NavbarComponent isUser={isUser} location={location} />
         <Hero title="Better Together" />
         <div className="grid-container landing-preview">
-        <h2 className="section-title">Upcoming Workshops</h2>
+          <h2 className="section-title">Upcoming Workshops</h2>
           <div className="grid-x grid-padding-x card-scroll">
             {wrkshopPreview}
           </div>
         </div>
         <div className="grid-container landing-preview">
-        <h2 className="section-title">Categories</h2>
-        <CategoryListComponent workshop={this.state.workshops} />
+          <h2 className="section-title">Categories</h2>
+          <CategoryListComponent workshop={this.state.workshops} />
         </div>
         <FooterComponent isUser={isUser} />
       </Fragment>

@@ -14,7 +14,7 @@ const style = {
 
   return (
     <section className="cover-frame" style={style}>
-    <h1 class="landing-logo"> <img src={logo} /></h1>
+    <h1 className="landing-logo"> <img src={logo} /></h1>
     </section>
   );
 };
