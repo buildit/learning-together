@@ -18,7 +18,7 @@ const WorkshopPreview = props => {
             <strong></strong>
           </h5>
           <span className="location">
-            <FontAwesomeIcon icon="map-marker" /> Buildit 
+            <FontAwesomeIcon icon="map-marker" /> Buildit
           </span>
           <span className="conference-room">Black</span>
           <span className="instructor"></span>
