@@ -1,6 +1,6 @@
 
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import { UserRoute, UnauthenticatedUserRoute } from "../auth";
 import { RegisterComponent } from "../register";
 import { LoginComponent } from "../login";
