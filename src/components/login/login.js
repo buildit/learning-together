@@ -35,7 +35,7 @@ export default class LoginComponent extends React.Component {
       <div className="grid-container">
         <div className="grid-y medium-grid-frame">
           <div className="grid-x grid-padding-x align-middle">
-            <form className='cell medium-6' onSubmit={this.submitHandler.bind(this)}>
+            <form className='cell medium-12' onSubmit={this.submitHandler.bind(this)}>
               <div className='row'>
                 <div className="small-12 columns">
                   <label>Email:
@@ -57,13 +57,13 @@ export default class LoginComponent extends React.Component {
                 <div className='grid-x grid-padding-x align-center'>
                   <Link to='' >Forgot your password?</Link>
                 </div>
+                <div className='row'>
+                  <div className='grid-x grid-padding-x align-center'>
+                    <Link to='/register' >Don't have an account?</Link>
+                  </div>
+                </div>
               </div>
             </form>
-            <div className='cell medium-6'>
-              <Link to='/register' ><img src='http://placekitten.com/400/500' alt='register' /></Link>
-            </div>
-          </div>
-          <div className='row'>
           </div>
         </div>
         {loginSuccess && (
