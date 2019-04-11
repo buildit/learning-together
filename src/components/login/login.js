@@ -32,26 +32,24 @@ export default class LoginComponent extends React.Component {
   }
   render() {
     const { email, password, loginSuccess } = this.state
-    const { isUser, location } = this.props
-    console.log('location in login', location)
     return (
       <Fragment>
-        <NavbarComponent isUser={isUser} location={this.props.location} />
+        <NavbarComponent isUser={this.props.isUser} />
         <div className="grid-container">
           <div className="grid-y medium-grid-frame">
             <div className="grid-x grid-padding-x align-middle">
-              <form className='cell medium-6' onSubmit={this.submitHandler.bind(this)}>
+              <form className='cell medium-12' onSubmit={this.submitHandler.bind(this)}>
                 <div className='row'>
                   <div className="small-12 columns">
                     <label>Email:
-                <input type="text" placeholder="Please Enter Your Email Address" value={email} onChange={this.emailHandler.bind(this)} />
+                <input type="text" placeholder="Please Enter Your Email Address" autoComplete="user email" value={email} onChange={this.emailHandler.bind(this)} />
                     </label>
                   </div>
                 </div>
                 <div className='row'>
                   <div className="small-12 columns">
                     <label>Password:
-                <input type="password" placeholder="Please Enter Your Password." value={password} onChange={this.passwordHandler.bind(this)} />
+                <input type="password" autoComplete="current-password" placeholder="Please Enter Your Password." value={password} onChange={this.passwordHandler.bind(this)} />
                     </label>
                   </div>
                 </div>
@@ -63,19 +61,22 @@ export default class LoginComponent extends React.Component {
                     <Link to='' >Forgot your password?</Link>
                   </div>
                 </div>
+                <div className='row'>
+                  <div className='grid-x grid-padding-x align-center'>
+                    <Link to='/register' >Don't have an account?</Link>
+                  </div>
+                </div>
               </form>
-              <div className='cell medium-6'>
-                <Link to='/register' ><img src='http://placekitten.com/400/500' alt='register' /></Link>
-              </div>
-            </div>
-            <div className='row'>
             </div>
           </div>
-          {loginSuccess && (
-            <Redirect to='/' location={this.props.location} />
-          )}
         </div >
-      </Fragment>
+        {
+          loginSuccess && (
+            <Redirect to='/' />
+          )
+        }
+      </Fragment >
+
     )
   }
 }
