@@ -123,7 +123,7 @@ export default class RegisterComponent extends React.Component {
         <div className="grid-container">
           <div className="grid-y medium-grid-frame">
             <div className="grid-x grid-padding-x align-middle">
-              <form className='cell medium-6' onSubmit={this.submitHandler.bind(this)}>
+              <form className='cell medium-12' onSubmit={this.submitHandler.bind(this)}>
                 <div className='row'>
                   <div className="small-12 columns">
                     <label>First Name:</label>
@@ -224,10 +224,14 @@ export default class RegisterComponent extends React.Component {
                     <input type="submit" className="button success align-center cell medium-6 align-middle" value="Submit" />
                   </div>
                 </div>
+                <div className='row'>
+                  <div className='grid-x grid-padding-x align-center'>
+                    <div>
+                      <Link to='/login' >Have an account already?</Link>
+                    </div>
+                  </div>
+                </div>
               </form>
-              <div className='cell medium-6'>
-                <Link to='/login' ><img src='http://placekitten.com/400/500' alt='login' /></Link>
-              </div>
             </div>
           </div>
         </div >
