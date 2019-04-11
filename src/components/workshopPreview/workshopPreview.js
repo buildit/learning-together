@@ -1,33 +1,31 @@
 import React from "react";
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Moment from 'react-moment';
 import "./workshopPreview.scss";
 
-const WorkshopPreview = props => {
-  const { name, location, instructor } = props.workshop;
+const WorkshopPreview = ({ workshop }) => {
+  
   return (
-    <section className="workshops">
-      <article className="workshop grid-x">
-        <div className="date cell small-3">
-          <time>
-            <span>Sept</span> <span>20th</span> <span>2019</span>
-          </time>
+
+    <article className="workshop grid-x grid-margin-x">
+        <div className="date cell small-4">
+
+            <div className="start"><p className="calender"><span><Moment format="MMMM">{workshop.start}</Moment></span> <span><Moment format="DD">{workshop.start}</Moment></span> <span><Moment format="YYYY">{workshop.start}</Moment></span></p>
+                <span><Moment format="LT">{workshop.start}</Moment></span>
+            </div>
+
         </div>
-        <div className="workshop-info cell small-5">
-          <h5 className="workshop-title">
-            <strong></strong>
-          </h5>
-          <span className="location">
-            <FontAwesomeIcon icon="map-marker" /> Buildit
-          </span>
-          <span className="conference-room">Black</span>
-          <span className="instructor"></span>
+        <div className="workshop-info cell small-7">
+            <h3><strong>{workshop.name}</strong></h3>
+            <span className="location"><FontAwesomeIcon icon="map-marker" /> {workshop.location}</span>
+            <span className="conference-room">{workshop.room}</span>
+            <span className="instructor">{workshop.instructor.first} {workshop.instructor.last}</span>
         </div>
-        <div className="cell small-3 button-container">
-          <Link to="/workshop"><button className="button">Learn More</button></Link>
+        <div className="grid-container button-container">
+            <Link to="/workshop" className="button">Learn More</Link>
         </div>
-      </article>
-    </section>
+    </article>
   );
 };
 export default WorkshopPreview;
