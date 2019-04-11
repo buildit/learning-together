@@ -9,7 +9,7 @@ branches:
   - development
   - master
 before_deploy:
-- npm run build
+- CI=false npm run build
 - openssl aes-256-cbc -K $encrypted_2480938aff30_key -iv $encrypted_2480938aff30_iv
   -in ltuserssh_rsa.enc -out ltuserssh_rsa -d
 - eval "$(ssh-agent -s)"
@@ -26,7 +26,7 @@ cache:
 jobs:
   include:
   - stage: build
-    script: npm run build
+    script: CI=false npm run build
   - stage: deploy
     script: skip
     deploy:
