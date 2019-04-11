@@ -8,6 +8,7 @@ import { UserProfileComponent } from "../user-profile";
 import { Page404Component } from "../page404";
 import { LandingComponent } from "../landing";
 import { WorkshopListComponent } from "../workshopList";
+import { WorkshopFormComponent } from "../workshopForm";
 import { WorkshopComponent } from '../workshop'
 import { ConfirmationComponent } from "../confirmation";
 
@@ -24,10 +25,11 @@ export default class RoutesComponent extends React.Component {
             <UserRoute path="/workshops" component={WorkshopListComponent} />
             <UserRoute exact path="/workshop" component={WorkshopComponent} />
             <UserRoute exact path="/confirmation/enroll" component={ConfirmationComponent} />
-
+            <Route exact path="/create-workshop" component={WorkshopFormComponent} />
             <Route component={Page404Component} />
           </Switch>
         </div>
+
       </Router>
     );
   }

@@ -72,7 +72,7 @@ export default class LoginComponent extends React.Component {
             </div>
           </div>
           {loginSuccess && (
-            <Redirect to='/' />
+            <Redirect to='/' location={this.props.location} />
           )}
         </div >
       </Fragment>

@@ -60,7 +60,12 @@ export default class Workshop extends Component {
             </div>
           </div>
           <div className="grid-y grid-padding-y enroll">
+          {
+            isUser ?
             <button type="button" className="button success">ENROLL</button>
+            : <button type="button" className="button success">LOGIN TO ENROLL</button>
+          }
+            
             <p className="description">
               Does it sound like an ad? Maybe. Is it true? Let’s figure it out!
   
