@@ -1,7 +1,7 @@
 
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { AuthenticatedUserRoute, UnauthenticatedUserRoute } from "../auth";
+import { UserRoute, UnauthenticatedUserRoute } from "../auth";
 import { RegisterComponent } from "../register";
 import { LoginComponent } from "../login";
 import { UserProfileComponent } from "../user-profile";
@@ -19,23 +19,13 @@ export default class RoutesComponent extends React.Component {
         <NavbarComponent />
         <div className="main">
           <Switch>
-            <Route exact path="/" component={LandingComponent} />
-            <UnauthenticatedUserRoute
-              exact
-              path="/login"
-              component={LoginComponent}
-            />
-            <UnauthenticatedUserRoute
-              exact
-              path="/register"
-              component={RegisterComponent}
-            />
-            <Route exact path="/user" component={UserProfileComponent} />
-
-            <Route path="/workshops" component={WorkshopListComponent} />
-
-            <Route exact path="/workshop" component={WorkshopComponent} />
-            <Route exact path="/confirmation/enroll" component={ConfirmationComponent} />
+            <UserRoute exact path="/" component={LandingComponent} />
+            <UnauthenticatedUserRoute exact path="/login" component={LoginComponent} />
+            <UnauthenticatedUserRoute exact path="/register" component={RegisterComponent} />
+            <UserRoute exact path="/user" component={UserProfileComponent} />
+            <UserRoute path="/workshops" component={WorkshopListComponent} />
+            <UserRoute exact path="/workshop" component={WorkshopComponent} />
+            <UserRoute exact path="/confirmation/enroll" component={ConfirmationComponent} />
 
             <Route component={Page404Component} />
           </Switch>

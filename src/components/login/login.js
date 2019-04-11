@@ -25,7 +25,8 @@ export default class LoginComponent extends React.Component {
     //add logic for api call
     signIn({ Username: formattedEmail, Password: password }, this.submitCallback)
   }
-  submitCallback() {
+  submitCallback(response) {
+    localStorage.setItem('BTToken', response.data.token)
     this.setState({ loginSuccess: true })
   }
   render() {
