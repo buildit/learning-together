@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./categoryList.scss";
 
-const WORKSHOP_CATEGORIES = ["Tech", "Design", "Soft skills", "Misc"];
+const WORKSHOP_CATEGORIES = ["UX", "Platform Engineering", "Leadership", "Enterprise", "Delivery", "Dev Ops", "Marketing", "Front End"];
 
 class CategoryList extends Component {
   render() {
@@ -17,9 +17,9 @@ class CategoryList extends Component {
             }}
             className="card custom-cards"
           >
-            <div className="card-section">
+
               <h4>{category}</h4>
-            </div>
+           
           </Link>
         </div>
       );
@@ -27,10 +27,7 @@ class CategoryList extends Component {
 
     return (
       <div>
-        <h2>Categories:</h2>
-        <div className="grid-container">
-          <div className="grid-x grid-padding-x ">{WrkshpCategories}</div>
-        </div>
+          <div className="grid-x category-container">{WrkshpCategories}</div>
       </div>
     );
   }

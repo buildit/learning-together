@@ -1,12 +1,36 @@
-h2 {
-  color: #86c5fc;
-}
+
 .custom-cards {
-  background: rgb(232, 195, 253);
-  background: linear-gradient(
-    90deg,
-    rgba(232, 195, 253, 1) 35%,
-    rgba(134, 197, 252, 0.7013888888888888) 100%
-  );
-  color: white;
+  color: #000;
+  height: 15vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0;
+  border-top: none;
+  border-right: none;
+  padding: .5em;
+  text-align: center;
+  background-color: rgba(94,155,177,1);
+  color: #fff;
+  h4 {
+    font-weight: 900;
+  }
 }
+
+
+
+.category-container {
+  border-right: 1px solid #e6e6e6;
+  border-top: 1px solid #e6e6e6;
+
+  .cell .custom-cards {
+    background-color: rgba(94,155,177,1);
+  }
+
+  .cell:nth-child(2n + 1) .custom-cards {
+    background-color: rgba(232,144,180,1);
+  }
+}
+
+
+
