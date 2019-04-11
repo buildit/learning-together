@@ -1,5 +1,6 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { WorkshopPreviewComponent } from "../workshopPreview";
+import { NavbarComponent } from "../navbar";
 
 class WorkshopList extends Component {
   render() {
@@ -8,14 +9,16 @@ class WorkshopList extends Component {
     });
 
     return (
-      <div>
+      <Fragment>
+        <NavbarComponent isUser={this.props.isUser} location={this.props.location} />
         {workshopList.map(workshop => (
           <WorkshopPreviewComponent key={workshop.id} workshop={workshop} />
         ))}
         {workshopList.length === 0 ? (
           <p>No workshops under this category</p>
         ) : null}
-      </div>
+
+      </Fragment>
     );
   }
 }

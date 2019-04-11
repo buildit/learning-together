@@ -9,14 +9,12 @@ import { Page404Component } from "../page404";
 import { LandingComponent } from "../landing";
 import { WorkshopListComponent } from "../workshopList";
 import { WorkshopComponent } from '../workshop'
-import { NavbarComponent } from '../navbar';
 import { ConfirmationComponent } from "../confirmation";
 
 export default class RoutesComponent extends React.Component {
   render() {
     return (
       <Router>
-        <NavbarComponent />
         <div className="main">
           <Switch>
             <UserRoute exact path="/" component={LandingComponent} />

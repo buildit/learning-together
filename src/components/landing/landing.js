@@ -5,6 +5,7 @@ import { PreviewComponent } from "../preview";
 import { CategoryListComponent } from "../categoryList";
 import { FooterComponent } from "../footer"
 import './landing.scss'
+import { NavbarComponent } from "../navbar";
 
 
 export default class Landing extends Component {
@@ -116,9 +117,9 @@ export default class Landing extends Component {
     const wrkshopPreview = this.state.workshops.map(workshop => {
       return <NavLink to="/workshop" className="preview-card" key={workshop.id}><PreviewComponent workshop={workshop} /></NavLink>
     });
-
     return (
       <Fragment>
+        <NavbarComponent isUser={this.props.isUser} location={this.props.location} />
         <JumbotronComponent image={`${process.env.PUBLIC_URL}/images/logo.png`} title="Better Together" />
         <h3>Upcoming workshops:</h3>
         <div className="grid-container full landing-preview">
@@ -127,7 +128,6 @@ export default class Landing extends Component {
           </div>
         </div>
         <CategoryListComponent workshop={this.state.workshops} />
-
         <FooterComponent />
       </Fragment>
     );
