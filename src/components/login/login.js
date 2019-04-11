@@ -32,11 +32,9 @@ export default class LoginComponent extends React.Component {
   }
   render() {
     const { email, password, loginSuccess } = this.state
-    const { isUser, location } = this.props
-    console.log('location in login', location)
     return (
       <Fragment>
-        <NavbarComponent isUser={isUser} />
+        <NavbarComponent isUser={this.props.isUser} />
         <div className="grid-container">
           <div className="grid-y medium-grid-frame">
             <div className="grid-x grid-padding-x align-middle">
