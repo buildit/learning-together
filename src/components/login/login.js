@@ -42,14 +42,14 @@ export default class LoginComponent extends React.Component {
                 <div className='row'>
                   <div className="small-12 columns">
                     <label>Email:
-                <input type="text" placeholder="Please Enter Your Email Address" value={email} onChange={this.emailHandler.bind(this)} />
+                <input type="text" placeholder="Please Enter Your Email Address" autoComplete="user email" value={email} onChange={this.emailHandler.bind(this)} />
                     </label>
                   </div>
                 </div>
                 <div className='row'>
                   <div className="small-12 columns">
                     <label>Password:
-                <input type="password" placeholder="Please Enter Your Password." value={password} onChange={this.passwordHandler.bind(this)} />
+                <input type="password" autoComplete="current-password" placeholder="Please Enter Your Password." value={password} onChange={this.passwordHandler.bind(this)} />
                     </label>
                   </div>
                 </div>
