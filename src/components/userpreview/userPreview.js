@@ -1,7 +1,6 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import './userpreview.scss';
 import { NavLink } from 'react-router-dom';
-import Preview from '../preview/preview';
 
 const UserPreviewComponent = ({attendee}) => { 
 

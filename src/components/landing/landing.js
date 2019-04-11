@@ -6,6 +6,7 @@ import { CategoryListComponent } from "../categoryList";
 import { FooterComponent } from "../footer"
 import workShopData from "./mock-workshops.json";
 import './landing.scss';
+import { NavbarComponent } from "../navbar";
 
 
 export default class Landing extends Component {
@@ -20,9 +21,10 @@ export default class Landing extends Component {
     const wrkshopPreview = this.state.workshops.map(workshop => {
       return <NavLink to="/workshop" className="preview-card" key={workshop._id}><PreviewComponent workshop={workshop} /></NavLink>
     });
-
+    const { isUser, location } = this.props
     return (
       <Fragment>
+        <NavbarComponent isUser={isUser} location={location} />
         <Hero title="Better Together" />
         <div className="grid-container landing-preview">
         <h2 className="section-title">Upcoming Workshops</h2>
@@ -34,8 +36,7 @@ export default class Landing extends Component {
         <h2 className="section-title">Categories</h2>
         <CategoryListComponent workshop={this.state.workshops} />
         </div>
-
-        <FooterComponent />
+        <FooterComponent isUser={isUser} />
       </Fragment>
     );
   }
