@@ -3,53 +3,87 @@ import { Link } from 'react-router-dom'
 import { JumbotronComponent } from '../jumbotron'
 import './workshop.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { UserPreviewComponent } from  '../userpreview'
+import workshopData from "./mock-workshops.json"
+import Moment from 'react-moment';
+
 
 
 export default class Workshop extends Component {
+
+  constructor(props){
+    super(props);
+    this.state = {
+      workshop : {}
+    };
+};
+
+componentDidMount(){
+  this.setState({
+    workshop: workshopData[0]
+  })
+}
+
+updateImage(location) {
+  const formatted = location.replace(/\s/g , "-")
+  const imagePath = `${process.env.PUBLIC_URL}/images/cover/${formatted}.jpg`
+  return imagePath
+}
+
   render() {
+
+    const workshop = this.state.workshop
+    const attendees = (workshop.attendees ? workshop.attendees : []);
+    const cover = (workshop.location ? this.updateImage(workshop.location) : "")
+    const instructor = (workshop.instructor ? workshop.instructor : {first:"", last:""})
+    
     return (
       <Fragment>
-        <JumbotronComponent />
-        <div className="grid-container full">
-          <h1>Enterprise Architecture</h1>
-          <div className="grid-x enroll-top">
-            {/* <img src={BrooklynOffice} alt="Brooklyn Office" /> */}
-            <div className="cell large-auto detail">
-              <h3>Where:</h3>
-              <p>Brooklyn</p>
-              <p>Room Black</p>
-              <p>Video Link: <a href="true">Link Here</a></p> {/*enroll to see*/}
+        <JumbotronComponent image={cover} title={workshop.name}/>
+        
+        <div className="grid-container">
+        <div className="grid-x">
+        <p><strong>{instructor.first}  {instructor.last}</strong></p>
+        </div>
+          <div className="grid-x grid-margin-x enroll-top">
+           
+            <div className="cell detail small-6">
+            <p className="calender"><span><Moment format="MMMM">{workshop.start}</Moment></span> <span><Moment format="DD">{workshop.start}</Moment></span> <span><Moment format="YYYY">{workshop.start}</Moment></span></p>
+              <a href>Add to Calendar</a>
             </div>
-            <div className="cell large-auto detail" style={{ background: "black", color: "white" }}>
-              <h3>When:</h3>
-              <p>Friday, May 3rd 2019</p>
-              <p>11:00 am EST</p>
-              <a href="true">Add to Calendar</a> {/*enroll to see*/}
+            <div className="cell detail small-6">
+              <p><FontAwesomeIcon icon="map-marker" /> Brooklyn</p>
+              <p><FontAwesomeIcon icon="building" /> Black</p>
+              <p><FontAwesomeIcon icon="video" /> <a href={workshop.remote}>Webex</a></p>
+            </div>
             </div>
           </div>
           <div className="grid-y grid-padding-y enroll">
-            <Link to="/confirmation/enroll"><button type="button" className="button success">ENROLL</button></Link>
-            <p className="description">And does to connect: not take allows buyers a commission platform that from talent is no on bookings process: there We provide and inconsistent incredible value mystifying, inefficient, to our is a buyers for Accessing talent the fee is broken. That we live industry assess – that the through making seen firsthand the talent But, we’ve booking process with fans. For buyers, their engagement facilitating more to increase transactions. Fyre Talent seek is the and social. Fastest growing live events segment of talent through the entertainment connections to industry with more meaningful rising ticket Fans seek prices and increasing attendance.
-Receive your using your very own can begin Magnises card point, you or my at which credit/debit card? Magnises card! Losing your using your Magnises card. Can begin that is point, you engraved with at which your name. Magnises card You will using the then have statements? No, to swing or monthly by our rewards programs townhouse, where change your we are will not able to Magnises card, link up using the your ordinary statements? No, credit/debit card or monthly Losing your rewards program Magnises card. Current card’s is like affect my losing any Magnises card, credit/debit card. To your.
-At which notable artists, point, you of other can begin and hundreds using your Queen Latifah, Magnises card! Jamie Foxx, is like Antonio Pierce, losing any DJ Khaled, credit/debit card Lil Wayne, to your entertainment including: Magnises card, names in will not most iconic change your of the rewards programs to many or monthly and recommendations statements – Receive access you will & clubs continue to drivers. Bars earn points/rewards hand picked and receive with our top-tier treatment in style at restaurants, Transportation Ride throughout the around town. City. Shopping top hotels Shop and service at experience special unveilings and.
-Personality he The Magnises is both card that star and the credit/debit executive prouder and cancel of the your bank most fun to call venues across will need the city. First, you Our members credit/debit card. Are the losing any thrill-seekers, the is like hard-workers, & Magnises card the go-getters. Will the we are Magnises card able to lose my link up if i your ordinary bill. What credit/debit card your monthly First, you and receive will need Secure reservations to call bankcard. Restaurants your bank the new and cancel up to. The credit/debit card links card that The Magnises.
-</p>
-            <p><strong>Instructor: Alex Kalinovsky</strong></p>
-            <div className="grid-x full grid-padding-x">
-              <h4 className="cell">Attending: </h4>
-              <FontAwesomeIcon icon="user-circle" className="fa-3x fa-w-15" />
-              <FontAwesomeIcon icon="user-circle" className="fa-3x fa-w-15" />
-              <FontAwesomeIcon icon="user-circle" className="fa-3x fa-w-15" />
-              <FontAwesomeIcon icon="user-circle" className="fa-3x fa-w-15" />
-              <FontAwesomeIcon icon="user-circle" className="fa-3x fa-w-15" />
-              <FontAwesomeIcon icon="user-circle" className="fa-3x fa-w-15" />
-              <FontAwesomeIcon icon="user-circle" className="fa-3x fa-w-15" />
-              <FontAwesomeIcon icon="user-circle" className="fa-3x fa-w-15" />
+            <button type="button" className="button success">ENROLL</button>
+            <p className="description">
+              Does it sound like an ad? Maybe. Is it true? Let’s figure it out!
+
+              Comm’n join me for uBuildit Knowledge Sharing Session titled “Custom Elements or why you don’t need React anymore”
+              I will talk about this powerful but heavily underestimated technology  and share my personal experience of working with it in production
+
+            </p>
+            <hr />
+            <div className="attendees">
+              <h3><b>Attending:</b></h3>
+                <section className="grid-display attendee-grid">
+
+                {attendees.map((attendee,index) => (
+
+                    <UserPreviewComponent attendee={attendee}/>
+                  
+                ))}
+    
+                </section>
             </div>
             <p className="feedback">Send Instructor Feedback: </p> {/*hidden until after user has attended*/}
             <a href="true" className="email">Instructor email</a>
           </div>
-        </div>
+       
       </Fragment>
     )
   }

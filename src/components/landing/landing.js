@@ -119,7 +119,7 @@ export default class Landing extends Component {
 
     return (
       <Fragment>
-        <JumbotronComponent />
+        <JumbotronComponent image={`${process.env.PUBLIC_URL}/images/logo.png`} title="Better Together"/>
         <h3>Upcoming workshops:</h3>
         <div className="grid-container full landing-preview">
           <div className="grid-x grid-padding-x card-scroll">

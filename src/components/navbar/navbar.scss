@@ -1,0 +1,19 @@
+.logo {
+    width: 100%;
+}
+
+.navbar {
+    background: #ffffff;
+    padding-top: 20px;
+}
+
+.search-container {
+    position: relative;
+    .button {
+        position: absolute;
+        top: 1px;
+        right: 0;
+        background: transparent;
+        color: #000;
+    }
+}

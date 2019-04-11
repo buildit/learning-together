@@ -1,13 +1,18 @@
 import React from "react";
 import "./jumbotron.scss";
 
-const Jumbotron = ({ image }) => {
+const Jumbotron = ({ image,title }) => {
+
+const img = image ? image : `${process.env.PUBLIC_URL}/images/cover/default.jpg`
+
+const style = {
+  backgroundImage:`url(${img})`
+}
+
   return (
-    <img
-      className="responsive"
-      src="https://placeimg.com/640/480/people"
-      alt="buildit employees"
-    />
+    <section className="cover-frame" style={style}>
+  <h1 className="title"><b>{title}</b></h1>
+    </section>
   );
 };
 
