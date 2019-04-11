@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import moment from "moment";
 import { SingleDatePicker } from "react-dates";
+import { Link } from "react-router-dom";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import "./workshopForm.scss";
@@ -114,6 +115,7 @@ class WorkshopForm extends Component {
                     value={this.state.name}
                     onChange={this.handleChange}
                     placeholder="workshop name"
+                    autoFocus
                   />
                   <span className="error">{this.state.error.name}</span>
                 </label>
@@ -192,15 +194,12 @@ class WorkshopForm extends Component {
             </div>
           </div>
           <div className="grid-x align-center">
-            <button className="button custom-button" type="submit">
+            <button className="button custom-button submit" type="submit">
               Create{" "}
             </button>
-            <button
-              className="hollow button secondary custom-button"
-              type="submit"
-            >
+            <Link to="/" className="hollow button secondary custom-button">
               Cancel{" "}
-            </button>
+            </Link>
           </div>
         </form>
       </div>
