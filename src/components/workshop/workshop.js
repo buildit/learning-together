@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react'
-import { Redirect} from 'react-router-dom'
 import { JumbotronComponent } from '../jumbotron'
 import './workshop.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -36,8 +35,7 @@ export default class Workshop extends Component {
     const attendees = (workshop.attendees ? workshop.attendees : []);
     const cover = (workshop.location ? this.updateImage(workshop.location) : "")
     const instructor = (workshop.instructor ? workshop.instructor : { first: "", last: "" })
-    const { isUser, location } = this.props
-    console.log('location in workshop,', location)
+    const { isUser } = this.props
     return (
       <Fragment>
         <NavbarComponent isUser={isUser} location={this.props.location}/>
