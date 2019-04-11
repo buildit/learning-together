@@ -1,30 +1,53 @@
-.enroll-top {
+  .grid-container h1 {
+  text-align: center
+  }
+
+  .enroll-top {
   height: 20vh;
   text-align: center;
-}
+  }
 
-.enroll {
-  align-items: center;
 
-  button {
-    width: 20rem;
-    margin-top: 8rem;
+  .calender {
+  border: 1px solid #000;
+  padding: .5em;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+  margin: 1em;
+  margin-top: 0;
+  margin-left: 0;
+
+  span:nth-child(2){
+    font-weight: 900;
+    font-size: 2rem;
   }
 }
 
-.detail {
-  padding-top: 3rem;
-}
+  .attendee-grid {
+  grid-template-columns: repeat(3, auto);
+  grid-template-rows: 100px;
+  grid-gap: 10px;
+  }
 
-.description {
-  text-align: center;
-  padding: 0rem 4rem 0rem 4rem;
-}
-
-.feedback {
-  padding-top: 4rem;
-}
-
-.email {
+  .attendees {
+  width: 100%;
+  }
+  .email {
   margin-bottom: 4rem;
-}
+  }
+
+  @media only screen and (max-width: 600px) {
+  .enroll {
+  padding-top: 6rem;
+  }
+
+  .detail {
+  padding-top: 1rem;
+  }
+
+  .description {
+  padding: 0rem 1rem 0rem 1rem;
+  }
+  }

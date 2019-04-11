@@ -1,31 +1,37 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import Select from 'react-select'
 import makeAnimated from 'react-select/lib/animated'
+import { signUp, signIn } from '../../api'
 
 export default class RegisterComponent extends React.Component {
 
   constructor() {
     super()
     this.state = {
-      name: '',
+      firstName: '',
+      lastName: '',
       emailUsername: '',
       isWipro: true,
       password: '',
       passwordConfirmation: '',
-      selectedLocation: '',
-      selectedRole: '',
+      selectedLocation: {},
+      selectedRole: {},
       interests: [],
-      nameError: false,
+      firstNameError: false,
+      lastNameError: false,
       emailError: false,
       passwordError: false,
       passwordConfirmationError: false,
       locationError: false,
-      roleError: false
+      roleError: false,
+      isLoading: false,
+      signUpSuccess: false,
     }
-    this.locations = [{ value: 'new york', label: 'New York' }, { value: 'denver', label: 'Denver' }, { value: 'dallas', label: 'Dallas' }, { value: 'london', label: 'London' }]
-    this.roles = [{ value: 'fee', label: 'Front End Engineer' }, { value: 'pe', label: 'Platform Engineer' }, { value: 'ct', label: 'Creative Tech' }]
+    this.locations = [{ value: '1', label: 'New York' }, { value: '2', label: 'Denver' }, { value: '3', label: 'Dallas' }, { value: '4', label: 'London' }]
+    this.roles = [{ value: '1', label: 'Front End Engineer' }, { value: '2', label: 'Platform Engineer' }, { value: '3', label: 'Creative Tech' }]
     this.interests = [{ value: 'fee', label: 'Front End Engineer' }, { value: 'pe', label: 'Platform Engineer' }, { value: 'ct', label: 'Creative Tech' }]
+    this.submitCallback = this.submitCallback.bind(this)
   }
   validateName(name) {
     if (name === '') {
@@ -59,24 +65,29 @@ export default class RegisterComponent extends React.Component {
 
   submitHandler(e) {
     e.preventDefault()
-    const { name, emailUsername, isWipro, password, passwordConfirmation, selectedLocation, selectedRole, interests } = this.state
+    const { firstName, lastName, emailUsername, isWipro, password, passwordConfirmation, selectedLocation, selectedRole, interests } = this.state
     let email = emailUsername + '@wipro.com'
     if (!isWipro) {
       email = emailUsername + '@designit.com'
     }
     else { }
-    let isValidatedName = this.validateName(name)
+    let isValidatedFirstName = this.validateName(firstName)
+    let isValidatedLastName = this.validateName(lastName)
     let isValidatedEmail = this.validateEmail(email)
     let isValidatedPassword = this.validatePassword(password)
     let isValidatedPasswordConfirm = this.comparePassword(password, passwordConfirmation)
     let isValidatedLocation = this.validateLocation(selectedLocation)
     let isValidatedRole = this.validateRole(selectedRole)
-    if (!isValidatedName || !isValidatedEmail || !isValidatedPassword || !isValidatedPasswordConfirm || !isValidatedLocation || !isValidatedRole) {
-      this.setState({ nameError: !isValidatedName, emailError: !isValidatedEmail, passwordError: !isValidatedPassword, passwordConfirmationError: !isValidatedPasswordConfirm, locationError: !isValidatedLocation, roleError: !isValidatedRole })
+    if (!isValidatedFirstName || !isValidatedLastName || !isValidatedEmail || !isValidatedPassword || !isValidatedPasswordConfirm || !isValidatedLocation || !isValidatedRole) {
+      this.setState({ firstNameError: !isValidatedFirstName, lastNameError: !isValidatedLastName, emailError: !isValidatedEmail, passwordError: !isValidatedPassword, passwordConfirmationError: !isValidatedPasswordConfirm, locationError: !isValidatedLocation, roleError: !isValidatedRole })
+      return
     }
-
-    // api handler
+    signUp({ FirstName: firstName, lastName: lastName, Username: email, Password: password, LocationId: selectedLocation.value, RoleId: selectedRole.value }, this.submitCallback)
   }
+  submitCallback() {
+    this.setState({ signUpSuccess: true })
+  }
+
   onChangeHandler(e) {
     this.setState({ [e.target.name]: e.target.value })
   }
@@ -95,7 +106,7 @@ export default class RegisterComponent extends React.Component {
 
 
   render() {
-    const { name, emailUsername, isWipro, password, passwordConfirmation, selectedLocation, selectedRole, emailError, passwordError, passwordConfirmationError, nameError, locationError, roleError } = this.state
+    const { name, emailUsername, isWipro, password, passwordConfirmation, selectedLocation, selectedRole, emailError, passwordError, passwordConfirmationError, firstNameError, lastNameError, locationError, roleError, signUpSuccess } = this.state
     return (
       <div className="grid-container">
         <div className="grid-y medium-grid-frame">
@@ -103,9 +114,18 @@ export default class RegisterComponent extends React.Component {
             <form className='cell medium-6' onSubmit={this.submitHandler.bind(this)}>
               <div className='row'>
                 <div className="small-12 columns">
-                  <label>Full Name:</label>
-                  <input type="text" placeholder="Please Enter Your Name" name='name' value={name} onChange={this.onChangeHandler.bind(this)} />
-                  {nameError && (
+                  <label>First Name:</label>
+                  <input type="text" placeholder="Please Enter Your First Name" name='firstName' value={name} onChange={this.onChangeHandler.bind(this)} />
+                  {firstNameError && (
+                    <div>Please type in a valid name.</div>
+                  )}
+                </div>
+              </div>
+              <div className='row'>
+                <div className="small-12 columns">
+                  <label>Last Name:</label>
+                  <input type="text" placeholder="Please Enter Your Last Name" name='lastName' value={name} onChange={this.onChangeHandler.bind(this)} />
+                  {lastNameError && (
                     <div>Please type in a valid name.</div>
                   )}
                 </div>
@@ -146,7 +166,6 @@ export default class RegisterComponent extends React.Component {
                   <label>Location:</label>
                   <Select
                     placeholder='Please select a location'
-                    value={selectedLocation}
                     onChange={this.onClickLocationHandler.bind(this)}
                     options={this.locations}
                     isSearchable={false}
@@ -162,7 +181,6 @@ export default class RegisterComponent extends React.Component {
                   <label>Role:</label>
                   <Select
                     placeholder='Please select a role'
-                    value={selectedRole}
                     onChange={this.onClickRoleHandler.bind(this)}
                     options={this.roles}
                     isSearchable={false}
@@ -200,6 +218,7 @@ export default class RegisterComponent extends React.Component {
             </div>
           </div>
         </div>
+        {signUpSuccess && (<Redirect to='/login' />)}
       </div >
     )
   }
