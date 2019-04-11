@@ -1,0 +1,22 @@
+.responsive {
+  width: 100%;
+  height: auto;
+}
+
+.cover-frame {
+  height: 280px;
+  object-fit: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background-size: cover;
+  margin-bottom: 1em;
+  background-position: center center;
+
+  .title {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 1em;
+  }
+ 
+}

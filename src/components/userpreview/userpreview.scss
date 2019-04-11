@@ -1,0 +1,23 @@
+
+.photo-frame {
+    border-radius: 50px;
+    width: 75px;
+    overflow: hidden;
+    margin: 0 auto;
+
+    img {
+        object-fit: cover;
+    }
+}
+
+.user-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 15px;
+    text-align: center;
+
+    p {
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,5690 @@
+[
+    {
+      "_id": "5cae1dc04a398211ef99ef38",
+      "index": 0,
+      "guid": "4f715dda-bcbd-4703-9539-a6e02d474591",
+      "picture": "https://randomuser.me/api/portraits/women/43",
+      "name": {
+        "first": "Gracie",
+        "last": "Dalton"
+      },
+      "base": "Warshaw",
+      "email": "gracie.dalton@wipro.com",
+      "classes": {
+        "attending": [
+          {
+            "name": "Frenex Workshop",
+            "location": "Bangalore",
+            "room": "Grey",
+            "instructor": {
+              "first": "Stuart",
+              "last": "Hammond",
+              "guid": "fc6d6215-490c-49e9-abad-ee32725964b4"
+            },
+            "start": 1440542473465,
+            "end": 1477758468418
+          },
+          {
+            "name": "Accidency Workshop",
+            "location": "Brooklyn",
+            "room": "Grey",
+            "instructor": {
+              "first": "Luisa",
+              "last": "Melendez",
+              "guid": "dbf3085a-861d-4ad0-aff8-fb6006f46965"
+            },
+            "start": 1423472727898,
+            "end": 1418617520277
+          },
+          {
+            "name": "Baluba Workshop",
+            "location": "Edinburgh",
+            "room": "White",
+            "instructor": {
+              "first": "Burton",
+              "last": "Hogan",
+              "guid": "8dde4e2a-a129-499c-9932-3562fe8accd2"
+            },
+            "start": 1542251281787,
+            "end": 1450186554054
+          },
+          {
+            "name": "Cinaster Workshop",
+            "location": "London",
+            "room": "Grey",
+            "instructor": {
+              "first": "Linda",
+              "last": "Solis",
+              "guid": "6b3d197c-d57a-4338-87d7-2e4d636cbaeb"
+            },
+            "start": 1551580085053,
+            "end": 1482546958691
+          },
+          {
+            "name": "Opportech Workshop",
+            "location": "Brooklyn",
+            "room": "Grey",
+            "instructor": {
+              "first": "Odonnell",
+              "last": "Raymond",
+              "guid": "2081af63-2506-400e-85e7-67cd9d66185b"
+            },
+            "start": 1391759943162,
+            "end": 1441989055650
+          },
+          {
+            "name": "Anocha Workshop",
+            "location": "London",
+            "room": "Black",
+            "instructor": {
+              "first": "Cole",
+              "last": "Mejia",
+              "guid": "c2780914-ec9e-4665-aee7-4100745e963a"
+            },
+            "start": 1417487357291,
+            "end": 1518046171438
+          },
+          {
+            "name": "Exovent Workshop",
+            "location": "Gdansk",
+            "room": "Grey",
+            "instructor": {
+              "first": "Christie",
+              "last": "Dunn",
+              "guid": "8f00b681-cc60-4d45-8bfe-347d582447f2"
+            },
+            "start": 1478068917056,
+            "end": 1537239539914
+          },
+          {
+            "name": "Portaline Workshop",
+            "location": "Warshaw",
+            "room": "Grey",
+            "instructor": {
+              "first": "Jeannette",
+              "last": "Payne",
+              "guid": "8f4a5771-d645-45b3-b0f9-fa2bcc93639b"
+            },
+            "start": 1499776515545,
+            "end": 1413983200581
+          },
+          {
+            "name": "Bizmatic Workshop",
+            "location": "Denver",
+            "room": "Black",
+            "instructor": {
+              "first": "Curtis",
+              "last": "Wiley",
+              "guid": "cfb8a97f-0b81-4243-992f-f431fa3c1fcf"
+            },
+            "start": 1525007916881,
+            "end": 1424374154321
+          }
+        ],
+        "teaching": [
+          {
+            "name": "Quizka Workshop",
+            "location": "Bangalore",
+            "room": "White",
+            "instructor": {
+              "first": "Delacruz",
+              "last": "Calhoun",
+              "guid": "2c45938e-4978-4821-be64-b8646844953a"
+            },
+            "start": 1533738109305,
+            "end": 1426517920070
+          },
+          {
+            "name": "Velity Workshop",
+            "location": "Dublin",
+            "room": "Grey",
+            "instructor": {
+              "first": "Alford",
+              "last": "Kerr",
+              "guid": "0e726c68-aeb0-456a-9992-d5a220d5deb9"
+            },
+            "start": 1423472444892,
+            "end": 1482892317748
+          },
+          {
+            "name": "Aquazure Workshop",
+            "location": "London",
+            "room": "Grey",
+            "instructor": {
+              "first": "Berry",
+              "last": "Salinas",
+              "guid": "265c7ae0-37f6-4ee5-9e44-e38657564908"
+            },
+            "start": 1521754838789,
+            "end": 1485107868609
+          },
+          {
+            "name": "Otherside Workshop",
+            "location": "Warshaw",
+            "room": "Grey",
+            "instructor": {
+              "first": "Alice",
+              "last": "Parker",
+              "guid": "9b89b300-50b3-4a3c-abca-29df10526c14"
+            },
+            "start": 1464813333715,
+            "end": 1454382155072
+          },
+          {
+            "name": "Architax Workshop",
+            "location": "Warshaw",
+            "room": "Grey",
+            "instructor": {
+              "first": "Inez",
+              "last": "White",
+              "guid": "db347a70-b00c-4151-8fcc-dd3ab8e75cff"
+            },
+            "start": 1534339631231,
+            "end": 1511545027543
+          },
+          {
+            "name": "Oulu Workshop",
+            "location": "Gdansk",
+            "room": "White",
+            "instructor": {
+              "first": "Nolan",
+              "last": "Hester",
+              "guid": "226a5e34-cffd-4007-bb6d-f489fdb1733e"
+            },
+            "start": 1422263498732,
+            "end": 1463452934710
+          },
+          {
+            "name": "Valpreal Workshop",
+            "location": "Bangalore",
+            "room": "Black",
+            "instructor": {
+              "first": "Lakisha",
+              "last": "Peck",
+              "guid": "c4c1124e-1025-4351-8258-9629d991fba5"
+            },
+            "start": 1471060130069,
+            "end": 1481002437005
+          },
+          {
+            "name": "Interodeo Workshop",
+            "location": "Denver",
+            "room": "White",
+            "instructor": {
+              "first": "Maxwell",
+              "last": "Mccullough",
+              "guid": "1d77372e-53ca-476d-b6d7-6787910c0db4"
+            },
+            "start": 1389682127555,
+            "end": 1415568624132
+          },
+          {
+            "name": "Talkalot Workshop",
+            "location": "Brooklyn",
+            "room": "White",
+            "instructor": {
+              "first": "Paige",
+              "last": "Chen",
+              "guid": "d93059fc-a7e6-4fd1-a909-960d1c223da4"
+            },
+            "start": 1398543619615,
+            "end": 1514709399604
+          },
+          {
+            "name": "Inear Workshop",
+            "location": "Warshaw",
+            "room": "Grey",
+            "instructor": {
+              "first": "Coffey",
+              "last": "Patterson",
+              "guid": "78d79bdd-0d3f-4af8-8fea-e48a4a773168"
+            },
+            "start": 1537593868428,
+            "end": 1539311704234
+          }
+        ]
+      }
+    },
+    {
+      "_id": "5cae1dc001d8d86a9f141e7c",
+      "index": 1,
+      "guid": "9058d876-dab8-4cb8-8cbf-cc8b970371f2",
+      "picture": "https://randomuser.me/api/portraits/women/42",
+      "name": {
+        "first": "Casey",
+        "last": "Cline"
+      },
+      "base": "Edinburgh",
+      "email": "casey.cline@wipro.com",
+      "classes": {
+        "attending": [
+          {
+            "name": "Comstar Workshop",
+            "location": "Gdansk",
+            "room": "Grey",
+            "instructor": {
+              "first": "Twila",
+              "last": "Simpson",
+              "guid": "999c7552-269a-4512-9ade-9f02bab85183"
+            },
+            "start": 1450127249558,
+            "end": 1477993046265
+          },
+          {
+            "name": "Idetica Workshop",
+            "location": "Gdansk",
+            "room": "White",
+            "instructor": {
+              "first": "Molly",
+              "last": "Kim",
+              "guid": "4c2a1e13-d0b1-4311-8d1e-c4253da551c2"
+            },
+            "start": 1419582032903,
+            "end": 1413632035156
+          },
+          {
+            "name": "Diginetic Workshop",
+            "location": "Denver",
+            "room": "Grey",
+            "instructor": {
+              "first": "Leblanc",
+              "last": "Blevins",
+              "guid": "0e1f998a-5c7d-4944-abca-631fc7663bdd"
+            },
+            "start": 1495520947004,
+            "end": 1425745231746
+          },
+          {
+            "name": "Supportal Workshop",
+            "location": "Edinburgh",
+            "room": "Black",
+            "instructor": {
+              "first": "Audra",
+              "last": "Knox",
+              "guid": "5c29340d-8c52-43fe-8c97-6a0b6b19d218"
+            },
+            "start": 1389019649480,
+            "end": 1548765383708
+          },
+          {
+            "name": "Vurbo Workshop",
+            "location": "Bangalore",
+            "room": "White",
+            "instructor": {
+              "first": "Rosalie",
+              "last": "Foreman",
+              "guid": "e5b7fac5-74db-4697-bdd3-f6867103a0e8"
+            },
+            "start": 1401036347886,
+            "end": 1471590597197
+          },
+          {
+            "name": "Lotron Workshop",
+            "location": "Plano",
+            "room": "White",
+            "instructor": {
+              "first": "Anita",
+              "last": "Donaldson",
+              "guid": "a4a2d0b4-77cb-4965-a4c4-27ea8f01684c"
+            },
+            "start": 1475158927560,
+            "end": 1459265525341
+          },
+          {
+            "name": "Scenty Workshop",
+            "location": "Denver",
+            "room": "Grey",
+            "instructor": {
+              "first": "Janette",
+              "last": "Stephens",
+              "guid": "53743a76-b339-4718-b3a1-33eead7d20cf"
+            },
+            "start": 1522520229734,
+            "end": 1552714383880
+          },
+          {
+            "name": "Xylar Workshop",
+            "location": "Dublin",
+            "room": "Black",
+            "instructor": {
+              "first": "Petra",
+              "last": "Kirby",
+              "guid": "28e9cad7-5b53-47e5-a22a-bdb33c7e6912"
+            },
+            "start": 1460378009827,
+            "end": 1404734201349
+          },
+          {
+            "name": "Lovepad Workshop",
+            "location": "London",
+            "room": "Black",
+            "instructor": {
+              "first": "Alexandria",
+              "last": "Dyer",
+              "guid": "4e4ea628-f26b-410a-960e-5511c4f89ccb"
+            },
+            "start": 1486724525720,
+            "end": 1458562599701
+          }
+        ],
+        "teaching": [
+          {
+            "name": "Eyeris Workshop",
+            "location": "Edinburgh",
+            "room": "White",
+            "instructor": {
+              "first": "Gertrude",
+              "last": "Armstrong",
+              "guid": "e8fa4d15-15ed-438d-b223-cd416d458dfe"
+            },
+            "start": 1535188206092,
+            "end": 1392641779454
+          },
+          {
+            "name": "Supremia Workshop",
+            "location": "Brooklyn",
+            "room": "Grey",
+            "instructor": {
+              "first": "Phoebe",
+              "last": "Valentine",
+              "guid": "e5987f34-3bce-48ed-859a-17c60f5f4e7f"
+            },
+            "start": 1532430610060,
+            "end": 1452737001201
+          },
+          {
+            "name": "Zolarity Workshop",
+            "location": "Bangalore",
+            "room": "White",
+            "instructor": {
+              "first": "Bessie",
+              "last": "Moore",
+              "guid": "0f1ca02a-e1c3-44a3-81ad-cd85b6ced4fc"
+            },
+            "start": 1395996156355,
+            "end": 1414104737874
+          },
+          {
+            "name": "Gogol Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Jeanie",
+              "last": "Howell",
+              "guid": "df2b3963-c4eb-4017-8936-e890fe836c35"
+            },
+            "start": 1524720842398,
+            "end": 1457579719746
+          },
+          {
+            "name": "Permadyne Workshop",
+            "location": "London",
+            "room": "Grey",
+            "instructor": {
+              "first": "Rebekah",
+              "last": "Mack",
+              "guid": "0c52296d-59c3-4771-a9fe-c9b42428a841"
+            },
+            "start": 1488406485253,
+            "end": 1513793684289
+          },
+          {
+            "name": "Octocore Workshop",
+            "location": "Gdansk",
+            "room": "Grey",
+            "instructor": {
+              "first": "Sampson",
+              "last": "Zimmerman",
+              "guid": "0a5f16aa-0229-46cf-8dc5-6e2b0cab4283"
+            },
+            "start": 1443073403543,
+            "end": 1527222468624
+          },
+          {
+            "name": "Remold Workshop",
+            "location": "Brooklyn",
+            "room": "Grey",
+            "instructor": {
+              "first": "Porter",
+              "last": "Horn",
+              "guid": "b158cf7d-85f5-4ad9-8f85-24e30efd91a7"
+            },
+            "start": 1473029247952,
+            "end": 1400445461199
+          }
+        ]
+      }
+    },
+    {
+      "_id": "5cae1dc067d2e06a0603fa9e",
+      "index": 2,
+      "guid": "89003bbc-7531-4495-b901-772eeabc9c12",
+      "picture": "https://randomuser.me/api/portraits/women/53",
+      "name": {
+        "first": "Jacqueline",
+        "last": "Ochoa"
+      },
+      "base": "London",
+      "email": "jacqueline.ochoa@wipro.com",
+      "classes": {
+        "attending": [
+          {
+            "name": "Panzent Workshop",
+            "location": "London",
+            "room": "Grey",
+            "instructor": {
+              "first": "Collins",
+              "last": "Powers",
+              "guid": "7fb389bf-31ae-41b4-a021-8e19e9d51689"
+            },
+            "start": 1424735171813,
+            "end": 1410745410062
+          },
+          {
+            "name": "Exozent Workshop",
+            "location": "Bangalore",
+            "room": "White",
+            "instructor": {
+              "first": "Gordon",
+              "last": "Mooney",
+              "guid": "e643f306-849f-4751-8d81-88d0c98d6066"
+            },
+            "start": 1399398205329,
+            "end": 1451881144216
+          },
+          {
+            "name": "Electonic Workshop",
+            "location": "Warshaw",
+            "room": "Black",
+            "instructor": {
+              "first": "Workman",
+              "last": "Mays",
+              "guid": "7b0746eb-b308-4937-ae0e-6b81c8ed3c4a"
+            },
+            "start": 1486781347997,
+            "end": 1472542086942
+          },
+          {
+            "name": "Mitroc Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Kara",
+              "last": "Cohen",
+              "guid": "a29d3a1a-66d1-449e-90dd-2bbefd5a18f5"
+            },
+            "start": 1407796027207,
+            "end": 1541474049377
+          },
+          {
+            "name": "Quilch Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Brittany",
+              "last": "Mason",
+              "guid": "e99e3d9f-8597-4070-946f-656c4a9bb7f3"
+            },
+            "start": 1552971503314,
+            "end": 1422564642758
+          }
+        ],
+        "teaching": [
+          {
+            "name": "Aquafire Workshop",
+            "location": "Warshaw",
+            "room": "White",
+            "instructor": {
+              "first": "Deirdre",
+              "last": "Mitchell",
+              "guid": "6cc15f60-8ea0-49dc-a7f3-c15bee732d55"
+            },
+            "start": 1533188139058,
+            "end": 1518146615663
+          },
+          {
+            "name": "Playce Workshop",
+            "location": "Bangalore",
+            "room": "Black",
+            "instructor": {
+              "first": "Lorna",
+              "last": "Guthrie",
+              "guid": "299dc8c7-d04c-46b5-b015-147f52257452"
+            },
+            "start": 1453038002297,
+            "end": 1500094582670
+          },
+          {
+            "name": "Otherway Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Houston",
+              "last": "Ryan",
+              "guid": "2d5c61eb-74f8-443f-ab43-7335df678e55"
+            },
+            "start": 1529989610430,
+            "end": 1541165237753
+          },
+          {
+            "name": "Zoid Workshop",
+            "location": "Brooklyn",
+            "room": "Grey",
+            "instructor": {
+              "first": "Lee",
+              "last": "Haney",
+              "guid": "8c38424b-9ac2-4b43-aaf5-2ff982b444dd"
+            },
+            "start": 1443186806226,
+            "end": 1435777438032
+          }
+        ]
+      }
+    },
+    {
+      "_id": "5cae1dc09a2e3fa6517a5360",
+      "index": 3,
+      "guid": "7c6728b0-2188-4ef7-bdf8-4c635da880e2",
+      "picture": "https://randomuser.me/api/portraits/women/60",
+      "name": {
+        "first": "Ryan",
+        "last": "Kidd"
+      },
+      "base": "Edinburgh",
+      "email": "ryan.kidd@wipro.com",
+      "classes": {
+        "attending": [
+          {
+            "name": "Zenolux Workshop",
+            "location": "London",
+            "room": "White",
+            "instructor": {
+              "first": "Betsy",
+              "last": "Sanford",
+              "guid": "2ff3631a-62a9-4762-98fb-baa11c138127"
+            },
+            "start": 1479805851516,
+            "end": 1425183417477
+          },
+          {
+            "name": "Buzzness Workshop",
+            "location": "Warshaw",
+            "room": "White",
+            "instructor": {
+              "first": "Bridgette",
+              "last": "Logan",
+              "guid": "e97a265b-b0fa-4ba0-b7b5-2466f433978e"
+            },
+            "start": 1399127869348,
+            "end": 1401041691416
+          },
+          {
+            "name": "Isostream Workshop",
+            "location": "Brooklyn",
+            "room": "Black",
+            "instructor": {
+              "first": "Rosemarie",
+              "last": "Taylor",
+              "guid": "b283cd45-7f8a-4e79-a0b9-8c0b236ca215"
+            },
+            "start": 1491075726694,
+            "end": 1478650832531
+          },
+          {
+            "name": "Sarasonic Workshop",
+            "location": "Plano",
+            "room": "Grey",
+            "instructor": {
+              "first": "Caldwell",
+              "last": "Gilmore",
+              "guid": "3f7215e2-f429-4316-b72d-d624fdd7f9c0"
+            },
+            "start": 1400098686921,
+            "end": 1479385482920
+          },
+          {
+            "name": "Idego Workshop",
+            "location": "Bangalore",
+            "room": "White",
+            "instructor": {
+              "first": "Roman",
+              "last": "Ford",
+              "guid": "5223046b-36c1-4c0e-986e-bb70ddfe3671"
+            },
+            "start": 1496382031228,
+            "end": 1479072251368
+          },
+          {
+            "name": "Enthaze Workshop",
+            "location": "Denver",
+            "room": "Grey",
+            "instructor": {
+              "first": "Williams",
+              "last": "Rivas",
+              "guid": "99611c72-ca11-4f0f-bbcf-868978a33eec"
+            },
+            "start": 1450460286585,
+            "end": 1460253948122
+          },
+          {
+            "name": "Genmy Workshop",
+            "location": "Plano",
+            "room": "Black",
+            "instructor": {
+              "first": "Amber",
+              "last": "Carson",
+              "guid": "a0e0b6a0-75ea-492f-aee1-42b1a7f2b5a0"
+            },
+            "start": 1545078427862,
+            "end": 1526377254492
+          },
+          {
+            "name": "Endicil Workshop",
+            "location": "Bangalore",
+            "room": "White",
+            "instructor": {
+              "first": "Cervantes",
+              "last": "Mccoy",
+              "guid": "6502f621-c3cd-491a-aad2-07ab11b3dc91"
+            },
+            "start": 1452911469960,
+            "end": 1473035108767
+          },
+          {
+            "name": "Entogrok Workshop",
+            "location": "Bangalore",
+            "room": "White",
+            "instructor": {
+              "first": "Mays",
+              "last": "Mcgee",
+              "guid": "98ceb384-9ba9-4cca-90dd-5ebf85c34724"
+            },
+            "start": 1489371109413,
+            "end": 1524501793570
+          }
+        ],
+        "teaching": [
+          {
+            "name": "Andershun Workshop",
+            "location": "Edinburgh",
+            "room": "Grey",
+            "instructor": {
+              "first": "Adkins",
+              "last": "Blair",
+              "guid": "b9094414-5a67-46b2-9efc-5708edc9ec49"
+            },
+            "start": 1487635037158,
+            "end": 1429327373469
+          },
+          {
+            "name": "Digial Workshop",
+            "location": "Gdansk",
+            "room": "Black",
+            "instructor": {
+              "first": "Moreno",
+              "last": "Koch",
+              "guid": "ad3f034b-bba3-4a1e-9d9a-5ff966aca44b"
+            },
+            "start": 1498369124590,
+            "end": 1497818519580
+          },
+          {
+            "name": "Ramjob Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Pace",
+              "last": "Madden",
+              "guid": "b5c1ed60-95e9-4dd0-ad21-954c383c4424"
+            },
+            "start": 1410269718484,
+            "end": 1475044407451
+          }
+        ]
+      }
+    },
+    {
+      "_id": "5cae1dc0fbf5568d3d9716e9",
+      "index": 4,
+      "guid": "f719d62a-8679-49c9-8bbf-c4c23755e0ef",
+      "picture": "https://randomuser.me/api/portraits/women/68",
+      "name": {
+        "first": "Blanchard",
+        "last": "Mann"
+      },
+      "base": "Plano",
+      "email": "blanchard.mann@wipro.com",
+      "classes": {
+        "attending": [
+          {
+            "name": "Gology Workshop",
+            "location": "Dublin",
+            "room": "Black",
+            "instructor": {
+              "first": "Mosley",
+              "last": "Bonner",
+              "guid": "cdf65166-5da5-4a9d-bfb6-d85f2f2e8bf3"
+            },
+            "start": 1427721809740,
+            "end": 1437212977281
+          },
+          {
+            "name": "Comtent Workshop",
+            "location": "Dublin",
+            "room": "Grey",
+            "instructor": {
+              "first": "Deanne",
+              "last": "Barry",
+              "guid": "7c018e97-8659-471c-abb4-5d7530045927"
+            },
+            "start": 1409869988232,
+            "end": 1410932584411
+          },
+          {
+            "name": "Tasmania Workshop",
+            "location": "Edinburgh",
+            "room": "Black",
+            "instructor": {
+              "first": "Mccall",
+              "last": "Carver",
+              "guid": "05230256-6264-4d5b-ae9e-29c71955f89b"
+            },
+            "start": 1461848775166,
+            "end": 1423865933717
+          },
+          {
+            "name": "Cofine Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Mccullough",
+              "last": "Turner",
+              "guid": "5f9b00d6-e56b-4966-8a36-c24744ddc8fe"
+            },
+            "start": 1476218396584,
+            "end": 1461217000508
+          }
+        ],
+        "teaching": [
+          {
+            "name": "Centrexin Workshop",
+            "location": "Warshaw",
+            "room": "Black",
+            "instructor": {
+              "first": "Davidson",
+              "last": "Gates",
+              "guid": "8dace052-c1bd-4706-92aa-2594c1c53b34"
+            },
+            "start": 1445521645346,
+            "end": 1494849019165
+          },
+          {
+            "name": "Portico Workshop",
+            "location": "Denver",
+            "room": "White",
+            "instructor": {
+              "first": "Adams",
+              "last": "Hooper",
+              "guid": "62da0f3c-ab16-4ba7-8959-af52cf90cfe2"
+            },
+            "start": 1424082888451,
+            "end": 1409183210930
+          },
+          {
+            "name": "Mixers Workshop",
+            "location": "Bangalore",
+            "room": "Black",
+            "instructor": {
+              "first": "Lucinda",
+              "last": "Talley",
+              "guid": "9f7e0f5c-7b24-4b46-b159-dbb27ca76a46"
+            },
+            "start": 1455701567341,
+            "end": 1551030426224
+          },
+          {
+            "name": "Digique Workshop",
+            "location": "Gdansk",
+            "room": "White",
+            "instructor": {
+              "first": "Barbara",
+              "last": "Moss",
+              "guid": "ab5f2b4e-cd84-40a2-b1a9-61b190f93083"
+            },
+            "start": 1497729321845,
+            "end": 1443056950736
+          },
+          {
+            "name": "Eventix Workshop",
+            "location": "Denver",
+            "room": "Grey",
+            "instructor": {
+              "first": "Malinda",
+              "last": "Bauer",
+              "guid": "39017525-1785-49fe-8329-599c49fa9782"
+            },
+            "start": 1488141486877,
+            "end": 1523701574982
+          },
+          {
+            "name": "Accufarm Workshop",
+            "location": "London",
+            "room": "White",
+            "instructor": {
+              "first": "Schwartz",
+              "last": "Baird",
+              "guid": "34746695-d559-45df-9bbd-3c92b1363677"
+            },
+            "start": 1448417398794,
+            "end": 1452418028685
+          },
+          {
+            "name": "Valreda Workshop",
+            "location": "Brooklyn",
+            "room": "Black",
+            "instructor": {
+              "first": "Casandra",
+              "last": "Zamora",
+              "guid": "ed74f21b-3cb1-4464-9b19-78993758a859"
+            },
+            "start": 1519170371222,
+            "end": 1443347461771
+          },
+          {
+            "name": "Obliq Workshop",
+            "location": "Edinburgh",
+            "room": "Grey",
+            "instructor": {
+              "first": "Beck",
+              "last": "Tucker",
+              "guid": "3ec0a6af-46cc-490d-9629-af543ccc52d1"
+            },
+            "start": 1435749816484,
+            "end": 1494943751930
+          },
+          {
+            "name": "Niquent Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Violet",
+              "last": "Holman",
+              "guid": "8a6e3ad9-973f-4c2b-8a0d-0412ea7adbb5"
+            },
+            "start": 1439371806996,
+            "end": 1464932047011
+          },
+          {
+            "name": "Pharmacon Workshop",
+            "location": "Denver",
+            "room": "White",
+            "instructor": {
+              "first": "Mamie",
+              "last": "Barnes",
+              "guid": "2e6d8625-0acd-4ac8-8d56-afd585101c46"
+            },
+            "start": 1513993357051,
+            "end": 1471921157794
+          }
+        ]
+      }
+    },
+    {
+      "_id": "5cae1dc081ba1309e335ee10",
+      "index": 5,
+      "guid": "741bb550-56b4-491d-a4d1-a46e92c9f14b",
+      "picture": "https://randomuser.me/api/portraits/women/68",
+      "name": {
+        "first": "Knapp",
+        "last": "Gonzalez"
+      },
+      "base": "Edinburgh",
+      "email": "knapp.gonzalez@wipro.com",
+      "classes": {
+        "attending": [
+          {
+            "name": "Extro Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Rosario",
+              "last": "Sanchez",
+              "guid": "37b5d972-cee0-4f70-b367-ff3363d181a4"
+            },
+            "start": 1549542092626,
+            "end": 1490204945992
+          },
+          {
+            "name": "Nexgene Workshop",
+            "location": "Plano",
+            "room": "Grey",
+            "instructor": {
+              "first": "Martinez",
+              "last": "Best",
+              "guid": "f032643e-7089-4d21-bd31-03c6ae5a2537"
+            },
+            "start": 1497924541644,
+            "end": 1446467460997
+          },
+          {
+            "name": "Elpro Workshop",
+            "location": "London",
+            "room": "Black",
+            "instructor": {
+              "first": "Melody",
+              "last": "Frost",
+              "guid": "040fce7e-f02d-4349-845b-df116865fdd6"
+            },
+            "start": 1397250258809,
+            "end": 1545940879763
+          },
+          {
+            "name": "Comverges Workshop",
+            "location": "Gdansk",
+            "room": "Grey",
+            "instructor": {
+              "first": "Monica",
+              "last": "Carey",
+              "guid": "cac08378-e758-4c73-9004-2d37dc7e8030"
+            },
+            "start": 1533540035708,
+            "end": 1415221817762
+          },
+          {
+            "name": "Codax Workshop",
+            "location": "Gdansk",
+            "room": "Black",
+            "instructor": {
+              "first": "Avery",
+              "last": "Floyd",
+              "guid": "ed608a81-3060-41f1-9988-2be4eabc9343"
+            },
+            "start": 1397373284918,
+            "end": 1403970707806
+          },
+          {
+            "name": "Entropix Workshop",
+            "location": "Warshaw",
+            "room": "Grey",
+            "instructor": {
+              "first": "Garcia",
+              "last": "Gillespie",
+              "guid": "0bc04834-eb6b-4df9-afa0-53451ded0e2a"
+            },
+            "start": 1494771599628,
+            "end": 1407001025264
+          }
+        ],
+        "teaching": [
+          {
+            "name": "Pathways Workshop",
+            "location": "Bangalore",
+            "room": "Black",
+            "instructor": {
+              "first": "Cherry",
+              "last": "Elliott",
+              "guid": "802dd9fb-c317-4a91-85ec-5dfb16fe67e3"
+            },
+            "start": 1524853769335,
+            "end": 1484063915871
+          },
+          {
+            "name": "Comtour Workshop",
+            "location": "Denver",
+            "room": "White",
+            "instructor": {
+              "first": "Mcdowell",
+              "last": "Patton",
+              "guid": "b07ce157-abe3-46d6-9b44-1d41f29f8781"
+            },
+            "start": 1445330358494,
+            "end": 1475772502566
+          },
+          {
+            "name": "Sonique Workshop",
+            "location": "London",
+            "room": "White",
+            "instructor": {
+              "first": "Francisca",
+              "last": "Petersen",
+              "guid": "fc927ac9-4899-47b9-9fc9-f4cf3ae76165"
+            },
+            "start": 1482682167052,
+            "end": 1478831635326
+          },
+          {
+            "name": "Netbook Workshop",
+            "location": "Bangalore",
+            "room": "Black",
+            "instructor": {
+              "first": "Liz",
+              "last": "Griffin",
+              "guid": "6fdd5d42-0e19-42a1-9028-be22a1ba0ca0"
+            },
+            "start": 1474372482476,
+            "end": 1451690488356
+          },
+          {
+            "name": "Halap Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Mcmillan",
+              "last": "Pacheco",
+              "guid": "d656c515-eb9a-441e-9818-b5331b89e3be"
+            },
+            "start": 1523146529194,
+            "end": 1404120641369
+          },
+          {
+            "name": "Memora Workshop",
+            "location": "Denver",
+            "room": "White",
+            "instructor": {
+              "first": "Janna",
+              "last": "Wilcox",
+              "guid": "6c7b7463-906a-460a-a9a1-523a5e7c3c8e"
+            },
+            "start": 1551075759429,
+            "end": 1509348729347
+          },
+          {
+            "name": "Melbacor Workshop",
+            "location": "Plano",
+            "room": "Grey",
+            "instructor": {
+              "first": "Jarvis",
+              "last": "Mcconnell",
+              "guid": "64fe9375-cc04-4b92-9295-e7a93175e6a6"
+            },
+            "start": 1397298064680,
+            "end": 1544309217168
+          },
+          {
+            "name": "Cytrex Workshop",
+            "location": "Gdansk",
+            "room": "Black",
+            "instructor": {
+              "first": "Gillespie",
+              "last": "Lucas",
+              "guid": "8f20ed5b-a971-4617-8b2b-45a962bff96f"
+            },
+            "start": 1502155553304,
+            "end": 1514100196322
+          },
+          {
+            "name": "Exostream Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Hughes",
+              "last": "Rice",
+              "guid": "cb8677f8-7803-4865-9f86-5830909fc46f"
+            },
+            "start": 1550979882599,
+            "end": 1433574062493
+          }
+        ]
+      }
+    },
+    {
+      "_id": "5cae1dc0e8688acab5d78fc4",
+      "index": 6,
+      "guid": "32d30e03-b5b9-45f6-849c-29ab2f68ecbd",
+      "picture": "https://randomuser.me/api/portraits/women/11",
+      "name": {
+        "first": "Henrietta",
+        "last": "Workman"
+      },
+      "base": "Brooklyn",
+      "email": "henrietta.workman@wipro.com",
+      "classes": {
+        "attending": [
+          {
+            "name": "Primordia Workshop",
+            "location": "Edinburgh",
+            "room": "White",
+            "instructor": {
+              "first": "Joseph",
+              "last": "Dominguez",
+              "guid": "0a36e62d-f04a-4f3f-afc5-1aa70265bd09"
+            },
+            "start": 1401679508545,
+            "end": 1420052809609
+          },
+          {
+            "name": "Plasmox Workshop",
+            "location": "Dublin",
+            "room": "Black",
+            "instructor": {
+              "first": "Baker",
+              "last": "Love",
+              "guid": "fc166b57-a5c8-479c-8d7e-ccae15157c43"
+            },
+            "start": 1507601484932,
+            "end": 1465241378588
+          },
+          {
+            "name": "Fuelworks Workshop",
+            "location": "London",
+            "room": "Grey",
+            "instructor": {
+              "first": "Carter",
+              "last": "Castro",
+              "guid": "36d1dc80-b15b-4a3e-87af-88f220ccbcc5"
+            },
+            "start": 1490522031740,
+            "end": 1477698789285
+          },
+          {
+            "name": "Menbrain Workshop",
+            "location": "Denver",
+            "room": "Grey",
+            "instructor": {
+              "first": "Kane",
+              "last": "Hunter",
+              "guid": "c75d7a03-1cff-41c8-9455-31489a1ae062"
+            },
+            "start": 1539850682375,
+            "end": 1477808012656
+          },
+          {
+            "name": "Decratex Workshop",
+            "location": "Dublin",
+            "room": "Black",
+            "instructor": {
+              "first": "Holman",
+              "last": "Olson",
+              "guid": "646b704b-25a6-4909-bb22-670fb673b7fd"
+            },
+            "start": 1411067312371,
+            "end": 1437772510740
+          }
+        ],
+        "teaching": [
+          {
+            "name": "Songlines Workshop",
+            "location": "Brooklyn",
+            "room": "Black",
+            "instructor": {
+              "first": "Gould",
+              "last": "Mcintyre",
+              "guid": "7cf4fe2d-a2f9-43e6-b56a-06a14312a393"
+            },
+            "start": 1552521956759,
+            "end": 1473456295609
+          },
+          {
+            "name": "Microluxe Workshop",
+            "location": "London",
+            "room": "Grey",
+            "instructor": {
+              "first": "Karla",
+              "last": "Robertson",
+              "guid": "fa54980d-eb20-44ce-b678-d7b5d76af524"
+            },
+            "start": 1547052756163,
+            "end": 1542298675649
+          },
+          {
+            "name": "Centregy Workshop",
+            "location": "Denver",
+            "room": "White",
+            "instructor": {
+              "first": "Lakeisha",
+              "last": "Adkins",
+              "guid": "8ef5eb78-4ca7-4784-8931-b812aaca4750"
+            },
+            "start": 1500896487971,
+            "end": 1389828278884
+          },
+          {
+            "name": "Acrodance Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Gates",
+              "last": "Jennings",
+              "guid": "0d6e41ef-ba90-463b-926f-fe228a05d56e"
+            },
+            "start": 1463106583919,
+            "end": 1392482224676
+          },
+          {
+            "name": "Proflex Workshop",
+            "location": "Dublin",
+            "room": "Grey",
+            "instructor": {
+              "first": "Geneva",
+              "last": "Donovan",
+              "guid": "14d3a8ce-21ef-4855-b964-3c896214d5e3"
+            },
+            "start": 1395063201271,
+            "end": 1470228117541
+          },
+          {
+            "name": "Xsports Workshop",
+            "location": "Dublin",
+            "room": "Grey",
+            "instructor": {
+              "first": "Rose",
+              "last": "Nieves",
+              "guid": "0a548831-0344-40a3-8888-c627479c03cb"
+            },
+            "start": 1391995606734,
+            "end": 1471462405946
+          }
+        ]
+      }
+    },
+    {
+      "_id": "5cae1dc026ab29da48570731",
+      "index": 7,
+      "guid": "8ab5efe0-bd8d-493b-ba84-d2cf5867850e",
+      "picture": "https://randomuser.me/api/portraits/women/85",
+      "name": {
+        "first": "Kemp",
+        "last": "Jefferson"
+      },
+      "base": "Gdansk",
+      "email": "kemp.jefferson@wipro.com",
+      "classes": {
+        "attending": [
+          {
+            "name": "Nimon Workshop",
+            "location": "Dublin",
+            "room": "Grey",
+            "instructor": {
+              "first": "Kari",
+              "last": "King",
+              "guid": "bc2e2bc1-e4fe-437f-98cb-0abdbbe272c6"
+            },
+            "start": 1510476511453,
+            "end": 1463923771327
+          },
+          {
+            "name": "Icology Workshop",
+            "location": "Edinburgh",
+            "room": "White",
+            "instructor": {
+              "first": "Faye",
+              "last": "Garrett",
+              "guid": "46a0cd7c-aa33-42c2-8565-0e64124a2a66"
+            },
+            "start": 1514489448617,
+            "end": 1442709474178
+          },
+          {
+            "name": "Vixo Workshop",
+            "location": "Bangalore",
+            "room": "White",
+            "instructor": {
+              "first": "Abigail",
+              "last": "Osborne",
+              "guid": "9e358226-2584-46aa-bb86-5946db1c7e44"
+            },
+            "start": 1420772877535,
+            "end": 1402590650292
+          },
+          {
+            "name": "Multiflex Workshop",
+            "location": "Dublin",
+            "room": "Black",
+            "instructor": {
+              "first": "Jocelyn",
+              "last": "Thornton",
+              "guid": "12fde105-e6cf-47f0-ab0c-e148138d8693"
+            },
+            "start": 1503433663392,
+            "end": 1467145360806
+          },
+          {
+            "name": "Earthwax Workshop",
+            "location": "Warshaw",
+            "room": "White",
+            "instructor": {
+              "first": "Atkinson",
+              "last": "Herman",
+              "guid": "6d5741ee-01db-46f4-9c25-de2853291ee1"
+            },
+            "start": 1512972936327,
+            "end": 1534439002750
+          }
+        ],
+        "teaching": [
+          {
+            "name": "Xerex Workshop",
+            "location": "Dublin",
+            "room": "Grey",
+            "instructor": {
+              "first": "Gilda",
+              "last": "Jensen",
+              "guid": "6860b7e5-2ec5-4e2c-a1a8-954bd6b8b2db"
+            },
+            "start": 1491973644357,
+            "end": 1505840963226
+          },
+          {
+            "name": "Pholio Workshop",
+            "location": "Warshaw",
+            "room": "White",
+            "instructor": {
+              "first": "May",
+              "last": "Perry",
+              "guid": "84676b0f-448f-4300-b4e7-94e8c3dbb666"
+            },
+            "start": 1433206106449,
+            "end": 1453935088158
+          },
+          {
+            "name": "Joviold Workshop",
+            "location": "Bangalore",
+            "room": "Grey",
+            "instructor": {
+              "first": "Shields",
+              "last": "Burnett",
+              "guid": "5aff5756-b830-4eec-a691-594b8680db5a"
+            },
+            "start": 1415969178966,
+            "end": 1463083717862
+          },
+          {
+            "name": "Bluegrain Workshop",
+            "location": "Dublin",
+            "room": "Grey",
+            "instructor": {
+              "first": "Olive",
+              "last": "Singleton",
+              "guid": "c9cb6656-1235-419a-ad15-b5652d08bb5a"
+            },
+            "start": 1491578621575,
+            "end": 1534578369295
+          },
+          {
+            "name": "Stockpost Workshop",
+            "location": "Denver",
+            "room": "Grey",
+            "instructor": {
+              "first": "Kristy",
+              "last": "Higgins",
+              "guid": "76a38daa-93a2-460c-93a5-438346c9505e"
+            },
+            "start": 1460119274949,
+            "end": 1517429678725
+          },
+          {
+            "name": "Idealis Workshop",
+            "location": "Edinburgh",
+            "room": "Grey",
+            "instructor": {
+              "first": "Bianca",
+              "last": "Atkinson",
+              "guid": "238b711a-b21a-4b73-ab02-0d3544421db4"
+            },
+            "start": 1547708696113,
+            "end": 1512723533044
+          },
+          {
+            "name": "Zepitope Workshop",
+            "location": "Gdansk",
+            "room": "Grey",
+            "instructor": {
+              "first": "Talley",
+              "last": "Boyle",
+              "guid": "15fcb31a-14a5-40ee-a7b5-1f82c1c4ae17"
+            },
+            "start": 1503055308607,
+            "end": 1494227285033
+          },
+          {
+            "name": "Netropic Workshop",
+            "location": "Bangalore",
+            "room": "Black",
+            "instructor": {
+              "first": "Erma",
+              "last": "Dickson",
+              "guid": "0eb8e762-bd41-4a71-a475-65fc4a8f723d"
+            },
+            "start": 1396011132954,
+            "end": 1524856682161
+          }
+        ]
+      }
+    },
+    {
+      "_id": "5cae1dc03a49101ce8851d5f",
+      "index": 8,
+      "guid": "10257ad4-5cb3-4c3a-b973-d28b78f05624",
+      "picture": "https://randomuser.me/api/portraits/women/72",
+      "name": {
+        "first": "Young",
+        "last": "Prince"
+      },
+      "base": "Gdansk",
+      "email": "young.prince@wipro.com",
+      "classes": {
+        "attending": [
+          {
+            "name": "Nebulean Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Humphrey",
+              "last": "Sutton",
+              "guid": "354e6156-c0d8-4d27-a040-6aeb8ee20d2c"
+            },
+            "start": 1408106222091,
+            "end": 1412474806919
+          },
+          {
+            "name": "Zipak Workshop",
+            "location": "Bangalore",
+            "room": "Grey",
+            "instructor": {
+              "first": "Burch",
+              "last": "Lawson",
+              "guid": "f5be0c0e-3bd5-4670-b63c-c05b0391045d"
+            },
+            "start": 1424691018871,
+            "end": 1432697637761
+          },
+          {
+            "name": "Gluid Workshop",
+            "location": "Denver",
+            "room": "Grey",
+            "instructor": {
+              "first": "George",
+              "last": "Clarke",
+              "guid": "9089b361-1674-493a-a704-2cce3bf2279c"
+            },
+            "start": 1522864372151,
+            "end": 1465834114701
+          },
+          {
+            "name": "Realysis Workshop",
+            "location": "Brooklyn",
+            "room": "Black",
+            "instructor": {
+              "first": "Diann",
+              "last": "Mcmahon",
+              "guid": "9ac7d733-74e6-45fe-bde7-828cd80e07ed"
+            },
+            "start": 1407528671631,
+            "end": 1420298781048
+          },
+          {
+            "name": "Geekola Workshop",
+            "location": "Dublin",
+            "room": "Grey",
+            "instructor": {
+              "first": "Savannah",
+              "last": "Holmes",
+              "guid": "8e17caf7-cb82-4ab3-93b9-bf5c263e7a0c"
+            },
+            "start": 1515602388878,
+            "end": 1469393566247
+          },
+          {
+            "name": "Geoforma Workshop",
+            "location": "Brooklyn",
+            "room": "White",
+            "instructor": {
+              "first": "Orr",
+              "last": "Stuart",
+              "guid": "1fde76db-d80a-4ebd-ad29-9e2104d3cbee"
+            },
+            "start": 1525241370578,
+            "end": 1395866106213
+          },
+          {
+            "name": "Katakana Workshop",
+            "location": "London",
+            "room": "Grey",
+            "instructor": {
+              "first": "Rosalinda",
+              "last": "Chavez",
+              "guid": "4986072a-b727-42e2-9681-a5096f141b80"
+            },
+            "start": 1463128524787,
+            "end": 1502979952761
+          },
+          {
+            "name": "Zillatide Workshop",
+            "location": "Warshaw",
+            "room": "White",
+            "instructor": {
+              "first": "Robbie",
+              "last": "Sheppard",
+              "guid": "f3da6fdd-beb5-4a5a-8cdb-ab6d606153ef"
+            },
+            "start": 1485975414837,
+            "end": 1460453046785
+          }
+        ],
+        "teaching": [
+          {
+            "name": "Colaire Workshop",
+            "location": "Warshaw",
+            "room": "Black",
+            "instructor": {
+              "first": "Queen",
+              "last": "Mueller",
+              "guid": "812fe5f6-2086-4ba8-a45d-b555fd71c96f"
+            },
+            "start": 1530631910245,
+            "end": 1492541986349
+          },
+          {
+            "name": "Zilla Workshop",
+            "location": "Edinburgh",
+            "room": "Black",
+            "instructor": {
+              "first": "Warren",
+              "last": "Hill",
+              "guid": "ed04c0c7-331c-483a-bdef-392be1196cfb"
+            },
+            "start": 1548960544505,
+            "end": 1548507852173
+          },
+          {
+            "name": "Farmage Workshop",
+            "location": "Edinburgh",
+            "room": "Grey",
+            "instructor": {
+              "first": "Luella",
+              "last": "Miranda",
+              "guid": "a9a0d0eb-6dc6-4365-8d7f-4f96fb2de5ce"
+            },
+            "start": 1521641582531,
+            "end": 1534968209911
+          },
+          {
+            "name": "Zaggles Workshop",
+            "location": "Gdansk",
+            "room": "Grey",
+            "instructor": {
+              "first": "Burns",
+              "last": "Fuentes",
+              "guid": "63ef7931-b9ec-455f-ab6c-50d73750f1e7"
+            },
+            "start": 1395619105881,
+            "end": 1476941892390
+          },
+          {
+            "name": "Sensate Workshop",
+            "location": "Edinburgh",
+            "room": "Black",
+            "instructor": {
+              "first": "Trevino",
+              "last": "Ward",
+              "guid": "3bc059a6-8d4a-445d-8e4a-ce432bbac114"
+            },
+            "start": 1521963866719,
+            "end": 1462208441480
+          },
+          {
+            "name": "Iplax Workshop",
+            "location": "Gdansk",
+            "room": "White",
+            "instructor": {
+              "first": "Mia",
+              "last": "Albert",
+              "guid": "fa0a5257-e6d5-401e-b1e8-bade07beff0e"
+            },
+            "start": 1445074776636,
+            "end": 1470814129200
+          },
+          {
+            "name": "Minga Workshop",
+            "location": "Dublin",
+            "room": "Black",
+            "instructor": {
+              "first": "Calhoun",
+              "last": "Vargas",
+              "guid": "d8862e9a-5a18-4ffd-ab9e-9fb0e46c6d9f"
+            },
+            "start": 1494710828233,
+            "end": 1503078137555
+          },
+          {
+            "name": "Enomen Workshop",
+            "location": "Gdansk",
+            "room": "Grey",
+            "instructor": {
+              "first": "Mercer",
+              "last": "Erickson",
+              "guid": "7e58d84f-8933-4e38-abeb-53aebf0229a3"
+            },
+            "start": 1490549402674,
+            "end": 1502330500336
+          },
+          {
+            "name": "Brainquil Workshop",
+            "location": "Bangalore",
+            "room": "White",
+            "instructor": {
+              "first": "Nanette",
+              "last": "Barrett",
+              "guid": "7d3810c5-ed08-457f-a58c-654a59116df5"
+            },
+            "start": 1426667803936,
+            "end": 1480019027624
+          }
+        ]
+      }
+    },
+    {
+      "_id": "5cae1dc0a413873f20ff2b4c",
+      "index": 9,
+      "guid": "330bdd89-db3d-416a-889c-36e3ff936d5d",
+      "picture": "https://randomuser.me/api/portraits/women/30",
+      "name": {
+        "first": "Willa",
+        "last": "Bradford"
+      },
+      "base": "Bangalore",
+      "email": "willa.bradford@wipro.com",
+      "classes": {
+        "attending": [
+          {
+            "name": "Indexia Workshop",
+            "location": "London",
+            "room": "White",
+            "instructor": {
+              "first": "Bennett",
+              "last": "Levine",
+              "guid": "1eaded94-aefa-4df2-ade7-fb15640f8536"
+            },
+            "start": 1420599190277,
+            "end": 1529823091338
+          },
+          {
+            "name": "Snowpoke Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Grant",
+              "last": "Phelps",
+              "guid": "0e90498a-0ea8-4d0c-b3ec-9a4f6f666c27"
+            },
+            "start": 1486150932103,
+            "end": 1478346293294
+          },
+          {
+            "name": "Sultrax Workshop",
+            "location": "Warshaw",
+            "room": "Black",
+            "instructor": {
+              "first": "Rowena",
+              "last": "Mosley",
+              "guid": "b074763d-70b0-405d-92df-d1fa76ace0b2"
+            },
+            "start": 1481138261504,
+            "end": 1538463401506
+          },
+          {
+            "name": "Duoflex Workshop",
+            "location": "Gdansk",
+            "room": "Black",
+            "instructor": {
+              "first": "Merrill",
+              "last": "Finley",
+              "guid": "d492cb83-4842-4239-b80e-0da3dd9c7aac"
+            },
+            "start": 1530165024055,
+            "end": 1400401230843
+          }
+        ],
+        "teaching": [
+          {
+            "name": "Orbalix Workshop",
+            "location": "Plano",
+            "room": "Grey",
+            "instructor": {
+              "first": "Marci",
+              "last": "Clements",
+              "guid": "3c16356d-a508-4686-a36b-ef62854cd86a"
+            },
+            "start": 1446030044575,
+            "end": 1487550549534
+          },
+          {
+            "name": "Zensus Workshop",
+            "location": "Bangalore",
+            "room": "Grey",
+            "instructor": {
+              "first": "Glenn",
+              "last": "Farrell",
+              "guid": "baf50ccd-88c8-45f0-a0c7-d8053630bc5c"
+            },
+            "start": 1402818861449,
+            "end": 1465287058839
+          },
+          {
+            "name": "Zillacon Workshop",
+            "location": "Gdansk",
+            "room": "White",
+            "instructor": {
+              "first": "Ramos",
+              "last": "Duncan",
+              "guid": "fee9e456-4e0f-449c-ba5e-d797b69b314f"
+            },
+            "start": 1554604662638,
+            "end": 1547584810375
+          },
+          {
+            "name": "Vertide Workshop",
+            "location": "Gdansk",
+            "room": "Black",
+            "instructor": {
+              "first": "Beasley",
+              "last": "Kinney",
+              "guid": "71d41b35-bcde-4cb0-ace5-7272193e95ba"
+            },
+            "start": 1454699764192,
+            "end": 1421278419833
+          },
+          {
+            "name": "Ebidco Workshop",
+            "location": "Brooklyn",
+            "room": "White",
+            "instructor": {
+              "first": "Marylou",
+              "last": "Collier",
+              "guid": "98a2b53b-a38f-4b7f-9802-23ed30a799a0"
+            },
+            "start": 1532487332535,
+            "end": 1548055950599
+          },
+          {
+            "name": "Moreganic Workshop",
+            "location": "Gdansk",
+            "room": "White",
+            "instructor": {
+              "first": "Mona",
+              "last": "Henson",
+              "guid": "7cc246a5-9386-48ea-9ee0-40f76f13c559"
+            },
+            "start": 1482707616521,
+            "end": 1439026638157
+          },
+          {
+            "name": "Sloganaut Workshop",
+            "location": "Bangalore",
+            "room": "Black",
+            "instructor": {
+              "first": "Sosa",
+              "last": "Baxter",
+              "guid": "a871b1e3-dc52-4381-ad99-43185b5c90b9"
+            },
+            "start": 1424727921108,
+            "end": 1525522551157
+          },
+          {
+            "name": "Accupharm Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Wood",
+              "last": "Montgomery",
+              "guid": "e7fc7097-01f6-4d54-9721-24937667bb0b"
+            },
+            "start": 1458464881678,
+            "end": 1410031657436
+          },
+          {
+            "name": "Prowaste Workshop",
+            "location": "London",
+            "room": "Grey",
+            "instructor": {
+              "first": "Gentry",
+              "last": "Brooks",
+              "guid": "24ecee7c-6a5b-40c2-8333-671845ffa995"
+            },
+            "start": 1409734880457,
+            "end": 1460213108679
+          }
+        ]
+      }
+    },
+    {
+      "_id": "5cae1dc0de743eeecddde7a1",
+      "index": 10,
+      "guid": "2d963dc8-e218-4202-bc4f-45d9751c463c",
+      "picture": "https://randomuser.me/api/portraits/women/36",
+      "name": {
+        "first": "Heath",
+        "last": "Head"
+      },
+      "base": "Warshaw",
+      "email": "heath.head@wipro.com",
+      "classes": {
+        "attending": [
+          {
+            "name": "Kengen Workshop",
+            "location": "Dublin",
+            "room": "Black",
+            "instructor": {
+              "first": "Meghan",
+              "last": "Fitzgerald",
+              "guid": "5c9813ae-3f28-4ece-8fd3-f61c4d812ce6"
+            },
+            "start": 1449841986410,
+            "end": 1401373813625
+          },
+          {
+            "name": "Lunchpod Workshop",
+            "location": "Dublin",
+            "room": "Grey",
+            "instructor": {
+              "first": "Hendrix",
+              "last": "Brady",
+              "guid": "cd7721ed-66c1-4475-a668-848ffe79a70b"
+            },
+            "start": 1439424053921,
+            "end": 1493733527960
+          },
+          {
+            "name": "Wrapture Workshop",
+            "location": "London",
+            "room": "Grey",
+            "instructor": {
+              "first": "Hallie",
+              "last": "Mcclain",
+              "guid": "8a2f9d81-77f9-45ac-8312-b45fecf665f0"
+            },
+            "start": 1509424930833,
+            "end": 1528237056882
+          },
+          {
+            "name": "Oceanica Workshop",
+            "location": "Dublin",
+            "room": "Grey",
+            "instructor": {
+              "first": "Gwendolyn",
+              "last": "Slater",
+              "guid": "82497116-b299-40a6-ad93-46589b26d828"
+            },
+            "start": 1472532972198,
+            "end": 1436895561874
+          },
+          {
+            "name": "Ultrimax Workshop",
+            "location": "London",
+            "room": "Grey",
+            "instructor": {
+              "first": "Lou",
+              "last": "Berger",
+              "guid": "1dc2d49d-f873-44c5-a39e-6fcaa2da7c51"
+            },
+            "start": 1467204066239,
+            "end": 1445078158637
+          },
+          {
+            "name": "Kindaloo Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Letha",
+              "last": "Barton",
+              "guid": "7a5f3a9e-880d-4359-b2b0-27c166feb102"
+            },
+            "start": 1481878018536,
+            "end": 1464243629777
+          }
+        ],
+        "teaching": [
+          {
+            "name": "Gleamink Workshop",
+            "location": "Denver",
+            "room": "Black",
+            "instructor": {
+              "first": "Helena",
+              "last": "Stephenson",
+              "guid": "ee92bbdb-d4b3-482d-b3af-8d165a8b1005"
+            },
+            "start": 1470582888949,
+            "end": 1520512482515
+          },
+          {
+            "name": "Temorak Workshop",
+            "location": "London",
+            "room": "Black",
+            "instructor": {
+              "first": "Brooke",
+              "last": "Park",
+              "guid": "44bda5e4-320b-4b30-8870-09f392dd1c54"
+            },
+            "start": 1422938706202,
+            "end": 1484103717165
+          },
+          {
+            "name": "Jamnation Workshop",
+            "location": "Warshaw",
+            "room": "Grey",
+            "instructor": {
+              "first": "Donna",
+              "last": "Boyer",
+              "guid": "fcca7a90-1179-41c9-a66b-fb67f1a09003"
+            },
+            "start": 1543835845438,
+            "end": 1402610047203
+          },
+          {
+            "name": "Namebox Workshop",
+            "location": "Edinburgh",
+            "room": "Black",
+            "instructor": {
+              "first": "Vanessa",
+              "last": "Austin",
+              "guid": "33255c7c-1843-4416-9ec5-0952fe1c94ed"
+            },
+            "start": 1535686975393,
+            "end": 1408128073381
+          },
+          {
+            "name": "Quarex Workshop",
+            "location": "Dublin",
+            "room": "Grey",
+            "instructor": {
+              "first": "Dolores",
+              "last": "Walter",
+              "guid": "0e74e128-753f-4488-a17c-51fab3f33ea7"
+            },
+            "start": 1491437341035,
+            "end": 1493549813338
+          },
+          {
+            "name": "Insource Workshop",
+            "location": "Bangalore",
+            "room": "White",
+            "instructor": {
+              "first": "Mcclain",
+              "last": "Hancock",
+              "guid": "375d881c-57ed-46fb-9c69-214939a6c388"
+            },
+            "start": 1425145356203,
+            "end": 1415220315261
+          }
+        ]
+      }
+    },
+    {
+      "_id": "5cae1dc0be94f5b83878169d",
+      "index": 11,
+      "guid": "d460803a-69f6-47a8-ae94-b2c7b123aafa",
+      "picture": "https://randomuser.me/api/portraits/women/46",
+      "name": {
+        "first": "Sarah",
+        "last": "Buck"
+      },
+      "base": "Dublin",
+      "email": "sarah.buck@wipro.com",
+      "classes": {
+        "attending": [
+          {
+            "name": "Realmo Workshop",
+            "location": "Brooklyn",
+            "room": "Black",
+            "instructor": {
+              "first": "Guerra",
+              "last": "Hale",
+              "guid": "42732063-a454-4b8a-ba2e-474909cdfd52"
+            },
+            "start": 1495064838308,
+            "end": 1489305014454
+          },
+          {
+            "name": "Orbixtar Workshop",
+            "location": "Denver",
+            "room": "White",
+            "instructor": {
+              "first": "House",
+              "last": "Valencia",
+              "guid": "740675ed-fdb9-47d4-b46a-425fdbbfd035"
+            },
+            "start": 1551575771628,
+            "end": 1397382555201
+          },
+          {
+            "name": "Trasola Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Sandoval",
+              "last": "Guerrero",
+              "guid": "8a883cd1-44cb-4346-be71-2e7eefc4bcb8"
+            },
+            "start": 1528997179490,
+            "end": 1413279400593
+          },
+          {
+            "name": "Zentime Workshop",
+            "location": "Brooklyn",
+            "room": "Grey",
+            "instructor": {
+              "first": "Cecilia",
+              "last": "Porter",
+              "guid": "89397d75-ce22-4496-8c68-d0a5ff469575"
+            },
+            "start": 1441503155776,
+            "end": 1445769747798
+          },
+          {
+            "name": "Magnina Workshop",
+            "location": "Warshaw",
+            "room": "White",
+            "instructor": {
+              "first": "Weaver",
+              "last": "Little",
+              "guid": "15c40fee-b762-4e55-8489-999afe6d1358"
+            },
+            "start": 1402170196275,
+            "end": 1471095616700
+          },
+          {
+            "name": "Tetratrex Workshop",
+            "location": "Plano",
+            "room": "Grey",
+            "instructor": {
+              "first": "Estrada",
+              "last": "Wheeler",
+              "guid": "0ea17b73-d274-4474-a21e-1a97e5abdde4"
+            },
+            "start": 1510581059663,
+            "end": 1506081834868
+          },
+          {
+            "name": "Steelfab Workshop",
+            "location": "Denver",
+            "room": "Black",
+            "instructor": {
+              "first": "Marsh",
+              "last": "Powell",
+              "guid": "3f2b0527-64a6-4031-acc5-e3552f29e615"
+            },
+            "start": 1525691123642,
+            "end": 1509883037985
+          },
+          {
+            "name": "Calcula Workshop",
+            "location": "Denver",
+            "room": "Grey",
+            "instructor": {
+              "first": "Obrien",
+              "last": "Pitts",
+              "guid": "ea95b99d-f53a-499b-9833-b2515eee97ff"
+            },
+            "start": 1476289322352,
+            "end": 1502495250587
+          }
+        ],
+        "teaching": [
+          {
+            "name": "Ewaves Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Cochran",
+              "last": "Merritt",
+              "guid": "504a375d-bbae-4368-b84c-df0281e9dd1d"
+            },
+            "start": 1404905494731,
+            "end": 1389926301832
+          },
+          {
+            "name": "Maxemia Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Marcy",
+              "last": "Knapp",
+              "guid": "29d96026-3bcd-4b1b-8a21-aa2062b036fd"
+            },
+            "start": 1455354632843,
+            "end": 1433824551988
+          },
+          {
+            "name": "Aquasure Workshop",
+            "location": "Denver",
+            "room": "Black",
+            "instructor": {
+              "first": "Alicia",
+              "last": "Ferguson",
+              "guid": "0007969e-b5ba-4f51-a9ec-268de6e9fa95"
+            },
+            "start": 1500506749033,
+            "end": 1418600414491
+          },
+          {
+            "name": "Anarco Workshop",
+            "location": "Denver",
+            "room": "Grey",
+            "instructor": {
+              "first": "Iva",
+              "last": "Cummings",
+              "guid": "a8dc995d-dd85-42ec-95f9-d64c4c43f51d"
+            },
+            "start": 1524155321696,
+            "end": 1510384958477
+          },
+          {
+            "name": "Shepard Workshop",
+            "location": "Bangalore",
+            "room": "Black",
+            "instructor": {
+              "first": "Sanchez",
+              "last": "Roy",
+              "guid": "f51a6551-09f0-4c13-8cbf-60dc5780eeec"
+            },
+            "start": 1415195736132,
+            "end": 1508270291042
+          }
+        ]
+      }
+    },
+    {
+      "_id": "5cae1dc0716c3e09371bb920",
+      "index": 12,
+      "guid": "9204d4df-a8fa-4f0b-85a5-d3706225652f",
+      "picture": "https://randomuser.me/api/portraits/women/53",
+      "name": {
+        "first": "Beulah",
+        "last": "Lowery"
+      },
+      "base": "Edinburgh",
+      "email": "beulah.lowery@wipro.com",
+      "classes": {
+        "attending": [
+          {
+            "name": "Navir Workshop",
+            "location": "Gdansk",
+            "room": "Grey",
+            "instructor": {
+              "first": "Darcy",
+              "last": "Hood",
+              "guid": "cd54e991-a585-41d9-86c6-2fdf81d3c17c"
+            },
+            "start": 1518522789149,
+            "end": 1541218641659
+          },
+          {
+            "name": "Tourmania Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Michael",
+              "last": "Mullen",
+              "guid": "6aae559a-fe8a-4777-8f78-cc3fbb6fbbc1"
+            },
+            "start": 1457316465815,
+            "end": 1459122448163
+          },
+          {
+            "name": "Kog Workshop",
+            "location": "Dublin",
+            "room": "Grey",
+            "instructor": {
+              "first": "Thompson",
+              "last": "Carter",
+              "guid": "7aea1838-ac09-4ca4-a04a-7769bc456258"
+            },
+            "start": 1393071153163,
+            "end": 1473447961080
+          },
+          {
+            "name": "Surelogic Workshop",
+            "location": "Dublin",
+            "room": "Black",
+            "instructor": {
+              "first": "Coleman",
+              "last": "Rasmussen",
+              "guid": "ddeb27d4-be3e-44d4-a721-15c26d314d90"
+            },
+            "start": 1425158159843,
+            "end": 1444274726396
+          },
+          {
+            "name": "Zorromop Workshop",
+            "location": "Bangalore",
+            "room": "Grey",
+            "instructor": {
+              "first": "Terry",
+              "last": "Harper",
+              "guid": "442031a6-1e4a-4e09-9b37-28d85056b737"
+            },
+            "start": 1515337397715,
+            "end": 1431394308418
+          },
+          {
+            "name": "Springbee Workshop",
+            "location": "Dublin",
+            "room": "Black",
+            "instructor": {
+              "first": "Mayo",
+              "last": "Klein",
+              "guid": "8ca6f9c2-310a-41c7-985c-e26ac2ffa0d6"
+            },
+            "start": 1458331092903,
+            "end": 1469633236852
+          }
+        ],
+        "teaching": [
+          {
+            "name": "Sunclipse Workshop",
+            "location": "Plano",
+            "room": "Grey",
+            "instructor": {
+              "first": "Best",
+              "last": "Joyner",
+              "guid": "8e1f9141-2884-4e73-9640-b954e852cbe1"
+            },
+            "start": 1549247851228,
+            "end": 1398738021078
+          },
+          {
+            "name": "Geekwagon Workshop",
+            "location": "Edinburgh",
+            "room": "Grey",
+            "instructor": {
+              "first": "Mildred",
+              "last": "Lane",
+              "guid": "85f27692-e89d-45ae-997c-c18232bad60f"
+            },
+            "start": 1444057667780,
+            "end": 1399853941927
+          },
+          {
+            "name": "Buzzmaker Workshop",
+            "location": "Plano",
+            "room": "White",
+            "instructor": {
+              "first": "Marla",
+              "last": "Todd",
+              "guid": "fadb97c2-16e2-4cd7-9325-2c94a5da47be"
+            },
+            "start": 1549353056212,
+            "end": 1439044645056
+          }
+        ]
+      }
+    },
+    {
+      "_id": "5cae1dc05f9d7bb615a0de2d",
+      "index": 13,
+      "guid": "e6fcb9a0-e19f-4bff-8c9e-1f47aca56f12",
+      "picture": "https://randomuser.me/api/portraits/women/63",
+      "name": {
+        "first": "Franks",
+        "last": "Rush"
+      },
+      "base": "Bangalore",
+      "email": "franks.rush@wipro.com",
+      "classes": {
+        "attending": [
+          {
+            "name": "Isosphere Workshop",
+            "location": "Edinburgh",
+            "room": "White",
+            "instructor": {
+              "first": "Kim",
+              "last": "Terry",
+              "guid": "262100a2-efcb-4309-9b3b-3d9bb3a44633"
+            },
+            "start": 1437157660813,
+            "end": 1520481856596
+          },
+          {
+            "name": "Opticom Workshop",
+            "location": "Plano",
+            "room": "Grey",
+            "instructor": {
+              "first": "Sallie",
+              "last": "Mccall",
+              "guid": "ac783fcd-41c6-41b2-8a92-d97deba3355f"
+            },
+            "start": 1512282081692,
+            "end": 1424315177179
+          },
+          {
+            "name": "Dognost Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Diana",
+              "last": "Bowen",
+              "guid": "12683a8b-2639-4730-ad73-a0275a2368c2"
+            },
+            "start": 1518458207414,
+            "end": 1450190865478
+          },
+          {
+            "name": "Zilladyne Workshop",
+            "location": "Bangalore",
+            "room": "White",
+            "instructor": {
+              "first": "Chapman",
+              "last": "Kramer",
+              "guid": "662c17c7-b02e-4cc4-a9a2-af57dc16b753"
+            },
+            "start": 1538603858414,
+            "end": 1430103000516
+          },
+          {
+            "name": "Sustenza Workshop",
+            "location": "Brooklyn",
+            "room": "Grey",
+            "instructor": {
+              "first": "Peggy",
+              "last": "George",
+              "guid": "653191d9-ba43-4104-8fe7-11f967b96249"
+            },
+            "start": 1393380616459,
+            "end": 1432725330213
+          }
+        ],
+        "teaching": [
+          {
+            "name": "Solaren Workshop",
+            "location": "Dublin",
+            "room": "Grey",
+            "instructor": {
+              "first": "Alba",
+              "last": "Vega",
+              "guid": "a1a3f5fe-7a2a-4c8c-97e5-b6c993d51290"
+            },
+            "start": 1512068920641,
+            "end": 1468598818659
+          },
+          {
+            "name": "Chorizon Workshop",
+            "location": "Denver",
+            "room": "Grey",
+            "instructor": {
+              "first": "Marisol",
+              "last": "Roman",
+              "guid": "d0445272-4e88-49e0-8eaf-95e9f1398570"
+            },
+            "start": 1427194467271,
+            "end": 1393084811296
+          },
+          {
+            "name": "Bovis Workshop",
+            "location": "Dublin",
+            "room": "Black",
+            "instructor": {
+              "first": "Weeks",
+              "last": "Reed",
+              "guid": "57f2a397-224b-46dd-ac3d-7f230614ad01"
+            },
+            "start": 1545620866234,
+            "end": 1462585162645
+          },
+          {
+            "name": "Plasto Workshop",
+            "location": "Warshaw",
+            "room": "Grey",
+            "instructor": {
+              "first": "Frost",
+              "last": "Hoover",
+              "guid": "dc8d9b91-db5e-4c3e-95f5-d06fa7bea979"
+            },
+            "start": 1475662345302,
+            "end": 1442653792925
+          },
+          {
+            "name": "Zentix Workshop",
+            "location": "Dublin",
+            "room": "Grey",
+            "instructor": {
+              "first": "Woodward",
+              "last": "Rollins",
+              "guid": "8f20b516-9d24-4445-a95b-7867a688409a"
+            },
+            "start": 1415122937907,
+            "end": 1516206858423
+          },
+          {
+            "name": "Recognia Workshop",
+            "location": "London",
+            "room": "White",
+            "instructor": {
+              "first": "Nicholson",
+              "last": "Velez",
+              "guid": "7daf06c2-4466-47be-ab35-bf51437bb66a"
+            },
+            "start": 1508693847423,
+            "end": 1549856365822
+          },
+          {
+            "name": "Mondicil Workshop",
+            "location": "Bangalore",
+            "room": "Grey",
+            "instructor": {
+              "first": "Dale",
+              "last": "Cabrera",
+              "guid": "df5b6d5e-c22b-4125-985c-6a56c31dd384"
+            },
+            "start": 1496253719359,
+            "end": 1533753621206
+          },
+          {
+            "name": "Pearlessa Workshop",
+            "location": "Plano",
+            "room": "Grey",
+            "instructor": {
+              "first": "Bettie",
+              "last": "Noble",
+              "guid": "14d57872-d8c0-4390-bbaf-a291928dde44"
+            },
+            "start": 1545104845704,
+            "end": 1552354694518
+          }
+        ]
+      }
+    },
+    {
+      "_id": "5cae1dc0b6ee51ea8c3591d2",
+      "index": 14,
+      "guid": "5cb93a2c-c74f-47c4-8969-de5b5bd37e9b",
+      "picture": "https://randomuser.me/api/portraits/women/78",
+      "name": {
+        "first": "West",
+        "last": "Buckner"
+      },
+      "base": "Dublin",
+      "email": "west.buckner@wipro.com",
+      "classes": {
+        "attending": [
+          {
+            "name": "Hydrocom Workshop",
+            "location": "Warshaw",
+            "room": "Black",
+            "instructor": {
+              "first": "Lewis",
+              "last": "Maynard",
+              "guid": "e3d8861a-2275-4c26-8b87-3cfeb7f3516d"
+            },
+            "start": 1411719634223,
+            "end": 1484814640956
+          },
+          {
+            "name": "Fuelton Workshop",
+            "location": "Bangalore",
+            "room": "Grey",
+            "instructor": {
+              "first": "Harper",
+              "last": "Green",
+              "guid": "654b8a60-96d4-4589-bf3f-c4db536953e9"
+            },
+            "start": 1490840011452,
+            "end": 1552189729917
+          },
+          {
+            "name": "Kongle Workshop",
+            "location": "Edinburgh",
+            "room": "White",
+            "instructor": {
+              "first": "Charlene",
+              "last": "Barr",
+              "guid": "5bd33456-d787-48d4-b262-b8aebf5367f5"
+            },
+            "start": 1543076654049,
+            "end": 1490475897764
+          },
+          {
+            "name": "Dymi Workshop",
+            "location": "Brooklyn",
+            "room": "Black",
+            "instructor": {
+              "first": "Michele",
+              "last": "Hudson",
+              "guid": "2c38b659-2932-43da-b6dc-9d9d4bd2c1b8"
+            },
+            "start": 1432122188903,
+            "end": 1535455521142
+          },
+          {
+            "name": "Gushkool Workshop",
+            "location": "London",
+            "room": "Black",
+            "instructor": {
+              "first": "Mccoy",
+              "last": "Pittman",
+              "guid": "ecbb14bc-9384-4d22-9303-d93aacdb22c4"
+            },
+            "start": 1406189969517,
+            "end": 1554333382557
+          },
+          {
+            "name": "Digifad Workshop",
+            "location": "Brooklyn",
+            "room": "White",
+            "instructor": {
+              "first": "Mcclure",
+              "last": "Scott",
+              "guid": "499cd5cf-704e-47c6-b0af-206d1570c3d2"
+            },
+            "start": 1505137322989,
+            "end": 1492809180377
+          },
+          {
+            "name": "Capscreen Workshop",
+            "location": "London",
+            "room": "Grey",
+            "instructor": {
+              "first": "Delia",
+              "last": "Craig",
+              "guid": "f4c45ae3-9696-4d73-8eca-33728eee16ee"
+            },
+            "start": 1503799545830,
+            "end": 1463303831339
+          },
+          {
+            "name": "Skyplex Workshop",
+            "location": "Denver",
+            "room": "Black",
+            "instructor": {
+              "first": "Small",
+              "last": "Wilkerson",
+              "guid": "6118e883-3556-44e7-8d9e-7d51bd8f5055"
+            },
+            "start": 1489618742174,
+            "end": 1455042938873
+          },
+          {
+            "name": "Hivedom Workshop",
+            "location": "Plano",
+            "room": "Grey",
+            "instructor": {
+              "first": "Elaine",
+              "last": "Bennett",
+              "guid": "dbaf0d57-f3e1-4f6b-9e02-f140dadb4b3e"
+            },
+            "start": 1402614028656,
+            "end": 1542685121532
+          }
+        ],
+        "teaching": [
+          {
+            "name": "Ginkle Workshop",
+            "location": "Bangalore",
+            "room": "Grey",
+            "instructor": {
+              "first": "Lina",
+              "last": "Mullins",
+              "guid": "14d45736-da21-41a9-9e9b-f63a10e08e6c"
+            },
+            "start": 1412508476152,
+            "end": 1481770986938
+          },
+          {
+            "name": "Uxmox Workshop",
+            "location": "London",
+            "room": "Grey",
+            "instructor": {
+              "first": "Rollins",
+              "last": "Fischer",
+              "guid": "70c6729c-e1c8-4cb9-a371-3d57d12d941f"
+            },
+            "start": 1518363094986,
+            "end": 1402472152952
+          },
+          {
+            "name": "Ecrater Workshop",
+            "location": "Plano",
+            "room": "White",
+            "instructor": {
+              "first": "Santana",
+              "last": "Melton",
+              "guid": "f12d84be-1c92-478e-a7e6-e5adb0422c33"
+            },
+            "start": 1396496772067,
+            "end": 1462990566394
+          },
+          {
+            "name": "Filodyne Workshop",
+            "location": "Warshaw",
+            "room": "Black",
+            "instructor": {
+              "first": "Wong",
+              "last": "Mccarty",
+              "guid": "79f362d6-2f88-45e9-b239-8aa7934749e6"
+            },
+            "start": 1493971449434,
+            "end": 1554114363134
+          },
+          {
+            "name": "Flum Workshop",
+            "location": "Plano",
+            "room": "Grey",
+            "instructor": {
+              "first": "Oliver",
+              "last": "Rosario",
+              "guid": "48cc8a9f-51ac-444f-9748-e30894e84d53"
+            },
+            "start": 1426837132714,
+            "end": 1488986028496
+          },
+          {
+            "name": "Newcube Workshop",
+            "location": "London",
+            "room": "Grey",
+            "instructor": {
+              "first": "Aguirre",
+              "last": "Cherry",
+              "guid": "a887f4d6-725e-4db1-8f93-b1ab711d8468"
+            },
+            "start": 1395811963907,
+            "end": 1479091352107
+          },
+          {
+            "name": "Hotcakes Workshop",
+            "location": "Edinburgh",
+            "room": "Grey",
+            "instructor": {
+              "first": "Julie",
+              "last": "Guerra",
+              "guid": "c7cd659c-bcae-402f-b4c2-865677733f23"
+            },
+            "start": 1490729968346,
+            "end": 1449161341576
+          },
+          {
+            "name": "Calcu Workshop",
+            "location": "Dublin",
+            "room": "Black",
+            "instructor": {
+              "first": "Mollie",
+              "last": "Hubbard",
+              "guid": "b3b41f11-da83-4b7d-b8ee-95c03a0ae225"
+            },
+            "start": 1408954403303,
+            "end": 1491627125377
+          },
+          {
+            "name": "Infotrips Workshop",
+            "location": "Gdansk",
+            "room": "Grey",
+            "instructor": {
+              "first": "Ava",
+              "last": "Simon",
+              "guid": "5e3c524b-9f75-4658-a9ca-3c5c30d50f1a"
+            },
+            "start": 1400503366688,
+            "end": 1502639771111
+          },
+          {
+            "name": "Skybold Workshop",
+            "location": "Edinburgh",
+            "room": "Grey",
+            "instructor": {
+              "first": "Mae",
+              "last": "Case",
+              "guid": "5f7c855b-a541-4c38-95fe-49d1596704cd"
+            },
+            "start": 1433814602922,
+            "end": 1491502573599
+          }
+        ]
+      }
+    },
+    {
+      "_id": "5cae1dc054e4ece62a101075",
+      "index": 15,
+      "guid": "9bc9f003-b129-4eb9-985f-42754d0d4e38",
+      "picture": "https://randomuser.me/api/portraits/women/45",
+      "name": {
+        "first": "Clements",
+        "last": "Sharpe"
+      },
+      "base": "Gdansk",
+      "email": "clements.sharpe@wipro.com",
+      "classes": {
+        "attending": [
+          {
+            "name": "Waab Workshop",
+            "location": "Edinburgh",
+            "room": "Black",
+            "instructor": {
+              "first": "Leona",
+              "last": "Yates",
+              "guid": "d060bcba-37cf-4986-8e5b-19ccb8036a17"
+            },
+            "start": 1552038362689,
+            "end": 1504680807158
+          },
+          {
+            "name": "Exposa Workshop",
+            "location": "London",
+            "room": "Black",
+            "instructor": {
+              "first": "Meyer",
+              "last": "Pratt",
+              "guid": "da5576dd-f3fc-4fc6-b0da-313f6978fffe"
+            },
+            "start": 1503968554243,
+            "end": 1425672859831
+          },
+          {
+            "name": "Visualix Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Donovan",
+              "last": "Tate",
+              "guid": "1a93c58a-e0ea-4903-954c-2f7576bbd777"
+            },
+            "start": 1498088342284,
+            "end": 1504892052794
+          }
+        ],
+        "teaching": [
+          {
+            "name": "Dogspa Workshop",
+            "location": "Plano",
+            "room": "Black",
+            "instructor": {
+              "first": "Doreen",
+              "last": "Shelton",
+              "guid": "7025c4df-3309-4225-9776-497b01f5961f"
+            },
+            "start": 1466906725665,
+            "end": 1389013978153
+          },
+          {
+            "name": "Signidyne Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Susana",
+              "last": "Aguirre",
+              "guid": "85036286-bae5-4149-be8d-8dbae8e3d450"
+            },
+            "start": 1473076661762,
+            "end": 1398686959674
+          },
+          {
+            "name": "Emoltra Workshop",
+            "location": "Brooklyn",
+            "room": "Grey",
+            "instructor": {
+              "first": "Bernadette",
+              "last": "Roach",
+              "guid": "a6246271-77dd-49e8-ac86-7dd7dd80915f"
+            },
+            "start": 1458955713593,
+            "end": 1429254294787
+          },
+          {
+            "name": "Apextri Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Maureen",
+              "last": "Nichols",
+              "guid": "312be263-e18d-4b68-a371-8b15dfc1cab9"
+            },
+            "start": 1467577753842,
+            "end": 1408861514054
+          },
+          {
+            "name": "Ozean Workshop",
+            "location": "Bangalore",
+            "room": "Black",
+            "instructor": {
+              "first": "Mack",
+              "last": "Burton",
+              "guid": "d977287d-8f28-43d5-b87a-2521a1fdc3fa"
+            },
+            "start": 1463583354444,
+            "end": 1409410261619
+          },
+          {
+            "name": "Quordate Workshop",
+            "location": "Warshaw",
+            "room": "Black",
+            "instructor": {
+              "first": "Woodard",
+              "last": "Snider",
+              "guid": "89758da9-0986-4e10-976d-ac0ca22ba284"
+            },
+            "start": 1478579171936,
+            "end": 1484871575032
+          }
+        ]
+      }
+    },
+    {
+      "_id": "5cae1dc030a5291d9335223e",
+      "index": 16,
+      "guid": "93f0625f-854c-4edd-9f42-cd651848fed1",
+      "picture": "https://randomuser.me/api/portraits/women/59",
+      "name": {
+        "first": "Eloise",
+        "last": "Solomon"
+      },
+      "base": "Edinburgh",
+      "email": "eloise.solomon@wipro.com",
+      "classes": {
+        "attending": [
+          {
+            "name": "Aquoavo Workshop",
+            "location": "Warshaw",
+            "room": "Grey",
+            "instructor": {
+              "first": "Camille",
+              "last": "Castillo",
+              "guid": "749f1348-e0a0-4d0c-9b3a-1839701a43c4"
+            },
+            "start": 1433930694317,
+            "end": 1467079960215
+          },
+          {
+            "name": "Isodrive Workshop",
+            "location": "Dublin",
+            "room": "Black",
+            "instructor": {
+              "first": "York",
+              "last": "Knight",
+              "guid": "84b8ad2f-c2f0-4903-9fdf-4b3b46185c83"
+            },
+            "start": 1524868455525,
+            "end": 1422003318380
+          },
+          {
+            "name": "Envire Workshop",
+            "location": "Dublin",
+            "room": "Black",
+            "instructor": {
+              "first": "Rosales",
+              "last": "Lamb",
+              "guid": "762694c3-dad0-47cf-8b4b-3ef2832cf42b"
+            },
+            "start": 1528252016326,
+            "end": 1402117176977
+          },
+          {
+            "name": "Ovation Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Lawanda",
+              "last": "Gordon",
+              "guid": "cefb6b22-3e87-4d3a-bd32-611512fd4771"
+            },
+            "start": 1518654283149,
+            "end": 1543767853288
+          },
+          {
+            "name": "Zoarere Workshop",
+            "location": "Warshaw",
+            "room": "Black",
+            "instructor": {
+              "first": "Whitaker",
+              "last": "Hatfield",
+              "guid": "7ce66bdd-bf58-4f3a-913f-821451beadcb"
+            },
+            "start": 1533258925517,
+            "end": 1459236133368
+          },
+          {
+            "name": "Centree Workshop",
+            "location": "Dublin",
+            "room": "Grey",
+            "instructor": {
+              "first": "Shelton",
+              "last": "Rowland",
+              "guid": "8a00b640-d6f4-4196-8d85-c42ecd4adb13"
+            },
+            "start": 1512246147888,
+            "end": 1536285651690
+          },
+          {
+            "name": "Shopabout Workshop",
+            "location": "Gdansk",
+            "room": "Black",
+            "instructor": {
+              "first": "Long",
+              "last": "Moreno",
+              "guid": "7813ecad-f677-4bc9-aeee-10a0f4c85563"
+            },
+            "start": 1466533393696,
+            "end": 1459334326374
+          }
+        ],
+        "teaching": [
+          {
+            "name": "Kyagoro Workshop",
+            "location": "Dublin",
+            "room": "Grey",
+            "instructor": {
+              "first": "Camacho",
+              "last": "Page",
+              "guid": "c1bec01a-13ce-4016-a82a-64ac3a1000f0"
+            },
+            "start": 1493316325584,
+            "end": 1444360538025
+          },
+          {
+            "name": "Darwinium Workshop",
+            "location": "Denver",
+            "room": "Black",
+            "instructor": {
+              "first": "Jessie",
+              "last": "Combs",
+              "guid": "abd7b164-cc19-4044-bb6c-0d7d3359cef8"
+            },
+            "start": 1546045042689,
+            "end": 1467947254118
+          },
+          {
+            "name": "Tripsch Workshop",
+            "location": "Bangalore",
+            "room": "Grey",
+            "instructor": {
+              "first": "Briggs",
+              "last": "Copeland",
+              "guid": "c84875cd-37d5-4e4b-a6c9-725c40df7fb6"
+            },
+            "start": 1489340414784,
+            "end": 1390305825638
+          },
+          {
+            "name": "Phormula Workshop",
+            "location": "Dublin",
+            "room": "Grey",
+            "instructor": {
+              "first": "Lang",
+              "last": "Snyder",
+              "guid": "7dbf8a2a-87a6-4358-8016-b33513e189b3"
+            },
+            "start": 1500266048105,
+            "end": 1465331101334
+          },
+          {
+            "name": "Petigems Workshop",
+            "location": "Plano",
+            "room": "White",
+            "instructor": {
+              "first": "Moody",
+              "last": "Arnold",
+              "guid": "90810403-f67b-4955-a213-1d4cce25f1bc"
+            },
+            "start": 1434167984576,
+            "end": 1472551598995
+          },
+          {
+            "name": "Cyclonica Workshop",
+            "location": "Gdansk",
+            "room": "Black",
+            "instructor": {
+              "first": "Mcgowan",
+              "last": "Marshall",
+              "guid": "e7e3d2af-fbde-48d5-bdfa-251395a31ca0"
+            },
+            "start": 1484908405840,
+            "end": 1401102475358
+          },
+          {
+            "name": "Equitax Workshop",
+            "location": "Plano",
+            "room": "Grey",
+            "instructor": {
+              "first": "Wyatt",
+              "last": "Bowman",
+              "guid": "45e84eda-0efa-4fa5-80e1-e0ecc1496d30"
+            },
+            "start": 1528467013624,
+            "end": 1481303660184
+          }
+        ]
+      }
+    },
+    {
+      "_id": "5cae1dc0fe2696f56c9b7d2e",
+      "index": 17,
+      "guid": "d0624a29-6b93-4d22-8c68-3d984ec8ca4b",
+      "picture": "https://randomuser.me/api/portraits/women/3",
+      "name": {
+        "first": "Winifred",
+        "last": "Whitehead"
+      },
+      "base": "Bangalore",
+      "email": "winifred.whitehead@wipro.com",
+      "classes": {
+        "attending": [
+          {
+            "name": "Zillacom Workshop",
+            "location": "Dublin",
+            "room": "Grey",
+            "instructor": {
+              "first": "Acosta",
+              "last": "Middleton",
+              "guid": "b7f826b9-cac5-4486-b108-23a441abc819"
+            },
+            "start": 1495081316493,
+            "end": 1464881001866
+          },
+          {
+            "name": "Quility Workshop",
+            "location": "Brooklyn",
+            "room": "Black",
+            "instructor": {
+              "first": "Perkins",
+              "last": "Macdonald",
+              "guid": "015b4fe9-a47a-47f7-8bb7-9e43fc026a18"
+            },
+            "start": 1466779443480,
+            "end": 1464480682120
+          },
+          {
+            "name": "Enersave Workshop",
+            "location": "Brooklyn",
+            "room": "White",
+            "instructor": {
+              "first": "Trudy",
+              "last": "Carney",
+              "guid": "f4a60e52-aa46-4b39-bae5-6aeff17e360a"
+            },
+            "start": 1493612638450,
+            "end": 1425954458315
+          },
+          {
+            "name": "Omnigog Workshop",
+            "location": "Denver",
+            "room": "Black",
+            "instructor": {
+              "first": "Mcconnell",
+              "last": "Hernandez",
+              "guid": "1ef736a1-1674-4ad9-8bd7-d42bd0f6e855"
+            },
+            "start": 1506108354076,
+            "end": 1391197263231
+          },
+          {
+            "name": "Quizmo Workshop",
+            "location": "Plano",
+            "room": "Grey",
+            "instructor": {
+              "first": "Crystal",
+              "last": "Sweeney",
+              "guid": "a30f436e-1041-47eb-9690-ac0fce8ce0b5"
+            },
+            "start": 1418065773011,
+            "end": 1402796283089
+          },
+          {
+            "name": "Splinx Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Singleton",
+              "last": "Luna",
+              "guid": "b9653ae8-f2df-4572-9fc6-fcb39da75cb5"
+            },
+            "start": 1498573288809,
+            "end": 1454653439266
+          },
+          {
+            "name": "Austech Workshop",
+            "location": "Denver",
+            "room": "Black",
+            "instructor": {
+              "first": "Bean",
+              "last": "Padilla",
+              "guid": "66dc6873-971c-4b25-b575-a6ffb1cbc1f9"
+            },
+            "start": 1506735047368,
+            "end": 1419558854837
+          },
+          {
+            "name": "Cujo Workshop",
+            "location": "London",
+            "room": "White",
+            "instructor": {
+              "first": "Eleanor",
+              "last": "Cameron",
+              "guid": "fd89f9e2-51a9-4252-922c-8f5e5f1ffbdb"
+            },
+            "start": 1530583945321,
+            "end": 1406822813236
+          },
+          {
+            "name": "Magnafone Workshop",
+            "location": "Edinburgh",
+            "room": "Grey",
+            "instructor": {
+              "first": "Kelsey",
+              "last": "Duffy",
+              "guid": "cd5c7250-06b6-4691-b0f0-a2f77031763e"
+            },
+            "start": 1466745116104,
+            "end": 1517420992706
+          },
+          {
+            "name": "Collaire Workshop",
+            "location": "Brooklyn",
+            "room": "Black",
+            "instructor": {
+              "first": "Hampton",
+              "last": "Hutchinson",
+              "guid": "dda6eb73-091e-4848-8cb7-7070059fd005"
+            },
+            "start": 1510607307055,
+            "end": 1511963000219
+          }
+        ],
+        "teaching": [
+          {
+            "name": "Xeronk Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Cynthia",
+              "last": "Galloway",
+              "guid": "aff5a535-e36c-43b3-b355-78f17e9b6dd0"
+            },
+            "start": 1393544109644,
+            "end": 1553395520819
+          },
+          {
+            "name": "Gadtron Workshop",
+            "location": "Bangalore",
+            "room": "Black",
+            "instructor": {
+              "first": "Miranda",
+              "last": "Murray",
+              "guid": "acdad3f8-9fbd-489f-962c-4feffb980c13"
+            },
+            "start": 1535052449683,
+            "end": 1523754953098
+          },
+          {
+            "name": "Savvy Workshop",
+            "location": "Warshaw",
+            "room": "Grey",
+            "instructor": {
+              "first": "Walsh",
+              "last": "Perkins",
+              "guid": "bcc86a7a-64c6-4727-af8f-8ce92ffd5ae5"
+            },
+            "start": 1390276379151,
+            "end": 1389177652541
+          },
+          {
+            "name": "Endipine Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Bobbie",
+              "last": "Larson",
+              "guid": "8cdf7206-acca-4322-bae0-53ebd0d6ade3"
+            },
+            "start": 1442837920394,
+            "end": 1450489707802
+          },
+          {
+            "name": "Combot Workshop",
+            "location": "Brooklyn",
+            "room": "Black",
+            "instructor": {
+              "first": "Loretta",
+              "last": "Curtis",
+              "guid": "416474e1-fa06-4c96-9760-c56e0304134f"
+            },
+            "start": 1483079592267,
+            "end": 1428240136911
+          },
+          {
+            "name": "Optyk Workshop",
+            "location": "Denver",
+            "room": "Grey",
+            "instructor": {
+              "first": "Herman",
+              "last": "Nixon",
+              "guid": "c678dae4-b05c-46ec-b11b-729c1f305a19"
+            },
+            "start": 1417566429513,
+            "end": 1422114882891
+          }
+        ]
+      }
+    },
+    {
+      "_id": "5cae1dc05ed349795ebf8bfa",
+      "index": 18,
+      "guid": "64620c2a-53a5-42df-a6a4-b476cc5334c6",
+      "picture": "https://randomuser.me/api/portraits/women/11",
+      "name": {
+        "first": "Witt",
+        "last": "Dejesus"
+      },
+      "base": "Denver",
+      "email": "witt.dejesus@wipro.com",
+      "classes": {
+        "attending": [
+          {
+            "name": "Biohab Workshop",
+            "location": "Brooklyn",
+            "room": "Grey",
+            "instructor": {
+              "first": "Medina",
+              "last": "Peters",
+              "guid": "c057924a-ad7a-4c43-9203-9ede10ad0fb5"
+            },
+            "start": 1395702113057,
+            "end": 1413199840173
+          },
+          {
+            "name": "Cubicide Workshop",
+            "location": "Dublin",
+            "room": "Grey",
+            "instructor": {
+              "first": "Dominguez",
+              "last": "Schwartz",
+              "guid": "2dc02b5d-8d8c-4188-bd33-a9a298e7e174"
+            },
+            "start": 1532785191706,
+            "end": 1515486822461
+          },
+          {
+            "name": "Comvex Workshop",
+            "location": "Gdansk",
+            "room": "Black",
+            "instructor": {
+              "first": "Adrienne",
+              "last": "Farmer",
+              "guid": "ee031947-364c-4b11-b088-2a3362e44f61"
+            },
+            "start": 1530086965690,
+            "end": 1409531105366
+          }
+        ],
+        "teaching": [
+          {
+            "name": "Beadzza Workshop",
+            "location": "Dublin",
+            "room": "Grey",
+            "instructor": {
+              "first": "Yolanda",
+              "last": "Morgan",
+              "guid": "67d89fa7-0a70-4461-84dd-f4d1393befde"
+            },
+            "start": 1487627931320,
+            "end": 1492566688876
+          },
+          {
+            "name": "Bicol Workshop",
+            "location": "Gdansk",
+            "room": "Grey",
+            "instructor": {
+              "first": "Sherri",
+              "last": "Alexander",
+              "guid": "abf672f3-76cb-4d0f-be18-aca9bbf81d09"
+            },
+            "start": 1466387320192,
+            "end": 1543870023348
+          },
+          {
+            "name": "Nitracyr Workshop",
+            "location": "Edinburgh",
+            "room": "Black",
+            "instructor": {
+              "first": "Smith",
+              "last": "Serrano",
+              "guid": "2e4fc786-6da5-450a-9073-8e595f4a42af"
+            },
+            "start": 1492478669651,
+            "end": 1551835525147
+          },
+          {
+            "name": "Duflex Workshop",
+            "location": "Gdansk",
+            "room": "Black",
+            "instructor": {
+              "first": "Kirk",
+              "last": "Cooke",
+              "guid": "a9426dc3-16f4-473d-93d9-cb8b0c1bf970"
+            },
+            "start": 1392076243290,
+            "end": 1501627299587
+          },
+          {
+            "name": "Locazone Workshop",
+            "location": "Edinburgh",
+            "room": "Grey",
+            "instructor": {
+              "first": "Wendy",
+              "last": "Trujillo",
+              "guid": "ed367f8d-77b8-4415-ac5f-57f3e2dca0c4"
+            },
+            "start": 1453593587606,
+            "end": 1419058761414
+          },
+          {
+            "name": "Crustatia Workshop",
+            "location": "Gdansk",
+            "room": "Black",
+            "instructor": {
+              "first": "Hoffman",
+              "last": "Palmer",
+              "guid": "a9e8910e-7385-4bfc-9f06-4042aa67769f"
+            },
+            "start": 1541490558635,
+            "end": 1539273908119
+          }
+        ]
+      }
+    },
+    {
+      "_id": "5cae1dc04ee3b3afaf81dde2",
+      "index": 19,
+      "guid": "bb171e2b-ffe6-476d-9100-a51f38c8fb2d",
+      "picture": "https://randomuser.me/api/portraits/women/15",
+      "name": {
+        "first": "Sheppard",
+        "last": "Levy"
+      },
+      "base": "Dublin",
+      "email": "sheppard.levy@wipro.com",
+      "classes": {
+        "attending": [
+          {
+            "name": "Verton Workshop",
+            "location": "Dublin",
+            "room": "Black",
+            "instructor": {
+              "first": "Jeannine",
+              "last": "Dixon",
+              "guid": "444eed90-cc97-4a11-84f1-c7ecac39d38b"
+            },
+            "start": 1418965201120,
+            "end": 1433978474028
+          },
+          {
+            "name": "Zanilla Workshop",
+            "location": "Plano",
+            "room": "Black",
+            "instructor": {
+              "first": "Belinda",
+              "last": "Harrison",
+              "guid": "a89f1070-9330-40a6-bd59-6b18b0c2d6a8"
+            },
+            "start": 1434674417151,
+            "end": 1449386719775
+          },
+          {
+            "name": "Zilch Workshop",
+            "location": "Bangalore",
+            "room": "White",
+            "instructor": {
+              "first": "Foley",
+              "last": "Clay",
+              "guid": "3fa7af41-bde9-4d95-a21a-907b1d5d2cb3"
+            },
+            "start": 1464130702944,
+            "end": 1528983371175
+          },
+          {
+            "name": "Accuprint Workshop",
+            "location": "London",
+            "room": "White",
+            "instructor": {
+              "first": "Riggs",
+              "last": "Gibbs",
+              "guid": "c1edacd8-65af-4d9b-a3d0-03db2754124b"
+            },
+            "start": 1460186296206,
+            "end": 1472745561501
+          }
+        ],
+        "teaching": [
+          {
+            "name": "Mobildata Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Tania",
+              "last": "Wyatt",
+              "guid": "33902b73-a757-433d-923f-9926ab9dcc2b"
+            },
+            "start": 1433847124407,
+            "end": 1489118282689
+          },
+          {
+            "name": "Isonus Workshop",
+            "location": "Dublin",
+            "room": "Grey",
+            "instructor": {
+              "first": "Maldonado",
+              "last": "Estes",
+              "guid": "0677de1f-a2a9-4bf8-b012-ccb6dde5fd09"
+            },
+            "start": 1479228980080,
+            "end": 1393197612347
+          },
+          {
+            "name": "Besto Workshop",
+            "location": "Gdansk",
+            "room": "Grey",
+            "instructor": {
+              "first": "Barrett",
+              "last": "Macias",
+              "guid": "50a2745e-1be7-4625-b5a6-08468fc39b2f"
+            },
+            "start": 1542445613998,
+            "end": 1511718007469
+          },
+          {
+            "name": "Renovize Workshop",
+            "location": "Dublin",
+            "room": "Black",
+            "instructor": {
+              "first": "Selma",
+              "last": "Johnson",
+              "guid": "b776ec8c-3447-4f92-b99e-9c5e6e51176d"
+            },
+            "start": 1390838792035,
+            "end": 1425138556738
+          },
+          {
+            "name": "Ecolight Workshop",
+            "location": "Bangalore",
+            "room": "White",
+            "instructor": {
+              "first": "Wilcox",
+              "last": "Shannon",
+              "guid": "0a5d99a1-7c20-4d8a-b905-b6250b729ca1"
+            },
+            "start": 1467941565026,
+            "end": 1514890060079
+          },
+          {
+            "name": "Eventage Workshop",
+            "location": "Denver",
+            "room": "Black",
+            "instructor": {
+              "first": "Frances",
+              "last": "Dotson",
+              "guid": "de9f5eb8-1886-4848-a269-12c0a9fcb862"
+            },
+            "start": 1435782311980,
+            "end": 1392060922387
+          },
+          {
+            "name": "Dogtown Workshop",
+            "location": "Warshaw",
+            "room": "Grey",
+            "instructor": {
+              "first": "Louise",
+              "last": "Reese",
+              "guid": "e636a2b0-ad40-411b-97b7-534285a73aa7"
+            },
+            "start": 1483344733375,
+            "end": 1523047136048
+          },
+          {
+            "name": "Martgo Workshop",
+            "location": "Plano",
+            "room": "Black",
+            "instructor": {
+              "first": "Roslyn",
+              "last": "Holden",
+              "guid": "38a24b2c-2106-4e94-87bf-4c2fa36c4bea"
+            },
+            "start": 1525826798542,
+            "end": 1505630482949
+          },
+          {
+            "name": "Barkarama Workshop",
+            "location": "London",
+            "room": "Grey",
+            "instructor": {
+              "first": "Cathleen",
+              "last": "Casey",
+              "guid": "12c16dd3-7b53-4a8e-94cc-fc2854aa1437"
+            },
+            "start": 1459857862565,
+            "end": 1529385627826
+          },
+          {
+            "name": "Zensure Workshop",
+            "location": "Gdansk",
+            "room": "Black",
+            "instructor": {
+              "first": "Palmer",
+              "last": "Allen",
+              "guid": "ca64bfe0-0287-4556-a5fa-62b384e539a3"
+            },
+            "start": 1471536193353,
+            "end": 1421927897034
+          }
+        ]
+      }
+    },
+    {
+      "_id": "5cae1dc057ebd4f9bef54924",
+      "index": 20,
+      "guid": "08239c43-6d08-40fe-a9ce-eadfdf4e43f3",
+      "picture": "https://randomuser.me/api/portraits/women/9",
+      "name": {
+        "first": "Vonda",
+        "last": "Rosales"
+      },
+      "base": "Edinburgh",
+      "email": "vonda.rosales@wipro.com",
+      "classes": {
+        "attending": [
+          {
+            "name": "Handshake Workshop",
+            "location": "London",
+            "room": "Grey",
+            "instructor": {
+              "first": "Augusta",
+              "last": "Blanchard",
+              "guid": "0f8bd167-c7a9-4a7b-8428-88c6aeda5bf9"
+            },
+            "start": 1423165802305,
+            "end": 1507371539178
+          },
+          {
+            "name": "Exodoc Workshop",
+            "location": "Edinburgh",
+            "room": "Grey",
+            "instructor": {
+              "first": "Mcleod",
+              "last": "Bishop",
+              "guid": "c04678cb-1e8e-4a88-931f-118d57ce2a6f"
+            },
+            "start": 1428797280290,
+            "end": 1470661693258
+          },
+          {
+            "name": "Mangelica Workshop",
+            "location": "London",
+            "room": "White",
+            "instructor": {
+              "first": "Fletcher",
+              "last": "Ramirez",
+              "guid": "7fa3818c-362c-4d11-9d78-00c4c81709ea"
+            },
+            "start": 1436869217337,
+            "end": 1527948299493
+          },
+          {
+            "name": "Luxuria Workshop",
+            "location": "London",
+            "room": "White",
+            "instructor": {
+              "first": "Espinoza",
+              "last": "Rodriguez",
+              "guid": "bd0bfa52-2d9a-4afe-a1e3-fe70e6e8bcd4"
+            },
+            "start": 1424350763072,
+            "end": 1551615884885
+          },
+          {
+            "name": "Genmex Workshop",
+            "location": "Plano",
+            "room": "Black",
+            "instructor": {
+              "first": "Nash",
+              "last": "Ewing",
+              "guid": "72651e49-02cb-470e-9e65-fee64791cb70"
+            },
+            "start": 1419146158991,
+            "end": 1394831307096
+          }
+        ],
+        "teaching": [
+          {
+            "name": "Lexicondo Workshop",
+            "location": "Warshaw",
+            "room": "White",
+            "instructor": {
+              "first": "Janis",
+              "last": "Holland",
+              "guid": "b28b8d02-f718-4c11-abea-a00243e116ef"
+            },
+            "start": 1514967568805,
+            "end": 1435514967750
+          },
+          {
+            "name": "Xoggle Workshop",
+            "location": "Brooklyn",
+            "room": "White",
+            "instructor": {
+              "first": "Torres",
+              "last": "Fisher",
+              "guid": "4e90c219-c3b0-4810-8bbf-0448ab14e567"
+            },
+            "start": 1501371323319,
+            "end": 1416072577263
+          },
+          {
+            "name": "Elentrix Workshop",
+            "location": "Dublin",
+            "room": "Black",
+            "instructor": {
+              "first": "Juana",
+              "last": "Dennis",
+              "guid": "940f850a-f39c-443f-823e-af86ca9a6a6a"
+            },
+            "start": 1452562368978,
+            "end": 1399917229189
+          },
+          {
+            "name": "Apex Workshop",
+            "location": "Plano",
+            "room": "Grey",
+            "instructor": {
+              "first": "Rena",
+              "last": "Watts",
+              "guid": "23eeb4c9-af1f-4323-95ff-f27427c48130"
+            },
+            "start": 1551671408183,
+            "end": 1458082307631
+          },
+          {
+            "name": "Vitricomp Workshop",
+            "location": "Dublin",
+            "room": "Black",
+            "instructor": {
+              "first": "Katheryn",
+              "last": "Sellers",
+              "guid": "f6a4c663-4522-4268-a50b-352862ff275d"
+            },
+            "start": 1471531193522,
+            "end": 1397121876250
+          },
+          {
+            "name": "Dragbot Workshop",
+            "location": "Brooklyn",
+            "room": "Grey",
+            "instructor": {
+              "first": "Lorie",
+              "last": "Larsen",
+              "guid": "0868fde8-f85a-4a06-abd2-2821e035c5b2"
+            },
+            "start": 1454591108218,
+            "end": 1403622721597
+          },
+          {
+            "name": "Zidox Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Karen",
+              "last": "Odonnell",
+              "guid": "4c53d97c-cbe1-4221-b42d-b0cb719cc839"
+            },
+            "start": 1532770523132,
+            "end": 1440902074331
+          },
+          {
+            "name": "Austex Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Antonia",
+              "last": "Beasley",
+              "guid": "8cbc75e8-5d3e-413b-9886-0fff27bb3b03"
+            },
+            "start": 1454484854765,
+            "end": 1416027414582
+          },
+          {
+            "name": "Furnigeer Workshop",
+            "location": "Gdansk",
+            "room": "Black",
+            "instructor": {
+              "first": "Muriel",
+              "last": "Lawrence",
+              "guid": "53db7397-7e5b-4851-97aa-df4f43592de4"
+            },
+            "start": 1395500315116,
+            "end": 1549232302055
+          }
+        ]
+      }
+    },
+    {
+      "_id": "5cae1dc0c6da5ad558df8348",
+      "index": 21,
+      "guid": "59b14261-6df6-4970-9390-0c9edc830698",
+      "picture": "https://randomuser.me/api/portraits/women/77",
+      "name": {
+        "first": "Patel",
+        "last": "Crane"
+      },
+      "base": "Gdansk",
+      "email": "patel.crane@wipro.com",
+      "classes": {
+        "attending": [
+          {
+            "name": "Metroz Workshop",
+            "location": "Brooklyn",
+            "room": "Black",
+            "instructor": {
+              "first": "Whitney",
+              "last": "Flynn",
+              "guid": "79322add-6ef4-4e81-aad5-c046ff69e565"
+            },
+            "start": 1495230460293,
+            "end": 1511395232425
+          },
+          {
+            "name": "Quotezart Workshop",
+            "location": "Denver",
+            "room": "Grey",
+            "instructor": {
+              "first": "Montoya",
+              "last": "Cochran",
+              "guid": "fa89f5ca-da2a-4436-b28a-741cb4a90cf1"
+            },
+            "start": 1452717618764,
+            "end": 1405969250907
+          },
+          {
+            "name": "Exotechno Workshop",
+            "location": "Edinburgh",
+            "room": "White",
+            "instructor": {
+              "first": "Ballard",
+              "last": "Mcclure",
+              "guid": "f11f5e94-6260-4a89-8bce-b5204aa4628a"
+            },
+            "start": 1478130813627,
+            "end": 1437665716804
+          },
+          {
+            "name": "Satiance Workshop",
+            "location": "Dublin",
+            "room": "Grey",
+            "instructor": {
+              "first": "Conrad",
+              "last": "Woodward",
+              "guid": "5ea32126-0739-4a5d-aa85-43104c1259c8"
+            },
+            "start": 1521944414571,
+            "end": 1471465209954
+          },
+          {
+            "name": "Zoxy Workshop",
+            "location": "Denver",
+            "room": "Black",
+            "instructor": {
+              "first": "Jill",
+              "last": "Black",
+              "guid": "edde715c-22fe-4259-a0eb-d8ee672d6d7c"
+            },
+            "start": 1436537662399,
+            "end": 1431520327777
+          },
+          {
+            "name": "Qiao Workshop",
+            "location": "Bangalore",
+            "room": "Black",
+            "instructor": {
+              "first": "Brady",
+              "last": "Ortiz",
+              "guid": "2a6664e1-bdc9-48e1-8e25-6f8fcc065abc"
+            },
+            "start": 1474487157697,
+            "end": 1545047926995
+          },
+          {
+            "name": "Cytrek Workshop",
+            "location": "Dublin",
+            "room": "Black",
+            "instructor": {
+              "first": "Pate",
+              "last": "Hyde",
+              "guid": "621716f8-bfb4-4eaf-af5a-4bcc29d608ee"
+            },
+            "start": 1437111379140,
+            "end": 1469892053581
+          },
+          {
+            "name": "Genekom Workshop",
+            "location": "Edinburgh",
+            "room": "Grey",
+            "instructor": {
+              "first": "Cobb",
+              "last": "Malone",
+              "guid": "5e17d614-af52-4524-b9a7-0abbfcf58fdd"
+            },
+            "start": 1509438239013,
+            "end": 1418124002344
+          }
+        ],
+        "teaching": [
+          {
+            "name": "Emergent Workshop",
+            "location": "Gdansk",
+            "room": "White",
+            "instructor": {
+              "first": "Kidd",
+              "last": "Stewart",
+              "guid": "78efdfff-75ca-45cb-bf30-ac1137ace833"
+            },
+            "start": 1513698728951,
+            "end": 1389690479774
+          },
+          {
+            "name": "Steeltab Workshop",
+            "location": "Edinburgh",
+            "room": "Black",
+            "instructor": {
+              "first": "Lessie",
+              "last": "Mayer",
+              "guid": "3f398bee-9fc8-4e98-9eb3-aa20c566da5e"
+            },
+            "start": 1459036548005,
+            "end": 1531480219520
+          },
+          {
+            "name": "Ludak Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Lillian",
+              "last": "Gibson",
+              "guid": "3a0b260a-3505-4f12-9aed-a67eaa936aaa"
+            },
+            "start": 1502855702597,
+            "end": 1452377157449
+          },
+          {
+            "name": "Bittor Workshop",
+            "location": "Plano",
+            "room": "White",
+            "instructor": {
+              "first": "Bobbi",
+              "last": "Wilson",
+              "guid": "f634a227-a5d6-414f-b587-fb92b5cee7da"
+            },
+            "start": 1415180705729,
+            "end": 1464385641798
+          }
+        ]
+      }
+    },
+    {
+      "_id": "5cae1dc026d58ba6b8c5d047",
+      "index": 22,
+      "guid": "1620b81b-a945-4605-b70a-d4b431bc7e32",
+      "picture": "https://randomuser.me/api/portraits/women/79",
+      "name": {
+        "first": "Hudson",
+        "last": "Barnett"
+      },
+      "base": "Dublin",
+      "email": "hudson.barnett@wipro.com",
+      "classes": {
+        "attending": [
+          {
+            "name": "Namegen Workshop",
+            "location": "Denver",
+            "room": "Black",
+            "instructor": {
+              "first": "Samantha",
+              "last": "Dillard",
+              "guid": "e2637830-205f-484c-a542-c4a7738c9446"
+            },
+            "start": 1452212642101,
+            "end": 1417773866696
+          },
+          {
+            "name": "Reversus Workshop",
+            "location": "Plano",
+            "room": "Black",
+            "instructor": {
+              "first": "Delaney",
+              "last": "Benjamin",
+              "guid": "b2a8f560-538c-4aa2-81f6-d6a90e355c45"
+            },
+            "start": 1430893225933,
+            "end": 1541723797667
+          },
+          {
+            "name": "Kneedles Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Hinton",
+              "last": "Griffith",
+              "guid": "4683c66a-cf4c-41f7-b084-ff0edf514407"
+            },
+            "start": 1543963414358,
+            "end": 1497217931738
+          },
+          {
+            "name": "Poshome Workshop",
+            "location": "London",
+            "room": "White",
+            "instructor": {
+              "first": "Macias",
+              "last": "Byrd",
+              "guid": "be73fb97-8387-4296-9deb-cfe9844d5939"
+            },
+            "start": 1517843255285,
+            "end": 1395408752412
+          },
+          {
+            "name": "Greeker Workshop",
+            "location": "Warshaw",
+            "room": "Black",
+            "instructor": {
+              "first": "Bell",
+              "last": "Alvarez",
+              "guid": "42227999-1362-4d87-93b7-1f6dbb176fcc"
+            },
+            "start": 1551844873128,
+            "end": 1446547961391
+          },
+          {
+            "name": "Frolix Workshop",
+            "location": "Plano",
+            "room": "Grey",
+            "instructor": {
+              "first": "Andrews",
+              "last": "Small",
+              "guid": "f1b950b6-31de-489e-a948-a32971a7b296"
+            },
+            "start": 1461648848838,
+            "end": 1409366116326
+          },
+          {
+            "name": "Lingoage Workshop",
+            "location": "Plano",
+            "room": "White",
+            "instructor": {
+              "first": "Aurora",
+              "last": "Kelley",
+              "guid": "d8c476b0-6f16-47fd-9284-304baf0ee63b"
+            },
+            "start": 1524637135422,
+            "end": 1520453998637
+          },
+          {
+            "name": "Eternis Workshop",
+            "location": "Brooklyn",
+            "room": "Black",
+            "instructor": {
+              "first": "Cheryl",
+              "last": "Strickland",
+              "guid": "e283e24d-4569-41eb-8bfe-5650d21dfcb4"
+            },
+            "start": 1397209221128,
+            "end": 1463384764571
+          }
+        ],
+        "teaching": [
+          {
+            "name": "Sequitur Workshop",
+            "location": "Dublin",
+            "room": "Grey",
+            "instructor": {
+              "first": "Stefanie",
+              "last": "Russo",
+              "guid": "9f5db6f2-bbd9-482f-9966-4294a749c4e6"
+            },
+            "start": 1549293089584,
+            "end": 1406545186864
+          },
+          {
+            "name": "Mantrix Workshop",
+            "location": "Brooklyn",
+            "room": "White",
+            "instructor": {
+              "first": "Lily",
+              "last": "May",
+              "guid": "567f8cbb-1d1f-4999-bc97-56345bcc25c8"
+            },
+            "start": 1511107192913,
+            "end": 1490225722779
+          },
+          {
+            "name": "Comtours Workshop",
+            "location": "Plano",
+            "room": "Grey",
+            "instructor": {
+              "first": "Hayes",
+              "last": "Long",
+              "guid": "9a5ce724-f9f9-4d92-91b7-9229a61d8938"
+            },
+            "start": 1436156669029,
+            "end": 1441820322843
+          },
+          {
+            "name": "Aquacine Workshop",
+            "location": "Warshaw",
+            "room": "Grey",
+            "instructor": {
+              "first": "Jane",
+              "last": "Banks",
+              "guid": "c9ae9c99-1549-4c49-a927-c2725a832b48"
+            },
+            "start": 1488201910512,
+            "end": 1409986113025
+          },
+          {
+            "name": "Sulfax Workshop",
+            "location": "Warshaw",
+            "room": "Black",
+            "instructor": {
+              "first": "Terrell",
+              "last": "Pickett",
+              "guid": "e9fe2d65-bc43-4aea-b0a2-e6471e67cef9"
+            },
+            "start": 1436326661829,
+            "end": 1544568427643
+          },
+          {
+            "name": "Endipin Workshop",
+            "location": "Denver",
+            "room": "White",
+            "instructor": {
+              "first": "Gray",
+              "last": "Douglas",
+              "guid": "46ef2636-1888-4758-8e9e-6db245696957"
+            },
+            "start": 1534452152039,
+            "end": 1436594573228
+          }
+        ]
+      }
+    },
+    {
+      "_id": "5cae1dc0f152365c37057268",
+      "index": 23,
+      "guid": "75d13711-ca0c-46d1-899f-90492592f5a8",
+      "picture": "https://randomuser.me/api/portraits/women/50",
+      "name": {
+        "first": "Bettye",
+        "last": "Newman"
+      },
+      "base": "Denver",
+      "email": "bettye.newman@wipro.com",
+      "classes": {
+        "attending": [
+          {
+            "name": "Stelaecor Workshop",
+            "location": "Edinburgh",
+            "room": "White",
+            "instructor": {
+              "first": "Bradford",
+              "last": "Hewitt",
+              "guid": "b37991a8-9e31-446b-9ea9-4c779eab3cb0"
+            },
+            "start": 1467079625380,
+            "end": 1520478491338
+          },
+          {
+            "name": "Pivitol Workshop",
+            "location": "Brooklyn",
+            "room": "White",
+            "instructor": {
+              "first": "Lucas",
+              "last": "Joyce",
+              "guid": "d08da00b-bf85-4506-be7f-a74bd41023e6"
+            },
+            "start": 1547840422565,
+            "end": 1529356409747
+          },
+          {
+            "name": "Equicom Workshop",
+            "location": "Warshaw",
+            "room": "Black",
+            "instructor": {
+              "first": "Patterson",
+              "last": "Ramsey",
+              "guid": "9dbafe3a-0b13-449e-8d3e-a7b9f6192f93"
+            },
+            "start": 1485042132439,
+            "end": 1409561945071
+          },
+          {
+            "name": "Flumbo Workshop",
+            "location": "Dublin",
+            "room": "Black",
+            "instructor": {
+              "first": "Dixon",
+              "last": "Schneider",
+              "guid": "54895dd0-63fa-415b-9468-9d610ee607c3"
+            },
+            "start": 1486675703068,
+            "end": 1468496254449
+          },
+          {
+            "name": "Intradisk Workshop",
+            "location": "Bangalore",
+            "room": "Black",
+            "instructor": {
+              "first": "Isabel",
+              "last": "Ellison",
+              "guid": "bd9d0948-a706-40b7-af67-fddd0ccd52bc"
+            },
+            "start": 1411902409526,
+            "end": 1422917516297
+          },
+          {
+            "name": "Tingles Workshop",
+            "location": "Edinburgh",
+            "room": "Black",
+            "instructor": {
+              "first": "Krystal",
+              "last": "Ratliff",
+              "guid": "f17668cb-c26e-478f-b63b-cf6e52a3398e"
+            },
+            "start": 1534574417455,
+            "end": 1414956876434
+          },
+          {
+            "name": "Snips Workshop",
+            "location": "Gdansk",
+            "room": "Black",
+            "instructor": {
+              "first": "Margie",
+              "last": "Jenkins",
+              "guid": "7d26401a-c16d-4d92-8a78-864d9bb9b562"
+            },
+            "start": 1517763531213,
+            "end": 1534284415232
+          }
+        ],
+        "teaching": [
+          {
+            "name": "Ultrasure Workshop",
+            "location": "Plano",
+            "room": "Black",
+            "instructor": {
+              "first": "Victoria",
+              "last": "Sweet",
+              "guid": "aa6526ca-ff9f-4c04-b8f2-3eda9b65a8ab"
+            },
+            "start": 1488888804705,
+            "end": 1417292487402
+          },
+          {
+            "name": "Lyrichord Workshop",
+            "location": "Bangalore",
+            "room": "Grey",
+            "instructor": {
+              "first": "Carlene",
+              "last": "Mendoza",
+              "guid": "c243338e-5052-4da6-9b42-3bc041bfd2eb"
+            },
+            "start": 1474871321723,
+            "end": 1537896492230
+          },
+          {
+            "name": "Mantro Workshop",
+            "location": "Warshaw",
+            "room": "White",
+            "instructor": {
+              "first": "Hope",
+              "last": "Summers",
+              "guid": "89a1feb2-af53-468b-9ebf-0723e4a5eaaa"
+            },
+            "start": 1534096102719,
+            "end": 1515269760802
+          },
+          {
+            "name": "Miracula Workshop",
+            "location": "Edinburgh",
+            "room": "Black",
+            "instructor": {
+              "first": "Martha",
+              "last": "Robles",
+              "guid": "aa07e5ed-da25-4f7f-9976-d18a7f23e9c9"
+            },
+            "start": 1397569851597,
+            "end": 1420923500957
+          }
+        ]
+      }
+    },
+    {
+      "_id": "5cae1dc04ccb0f1a575a0911",
+      "index": 24,
+      "guid": "2dc2b9dc-d565-4911-a05e-a981c9f5d1a5",
+      "picture": "https://randomuser.me/api/portraits/women/73",
+      "name": {
+        "first": "Bertha",
+        "last": "Holcomb"
+      },
+      "base": "Denver",
+      "email": "bertha.holcomb@wipro.com",
+      "classes": {
+        "attending": [
+          {
+            "name": "Plutorque Workshop",
+            "location": "Dublin",
+            "room": "Grey",
+            "instructor": {
+              "first": "Lawson",
+              "last": "Rios",
+              "guid": "8b896897-f6c1-42a0-b4b1-bd2aaa97328a"
+            },
+            "start": 1496904398599,
+            "end": 1423403555923
+          },
+          {
+            "name": "Terragen Workshop",
+            "location": "Brooklyn",
+            "room": "Grey",
+            "instructor": {
+              "first": "Tamara",
+              "last": "Briggs",
+              "guid": "e8370715-ffea-4fa2-b0ed-47c65d1dc73b"
+            },
+            "start": 1537592510537,
+            "end": 1476376931289
+          },
+          {
+            "name": "Geostele Workshop",
+            "location": "Brooklyn",
+            "room": "White",
+            "instructor": {
+              "first": "Aileen",
+              "last": "Kirk",
+              "guid": "f0fabdb7-73b3-4eb4-b297-1a6570ab2e58"
+            },
+            "start": 1458978495500,
+            "end": 1479182037262
+          },
+          {
+            "name": "Pushcart Workshop",
+            "location": "Warshaw",
+            "room": "Grey",
+            "instructor": {
+              "first": "Figueroa",
+              "last": "Richardson",
+              "guid": "1a3666b5-8e67-49e1-b360-07718cf99dc7"
+            },
+            "start": 1482179917657,
+            "end": 1519238557264
+          },
+          {
+            "name": "Grok Workshop",
+            "location": "Brooklyn",
+            "room": "White",
+            "instructor": {
+              "first": "Althea",
+              "last": "English",
+              "guid": "7c1b8802-fbb0-48f3-8144-5119f4d33392"
+            },
+            "start": 1519920847258,
+            "end": 1413135238312
+          }
+        ],
+        "teaching": [
+          {
+            "name": "Fanfare Workshop",
+            "location": "Gdansk",
+            "room": "Black",
+            "instructor": {
+              "first": "Hawkins",
+              "last": "Lynch",
+              "guid": "30252511-1974-4c03-a194-6705eaaf54d2"
+            },
+            "start": 1407814963311,
+            "end": 1414419363499
+          },
+          {
+            "name": "Fishland Workshop",
+            "location": "Edinburgh",
+            "room": "Grey",
+            "instructor": {
+              "first": "Dolly",
+              "last": "Houston",
+              "guid": "1b8f36c7-e84f-491a-a2a3-b8f2753c248a"
+            },
+            "start": 1510694943416,
+            "end": 1547037521185
+          },
+          {
+            "name": "Norali Workshop",
+            "location": "Brooklyn",
+            "room": "Black",
+            "instructor": {
+              "first": "Ester",
+              "last": "Strong",
+              "guid": "fc397d83-1780-46a2-a5ae-9cb543646919"
+            },
+            "start": 1427747082803,
+            "end": 1509910405654
+          }
+        ]
+      }
+    },
+    {
+      "_id": "5cae1dc05c60719899ddc139",
+      "index": 25,
+      "guid": "1049da25-4b89-4b2b-87df-f78d24e6423c",
+      "picture": "https://randomuser.me/api/portraits/women/21",
+      "name": {
+        "first": "Lynda",
+        "last": "Mcdaniel"
+      },
+      "base": "Plano",
+      "email": "lynda.mcdaniel@wipro.com",
+      "classes": {
+        "attending": [
+          {
+            "name": "Optique Workshop",
+            "location": "Dublin",
+            "room": "Grey",
+            "instructor": {
+              "first": "Claudette",
+              "last": "Morrow",
+              "guid": "29302e70-4b34-4a10-932a-2d292c5dc30b"
+            },
+            "start": 1533999489633,
+            "end": 1499776406774
+          },
+          {
+            "name": "Junipoor Workshop",
+            "location": "Plano",
+            "room": "Grey",
+            "instructor": {
+              "first": "Whitney",
+              "last": "Moon",
+              "guid": "3e6920e9-a698-40dd-9de0-c9c3677d3243"
+            },
+            "start": 1541181772339,
+            "end": 1467177895615
+          },
+          {
+            "name": "Insuron Workshop",
+            "location": "Gdansk",
+            "room": "Black",
+            "instructor": {
+              "first": "Pickett",
+              "last": "Watson",
+              "guid": "7629cbb4-e689-48c8-9b9b-94539ad2cf36"
+            },
+            "start": 1503991864086,
+            "end": 1419119418380
+          },
+          {
+            "name": "Slax Workshop",
+            "location": "Denver",
+            "room": "Grey",
+            "instructor": {
+              "first": "Yvette",
+              "last": "Parsons",
+              "guid": "3223995f-b3d5-46e6-9c14-17e8c32d680c"
+            },
+            "start": 1553193645413,
+            "end": 1413976105935
+          },
+          {
+            "name": "Terrago Workshop",
+            "location": "Bangalore",
+            "room": "Grey",
+            "instructor": {
+              "first": "Iris",
+              "last": "Bartlett",
+              "guid": "1c6f111a-a734-4f16-abda-a44b3c5d3af5"
+            },
+            "start": 1436501914774,
+            "end": 1443014722775
+          },
+          {
+            "name": "Ceprene Workshop",
+            "location": "Warshaw",
+            "room": "White",
+            "instructor": {
+              "first": "Ellison",
+              "last": "Evans",
+              "guid": "2a7df8df-8f70-49b9-93e9-395a9e129329"
+            },
+            "start": 1542756429529,
+            "end": 1496557765198
+          }
+        ],
+        "teaching": [
+          {
+            "name": "Senmao Workshop",
+            "location": "Brooklyn",
+            "room": "Grey",
+            "instructor": {
+              "first": "Prince",
+              "last": "Rivera",
+              "guid": "1b3f162c-fb3b-4390-8c89-28cf0538784d"
+            },
+            "start": 1547265448517,
+            "end": 1393514618064
+          },
+          {
+            "name": "Bulljuice Workshop",
+            "location": "Dublin",
+            "room": "Black",
+            "instructor": {
+              "first": "Monique",
+              "last": "Perez",
+              "guid": "bc672429-14e3-482a-9f4b-9e2d77be2fde"
+            },
+            "start": 1476434070094,
+            "end": 1430515605520
+          },
+          {
+            "name": "Limozen Workshop",
+            "location": "Plano",
+            "room": "White",
+            "instructor": {
+              "first": "Wagner",
+              "last": "Heath",
+              "guid": "e8c24128-b6c5-4a9b-9fde-24756c78d133"
+            },
+            "start": 1418274939893,
+            "end": 1459692675414
+          },
+          {
+            "name": "Dreamia Workshop",
+            "location": "Plano",
+            "room": "Grey",
+            "instructor": {
+              "first": "Shepherd",
+              "last": "Aguilar",
+              "guid": "75ae1420-88d1-430e-bee6-819648b1e3f8"
+            },
+            "start": 1518027594707,
+            "end": 1398954971556
+          },
+          {
+            "name": "Vetron Workshop",
+            "location": "Plano",
+            "room": "Grey",
+            "instructor": {
+              "first": "Zamora",
+              "last": "Cain",
+              "guid": "ff67a085-e349-4524-b449-1847d34f498e"
+            },
+            "start": 1401414189557,
+            "end": 1444399296367
+          },
+          {
+            "name": "Xplor Workshop",
+            "location": "Brooklyn",
+            "room": "Black",
+            "instructor": {
+              "first": "Velma",
+              "last": "Mcmillan",
+              "guid": "99a9f037-a25b-41a5-8a69-ab6e28f94824"
+            },
+            "start": 1438443436389,
+            "end": 1514656040938
+          },
+          {
+            "name": "Edecine Workshop",
+            "location": "Bangalore",
+            "room": "Black",
+            "instructor": {
+              "first": "Fields",
+              "last": "Richards",
+              "guid": "893a08d7-819b-42e8-9000-c6efd3bffa61"
+            },
+            "start": 1403957259831,
+            "end": 1428748118520
+          },
+          {
+            "name": "Apexia Workshop",
+            "location": "London",
+            "room": "Grey",
+            "instructor": {
+              "first": "Browning",
+              "last": "Sawyer",
+              "guid": "ed1c07ff-8f02-49ec-91bb-793b9b69c42f"
+            },
+            "start": 1531153732601,
+            "end": 1480361152352
+          },
+          {
+            "name": "Xinware Workshop",
+            "location": "Dublin",
+            "room": "Black",
+            "instructor": {
+              "first": "Lois",
+              "last": "Puckett",
+              "guid": "532c7fa6-e0f0-4026-abd2-a2742fc00bb4"
+            },
+            "start": 1480109157549,
+            "end": 1428159944585
+          },
+          {
+            "name": "Golistic Workshop",
+            "location": "Denver",
+            "room": "Grey",
+            "instructor": {
+              "first": "Gabriela",
+              "last": "Henry",
+              "guid": "6c328cda-0d09-4047-901b-e14c807ad0c7"
+            },
+            "start": 1540240639892,
+            "end": 1427168356923
+          }
+        ]
+      }
+    },
+    {
+      "_id": "5cae1dc033d6c5e75f35d133",
+      "index": 26,
+      "guid": "456f037a-9b8c-449c-914d-710d61dcf538",
+      "picture": "https://randomuser.me/api/portraits/women/37",
+      "name": {
+        "first": "Patty",
+        "last": "Vincent"
+      },
+      "base": "Bangalore",
+      "email": "patty.vincent@wipro.com",
+      "classes": {
+        "attending": [
+          {
+            "name": "Enjola Workshop",
+            "location": "Denver",
+            "room": "Grey",
+            "instructor": {
+              "first": "Juanita",
+              "last": "Norton",
+              "guid": "2a90bbae-2d0e-41ac-9610-e5cf6830c216"
+            },
+            "start": 1537464893043,
+            "end": 1549505727076
+          },
+          {
+            "name": "Nurplex Workshop",
+            "location": "Bangalore",
+            "room": "White",
+            "instructor": {
+              "first": "Frankie",
+              "last": "Knowles",
+              "guid": "6c1d6277-f1ae-4234-a926-4f2b8738c696"
+            },
+            "start": 1398035109558,
+            "end": 1439890547225
+          },
+          {
+            "name": "Podunk Workshop",
+            "location": "Edinburgh",
+            "room": "Black",
+            "instructor": {
+              "first": "Annabelle",
+              "last": "Mercer",
+              "guid": "bad3e031-d50a-469f-a6d3-56d1224fde38"
+            },
+            "start": 1490857259665,
+            "end": 1404265049073
+          },
+          {
+            "name": "Isologix Workshop",
+            "location": "Gdansk",
+            "room": "Black",
+            "instructor": {
+              "first": "Rosario",
+              "last": "Oneill",
+              "guid": "fd00f449-5b3e-4b7c-b25e-594d17dfa157"
+            },
+            "start": 1501868980068,
+            "end": 1517199307526
+          },
+          {
+            "name": "Zedalis Workshop",
+            "location": "London",
+            "room": "White",
+            "instructor": {
+              "first": "Carla",
+              "last": "Atkins",
+              "guid": "f87608e6-983a-48d7-b1f6-b02c0912362c"
+            },
+            "start": 1517040020989,
+            "end": 1493337368325
+          },
+          {
+            "name": "Rodeomad Workshop",
+            "location": "Denver",
+            "room": "Grey",
+            "instructor": {
+              "first": "Nicole",
+              "last": "Crawford",
+              "guid": "f6b48f55-ed8c-4149-9495-f44f9048e38f"
+            },
+            "start": 1398595941260,
+            "end": 1467488044892
+          },
+          {
+            "name": "Zolavo Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Chambers",
+              "last": "Mcdonald",
+              "guid": "87c03f40-30d8-46a1-8b05-08fb432d1bbf"
+            },
+            "start": 1473794307435,
+            "end": 1451716889282
+          },
+          {
+            "name": "Cowtown Workshop",
+            "location": "Bangalore",
+            "room": "Grey",
+            "instructor": {
+              "first": "Deena",
+              "last": "Mckenzie",
+              "guid": "029d1785-3ee7-4ddb-bdc4-39bbef2b68a9"
+            },
+            "start": 1485805557690,
+            "end": 1502421124981
+          }
+        ],
+        "teaching": [
+          {
+            "name": "Enervate Workshop",
+            "location": "Bangalore",
+            "room": "Grey",
+            "instructor": {
+              "first": "Danielle",
+              "last": "Mcfarland",
+              "guid": "63a06c1b-4870-43c7-9fcc-4fde208a77f5"
+            },
+            "start": 1503787232623,
+            "end": 1424604895340
+          },
+          {
+            "name": "Daisu Workshop",
+            "location": "Plano",
+            "room": "Grey",
+            "instructor": {
+              "first": "Sexton",
+              "last": "Vang",
+              "guid": "99b1a188-dc89-4135-937a-1e4b2c1500d0"
+            },
+            "start": 1483284864949,
+            "end": 1501794060872
+          },
+          {
+            "name": "Maximind Workshop",
+            "location": "Plano",
+            "room": "White",
+            "instructor": {
+              "first": "Mendoza",
+              "last": "Emerson",
+              "guid": "b3b8619a-f6d4-4b5d-86bf-4f97a5a55f62"
+            },
+            "start": 1477267333452,
+            "end": 1460785164342
+          },
+          {
+            "name": "Shadease Workshop",
+            "location": "Gdansk",
+            "room": "Grey",
+            "instructor": {
+              "first": "Salas",
+              "last": "Wilkinson",
+              "guid": "c74f998b-818f-41d3-9861-1be8dd9b94e4"
+            },
+            "start": 1401658031895,
+            "end": 1490420733519
+          },
+          {
+            "name": "Macronaut Workshop",
+            "location": "Bangalore",
+            "room": "Grey",
+            "instructor": {
+              "first": "Ada",
+              "last": "Molina",
+              "guid": "886635f1-cf75-46e3-823f-cbdf47355415"
+            },
+            "start": 1499377619846,
+            "end": 1483330158970
+          },
+          {
+            "name": "Kinetica Workshop",
+            "location": "Edinburgh",
+            "room": "Black",
+            "instructor": {
+              "first": "Hazel",
+              "last": "Dawson",
+              "guid": "b8270d1d-d185-47b7-9230-33ccf85041ad"
+            },
+            "start": 1516262175843,
+            "end": 1478219334686
+          },
+          {
+            "name": "Poochies Workshop",
+            "location": "Dublin",
+            "room": "Black",
+            "instructor": {
+              "first": "Zelma",
+              "last": "Hardin",
+              "guid": "70e96f26-4778-4f81-9a2a-0269dc5656be"
+            },
+            "start": 1428560060638,
+            "end": 1525113657498
+          },
+          {
+            "name": "Quantasis Workshop",
+            "location": "Edinburgh",
+            "room": "White",
+            "instructor": {
+              "first": "Alyson",
+              "last": "Merrill",
+              "guid": "216f1c85-b7d4-4f3b-a6f7-6aac392399a4"
+            },
+            "start": 1541257234251,
+            "end": 1451067461854
+          }
+        ]
+      }
+    },
+    {
+      "_id": "5cae1dc09b2017e098449749",
+      "index": 27,
+      "guid": "47d25839-f043-4f0a-9ad5-295c866ee7ea",
+      "picture": "https://randomuser.me/api/portraits/women/12",
+      "name": {
+        "first": "Quinn",
+        "last": "Saunders"
+      },
+      "base": "Dublin",
+      "email": "quinn.saunders@wipro.com",
+      "classes": {
+        "attending": [
+          {
+            "name": "Sentia Workshop",
+            "location": "Dublin",
+            "room": "Grey",
+            "instructor": {
+              "first": "Hull",
+              "last": "Woodard",
+              "guid": "411ec4fd-c13a-4924-bc69-256f92b664f8"
+            },
+            "start": 1407695166194,
+            "end": 1548392202599
+          },
+          {
+            "name": "Fitcore Workshop",
+            "location": "Dublin",
+            "room": "Grey",
+            "instructor": {
+              "first": "Dawson",
+              "last": "Riggs",
+              "guid": "3faacdf7-ff90-4cba-a2b5-579c9ad1900c"
+            },
+            "start": 1410481828046,
+            "end": 1548480222003
+          },
+          {
+            "name": "Venoflex Workshop",
+            "location": "Plano",
+            "room": "White",
+            "instructor": {
+              "first": "Allie",
+              "last": "Swanson",
+              "guid": "e642c551-92a1-443c-a95a-a0c623670850"
+            },
+            "start": 1490413244824,
+            "end": 1530731852084
+          },
+          {
+            "name": "Vinch Workshop",
+            "location": "Plano",
+            "room": "Black",
+            "instructor": {
+              "first": "Brennan",
+              "last": "Rocha",
+              "guid": "fb4fb2b7-6c1f-4769-aa50-b1f5f37b58db"
+            },
+            "start": 1435997747792,
+            "end": 1426319536495
+          },
+          {
+            "name": "Corepan Workshop",
+            "location": "Warshaw",
+            "room": "Black",
+            "instructor": {
+              "first": "Chandler",
+              "last": "Norris",
+              "guid": "d20bd535-f54c-4a87-8413-afd85e264f96"
+            },
+            "start": 1426345867962,
+            "end": 1531025927499
+          },
+          {
+            "name": "Aclima Workshop",
+            "location": "London",
+            "room": "Grey",
+            "instructor": {
+              "first": "Ewing",
+              "last": "Sherman",
+              "guid": "f3b2c736-c9c1-4b93-a47b-9a29718d8d37"
+            },
+            "start": 1518150168290,
+            "end": 1541869288926
+          },
+          {
+            "name": "Honotron Workshop",
+            "location": "London",
+            "room": "Grey",
+            "instructor": {
+              "first": "Cannon",
+              "last": "Mclean",
+              "guid": "d621814f-f0db-4744-b771-f3ecab7f4804"
+            },
+            "start": 1507930491851,
+            "end": 1544518923312
+          }
+        ],
+        "teaching": [
+          {
+            "name": "Biolive Workshop",
+            "location": "Bangalore",
+            "room": "Grey",
+            "instructor": {
+              "first": "Gilliam",
+              "last": "Wong",
+              "guid": "4ab2f372-5553-4c2f-be6f-c7fad94f0a46"
+            },
+            "start": 1531164732480,
+            "end": 1507602607796
+          },
+          {
+            "name": "Zentia Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Penelope",
+              "last": "Nielsen",
+              "guid": "eac3afc9-7a6f-4f0c-b92e-23d3b5b07148"
+            },
+            "start": 1537079456160,
+            "end": 1436363475809
+          },
+          {
+            "name": "Tropolis Workshop",
+            "location": "Bangalore",
+            "room": "White",
+            "instructor": {
+              "first": "Velasquez",
+              "last": "Neal",
+              "guid": "bd99cdbd-1ed9-4f20-81d1-12c7aa0579c6"
+            },
+            "start": 1445962634085,
+            "end": 1471166471778
+          },
+          {
+            "name": "Viagreat Workshop",
+            "location": "Warshaw",
+            "room": "Grey",
+            "instructor": {
+              "first": "Castaneda",
+              "last": "Weiss",
+              "guid": "f37d82f7-d669-44ed-88eb-0dcf5867796a"
+            },
+            "start": 1474222506632,
+            "end": 1426979868342
+          },
+          {
+            "name": "Sultraxin Workshop",
+            "location": "London",
+            "room": "White",
+            "instructor": {
+              "first": "Wanda",
+              "last": "Silva",
+              "guid": "49b5751a-5e9d-4f34-b068-5d3db7387cf6"
+            },
+            "start": 1497664667718,
+            "end": 1503286603783
+          },
+          {
+            "name": "Scentric Workshop",
+            "location": "Brooklyn",
+            "room": "Grey",
+            "instructor": {
+              "first": "Sophia",
+              "last": "Greer",
+              "guid": "99bcc8b4-3381-4c2e-ad18-20d00816085e"
+            },
+            "start": 1494881713386,
+            "end": 1524520430656
+          }
+        ]
+      }
+    },
+    {
+      "_id": "5cae1dc0dd1376a46ef52d52",
+      "index": 28,
+      "guid": "91ed1437-a9c0-42d7-ba33-3369fef9c954",
+      "picture": "https://randomuser.me/api/portraits/women/36",
+      "name": {
+        "first": "Fowler",
+        "last": "Oneal"
+      },
+      "base": "Gdansk",
+      "email": "fowler.oneal@wipro.com",
+      "classes": {
+        "attending": [
+          {
+            "name": "Eyewax Workshop",
+            "location": "Brooklyn",
+            "room": "Black",
+            "instructor": {
+              "first": "Janelle",
+              "last": "French",
+              "guid": "408bb1f8-816a-41e8-b8a0-ee15eca364ba"
+            },
+            "start": 1423673761239,
+            "end": 1528512399334
+          },
+          {
+            "name": "Applidec Workshop",
+            "location": "Dublin",
+            "room": "Black",
+            "instructor": {
+              "first": "Vega",
+              "last": "Salas",
+              "guid": "ccc75722-0beb-45fe-ae2c-09882aaafd10"
+            },
+            "start": 1472811056343,
+            "end": 1497093774068
+          },
+          {
+            "name": "Telpod Workshop",
+            "location": "Bangalore",
+            "room": "White",
+            "instructor": {
+              "first": "Ruthie",
+              "last": "Mcintosh",
+              "guid": "62c0c3a5-4d72-4abf-b928-133379995e82"
+            },
+            "start": 1488718259070,
+            "end": 1403372210676
+          },
+          {
+            "name": "Combogen Workshop",
+            "location": "Bangalore",
+            "room": "Black",
+            "instructor": {
+              "first": "Marquita",
+              "last": "Day",
+              "guid": "e20278fa-ecb8-4746-8922-c7ca3a799fbf"
+            },
+            "start": 1539950268836,
+            "end": 1447397108446
+          },
+          {
+            "name": "Geekko Workshop",
+            "location": "Brooklyn",
+            "room": "Grey",
+            "instructor": {
+              "first": "Tara",
+              "last": "Daniel",
+              "guid": "8e70f076-7a10-4d44-97d9-9ac12dd56d01"
+            },
+            "start": 1392323820209,
+            "end": 1526537214857
+          },
+          {
+            "name": "Telepark Workshop",
+            "location": "Warshaw",
+            "room": "Grey",
+            "instructor": {
+              "first": "Allyson",
+              "last": "Stokes",
+              "guid": "f1e28ab8-c17d-475c-a57f-da49c2e2d748"
+            },
+            "start": 1539651838287,
+            "end": 1503581295042
+          },
+          {
+            "name": "Manufact Workshop",
+            "location": "Dublin",
+            "room": "Black",
+            "instructor": {
+              "first": "Gwen",
+              "last": "Fowler",
+              "guid": "57461511-37cd-4ab8-8650-f8764c597705"
+            },
+            "start": 1453693745517,
+            "end": 1490935125335
+          },
+          {
+            "name": "Rotodyne Workshop",
+            "location": "Brooklyn",
+            "room": "Black",
+            "instructor": {
+              "first": "Marie",
+              "last": "Reynolds",
+              "guid": "37737a29-918d-4407-8c8c-932df999af51"
+            },
+            "start": 1519615994900,
+            "end": 1495938005305
+          },
+          {
+            "name": "Kage Workshop",
+            "location": "Dublin",
+            "room": "Grey",
+            "instructor": {
+              "first": "Amelia",
+              "last": "York",
+              "guid": "9a0517b7-4d1a-4361-b0a7-76249f9a6b2b"
+            },
+            "start": 1514269121218,
+            "end": 1542761133159
+          }
+        ],
+        "teaching": [
+          {
+            "name": "Ezentia Workshop",
+            "location": "Dublin",
+            "room": "Grey",
+            "instructor": {
+              "first": "Trina",
+              "last": "Durham",
+              "guid": "f2fbf95b-1673-409c-839a-49260c79d536"
+            },
+            "start": 1506225498827,
+            "end": 1520730104422
+          },
+          {
+            "name": "Zentury Workshop",
+            "location": "Gdansk",
+            "room": "White",
+            "instructor": {
+              "first": "Jami",
+              "last": "Baldwin",
+              "guid": "dcf036a5-79a6-4a70-ba99-67202c589b1f"
+            },
+            "start": 1526071238386,
+            "end": 1501195308897
+          },
+          {
+            "name": "Quonata Workshop",
+            "location": "Warshaw",
+            "room": "Black",
+            "instructor": {
+              "first": "Doris",
+              "last": "Reeves",
+              "guid": "acf3fab7-cd9e-47b5-8411-7fffd46284d8"
+            },
+            "start": 1432337449204,
+            "end": 1547562103870
+          },
+          {
+            "name": "Pulze Workshop",
+            "location": "Brooklyn",
+            "room": "Black",
+            "instructor": {
+              "first": "Esmeralda",
+              "last": "Harrington",
+              "guid": "90fd5720-d0cd-4eb8-b65a-d13c91b52dc2"
+            },
+            "start": 1482937900348,
+            "end": 1524427438909
+          },
+          {
+            "name": "Dentrex Workshop",
+            "location": "Edinburgh",
+            "room": "White",
+            "instructor": {
+              "first": "Casey",
+              "last": "Shields",
+              "guid": "097b7056-c70e-4cf2-8754-4b473626c41d"
+            },
+            "start": 1521901688245,
+            "end": 1396944520295
+          },
+          {
+            "name": "Papricut Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Julianne",
+              "last": "Curry",
+              "guid": "985dd082-a543-4459-b296-044b97a0a8e5"
+            },
+            "start": 1463316611420,
+            "end": 1452164735083
+          },
+          {
+            "name": "Zaya Workshop",
+            "location": "Bangalore",
+            "room": "Black",
+            "instructor": {
+              "first": "Sheree",
+              "last": "Owens",
+              "guid": "35e98a21-cd36-49a1-ab6a-759300bfe1f1"
+            },
+            "start": 1473239351747,
+            "end": 1457423567633
+          }
+        ]
+      }
+    },
+    {
+      "_id": "5cae1dc0233affc7c6333cdd",
+      "index": 29,
+      "guid": "0292c15d-ee0f-4a2f-84ab-1b8ff5e60fde",
+      "picture": "https://randomuser.me/api/portraits/women/81",
+      "name": {
+        "first": "Howe",
+        "last": "Wise"
+      },
+      "base": "Dublin",
+      "email": "howe.wise@wipro.com",
+      "classes": {
+        "attending": [
+          {
+            "name": "Schoolio Workshop",
+            "location": "Brooklyn",
+            "room": "Grey",
+            "instructor": {
+              "first": "Sloan",
+              "last": "Blackburn",
+              "guid": "9e9e54ee-51ce-4b18-af50-6677b36f38b2"
+            },
+            "start": 1541871790387,
+            "end": 1448861561719
+          },
+          {
+            "name": "Sybixtex Workshop",
+            "location": "Dublin",
+            "room": "Black",
+            "instructor": {
+              "first": "Keith",
+              "last": "Valdez",
+              "guid": "4eca3727-9a7d-47ed-8ae6-44487ebdc142"
+            },
+            "start": 1420782546029,
+            "end": 1489915178782
+          },
+          {
+            "name": "Exoteric Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Summer",
+              "last": "Watkins",
+              "guid": "65f5336c-ad85-409a-90e6-efd6a6656ecc"
+            },
+            "start": 1472900914029,
+            "end": 1445082589726
+          },
+          {
+            "name": "Extrawear Workshop",
+            "location": "Edinburgh",
+            "room": "Black",
+            "instructor": {
+              "first": "Blevins",
+              "last": "Paul",
+              "guid": "93d449c6-bc37-4a9d-93b4-2fe5a1dbcbd3"
+            },
+            "start": 1487896479895,
+            "end": 1457445443241
+          },
+          {
+            "name": "Enaut Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Elma",
+              "last": "Maddox",
+              "guid": "1b522188-905c-4c10-9fdb-0f950988542c"
+            },
+            "start": 1482402110731,
+            "end": 1428028493892
+          }
+        ],
+        "teaching": [
+          {
+            "name": "Cosmetex Workshop",
+            "location": "Gdansk",
+            "room": "White",
+            "instructor": {
+              "first": "Vaughan",
+              "last": "Rivers",
+              "guid": "4858618b-264f-447b-aae2-3292296a4498"
+            },
+            "start": 1419403032802,
+            "end": 1407440217429
+          },
+          {
+            "name": "Virva Workshop",
+            "location": "London",
+            "room": "White",
+            "instructor": {
+              "first": "Leila",
+              "last": "Yang",
+              "guid": "85aa9bdd-0b7f-4c7e-a96a-149a8b3ea53d"
+            },
+            "start": 1518465058472,
+            "end": 1466978608609
+          },
+          {
+            "name": "Centice Workshop",
+            "location": "Denver",
+            "room": "Black",
+            "instructor": {
+              "first": "Nell",
+              "last": "Nguyen",
+              "guid": "acd86c22-8f35-461c-8339-109d94fdaaf1"
+            },
+            "start": 1434125384754,
+            "end": 1445469350797
+          },
+          {
+            "name": "Ovolo Workshop",
+            "location": "Bangalore",
+            "room": "White",
+            "instructor": {
+              "first": "Jennings",
+              "last": "Navarro",
+              "guid": "5cc0f3d7-4e9d-412f-9d61-41b92dd403bd"
+            },
+            "start": 1538241028531,
+            "end": 1449266352362
+          },
+          {
+            "name": "Zytrac Workshop",
+            "location": "Brooklyn",
+            "room": "White",
+            "instructor": {
+              "first": "Constance",
+              "last": "Simmons",
+              "guid": "9dc33ccf-6cc2-441d-9565-7310ae784e6b"
+            },
+            "start": 1397759881954,
+            "end": 1491103320293
+          },
+          {
+            "name": "Geoform Workshop",
+            "location": "London",
+            "room": "Grey",
+            "instructor": {
+              "first": "Josefina",
+              "last": "Marks",
+              "guid": "ea879475-7bb1-40d2-8ba5-227245e20b94"
+            },
+            "start": 1448841573526,
+            "end": 1481469488594
+          }
+        ]
+      }
+    },
+    {
+      "_id": "5cae1dc0ecdafc00b4451829",
+      "index": 30,
+      "guid": "769938d5-e7fa-4fee-a7fe-2b7156fe577d",
+      "picture": "https://randomuser.me/api/portraits/women/15",
+      "name": {
+        "first": "Gilbert",
+        "last": "Bruce"
+      },
+      "base": "Dublin",
+      "email": "gilbert.bruce@wipro.com",
+      "classes": {
+        "attending": [
+          {
+            "name": "Pasturia Workshop",
+            "location": "Warshaw",
+            "room": "Grey",
+            "instructor": {
+              "first": "Kristine",
+              "last": "Hall",
+              "guid": "991ea7a6-e09a-4e5f-b853-ad2b12576d41"
+            },
+            "start": 1521729791690,
+            "end": 1490269204574
+          },
+          {
+            "name": "Syntac Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Hendricks",
+              "last": "Diaz",
+              "guid": "96ae6bb3-9eda-4fd9-bf15-94edb011232e"
+            },
+            "start": 1452598934805,
+            "end": 1431943058431
+          },
+          {
+            "name": "Pheast Workshop",
+            "location": "Brooklyn",
+            "room": "Black",
+            "instructor": {
+              "first": "Mariana",
+              "last": "Pate",
+              "guid": "a8574864-06e1-4b6f-9580-7f1e04aa5153"
+            },
+            "start": 1400563577849,
+            "end": 1424513621574
+          }
+        ],
+        "teaching": [
+          {
+            "name": "Polarax Workshop",
+            "location": "Warshaw",
+            "room": "Black",
+            "instructor": {
+              "first": "Cherry",
+              "last": "Justice",
+              "guid": "0ef2da95-a177-49d4-856b-cbad6385fd4c"
+            },
+            "start": 1409164597269,
+            "end": 1464838075632
+          },
+          {
+            "name": "Letpro Workshop",
+            "location": "Dublin",
+            "room": "Grey",
+            "instructor": {
+              "first": "Knight",
+              "last": "Whitfield",
+              "guid": "91319d53-6a4b-448c-be03-4ace85b8e972"
+            },
+            "start": 1443410019810,
+            "end": 1415254104518
+          },
+          {
+            "name": "Cytrak Workshop",
+            "location": "Brooklyn",
+            "room": "Grey",
+            "instructor": {
+              "first": "Meagan",
+              "last": "Christensen",
+              "guid": "f8f56488-450e-440a-a038-1ee6b696ea86"
+            },
+            "start": 1405320997201,
+            "end": 1507737699114
+          },
+          {
+            "name": "Limage Workshop",
+            "location": "Gdansk",
+            "room": "Grey",
+            "instructor": {
+              "first": "Gay",
+              "last": "Odom",
+              "guid": "97d85f9c-2ff3-4f1a-816e-b03dea57900b"
+            },
+            "start": 1533355120306,
+            "end": 1547861909256
+          },
+          {
+            "name": "Confrenzy Workshop",
+            "location": "Edinburgh",
+            "room": "Grey",
+            "instructor": {
+              "first": "Copeland",
+              "last": "Craft",
+              "guid": "9693ccea-562c-4cc0-a63b-564ccacade4b"
+            },
+            "start": 1458303228501,
+            "end": 1513422007994
+          },
+          {
+            "name": "Neteria Workshop",
+            "location": "Gdansk",
+            "room": "Black",
+            "instructor": {
+              "first": "Elvira",
+              "last": "Morin",
+              "guid": "91b33b40-57d7-4338-9de8-0426592ec79a"
+            },
+            "start": 1522082624567,
+            "end": 1528424023493
+          },
+          {
+            "name": "Bluplanet Workshop",
+            "location": "London",
+            "room": "White",
+            "instructor": {
+              "first": "Farrell",
+              "last": "Obrien",
+              "guid": "f9b03147-a24d-4a09-8703-e5a100407f2e"
+            },
+            "start": 1439521970772,
+            "end": 1487981924431
+          },
+          {
+            "name": "Acusage Workshop",
+            "location": "Warshaw",
+            "room": "White",
+            "instructor": {
+              "first": "Bonner",
+              "last": "Collins",
+              "guid": "b7e2bbdf-7f8b-4e1d-9285-5a784124b20c"
+            },
+            "start": 1401091063021,
+            "end": 1519488548424
+          },
+          {
+            "name": "Hyplex Workshop",
+            "location": "Edinburgh",
+            "room": "Black",
+            "instructor": {
+              "first": "Lorena",
+              "last": "Pope",
+              "guid": "74b28454-8358-49c6-afbb-d868ec7f66e2"
+            },
+            "start": 1515781481716,
+            "end": 1498388487954
+          },
+          {
+            "name": "Kidgrease Workshop",
+            "location": "Denver",
+            "room": "White",
+            "instructor": {
+              "first": "Kimberley",
+              "last": "Valenzuela",
+              "guid": "0a8e616e-2f61-4e08-8a51-e1eacd282729"
+            },
+            "start": 1497839593340,
+            "end": 1491068094912
+          }
+        ]
+      }
+    },
+    {
+      "_id": "5cae1dc0915cece0b720a833",
+      "index": 31,
+      "guid": "48604428-8bb1-4fe5-b0ac-9dcebcbc83a6",
+      "picture": "https://randomuser.me/api/portraits/women/60",
+      "name": {
+        "first": "Dalton",
+        "last": "Espinoza"
+      },
+      "base": "Gdansk",
+      "email": "dalton.espinoza@wipro.com",
+      "classes": {
+        "attending": [
+          {
+            "name": "Eplode Workshop",
+            "location": "Brooklyn",
+            "room": "Grey",
+            "instructor": {
+              "first": "Fanny",
+              "last": "Maldonado",
+              "guid": "0afa1577-4d98-40fc-bf12-686911d86e6b"
+            },
+            "start": 1411335237958,
+            "end": 1481349851391
+          },
+          {
+            "name": "Earbang Workshop",
+            "location": "Warshaw",
+            "room": "Grey",
+            "instructor": {
+              "first": "Taylor",
+              "last": "Mathews",
+              "guid": "50f99452-0098-45bf-9998-19e1cefdc17f"
+            },
+            "start": 1426830896078,
+            "end": 1537159016769
+          },
+          {
+            "name": "Signity Workshop",
+            "location": "Dublin",
+            "room": "Black",
+            "instructor": {
+              "first": "Tonia",
+              "last": "Pena",
+              "guid": "56bccaf5-8824-4f3d-984b-9d8e50356fae"
+            },
+            "start": 1463966785712,
+            "end": 1485670611337
+          },
+          {
+            "name": "Jumpstack Workshop",
+            "location": "Plano",
+            "room": "Grey",
+            "instructor": {
+              "first": "Tabitha",
+              "last": "Ingram",
+              "guid": "3a9cc3a2-fb97-4db0-938d-1d2c027181d4"
+            },
+            "start": 1529016148865,
+            "end": 1529411541294
+          },
+          {
+            "name": "Asimiline Workshop",
+            "location": "Dublin",
+            "room": "Black",
+            "instructor": {
+              "first": "Byrd",
+              "last": "Fletcher",
+              "guid": "993d5cb1-869d-42b8-a24c-64966f47a0d1"
+            },
+            "start": 1500444734579,
+            "end": 1419635524597
+          },
+          {
+            "name": "Eclipto Workshop",
+            "location": "Brooklyn",
+            "room": "Grey",
+            "instructor": {
+              "first": "Rita",
+              "last": "Glover",
+              "guid": "b921f2ef-3c28-44aa-a044-36df0feb5685"
+            },
+            "start": 1391335434429,
+            "end": 1488859560554
+          }
+        ],
+        "teaching": [
+          {
+            "name": "Gracker Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Lara",
+              "last": "Downs",
+              "guid": "7570b2fe-78bd-40f0-8dd7-cdcb81ce1ca9"
+            },
+            "start": 1451301478123,
+            "end": 1406426235286
+          },
+          {
+            "name": "Paprikut Workshop",
+            "location": "Dublin",
+            "room": "Black",
+            "instructor": {
+              "first": "Turner",
+              "last": "Johnston",
+              "guid": "55a042b2-ff75-4fc8-af48-b79ae515b7ad"
+            },
+            "start": 1486026485544,
+            "end": 1509558131251
+          },
+          {
+            "name": "Entality Workshop",
+            "location": "Dublin",
+            "room": "Grey",
+            "instructor": {
+              "first": "Jeanine",
+              "last": "Reilly",
+              "guid": "5df6e93c-4f4e-4c76-a567-60004cb8ade7"
+            },
+            "start": 1420473566668,
+            "end": 1539268303331
+          },
+          {
+            "name": "Glasstep Workshop",
+            "location": "London",
+            "room": "Black",
+            "instructor": {
+              "first": "Mitzi",
+              "last": "Pennington",
+              "guid": "7c983b7f-08e9-473e-98de-3d299c168926"
+            },
+            "start": 1398798485647,
+            "end": 1549210600771
+          },
+          {
+            "name": "Vendblend Workshop",
+            "location": "Denver",
+            "room": "White",
+            "instructor": {
+              "first": "Erna",
+              "last": "Sloan",
+              "guid": "d23544ca-8101-46e0-a7d7-940e5d40e970"
+            },
+            "start": 1394961946778,
+            "end": 1434945755214
+          },
+          {
+            "name": "Globoil Workshop",
+            "location": "London",
+            "room": "White",
+            "instructor": {
+              "first": "Ina",
+              "last": "Vazquez",
+              "guid": "bfeb2b9c-045d-4032-a4d8-815ff98b447e"
+            },
+            "start": 1388948431391,
+            "end": 1471353434120
+          },
+          {
+            "name": "Cubix Workshop",
+            "location": "Denver",
+            "room": "Black",
+            "instructor": {
+              "first": "Wynn",
+              "last": "Winters",
+              "guid": "ba2e1a17-1258-4d8b-ac36-0395b333fed9"
+            },
+            "start": 1465030068227,
+            "end": 1458368922127
+          },
+          {
+            "name": "Comveyer Workshop",
+            "location": "Edinburgh",
+            "room": "White",
+            "instructor": {
+              "first": "Autumn",
+              "last": "Dale",
+              "guid": "f44ad486-c0a7-436b-875d-9247d3331b2a"
+            },
+            "start": 1472544021984,
+            "end": 1477140893621
+          },
+          {
+            "name": "Datagene Workshop",
+            "location": "Warshaw",
+            "room": "Black",
+            "instructor": {
+              "first": "Whitfield",
+              "last": "Gross",
+              "guid": "6f87e677-832a-4d3a-8f5f-f74561418f6a"
+            },
+            "start": 1399384636794,
+            "end": 1488392469638
+          }
+        ]
+      }
+    }
+  ]

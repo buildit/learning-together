@@ -1,0 +1,164 @@
+[
+    {
+      "_id": "5cacf78142dad2dbe50bd7ee",
+      "index": 0,
+      "guid": "d2d3fba0-3aea-435e-9bf6-0306a4d3c786",
+      "picture": "https://randomuser.me/api/portraits/women/65",
+      "name": {
+        "first": "Ferguson",
+        "last": "Mckee"
+      },
+      "base": "Plano",
+      "email": "ferguson.mckee@wipro.com",
+      "classes": {
+        "attending": [
+          {
+            "name": "Ezent Workshop",
+            "location": "London",
+            "room": "Grey",
+            "instructor": {
+              "first": "Jenny",
+              "last": "Snyder",
+              "guid": "66b2430b-1dc1-46d1-bf6e-6e1b723ab379"
+            },
+            "start": 1540979621729,
+            "end": 1464583044648
+          },
+          {
+            "name": "Podunk Workshop",
+            "location": "Gdansk",
+            "room": "White",
+            "instructor": {
+              "first": "Clara",
+              "last": "Larson",
+              "guid": "0770f90e-233c-4daf-bf5f-ff286ba7b6e9"
+            },
+            "start": 1397599227186,
+            "end": 1518059709282
+          },
+          {
+            "name": "Viagreat Workshop",
+            "location": "Dublin",
+            "room": "Grey",
+            "instructor": {
+              "first": "Gentry",
+              "last": "Alston",
+              "guid": "2af3f32a-850c-41ab-abf7-ad2206f2aeee"
+            },
+            "start": 1456706219843,
+            "end": 1461952448309
+          },
+          {
+            "name": "Cubicide Workshop",
+            "location": "London",
+            "room": "Black",
+            "instructor": {
+              "first": "Johanna",
+              "last": "Rogers",
+              "guid": "3d9d7883-dd51-4261-89db-187acf35f330"
+            },
+            "start": 1441808983692,
+            "end": 1428784434873
+          }
+        ],
+        "teaching": [
+          {
+            "name": "Solaren Workshop",
+            "location": "Dublin",
+            "room": "White",
+            "instructor": {
+              "first": "Madge",
+              "last": "Barrera",
+              "guid": "d8a35bf2-2124-480c-982e-e86ed3d9cdfb"
+            },
+            "start": 1452124618916,
+            "end": 1530460204218
+          },
+          {
+            "name": "Fortean Workshop",
+            "location": "Gdansk",
+            "room": "Grey",
+            "instructor": {
+              "first": "Ronda",
+              "last": "Maddox",
+              "guid": "b6543e4a-4938-4f73-b2e5-b395beb05ded"
+            },
+            "start": 1493540557569,
+            "end": 1457380000462
+          },
+          {
+            "name": "Verton Workshop",
+            "location": "Dublin",
+            "room": "Grey",
+            "instructor": {
+              "first": "Marguerite",
+              "last": "Riddle",
+              "guid": "5e9e2e18-b402-4bb0-847a-3eb19eb47880"
+            },
+            "start": 1398888329449,
+            "end": 1418705665316
+          },
+          {
+            "name": "Fitcore Workshop",
+            "location": "Brooklyn",
+            "room": "Black",
+            "instructor": {
+              "first": "Monroe",
+              "last": "Holcomb",
+              "guid": "6818ef1b-18cb-4675-b5e4-d883d07f5fbd"
+            },
+            "start": 1456328390365,
+            "end": 1541433975281
+          },
+          {
+            "name": "Insurety Workshop",
+            "location": "Gdansk",
+            "room": "Black",
+            "instructor": {
+              "first": "Palmer",
+              "last": "Woodard",
+              "guid": "d131f1a0-d5f7-47c0-9cb0-56cf02548dcb"
+            },
+            "start": 1390866945417,
+            "end": 1495930986981
+          },
+          {
+            "name": "Quonata Workshop",
+            "location": "Denver",
+            "room": "White",
+            "instructor": {
+              "first": "Jacklyn",
+              "last": "Peterson",
+              "guid": "95c1d587-e4f0-489d-ad35-35217b2edb88"
+            },
+            "start": 1392558162748,
+            "end": 1541270996604
+          },
+          {
+            "name": "Spherix Workshop",
+            "location": "Denver",
+            "room": "Grey",
+            "instructor": {
+              "first": "Drake",
+              "last": "Cohen",
+              "guid": "221fdde3-5524-4767-b446-9a41f7304e2f"
+            },
+            "start": 1477168310504,
+            "end": 1490214621390
+          },
+          {
+            "name": "Manufact Workshop",
+            "location": "Denver",
+            "room": "Grey",
+            "instructor": {
+              "first": "Lorena",
+              "last": "Malone",
+              "guid": "cdafaa43-671e-4236-9617-5e316a037643"
+            },
+            "start": 1419234669239,
+            "end": 1395398526727
+          }
+        ]
+      }
+    }
+  ]

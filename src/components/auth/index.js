@@ -1,4 +1,2 @@
-export { AuthenticatedUserComponent } from './authenticatedUser'
-export { UnauthenticatedUserComponent } from './unauthenticatedUser'
-export { AuthenticatedUserRoute } from './authenticatedUserRoute'
+export { UserRoute } from './userRoute'
 export { UnauthenticatedUserRoute } from './unauthenticatedUserRoute'
