@@ -12,7 +12,7 @@ export default class Navbar extends Component {
       <div className="grid-x grid-margin-x">
         <div className="cell small-2">
           <nav className='logo'>
-            <Link to="/"><img src={logo}></img></Link>
+            <Link to="/"><img src={logo} alt="logo"></img></Link>
             </nav>
           
         </div>
