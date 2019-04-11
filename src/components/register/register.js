@@ -96,7 +96,7 @@ export default class RegisterComponent extends React.Component {
 
   submitHandler(e) {
     e.preventDefault()
-    const { firstName, lastName, emailUsername, isWipro, password, passwordConfirmation, selectedLocation, selectedRole, interests } = this.state
+    const { firstName, lastName, emailUsername, isWipro, password, passwordConfirmation, selectedLocation, selectedRole } = this.state
     let email = emailUsername + '@wipro.com'
     if (!isWipro) {
       email = emailUsername + '@designit.com'
