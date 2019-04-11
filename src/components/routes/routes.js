@@ -20,20 +20,10 @@ export default class RoutesComponent extends React.Component {
         <div className="main">
           <Switch>
             <UserRoute exact path="/" component={LandingComponent} />
-            <UnauthenticatedUserRoute
-              exact
-              path="/login"
-              component={LoginComponent}
-            />
-            <UnauthenticatedUserRoute
-              exact
-              path="/register"
-              component={RegisterComponent}
-            />
+            <UnauthenticatedUserRoute exact path="/login" component={LoginComponent} />
+            <UnauthenticatedUserRoute exact path="/register" component={RegisterComponent} />
             <UserRoute exact path="/user" component={UserProfileComponent} />
-
             <UserRoute path="/workshops" component={WorkshopListComponent} />
-
             <UserRoute exact path="/workshop" component={WorkshopComponent} />
             <UserRoute exact path="/confirmation/enroll" component={ConfirmationComponent} />
 

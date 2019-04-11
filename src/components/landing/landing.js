@@ -113,14 +113,13 @@ export default class Landing extends Component {
   }
 
   render() {
-    console.log(this.props)
     const wrkshopPreview = this.state.workshops.map(workshop => {
       return <NavLink to="/workshop" className="preview-card" key={workshop.id}><PreviewComponent workshop={workshop} /></NavLink>
     });
 
     return (
       <Fragment>
-        <JumbotronComponent image={`${process.env.PUBLIC_URL}/images/logo.png`} title="Better Together"/>
+        <JumbotronComponent image={`${process.env.PUBLIC_URL}/images/logo.png`} title="Better Together" />
         <h3>Upcoming workshops:</h3>
         <div className="grid-container full landing-preview">
           <div className="grid-x grid-padding-x card-scroll">

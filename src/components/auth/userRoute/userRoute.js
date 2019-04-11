@@ -3,13 +3,13 @@ import { Route} from 'react-router-dom'
 
 const UserRoute = ({ component: Component, ...props }) => {
   const token = localStorage.getItem('BTToken')
-  let hasToken = false
+  let isUser = false
   if (token) {
-    hasToken = true
+    isUser = true
   }
   return (
     <Route {...props} render={() =>
-      <Component hasToken={hasToken} />} />
+      <Component isUser={isUser} />} />
   )
 }
 export default UserRoute

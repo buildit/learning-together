@@ -4,8 +4,7 @@ export async function signIn(data, callback) {
   return new Promise((resolve, reject) => {
     axios.post(url, data)
       .then(response => {
-        localStorage.setItem('token', response.data.token)
-        callback()
+        callback(response)
       })
       .catch(error => {
         reject(error)
