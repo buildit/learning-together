@@ -1,0 +1,26 @@
+.message-container{
+  position:fixed;
+  top:0;
+  left:0;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  width:100%;
+  background-color: black;
+  opacity:.9;
+  height:100%;
+}
+.message-wrapper{
+  width:80%;
+  height:100px;
+  background-color: white;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+.message-success{
+  color:green;
+}
+.message-error{
+  color:red;
+}

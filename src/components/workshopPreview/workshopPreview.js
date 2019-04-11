@@ -5,7 +5,6 @@ import "./workshopPreview.scss";
 
 const WorkshopPreview = props => {
   const { name, location, instructor } = props.workshop;
-
   return (
     <section className="workshops">
       <article className="workshop grid-x">
@@ -16,13 +15,13 @@ const WorkshopPreview = props => {
         </div>
         <div className="workshop-info cell small-5">
           <h5 className="workshop-title">
-            <strong>{name}</strong>
+            <strong></strong>
           </h5>
           <span className="location">
-            <FontAwesomeIcon icon="map-marker" /> Buildit {location}
+            <FontAwesomeIcon icon="map-marker" /> Buildit 
           </span>
           <span className="conference-room">Black</span>
-          <span className="instructor">{instructor}</span>
+          <span className="instructor"></span>
         </div>
         <div className="cell small-3 button-container">
           <Link to="/workshop"><button className="button">Learn More</button></Link>

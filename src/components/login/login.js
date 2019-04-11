@@ -1,10 +1,13 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { Fragment } from 'react'
+import { Link, Redirect } from 'react-router-dom'
+import { signIn } from '../../api'
+import { NavbarComponent } from '../navbar';
 
 export default class LoginComponent extends React.Component {
   constructor() {
     super()
-    this.state = { email: '', password: '' }
+    this.state = { email: '', password: '', loginSuccess: false }
+    this.submitCallback = this.submitCallback.bind(this)
   }
 
   emailHandler(e) {
@@ -21,45 +24,59 @@ export default class LoginComponent extends React.Component {
     const { email, password } = this.state
     const formattedEmail = this.formatEmail(email)
     //add logic for api call
+    signIn({ Username: formattedEmail, Password: password }, this.submitCallback)
+  }
+  submitCallback(response) {
+    localStorage.setItem('BTToken', response.data.token)
+    this.setState({ loginSuccess: true })
   }
   render() {
-    const { email, password } = this.state
+    const { email, password, loginSuccess } = this.state
     return (
-      <div className="grid-container">
-        <div className="grid-y medium-grid-frame">
-          <div className="grid-x grid-padding-x align-middle">
-            <form className='cell medium-6' onSubmit={this.submitHandler.bind(this)}>
-              <div className='row'>
-                <div className="small-12 columns">
-                  <label>Email:
-                <input type="text" placeholder="Please Enter Your Email Address" value={email} onChange={this.emailHandler.bind(this)} />
-                  </label>
+      <Fragment>
+        <NavbarComponent isUser={this.props.isUser} />
+        <div className="grid-container">
+          <div className="grid-y medium-grid-frame">
+            <div className="grid-x grid-padding-x align-middle">
+              <form className='cell medium-12' onSubmit={this.submitHandler.bind(this)}>
+                <div className='row'>
+                  <div className="small-12 columns">
+                    <label>Email:
+                <input type="text" placeholder="Please Enter Your Email Address" autoComplete="user email" value={email} onChange={this.emailHandler.bind(this)} />
+                    </label>
+                  </div>
                 </div>
-              </div>
-              <div className='row'>
-                <div className="small-12 columns">
-                  <label>Password:
-                <input type="password" placeholder="Please Enter Your Password." value={password} onChange={this.passwordHandler.bind(this)} />
-                  </label>
+                <div className='row'>
+                  <div className="small-12 columns">
+                    <label>Password:
+                <input type="password" autoComplete="current-password" placeholder="Please Enter Your Password." value={password} onChange={this.passwordHandler.bind(this)} />
+                    </label>
+                  </div>
                 </div>
-              </div>
-              <div>
-                <div className='grid-x grid-padding-x align-center'>
-                  <input type="submit" className="button success align-center cell medium-6" value="Submit" />
+                <div>
+                  <div className='grid-x grid-padding-x align-center'>
+                    <input type="submit" className="button success align-center cell medium-6" value="Submit" />
+                  </div>
+                  <div className='grid-x grid-padding-x align-center'>
+                    <Link to='' >Forgot your password?</Link>
+                  </div>
                 </div>
-                <div className='grid-x grid-padding-x align-center'>
-                  <Link to='' >Forgot your password?</Link>
+                <div className='row'>
+                  <div className='grid-x grid-padding-x align-center'>
+                    <Link to='/register' >Don't have an account?</Link>
+                  </div>
                 </div>
-              </div>
-            </form>
-            <div className='cell medium-6'>
-              <Link to='/register' ><img src='http://placekitten.com/400/500' alt='register' /></Link>
+              </form>
             </div>
           </div>
-          <div className='row'>
-          </div>
-        </div>
-      </div >
+        </div >
+        {
+          loginSuccess && (
+            <Redirect to='/' />
+          )
+        }
+      </Fragment >
+
     )
   }
 }
