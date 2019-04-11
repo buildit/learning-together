@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react'
-import { Link } from 'react-router-dom'
 import { JumbotronComponent } from '../jumbotron'
 import './workshop.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

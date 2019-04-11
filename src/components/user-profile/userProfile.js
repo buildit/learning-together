@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './user-profile.scss';
 import profile from './pics/2.jpg';
 import userData from './mock-data.json';

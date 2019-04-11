@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import Select from 'react-select'
 import makeAnimated from 'react-select/lib/animated'
-import { signUp, signIn } from '../../api'
+import { signUp } from '../../api'
 
 export default class RegisterComponent extends React.Component {
 
@@ -65,7 +65,7 @@ export default class RegisterComponent extends React.Component {
 
   submitHandler(e) {
     e.preventDefault()
-    const { firstName, lastName, emailUsername, isWipro, password, passwordConfirmation, selectedLocation, selectedRole, interests } = this.state
+    const { firstName, lastName, emailUsername, isWipro, password, passwordConfirmation, selectedLocation, selectedRole } = this.state
     let email = emailUsername + '@wipro.com'
     if (!isWipro) {
       email = emailUsername + '@designit.com'
@@ -106,7 +106,7 @@ export default class RegisterComponent extends React.Component {
 
 
   render() {
-    const { name, emailUsername, isWipro, password, passwordConfirmation, selectedLocation, selectedRole, emailError, passwordError, passwordConfirmationError, firstNameError, lastNameError, locationError, roleError, signUpSuccess } = this.state
+    const { name, emailUsername, isWipro, password, passwordConfirmation, emailError, passwordError, passwordConfirmationError, firstNameError, lastNameError, locationError, roleError, signUpSuccess } = this.state
     return (
       <div className="grid-container">
         <div className="grid-y medium-grid-frame">
