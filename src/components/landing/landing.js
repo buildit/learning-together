@@ -113,6 +113,7 @@ export default class Landing extends Component {
   }
 
   render() {
+    console.log(this.props)
     const wrkshopPreview = this.state.workshops.map(workshop => {
       return <NavLink to="/workshop" className="preview-card" key={workshop.id}><PreviewComponent workshop={workshop} /></NavLink>
     });
