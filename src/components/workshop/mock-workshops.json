@@ -3,6 +3,7 @@
     "name": "Free Sprint Workshop",
     "location": "New York",
     "room": "White",
+    "image": "https://source.unsplash.com/random/400x400",
     "instructor": {
       "first": "Wolf",
       "last": "Graham",
