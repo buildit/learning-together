@@ -40,7 +40,7 @@ export default class Workshop extends Component {
     return (
       <Fragment>
         <NavbarComponent isUser={isUser} location={this.props.location}/>
-          <JumbotronComponent image={cover} title={workshop.name} />
+          <JumbotronComponent image={workshop.image} title={workshop.name} />
           <div className="grid-container">
             <div className="grid-x">
               <p><strong>{instructor.first}  {instructor.last}</strong></p>
