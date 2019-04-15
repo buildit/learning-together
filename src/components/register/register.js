@@ -33,6 +33,7 @@ export default class RegisterComponent extends React.Component {
     this.locations = [{ value: '1', label: 'New York' }, { value: '2', label: 'Denver' }, { value: '3', label: 'Dallas' }, { value: '4', label: 'London' }]
     this.roles = [{ value: '1', label: 'Front End Engineer' }, { value: '2', label: 'Platform Engineer' }, { value: '3', label: 'Creative Tech' }]
     this.interests = [{ value: 'fee', label: 'Front End Engineer' }, { value: 'pe', label: 'Platform Engineer' }, { value: 'ct', label: 'Creative Tech' }]
+    this.emails = [{ value: '@wipro.com', label: '@wipro.com' }, { value: '@designit.com', label: '@designit.com' }]
     this.messageCallback = this.messageCallback.bind(this)
     this.redirectCallback = this.redirectCallback.bind(this)
   }
@@ -50,8 +51,8 @@ export default class RegisterComponent extends React.Component {
     return password === password2
   }
   validateEmail(email) {
-    const regex = /^(([^<>()[\]\\.,;:\s@]+(\.[^<>()[\]\\.,;:\s@]+)*)|(.+))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    return regex.test(email)
+    const trimmedEmail = email.trim()
+    return trimmedEmail.indexOf('@') < 0
   }
   validateLocation(location) {
     if (location === '') {
@@ -97,11 +98,8 @@ export default class RegisterComponent extends React.Component {
   submitHandler(e) {
     e.preventDefault()
     const { firstName, lastName, emailUsername, isWipro, password, passwordConfirmation, selectedLocation, selectedRole } = this.state
-    let email = emailUsername + '@wipro.com'
-    if (!isWipro) {
-      email = emailUsername + '@designit.com'
-    }
-    else { }
+    let email = emailUsername + isWipro.value
+    console.log(email)
     let isValidatedFirstName = this.validateName(firstName)
     let isValidatedLastName = this.validateName(lastName)
     let isValidatedEmail = this.validateEmail(email)
@@ -117,7 +115,7 @@ export default class RegisterComponent extends React.Component {
   }
 
   render() {
-    const { name, emailUsername, isWipro, password, passwordConfirmation, emailError, passwordError, passwordConfirmationError, firstNameError, lastNameError, locationError, roleError, signUpSuccess, redirect } = this.state
+    const { name, emailUsername, password, passwordConfirmation, emailError, passwordError, passwordConfirmationError, firstNameError, lastNameError, locationError, roleError, signUpSuccess, redirect } = this.state
     return (
       <Fragment>
         <div className="grid-container">
@@ -145,13 +143,18 @@ export default class RegisterComponent extends React.Component {
                 <div className='row'>
                   <div className="small-12 columns">
                     <label>Email:</label>
-                    <input type="text" placeholder="Please Enter Your Email." autoComplete="username" name='emailUsername' value={emailUsername} onChange={this.onChangeHandler.bind(this)} />
-                    <input type="radio" value="wipro" checked={isWipro} onChange={this.onChangeEmailHandler.bind(this, true)} />
-                    <label>@wipro.com</label>
-                    <input type="radio" value="designit" checked={!isWipro} onChange={this.onChangeEmailHandler.bind(this, false)} />
-                    <label>@designit.com</label>
+                    <div className='grid-x grid-padding-x align-center'>
+                      <input type="text" className="small-6" placeholder="Enter Your Email." autoComplete="username" name='emailUsername' value={emailUsername} onChange={this.onChangeHandler.bind(this)} />
+                      <Select className="small-5"
+                        defaultValue={[]}
+                        name="emails"
+                        options={this.emails}
+                        onChange={this.onChangeEmailHandler.bind(this)}
+                        isSearchable={false}
+                      />
+                    </div>
                     {emailError && (
-                      <div>Please enter a valid Wipro or Designit Email.</div>
+                      <div>Please enter remove the '@' character from your input.</div>
                     )}
                   </div>
                 </div>
