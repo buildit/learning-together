@@ -16,6 +16,16 @@ const FooterComponent = ({ isUser }) => {
           <p>Create Class</p>
         </Link>
       }
+      {
+        !isUser &&
+        <Link
+          to="/register"
+          className="flex flex-column justify-center align-items-center"
+        >
+          <FontAwesomeIcon icon="pencil-alt" />
+          <p>Create Class</p>
+        </Link>
+      }
       <Link
         to="/workshops"
         className="flex flex-column justify-center align-items-center"
