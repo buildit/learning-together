@@ -47,7 +47,7 @@ class Navbar extends Component {
               {
                 isUser
                   ? <Link to="/login" onClick={this.logoutHandler.bind(this)}>Logout</Link>
-                  : <Link to="/">Login</Link>
+                  : <Link to="/login">Login</Link>
               }
             </div>
           </div>
