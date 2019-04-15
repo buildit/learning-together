@@ -11,7 +11,7 @@ const style = {
 
   return (
     <section className="cover-frame" style={style}>
-  <h1 className="title"><b>{title}</b></h1>
+      { title ? `<h1 className="title"><b>{title}</b></h1>` : ""} 
     </section>
   );
 };
