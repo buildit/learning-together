@@ -25,8 +25,8 @@ export default class Landing extends Component {
     }
   }
   render() {
-    const wrkshopPreview = this.state.workshops.map(workshop => {
-      return <NavLink to="/workshop" className="preview-card" key={workshop._id}><PreviewComponent workshop={workshop} /></NavLink>
+    const wrkshopPreview = this.state.workshops.map((workshop, idx) => {
+      return <NavLink to="/workshop" className="preview-card" key={idx}><PreviewComponent workshop={workshop} /></NavLink>
     });
     const { isUser, location } = this.props
     return (
