@@ -125,7 +125,7 @@ export default class RegisterComponent extends React.Component {
                 <div className='row'>
                   <div className="small-12 columns">
                     <label>First Name:</label>
-                    <input type="text" placeholder="Please Enter Your First Name" name='firstName' value={name} onChange={this.onChangeHandler.bind(this)} />
+                    <input type="text" placeholder="Please Enter Your First Name" name='firstName' autoComplete='first name' value={name} onChange={this.onChangeHandler.bind(this)} />
                     {firstNameError && (
                       <div>Please type in a valid name.</div>
                     )}
@@ -134,7 +134,7 @@ export default class RegisterComponent extends React.Component {
                 <div className='row'>
                   <div className="small-12 columns">
                     <label>Last Name:</label>
-                    <input type="text" placeholder="Please Enter Your Last Name" name='lastName' value={name} onChange={this.onChangeHandler.bind(this)} />
+                    <input type="text" placeholder="Please Enter Your Last Name" name='lastName' autoComplete='last name' value={name} onChange={this.onChangeHandler.bind(this)} />
                     {lastNameError && (
                       <div>Please type in a valid name.</div>
                     )}
@@ -144,7 +144,7 @@ export default class RegisterComponent extends React.Component {
                   <div className="small-12 columns">
                     <label>Email:</label>
                     <div className='grid-x grid-padding-x align-center'>
-                      <input type="text" className="small-6" placeholder="Enter Your Email." autoComplete="username" name='emailUsername' value={emailUsername} onChange={this.onChangeHandler.bind(this)} />
+                      <input type="text" className="small-6" placeholder="Enter Your Email." autoComplete='username' name='emailUsername' value={emailUsername} onChange={this.onChangeHandler.bind(this)} />
                       <Select className="small-5"
                         defaultValue={[]}
                         name="emails"
