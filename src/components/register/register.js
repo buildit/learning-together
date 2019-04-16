@@ -4,6 +4,7 @@ import Select from 'react-select'
 import makeAnimated from 'react-select/lib/animated'
 import { signUp } from '../../api'
 import { MessageComponent } from '../message'
+import './register.scss'
 
 export default class RegisterComponent extends React.Component {
 
@@ -126,7 +127,7 @@ export default class RegisterComponent extends React.Component {
                     <label>First Name:</label>
                     <input type="text" placeholder="Please Enter Your First Name" name='firstName' autoComplete='first name' value={name} onChange={this.onChangeHandler.bind(this)} />
                     {firstNameError && (
-                      <div>Please type in a valid name.</div>
+                      <span className='register-error'>Please type in a valid name.</span>
                     )}
                   </div>
                 </div>
@@ -135,7 +136,7 @@ export default class RegisterComponent extends React.Component {
                     <label>Last Name:</label>
                     <input type="text" placeholder="Please Enter Your Last Name" name='lastName' autoComplete='last name' value={name} onChange={this.onChangeHandler.bind(this)} />
                     {lastNameError && (
-                      <div>Please type in a valid name.</div>
+                      <span className='register-error'>Please type in a valid name.</span>
                     )}
                   </div>
                 </div>
@@ -153,7 +154,7 @@ export default class RegisterComponent extends React.Component {
                       />
                     </div>
                     {emailError && (
-                      <div>Please enter remove the '@' character from your input.</div>
+                      <span className='register-error'>Please enter remove the '@' character from your input.</span>
                     )}
                   </div>
                 </div>
@@ -162,7 +163,7 @@ export default class RegisterComponent extends React.Component {
                     <label>Password:</label>
                     <input type="password" autoComplete="new-password" placeholder="Please Enter Your Password." name='password' value={password} onChange={this.onChangeHandler.bind(this)} />
                     {passwordError && (
-                      <div>Your password must have one lower case letter, one upper case letter, one digit, and one special character.</div>
+                      <span className='register-error'>Your password must have one lower case letter, one upper case letter, one digit, and one special character.</span>
                     )}
                   </div>
                 </div>
@@ -171,7 +172,7 @@ export default class RegisterComponent extends React.Component {
                     <label>Confirm Password:</label>
                     <input type="password" autoComplete="new-password" placeholder="Please Confirm Your Password." name='passwordConfirmation' value={passwordConfirmation} onChange={this.onChangeHandler.bind(this)} />
                     {passwordConfirmationError && (
-                      <div>Your passwords must match.</div>
+                      <span className='register-error'>Your passwords must match.</span>
                     )}
                   </div>
                 </div>
@@ -186,7 +187,7 @@ export default class RegisterComponent extends React.Component {
                       name='locations'
                     />
                     {locationError && (
-                      <div>Please select a location.</div>
+                      <span className='register-error'>Please select a location.</span>
                     )}
                   </div>
                 </div>
@@ -201,7 +202,7 @@ export default class RegisterComponent extends React.Component {
                       name='roles'
                     />
                     {roleError && (
-                      <div>Please select a role.</div>
+                      <span className='register-error'>Please select a role.</span>
                     )}
                   </div>
                 </div>
