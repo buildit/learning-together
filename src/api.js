@@ -26,16 +26,9 @@ export function signUp(data, callback) {
 }
 
 
-// Make a request for a user with a given ID
+// Make a request for a user with a given token
 export function createWorkshop(data) {
   const token = localStorage.getItem('BTToken')
-  const config = {
-    headers: {
-      'Authorization':
-        'Bearer ' + token
-
-    }
-  }
   axios.request({
     url: 'http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops/create',
     method: 'post',
