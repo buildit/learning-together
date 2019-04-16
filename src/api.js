@@ -30,9 +30,10 @@ export const getWorkshopList = () => {
     url: 'http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops',
     method: 'get'
   }) 
+}
 
 // Make a request for a user with a given token
-export function createWorkshop(data) {
+export const createWorkshop = (data) => {
   const token = localStorage.getItem('BTToken')
   axios.request({
     url: 'http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops/create',

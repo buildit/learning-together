@@ -4,7 +4,6 @@ import { Hero } from "../hero";
 import { PreviewComponent } from "../preview";
 import { CategoryListComponent } from "../categoryList";
 import { FooterComponent } from "../footer"
-
 import {getWorkshopList} from '../../api'
 import './landing.scss';
 import { NavbarComponent } from "../navbar";
