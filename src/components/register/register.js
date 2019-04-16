@@ -214,7 +214,7 @@ export default class RegisterComponent extends React.Component {
                     )}
                   </div>
                 </div>
-                <div className='row'>
+                {/* <div className='row'>
                   <div className="small-12 columns">
                     <label>What are your interests?</label>
                     <Select
@@ -229,7 +229,7 @@ export default class RegisterComponent extends React.Component {
                       isSearchable={false}
                     />
                   </div>
-                </div>
+                </div> */}
                 <div className='row'>
                   <div className="small-12 columns">
                     <label>Please upload a profile picture:</label>
