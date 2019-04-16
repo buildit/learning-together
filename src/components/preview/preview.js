@@ -14,7 +14,7 @@ const Preview = ({ workshop }) => {
         <div className="card-section">
         <Moment format="LLLL">{workshop.start}</Moment>
           <h2>{workshop.name}</h2>
-          <p>Educator: {workshop.educator} </p>
+          <p>{workshop.educator} </p>
         </div>
       </div>
     </div>

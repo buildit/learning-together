@@ -25,6 +25,16 @@ export function signUp(data, callback) {
   })
 }
 
+export async function loadCategories() {
+  const url = 'http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/disciplines/categories'
+     return axios.get(url)
+      .then(response => {
+        return response.data
+      })
+      .catch(error => {
+        return error
+      })
+}
 export const getWorkshopList = () => {
   return axios.request({
     url: 'http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops',

@@ -7,6 +7,7 @@ import { FooterComponent } from "../footer"
 import {getWorkshopList} from '../../api'
 import './landing.scss';
 import { NavbarComponent } from "../navbar";
+import { loadCategories } from '../../api';
 import { UserConsumer } from '../../UserProvider'
 
 
@@ -28,6 +29,14 @@ export default class Landing extends Component {
     if (typeof this.props.location.state !== 'undefined') {
       this.setState({ userId: this.props.location.state.id })
     }
+
+    loadCategories()
+    .then((data) => {
+      
+      this.setState({
+        categories: data
+      })
+    })
   }
 
   render() {
@@ -50,7 +59,7 @@ export default class Landing extends Component {
               </div>
               <div className="grid-container landing-preview">
                 <h2 className="section-title">Categories</h2>
-                <CategoryListComponent workshop={this.state.workshops} />
+                <CategoryListComponent workshop={this.state.workshops} categories={this.state.categories}/>
               </div>
               <FooterComponent isUser={isUser} userId={this.state.userId} />
             </div>
