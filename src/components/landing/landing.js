@@ -9,7 +9,7 @@ import './landing.scss';
 import { NavbarComponent } from "../navbar";
 import { loadCategories } from '../../api';
 import { UserConsumer } from '../../UserProvider'
-
+import workShopData from "./mock-workshops.json";
 
 export default class Landing extends Component {
   constructor(props) {
@@ -23,7 +23,10 @@ export default class Landing extends Component {
 
   componentDidMount() {
      getWorkshopList()
-    .then(response => this.setState({workshops: response.data}))
+    .then(response => {
+      let workshops = response.data
+      this.setState({workshops })
+    })
     .catch(error => this.setState({ error: 'Please try again later'}))
     
     if (typeof this.props.location.state !== 'undefined') {
@@ -41,7 +44,11 @@ export default class Landing extends Component {
 
   render() {
     const wrkshopPreview = this.state.workshops.map((workshop, idx) => {
-      return <NavLink to="/workshop" className="preview-card" key={idx}><PreviewComponent workshop={workshop} /></NavLink>
+      return (
+        <NavLink to="/workshop" className="preview-card" key={idx}>
+          <PreviewComponent key={idx} workshop={workshop} />
+          </NavLink>
+        )
     });
     const { isUser, location } = this.props
     return (
