@@ -4,7 +4,6 @@
       display: inline-block;
       overflow-x: scroll;
       overflow-y: hidden;
-      white-space: nowrap;
       width: 100vw;
       -webkit-overflow-scrolling: touch;
     }
@@ -19,4 +18,20 @@
 
 .card-scroll-single:hover {
   opacity: 0.7;
+}
+
+.slider {
+  margin-top: 0;
+  margin-bottom: 0;
+  background-color: transparent;
+
+  .slider-frame {
+    min-height: 320px;
+  }
+  .slider-control-centerleft {
+    display: none;
+  }
+  .slider-control-centerright {
+    display: none;
+  }
 }

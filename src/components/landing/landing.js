@@ -9,6 +9,7 @@ import './landing.scss';
 import { NavbarComponent } from "../navbar";
 import { loadCategories } from '../../api';
 import { UserConsumer } from '../../UserProvider'
+import Carousel from 'nuka-carousel';
 
 
 export default class Landing extends Component {
@@ -41,7 +42,7 @@ export default class Landing extends Component {
 
   render() {
     const wrkshopPreview = this.state.workshops.map((workshop, idx) => {
-      return <NavLink to="/workshop" className="preview-card" key={idx}><PreviewComponent workshop={workshop} /></NavLink>
+      return <NavLink to={`/workshop/${workshop.id}`} className="preview-card" key={idx}><PreviewComponent workshop={workshop} /></NavLink>
     });
     const { isUser, location } = this.props
     return (
@@ -53,9 +54,9 @@ export default class Landing extends Component {
               <Hero title="Better Together" />
               <div className="grid-container landing-preview">
                 <h2 className="section-title">Upcoming Workshops</h2>
-                <div className="grid-x grid-padding-x card-scroll">
+                <Carousel heightMode="max" initialSlideHeight={255} >
                    {this.state.error ? <p>{this.state.error}</p> : wrkshopPreview}
-                </div>
+              </Carousel>
               </div>
               <div className="grid-container landing-preview">
                 <h2 className="section-title">Categories</h2>

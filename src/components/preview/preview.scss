@@ -3,6 +3,16 @@
 }
 
 .picture-frame {
-  height: 20vh;
+  max-height: 20vh;
   overflow: hidden;
+}
+
+.workshop-preview-title {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-weight: 800;
+}
+
+.upcoming-workshops {
+  display: grid;
 }

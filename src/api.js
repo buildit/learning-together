@@ -42,6 +42,13 @@ export const getWorkshopList = () => {
   }) 
 }
 
+export const getWorkshop = (id) => {
+  return axios.request({
+    url: `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops/${id}`,
+    method: 'get'
+  })
+}
+
 // Make a request for a user with a given token
 export const createWorkshop = (data) => {
   const token = localStorage.getItem('BTToken')
@@ -62,4 +69,8 @@ export const createWorkshop = (data) => {
       // handle error
       console.log(error);
     })
+}
+
+export const coverGenerator = (id) => {
+  return `${process.env.PUBLIC_URL}/images/cover/cover_${id}.jpg`
 }
