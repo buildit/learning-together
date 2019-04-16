@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import moment from "moment";
 import { SingleDatePicker } from "react-dates";
 import { Link } from "react-router-dom";
-import { createWorkshop } from '../../api.js'
+import { createWorkshop, getCategoryList } from '../../api.js'
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import "./workshopForm.scss";
@@ -17,6 +17,8 @@ class WorkshopForm extends Component {
       description: "",
       date: moment(),
       calendarFocused: false,
+      categoryList: [],
+      categorySelected: 1,
       time: "",
       error: {}
     };
@@ -25,6 +27,18 @@ class WorkshopForm extends Component {
     this.onFocusChange = this.onFocusChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.validateForm = this.validateForm.bind(this);
+  }
+
+  //Handle Error
+  componentDidMount() {
+     getCategoryList ()
+    .then(response => {
+      this.setState({ categoryList: response.data})
+  })
+    .catch(error => {
+      //this.setState({ error: 'Please try again later'})
+      console.log(error)
+    })
   }
 
   handleChange(e) {
@@ -95,6 +109,7 @@ class WorkshopForm extends Component {
         name: this.state.name,
         date: this.state.date,
         locationId: 1,
+        categoryId: this.state.categorySelected,
         link: this.state.link,
         description: this.state.description
       }
@@ -120,6 +135,20 @@ class WorkshopForm extends Component {
                     autoFocus
                   />
                   <span className="error">{this.state.error.name}</span>
+                </label>
+              </div>
+              <div className="medium-8 cell">
+                <label>
+                  Category
+                  <select
+                    name="categorySelected"
+                    value={this.state.categorySelected}
+                    onChange={this.handleChange}
+                  >
+                    {this.state.categoryList.map(category => {
+                       return <option value={category.id}>{category.name}</option>
+                    })}
+                  </select>
                 </label>
               </div>
               <div className="medium-8 cell">

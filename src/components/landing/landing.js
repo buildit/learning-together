@@ -24,7 +24,10 @@ export default class Landing extends Component {
 
   componentDidMount() {
      getWorkshopList()
-    .then(response => this.setState({workshops: response.data}))
+    .then(response => {
+      let workshops = response.data
+      this.setState({workshops })
+    })
     .catch(error => this.setState({ error: 'Please try again later'}))
     
     if (typeof this.props.location.state !== 'undefined') {

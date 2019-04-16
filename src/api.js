@@ -27,19 +27,19 @@ export function signUp(data, callback) {
 
 export async function loadCategories() {
   const url = 'http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/disciplines/categories'
-     return axios.get(url)
-      .then(response => {
-        return response.data
-      })
-      .catch(error => {
-        return error
-      })
+  return axios.get(url)
+    .then(response => {
+      return response.data
+    })
+    .catch(error => {
+      return error
+    })
 }
 export const getWorkshopList = () => {
   return axios.request({
     url: 'http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops',
     method: 'get'
-  }) 
+  })
 }
 
 export const getWorkshop = (id) => {
@@ -73,4 +73,22 @@ export const createWorkshop = (data) => {
 
 export const coverGenerator = (id) => {
   return `${process.env.PUBLIC_URL}/images/cover/cover_${id}.jpg`
+}
+export function uploadImage(data, callback) {
+  console.log(data)
+  const url = 'http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/upload/image'
+  axios.post(url, data)
+    .then(response => {
+      callback(response)
+    })
+    .catch(error => {
+      callback(error)
+    })
+}
+
+export const getCategoryList = () => {
+  return axios.request({
+    url: 'http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/disciplines/categories',
+    method: 'get'
+  })
 }
