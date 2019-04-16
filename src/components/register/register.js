@@ -4,6 +4,8 @@ import Select from 'react-select'
 import makeAnimated from 'react-select/lib/animated'
 import { signUp } from '../../api'
 import { MessageComponent } from '../message'
+import { ImageUploaderComponent } from '../imageUploader'
+import { NavbarComponent } from '../navbar'
 import './register.scss'
 
 export default class RegisterComponent extends React.Component {
@@ -20,6 +22,7 @@ export default class RegisterComponent extends React.Component {
       selectedLocation: {},
       selectedRole: {},
       interests: [],
+      profilePicture: '',
       firstNameError: false,
       lastNameError: false,
       emailError: false,
@@ -37,6 +40,7 @@ export default class RegisterComponent extends React.Component {
     this.emails = [{ value: '@wipro.com', label: '@wipro.com' }, { value: '@designit.com', label: '@designit.com' }]
     this.messageCallback = this.messageCallback.bind(this)
     this.redirectCallback = this.redirectCallback.bind(this)
+    this.setProfilePicture = this.setProfilePicture.bind(this)
   }
   validateName(name) {
     if (name === '') {
@@ -97,10 +101,13 @@ export default class RegisterComponent extends React.Component {
   onChangeEmailHandler(isWipro) {
     this.setState({ isWipro })
   }
+  setProfilePicture(picturePath) {
+    this.setState({ profilePicture: picturePath })
+  }
 
   submitHandler(e) {
     e.preventDefault()
-    const { firstName, lastName, emailUsername, isWipro, password, passwordConfirmation, selectedLocation, selectedRole } = this.state
+    const { firstName, lastName, emailUsername, isWipro, password, passwordConfirmation, selectedLocation, selectedRole, profilePicture } = this.state
     const email = emailUsername + isWipro.value
     let isValidatedFirstName = this.validateName(firstName)
     let isValidatedLastName = this.validateName(lastName)
@@ -113,13 +120,15 @@ export default class RegisterComponent extends React.Component {
       this.setState({ firstNameError: !isValidatedFirstName, lastNameError: !isValidatedLastName, emailError: !isValidatedEmail, passwordError: !isValidatedPassword, passwordConfirmationError: !isValidatedPasswordConfirm, locationError: !isValidatedLocation, roleError: !isValidatedRole })
       return
     }
-    signUp({ FirstName: firstName, lastName: lastName, Username: email, Password: password, LocationId: selectedLocation.value, RoleId: selectedRole.value }, this.messageCallback)
+    signUp({ FirstName: firstName, lastName: lastName, Username: email, Password: password, LocationId: selectedLocation.value, RoleId: selectedRole.value, ImageUrl: profilePicture }, this.messageCallback)
   }
 
   render() {
     const { name, emailUsername, password, passwordConfirmation, emailError, passwordError, passwordConfirmationError, firstNameError, lastNameError, locationError, roleError, signUpSuccess, signUpError, redirect } = this.state
+
     return (
       <Fragment>
+        <NavbarComponent isUser={this.props.isUser} />
         <div className="grid-container">
           <div className="grid-y medium-grid-frame">
             <div className="grid-x grid-padding-x align-middle">
@@ -208,7 +217,7 @@ export default class RegisterComponent extends React.Component {
                     )}
                   </div>
                 </div>
-                <div className='row'>
+                {/* <div className='row'>
                   <div className="small-12 columns">
                     <label>What are your interests?</label>
                     <Select
@@ -222,6 +231,12 @@ export default class RegisterComponent extends React.Component {
                       onChange={this.onClickInterestsHandler.bind(this)}
                       isSearchable={false}
                     />
+                  </div>
+                </div> */}
+                <div className='row'>
+                  <div className="small-12 columns">
+                    <label>Profile picture:</label>
+                    <ImageUploaderComponent setPicture={this.setProfilePicture} />
                   </div>
                 </div>
                 <div className='row'>
