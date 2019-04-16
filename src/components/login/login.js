@@ -11,11 +11,8 @@ export default class LoginComponent extends React.Component {
     this.submitCallback = this.submitCallback.bind(this)
   }
 
-  emailHandler(e) {
-    this.setState({ email: e.target.value })
-  }
-  passwordHandler(e) {
-    this.setState({ password: e.target.value })
+  inputHandler(e) {
+    this.setState({ [e.target.name]: e.target.value })
   }
   formatEmail(email) {
     return email.trim()

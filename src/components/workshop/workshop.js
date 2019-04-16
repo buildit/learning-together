@@ -40,31 +40,56 @@ export default class Workshop extends Component {
     return (
       <Fragment>
         <NavbarComponent isUser={isUser} location={this.props.location}/>
-          <JumbotronComponent image={workshop.image} title={workshop.name} />
-          <div className="grid-container">
+        <div className="grid-container">
+        <div className="grid-x">
+          <p className="small-12"><span><Moment format="dddd">{workshop.start}</Moment>,</span>  <span><Moment format="MMMM">{workshop.start}</Moment></span> <span><Moment format="DD">{workshop.start}</Moment></span> <span><Moment format="YYYY">{workshop.start}</Moment></span></p>
+          <h1 className="workshop-title"><b>{workshop.name}</b></h1>
+        </div>  
+          
             <div className="grid-x">
-              <p><strong>{instructor.first}  {instructor.last}</strong></p>
-            </div>
-            <div className="grid-x grid-margin-x enroll-top">
-
-              <div className="cell detail small-6">
-                <p className="calender"><span><Moment format="MMMM">{workshop.start}</Moment></span> <span><Moment format="DD">{workshop.start}</Moment></span> <span><Moment format="YYYY">{workshop.start}</Moment></span></p>
-                <a href="true">Add to Calendar</a>
+            <div className="small-12 instructor-info">
+              <div className="photo-frame">
+              <img src={instructor.image} />
               </div>
-              <div className="cell detail small-6">
-                <p><FontAwesomeIcon icon="map-marker" /> Brooklyn</p>
-                <p><FontAwesomeIcon icon="building" /> Black</p>
-                <p><FontAwesomeIcon icon="video" /> <a href={workshop.remote}>Webex</a></p>
-              </div>
-            </div>
-          </div>
-          <div className="grid-y grid-padding-y enroll">
-          {
-            isUser ?
-            <Link type="button" to="/create-workshop" className="button success">ENROLL</Link>
-            : <Link type="button" to="/login" className="button success">LOGIN TO ENROLL</Link>
-          }
+              
+              <p>Hosted by <strong>{instructor.first}  {instructor.last}</strong><br />
+              <a href="true" className="email">Contact Instructor</a></p>
             
+              </div>
+
+
+            </div>
+            <div className="grid-x enroll-top">
+          
+            <Link type="button" to={isUser ? "/enroll" : "/login"} className="button expanded">ENROLL</Link>
+            </div>
+            
+            <div className="grid-x">
+
+                <div className="small-2">
+                  <FontAwesomeIcon icon="clock" size="2x"/> 
+                </div>
+                <div className="small-9">
+                  <p><span><Moment format="dddd">{workshop.start}</Moment>, <Moment format="LL">{workshop.start}</Moment></span><br />
+                  <Moment format="LT">{workshop.start}</Moment> - <Moment format="LT">{workshop.end}</Moment><br />
+                  <a href="true">Add to Calender</a></p>
+                </div>
+
+            </div>
+              <div className="grid-x detail">
+                <div className="small-2">
+                    <FontAwesomeIcon icon="map-marker" size="2x"/>
+                </div>
+                <div className="small-10">
+                  <p> Brooklyn <br />
+                  Black <br /><a href={workshop.remote}>Webex</a> </p>
+                </div>
+            </div>
+            </div>
+         
+
+            <JumbotronComponent image={workshop.image}/>
+            <div className="grid-container">
             <p className="description">
               Does it sound like an ad? Maybe. Is it true? Let’s figure it out!
   
@@ -74,7 +99,7 @@ export default class Workshop extends Component {
             </p>
             <hr />
             <div className="attendees">
-              <h3><b>Attending:</b></h3>
+              <h3><b>Attendees</b></h3>
               <section className="grid-display attendee-grid">
 
                 {attendees.map((attendee, index) => (
@@ -85,8 +110,6 @@ export default class Workshop extends Component {
 
               </section>
             </div>
-            <p className="feedback">Send Instructor Feedback: </p> {/*hidden until after user has attended*/}
-            <a href="true" className="email">Instructor email</a>
           </div>
       </Fragment>
     )
