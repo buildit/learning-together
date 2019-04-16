@@ -6,7 +6,8 @@ import { UserPreviewComponent } from '../userpreview'
 import workshopData from "./mock-workshops.json"
 import Moment from 'react-moment';
 import { NavbarComponent } from '../navbar';
-import { Link, withRouter } from 'react-router-dom';
+import { Link} from 'react-router-dom';
+import {UserContext } from '../../UserProvider'
 
 export default class Workshop extends Component {
 
@@ -14,13 +15,15 @@ export default class Workshop extends Component {
     super(props);
     this.state = {
       workshop: {},
-      confirmation: false
+      confirmation: false,
+      userId: ''
     };
   };
 
   componentDidMount() {
     this.setState({
-      workshop: workshopData[0]
+      workshop: workshopData[0],
+      userId: this.context.userId
     })
   }
 
@@ -31,7 +34,7 @@ export default class Workshop extends Component {
   }
 
   render() {
-
+    console.log('workshop state', this.state.userId)
     const workshop = this.state.workshop
     const attendees = (workshop.attendees ? workshop.attendees : []);
     const cover = (workshop.location ? this.updateImage(workshop.location) : "")
@@ -49,7 +52,7 @@ export default class Workshop extends Component {
             <div className="grid-x">
             <div className="small-12 instructor-info">
               <div className="photo-frame">
-              <img src={instructor.image} />
+              <img src={instructor.image} alt=""/>
               </div>
               
               <p>Hosted by <strong>{instructor.first}  {instructor.last}</strong><br />
@@ -115,3 +118,5 @@ export default class Workshop extends Component {
     )
   }
 }
+
+Workshop.contextType = UserContext

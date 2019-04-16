@@ -2,11 +2,17 @@ import React, { Fragment } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { signIn } from '../../api'
 import { NavbarComponent } from '../navbar';
+import { UserContext, UserConsumer } from '../../UserProvider'
 
 export default class LoginComponent extends React.Component {
-  constructor() {
-    super()
-    this.state = { email: '', password: '', loginSuccess: false }
+  constructor(props) {
+    super(props)
+    this.state = {
+      email: '',
+      password: '',
+      loginSuccess: false,
+      userId: ''
+    }
     this.submitCallback = this.submitCallback.bind(this)
   }
 
@@ -24,14 +30,19 @@ export default class LoginComponent extends React.Component {
     signIn({ Username: formattedEmail, Password: password }, this.submitCallback)
   }
   submitCallback(response) {
-    localStorage.setItem('BTToken', response.data.token)
-    this.setState({ loginSuccess: true })
+    const { data } = response
+    localStorage.setItem('BTToken', data.token)
+    this.context.updateUser(data.id)
+    this.setState({
+      loginSuccess: true,
+      userId: data.id
+    })
   }
   render() {
-    const { email, password, loginSuccess } = this.state
+    const { email, password, loginSuccess, userId } = this.state
     return (
       <Fragment>
-        <NavbarComponent isUser={this.props.isUser} />
+        <NavbarComponent isUser={this.props.isUser} userId={userId} />
         <div className="grid-container">
           <div className="grid-y medium-grid-frame">
             <div className="grid-x grid-padding-x align-middle">
@@ -69,11 +80,13 @@ export default class LoginComponent extends React.Component {
         </div >
         {
           loginSuccess && (
-            <Redirect to='/' />
+            <Redirect to={{ pathname: '/', state: { userId } }} />
           )
         }
-      </Fragment >
+      </Fragment>
 
     )
   }
 }
+
+LoginComponent.contextType = UserContext
