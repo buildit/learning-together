@@ -22,7 +22,6 @@ export default class ImageUploaderComponent extends React.Component {
   }
 
   fileUploadCallback(response) {
-    console.log(response)
     this.props.setPicture(response.data)
   }
   render() {
