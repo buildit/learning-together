@@ -63,3 +63,10 @@ export const createWorkshop = (data) => {
       console.log(error);
     })
 }
+
+export const getCategoryList = () => {
+  return axios.request({
+    url: 'http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/disciplines/categories',
+    method: 'get'
+  }) 
+}
