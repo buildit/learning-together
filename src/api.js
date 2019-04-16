@@ -50,8 +50,8 @@ export function createWorkshop(data) {
 
 export function uploadImage(data, callback) {
   console.log(data)
-  const url = 'http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/users/avatar'
-  axios.put(url, data)
+  const url = 'http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/upload/image'
+  axios.post(url, data)
     .then(response => {
       callback(response)
     })

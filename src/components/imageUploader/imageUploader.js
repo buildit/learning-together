@@ -6,6 +6,7 @@ export default class ImageUploaderComponent extends React.Component {
   constructor(props) {
     super(props)
     this.state = { selectedFile: '', previewImg: 'https://dummyimage.com/640x360/fff/aaa' }
+    this.fileUploadCallback = this.fileUploadCallback.bind(this)
   }
 
   fileUploadHandler(e) {
@@ -22,8 +23,7 @@ export default class ImageUploaderComponent extends React.Component {
 
   fileUploadCallback(response) {
     console.log(response)
-    //this.props.setPicture(repsonse)
-    //this.setState({fileUpload: response.})
+    this.props.setPicture(response.data)
   }
   render() {
     return (
