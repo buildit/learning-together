@@ -3,9 +3,9 @@ import { uploadImage } from '../../api'
 
 export default class ImageUploaderComponent extends React.Component {
 
-  constructor() {
-    super()
-    this.state = { selectedFile: '', previewImg: '' }
+  constructor(props) {
+    super(props)
+    this.state = { selectedFile: '', previewImg: 'https://dummyimage.com/640x360/fff/aaa' }
   }
 
   fileUploadHandler(e) {
@@ -15,25 +15,29 @@ export default class ImageUploaderComponent extends React.Component {
   }
   fileUploadSubmitHandler(e) {
     e.preventDefault()
-    uploadImage(this.state.selectedFile, this.fileUploadCallback)
+    const fd = new FormData()
+    fd.append('image', this.state.selectedFile, this.state.selectedFile.name)
+    uploadImage(fd, this.fileUploadCallback)
   }
 
   fileUploadCallback(response) {
     console.log(response)
+    //this.props.setPicture(repsonse)
     //this.setState({fileUpload: response.})
   }
   render() {
     return (
       <div className='grid-container'>
         <div className="grid-y medium-grid-frame">
-          <div className="grid-x grid-padding-x align-middle">
-            <img src={this.state.previewImg} className='cell medium-12' alt='preview' height='200' width='100' />
-            <div className='row'>
-              <label for="fileUpload" className="button">Choose File</label>
-              <input type='file' id='fileUpload' className='show-for-sr' onChange={this.fileUploadHandler.bind(this)} />
-              <button onClick={this.fileUploadSubmitHandler.bind(this)} className='button success'>Upload</button>
+          <div className="grid-x grid-padding-x align-center">
+            <div className='image-container'>
+              <img src={this.state.previewImg} className='cell medium-12' accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*" alt='preview' height='100%' width='100%' />
             </div>
+            <label htmlFor="fileUpload" className="button">Choose File</label>
+            <input type='file' id='fileUpload' className='show-for-sr' onChange={this.fileUploadHandler.bind(this)} />
+            <button onClick={this.fileUploadSubmitHandler.bind(this)} className='button success'>Upload</button>
           </div>
+
         </div>
       </div >
 

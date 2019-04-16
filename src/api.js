@@ -51,7 +51,7 @@ export function createWorkshop(data) {
 export function uploadImage(data, callback) {
   console.log(data)
   const url = 'http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/users/avatar'
-  axios.post(url, data)
+  axios.put(url, data)
     .then(response => {
       callback(response)
     })
