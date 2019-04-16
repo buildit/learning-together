@@ -35,7 +35,7 @@ export default class Workshop extends Component {
 
   render() {
     console.log('workshop state', this.state.userId)
-    const workshop = this.state.workshop
+    const {workshop, userId} = this.state
     const attendees = (workshop.attendees ? workshop.attendees : []);
     const cover = (workshop.location ? this.updateImage(workshop.location) : "")
     const instructor = (workshop.instructor ? workshop.instructor : { first: "", last: "" })
@@ -45,7 +45,7 @@ export default class Workshop extends Component {
         <NavbarComponent isUser={isUser} location={this.props.location}/>
         <div className="grid-container">
         <div className="grid-x">
-          <p className="small-12"><span><Moment format="dddd">{workshop.start}</Moment>,</span>  <span><Moment format="MMMM">{workshop.start}</Moment></span> <span><Moment format="DD">{workshop.start}</Moment></span> <span><Moment format="YYYY">{workshop.start}</Moment></span></p>
+          
           <h1 className="workshop-title"><b>{workshop.name}</b></h1>
         </div>  
           
@@ -63,7 +63,7 @@ export default class Workshop extends Component {
 
             </div>
             <div className="grid-x enroll-top">
-          
+          {/*todo if isUser && userId === educatorId then edit button. if isUser && workshopUsers does not include userId, change to enroll or cancel enroll? or enrolled??   */}
             <Link type="button" to={isUser ? "/enroll" : "/login"} className="button expanded">ENROLL</Link>
             </div>
             
