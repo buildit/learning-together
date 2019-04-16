@@ -10,11 +10,8 @@ export default class LoginComponent extends React.Component {
     this.submitCallback = this.submitCallback.bind(this)
   }
 
-  emailHandler(e) {
-    this.setState({ email: e.target.value })
-  }
-  passwordHandler(e) {
-    this.setState({ password: e.target.value })
+  inputHandler(e) {
+    this.setState({ [e.target.name]: e.target.value })
   }
   formatEmail(email) {
     return email.trim()
@@ -42,14 +39,14 @@ export default class LoginComponent extends React.Component {
                 <div className='row'>
                   <div className="small-12 columns">
                     <label>Email:
-                <input type="text" placeholder="Please Enter Your Email Address" autoComplete="user email" value={email} onChange={this.emailHandler.bind(this)} />
+                <input type="text" placeholder="Please Enter Your Email Address" autoComplete="user email" name='email' value={email} onChange={this.inputHandler.bind(this)} />
                     </label>
                   </div>
                 </div>
                 <div className='row'>
                   <div className="small-12 columns">
                     <label>Password:
-                <input type="password" autoComplete="current-password" placeholder="Please Enter Your Password." value={password} onChange={this.passwordHandler.bind(this)} />
+                <input type="password" autoComplete="current-password" placeholder="Please Enter Your Password." name='password' value={password} onChange={this.inputHandler.bind(this)} />
                     </label>
                   </div>
                 </div>
