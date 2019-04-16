@@ -11,26 +11,29 @@ import { WorkshopListComponent } from "../workshopList";
 import { WorkshopFormComponent } from "../workshopForm";
 import { WorkshopComponent } from '../workshop'
 import { ConfirmationComponent } from "../confirmation";
+import UserProvider from '../../UserProvider'
 
 export default class RoutesComponent extends React.Component {
   render() {
     return (
-      <Router>
-        <div className="main">
-          <Switch>
-            <UserRoute exact path="/" component={LandingComponent} />
-            <UnauthenticatedUserRoute exact path="/login" component={LoginComponent} />
-            <UnauthenticatedUserRoute exact path="/register" component={RegisterComponent} />
-            <UserRoute exact path="/user" component={UserProfileComponent} />
-            <UserRoute path="/workshops" component={WorkshopListComponent} />
-            <UserRoute exact path="/workshop" component={WorkshopComponent} />
-            <UserRoute exact path="/confirmation/enroll" component={ConfirmationComponent} />
-            <Route exact path="/create-workshop" component={WorkshopFormComponent} />
-            <Route component={Page404Component} />
-          </Switch>
-        </div>
+      <UserProvider>
+        <Router>
+          <div className="main">
+            <Switch>
+              <UserRoute exact path="/" component={LandingComponent} />
+              <UnauthenticatedUserRoute exact path="/login" component={LoginComponent} />
+              <UnauthenticatedUserRoute exact path="/register" component={RegisterComponent} />
+              <UserRoute exact path="/user" component={UserProfileComponent} />
+              <UserRoute path="/workshops" component={WorkshopListComponent} />
+              <UserRoute exact path="/workshop" component={WorkshopComponent} />
+              <UserRoute exact path="/confirmation/enroll" component={ConfirmationComponent} />
+              <Route exact path="/create-workshop" component={WorkshopFormComponent} />
+              <Route component={Page404Component} />
+            </Switch>
+          </div>
 
-      </Router>
+        </Router>
+      </UserProvider>
     );
   }
 }

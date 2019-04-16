@@ -7,7 +7,6 @@ export async function signIn(data, callback) {
         callback(response)
       })
       .catch(error => {
-        reject(error)
         return error
       })
   })
@@ -18,10 +17,10 @@ export function signUp(data, callback) {
   return new Promise((resolve, reject) => {
     axios.post(url, data)
       .then(response => {
-        callback()
+        callback(response)
       })
       .catch(error => {
-        return error
+        callback(error)
       })
   })
 }
@@ -35,4 +34,32 @@ export async function loadCategories() {
       .catch(error => {
         return error
       })
+}
+export const getWorkshopList = () => {
+  return axios.request({
+    url: 'http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops',
+    method: 'get'
+  }) 
+}
+
+// Make a request for a user with a given token
+export const createWorkshop = (data) => {
+  const token = localStorage.getItem('BTToken')
+  axios.request({
+    url: 'http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops/create',
+    method: 'post',
+    data,
+    headers: {
+      'Authorization':
+        'Bearer ' + token
+    }
+  })
+    .then(function (response) {
+      // handle success
+      console.log(response);
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
 }
