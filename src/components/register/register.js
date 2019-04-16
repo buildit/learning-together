@@ -98,11 +98,10 @@ export default class RegisterComponent extends React.Component {
   submitHandler(e) {
     e.preventDefault()
     const { firstName, lastName, emailUsername, isWipro, password, passwordConfirmation, selectedLocation, selectedRole } = this.state
-    let email = emailUsername + isWipro.value
-    console.log(email)
+    const email = emailUsername + isWipro.value
     let isValidatedFirstName = this.validateName(firstName)
     let isValidatedLastName = this.validateName(lastName)
-    let isValidatedEmail = this.validateEmail(email)
+    let isValidatedEmail = this.validateEmail(emailUsername)
     let isValidatedPassword = this.validatePassword(password)
     let isValidatedPasswordConfirm = this.comparePassword(password, passwordConfirmation)
     let isValidatedLocation = this.validateLocation(selectedLocation)
