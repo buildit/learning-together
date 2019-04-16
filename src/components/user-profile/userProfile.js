@@ -79,15 +79,17 @@ export default class UserProfileComponent extends React.Component {
                             </div>
                         </div>
 
-                        <div className="courses grid-container">
+                        <div className="courses">
                             <hr />
-                            <div className="upcoming grid-x">
-                                <h2><b>Upcoming Courses</b></h2>
-                                <select name="schedule-dropdown" onChange={this.updateWorkshopList.bind(this)}>
-                                    <option value="date">Date</option>
-                                    <option value="teaching">Teaching</option>
-                                    <option value="attending">Attending</option>
-                                </select>
+                            <div className="upcoming">
+                                <div className="grid-container">
+                                    <h2><b>Upcoming Courses</b></h2>
+                                    <select name="schedule-dropdown" onChange={this.updateWorkshopList.bind(this)}>
+                                        <option value="date">All</option>
+                                        <option value="teaching">Teaching</option>
+                                        <option value="attending">Attending</option>
+                                    </select>
+                                </div>
                                 <section className="workshops-list">
 
                                     {this.state.classes.map((workshop, index) => (

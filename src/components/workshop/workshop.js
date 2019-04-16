@@ -42,7 +42,7 @@ export default class Workshop extends Component {
         <NavbarComponent isUser={isUser} location={this.props.location}/>
         <div className="grid-container">
         <div className="grid-x">
-          <p className="small-12"><span><Moment format="dddd">{workshop.start}</Moment>,</span>  <span><Moment format="MMMM">{workshop.start}</Moment></span> <span><Moment format="DD">{workshop.start}</Moment></span> <span><Moment format="YYYY">{workshop.start}</Moment></span></p>
+          
           <h1 className="workshop-title"><b>{workshop.name}</b></h1>
         </div>  
           

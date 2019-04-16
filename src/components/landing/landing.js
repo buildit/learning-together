@@ -7,14 +7,27 @@ import { FooterComponent } from "../footer"
 import workShopData from "./mock-workshops.json";
 import './landing.scss';
 import { NavbarComponent } from "../navbar";
+import { loadCategories } from '../../api';
 
 
 export default class Landing extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      workshops: workShopData
+      workshops: workShopData,
+      categories: []
     };
+  }
+
+  componentDidMount(){
+    loadCategories()
+      .then((data) => {
+        
+        this.setState({
+          categories: data
+        })
+      })
+
   }
 
   render() {
@@ -34,7 +47,7 @@ export default class Landing extends Component {
         </div>
         <div className="grid-container landing-preview">
           <h2 className="section-title">Categories</h2>
-          <CategoryListComponent workshop={this.state.workshops} />
+          <CategoryListComponent workshop={this.state.workshops} categories={this.state.categories}/>
         </div>
         <FooterComponent isUser={isUser} />
       </Fragment>
