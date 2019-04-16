@@ -232,7 +232,7 @@ export default class RegisterComponent extends React.Component {
                 </div> */}
                 <div className='row'>
                   <div className="small-12 columns">
-                    <label>Please upload a profile picture:</label>
+                    <label>Profile picture:</label>
                     <ImageUploaderComponent setPicture={this.setProfilePicture} />
                   </div>
                 </div>
