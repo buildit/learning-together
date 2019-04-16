@@ -5,6 +5,7 @@ import makeAnimated from 'react-select/lib/animated'
 import { signUp } from '../../api'
 import { MessageComponent } from '../message'
 import { ImageUploaderComponent } from '../imageUploader'
+import { NavbarComponent } from '../navbar'
 import './register.scss'
 
 export default class RegisterComponent extends React.Component {
@@ -124,8 +125,10 @@ export default class RegisterComponent extends React.Component {
 
   render() {
     const { name, emailUsername, password, passwordConfirmation, emailError, passwordError, passwordConfirmationError, firstNameError, lastNameError, locationError, roleError, signUpSuccess, signUpError, redirect } = this.state
+
     return (
       <Fragment>
+        <NavbarComponent isUser={this.props.isUser} />
         <div className="grid-container">
           <div className="grid-y medium-grid-frame">
             <div className="grid-x grid-padding-x align-middle">
