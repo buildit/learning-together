@@ -47,3 +47,15 @@ export function createWorkshop(data) {
       console.log(error);
     })
 }
+
+export function uploadImage(data, callback) {
+  console.log(data)
+  const url = 'http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/users/avatar'
+  axios.post(url, data)
+    .then(response => {
+      callback(response)
+    })
+    .catch(error => {
+      callback(error)
+    })
+}
