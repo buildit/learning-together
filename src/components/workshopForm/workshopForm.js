@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import moment from "moment";
 import { SingleDatePicker } from "react-dates";
 import { Link } from "react-router-dom";
+import { createWorkshop } from '../../api.js'
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import "./workshopForm.scss";
@@ -79,7 +80,8 @@ class WorkshopForm extends Component {
     return invalid;
   }
 
-  //TO DO: REDIRECT TO USER TO SUCCESS PAGE
+  //TO DO: REDIRECT USER TO SUCCESS PAGE
+  //FIX LOCATION TO BE SET DYNAMICALLY
   handleSubmit(e) {
     e.preventDefault();
 
@@ -88,15 +90,15 @@ class WorkshopForm extends Component {
     if (error) {
       window.scrollTo(0, 0);
     } else {
-      console.log({
+
+      const data = {
         name: this.state.name,
         date: this.state.date,
-        location: this.state.location,
+        locationId: 1,
         link: this.state.link,
         description: this.state.description
-      });
-
-      console.log("form was submitted");
+      }
+      createWorkshop(data)
     }
   }
 
