@@ -7,7 +7,6 @@ export async function signIn(data, callback) {
         callback(response)
       })
       .catch(error => {
-        reject(error)
         return error
       })
   })
@@ -18,10 +17,10 @@ export function signUp(data, callback) {
   return new Promise((resolve, reject) => {
     axios.post(url, data)
       .then(response => {
-        callback()
+        callback(response)
       })
       .catch(error => {
-        return error
+        callback(error)
       })
   })
 }
