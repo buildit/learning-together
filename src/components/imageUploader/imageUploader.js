@@ -6,7 +6,7 @@ export default class ImageUploaderComponent extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = { selectedFile: '', previewImg: 'https://dummyimage.com/300x300/fff/aaa', isUploaded: false }
+    this.state = { selectedFile: '', previewImg: 'images/cover/profile-placeholder.png', isUploaded: false }
     this.fileUploadCallback = this.fileUploadCallback.bind(this)
   }
 
@@ -37,9 +37,9 @@ export default class ImageUploaderComponent extends React.Component {
       <div className='grid-container'>
         <div className="grid-y medium-grid-frame">
           <div className='row'>
-            <div className="grid-x grid-padding-x align-center align-middle">
-              <div className='image-container'>
-                <img src={previewImg} className='cell medium-12' accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*" alt='preview' height='100%' width='100%' />
+            <div className="grid-x grid-padding-x align-center align-middle image-margin-1">
+              <div className='photo-frame'>
+                <img src={previewImg} accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*" alt='preview' />
               </div>
             </div>
           </div>
