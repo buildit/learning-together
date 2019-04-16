@@ -71,12 +71,14 @@ export default class RegisterComponent extends React.Component {
   redirectCallback() {
     this.setState({ redirect: true })
   }
+  toggleError() {
+    this.setState({ signUpError: !this.state.signUpError })
+  }
   messageCallback(data) {
-    debugger
-    if (data) {
+    if (data.status === 200) {
       this.setState({ signUpSuccess: true, signUpError: false })
     } else {
-      this.setState({ signUpError: true, signUpSuccess: true })
+      this.setState({ signUpError: true, signUpSuccess: false })
     }
   }
 
@@ -115,7 +117,7 @@ export default class RegisterComponent extends React.Component {
   }
 
   render() {
-    const { name, emailUsername, password, passwordConfirmation, emailError, passwordError, passwordConfirmationError, firstNameError, lastNameError, locationError, roleError, signUpSuccess, redirect } = this.state
+    const { name, emailUsername, password, passwordConfirmation, emailError, passwordError, passwordConfirmationError, firstNameError, lastNameError, locationError, roleError, signUpSuccess, signUpError, redirect } = this.state
     return (
       <Fragment>
         <div className="grid-container">
@@ -236,7 +238,8 @@ export default class RegisterComponent extends React.Component {
             </div>
           </div>
         </div >
-        {signUpSuccess && (<MessageComponent message='SUCCESSFUL' callback={this.redirectCallback} />)}
+        {signUpSuccess && (<MessageComponent message='Your account was successfully created.' callback={this.redirectCallback} />)}
+        {signUpError && (<MessageComponent message='Your account was unsuccesfully created. Try again later.' callback={this.toggleError.bind(this)} />)}
         {redirect && (<Redirect to='/login' />)}
       </Fragment>
     )

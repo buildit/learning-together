@@ -4,8 +4,8 @@ import './message.scss'
 
 export default class MessageComponent extends React.Component {
 
-  componentDidMount() {
-    setTimeout(() => { this.props.callback() }, 1500)
+  onClickCallback() {
+    this.props.callback()
   }
 
   render() {
@@ -15,6 +15,7 @@ export default class MessageComponent extends React.Component {
           <div className='message-content'>
             {this.props.message}
           </div>
+          <button type='button' className='success button' onClick={this.onClickCallback.bind(this)} >Confirm</button>
         </div>
       </div>
     )
