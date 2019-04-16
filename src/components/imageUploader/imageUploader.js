@@ -10,12 +10,12 @@ export default class ImageUploaderComponent extends React.Component {
     this.fileUploadCallback = this.fileUploadCallback.bind(this)
   }
 
-  fileUploadHandler(e) {
+  fileUploadPreviewHandler(e) {
     e.preventDefault()
     console.log(e.target.files[0])
     this.setState({ previewImg: URL.createObjectURL(e.target.files[0]), selectedFile: e.target.files[0] })
   }
-  fileUploadSubmitHandler(e) {
+  fileUploadHandler(e) {
     e.preventDefault()
     const fd = new FormData()
     fd.append('image', this.state.selectedFile, this.state.selectedFile.name)
@@ -46,8 +46,8 @@ export default class ImageUploaderComponent extends React.Component {
           <div className='row'>
             <div className='grid-x grid-padding-x align-center'>
               <label htmlFor="fileUpload" className="button">Choose File</label>
-              <input type='file' id='fileUpload' className='show-for-sr' onChange={this.fileUploadHandler.bind(this)} />
-              <button onClick={this.fileUploadSubmitHandler.bind(this)} className='button success'>Upload</button>
+              <input type='file' id='fileUpload' className='show-for-sr' onChange={this.fileUploadPreviewHandler.bind(this)} />
+              <button onClick={this.fileUploadHandler.bind(this)} className='button success'>Upload</button>
               {isUploaded && (
                 <div className='image-icon-confirm'>
                   <FontAwesomeIcon icon='check'></FontAwesomeIcon>
