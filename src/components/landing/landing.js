@@ -4,7 +4,7 @@ import { Hero } from "../hero";
 import { PreviewComponent } from "../preview";
 import { CategoryListComponent } from "../categoryList";
 import { FooterComponent } from "../footer"
-import workShopData from "./mock-workshops.json";
+import {getWorkshopList} from '../../api'
 import './landing.scss';
 import { NavbarComponent } from "../navbar";
 import { UserConsumer } from '../../UserProvider'
@@ -14,16 +14,22 @@ export default class Landing extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      workshops: workShopData,
-      userId: ''
+      workshops: [],
+      userId: '',
+      error: null
     };
   }
 
   componentDidMount() {
+     getWorkshopList()
+    .then(response => this.setState({workshops: response.data}))
+    .catch(error => this.setState({ error: 'Please try again later'}))
+    
     if (typeof this.props.location.state !== 'undefined') {
       this.setState({ userId: this.props.location.state.id })
     }
   }
+
   render() {
     const wrkshopPreview = this.state.workshops.map((workshop, idx) => {
       return <NavLink to="/workshop" className="preview-card" key={idx}><PreviewComponent workshop={workshop} /></NavLink>
@@ -39,7 +45,7 @@ export default class Landing extends Component {
               <div className="grid-container landing-preview">
                 <h2 className="section-title">Upcoming Workshops</h2>
                 <div className="grid-x grid-padding-x card-scroll">
-                  {wrkshopPreview}
+                   {this.state.error ? <p>{this.state.error}</p> : wrkshopPreview}
                 </div>
               </div>
               <div className="grid-container landing-preview">
