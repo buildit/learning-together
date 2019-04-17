@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import Select from 'react-select'
 import makeAnimated from 'react-select/lib/animated'
-import { signUp } from '../../api'
+import { signUp, getLocationList } from '../../api'
 import { MessageComponent } from '../message'
 import { ImageUploaderComponent } from '../imageUploader'
 import { NavbarComponent } from '../navbar'
@@ -32,7 +32,9 @@ export default class RegisterComponent extends React.Component {
       roleError: false,
       isLoading: false,
       signUpSuccess: false,
-      redirect: false
+      redirect: false,
+      locations: [],
+      locationFetchError: false
     }
     this.locations = [{ value: '1', label: 'New York' }, { value: '2', label: 'Denver' }, { value: '3', label: 'Bangalore' },
     { value: '4', label: 'Dublin' }, { value: '5', label: 'Edinburgh' }, { value: '6', label: 'Gdansk' }, { value: '7', label: 'London' },
@@ -43,7 +45,29 @@ export default class RegisterComponent extends React.Component {
     this.messageCallback = this.messageCallback.bind(this)
     this.redirectCallback = this.redirectCallback.bind(this)
     this.setProfilePicture = this.setProfilePicture.bind(this)
+    this.getLocationCallback = this.getLocationCallback.bind(this)
   }
+
+  componentDidMount() {
+    getLocationList(this.getLocationCallback)
+  }
+
+  getLocationCallback(response) {
+    response.status = 100
+    if (response.status === 200) {
+      let locationArray = []
+      response.data.forEach(instance => {
+        locationArray.push({ value: instance.id, label: instance.name })
+      })
+      this.setState({ locations: locationArray })
+    } else {
+      this.setState({ locationFetchError: true })
+    }
+  }
+  toggleLocationError() {
+    this.setState({ locationFetchError: !this.state.locationFetchError })
+  }
+
   validateName(name) {
     if (name === '') {
       return false
@@ -126,7 +150,7 @@ export default class RegisterComponent extends React.Component {
   }
 
   render() {
-    const { name, emailUsername, password, passwordConfirmation, emailError, passwordError, passwordConfirmationError, firstNameError, lastNameError, locationError, roleError, signUpSuccess, signUpError, redirect } = this.state
+    const { name, emailUsername, password, passwordConfirmation, emailError, passwordError, passwordConfirmationError, firstNameError, lastNameError, locationError, roleError, signUpSuccess, signUpError, redirect, locationFetchError } = this.state
 
     return (
       <Fragment>
@@ -195,7 +219,7 @@ export default class RegisterComponent extends React.Component {
                     <Select
                       placeholder='Please select a location'
                       onChange={this.onClickLocationHandler.bind(this)}
-                      options={this.locations}
+                      options={this.state.locations}
                       isSearchable={false}
                       name='locations'
                     />
@@ -257,6 +281,7 @@ export default class RegisterComponent extends React.Component {
         </div >
         {signUpSuccess && (<MessageComponent message='Your account was successfully created.' callback={this.redirectCallback} />)}
         {signUpError && (<MessageComponent message='Your account was unsuccesfully created. Try again later.' callback={this.toggleError.bind(this)} />)}
+        {locationFetchError && (<MessageComponent message='Locations service is down. Please try again later' callback={this.toggleLocationError.bind(this)} />)}
         {redirect && (<Redirect to='/login' />)}
       </Fragment>
     )

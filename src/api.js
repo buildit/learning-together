@@ -133,3 +133,14 @@ export const getCategoryList = () => {
     method: 'get'
   })
 }
+
+export const getLocationList = (callback) => {
+  const url = `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/locations`
+  axios.get(url)
+    .then(response => {
+      callback(response)
+    })
+    .catch(error => {
+      callback(error)
+    })
+}
