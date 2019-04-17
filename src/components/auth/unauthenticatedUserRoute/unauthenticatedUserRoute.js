@@ -1,6 +1,5 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import { UserConsumer } from '../../../UserProvider'
 
 const UnauthenticatedUserRoute = ({ component: Component, ...props }) => {
   //authentication stuff
