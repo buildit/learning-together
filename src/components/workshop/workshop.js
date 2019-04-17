@@ -7,7 +7,8 @@ import Moment from 'react-moment';
 import { NavbarComponent } from '../navbar';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../UserProvider'
-import { getWorkshop, coverGenerator } from '../../api';
+import { getWorkshop, coverGenerator, enrollWorkshop, unenrollWorkshop } from '../../api';
+import { MessageComponent } from '../message'
 
 export default class Workshop extends Component {
 
@@ -17,23 +18,66 @@ export default class Workshop extends Component {
       workshop: {},
       confirmation: false,
       userId: null,
-      educatorId: 12
+      educatorId: 12,
+      showMessage: false,
+      message: ''
     };
+    this.getWorkshopCallback = this.getWorkshopCallback.bind(this)
+    this.enrollWorshopCallback = this.enrollWorshopCallback.bind(this)
+    this.unenrollWorshopCallback = this.unenrollWorshopCallback.bind(this)
+    this.messageCallback = this.messageCallback.bind(this)
   };
 
   componentDidMount() {
     this.setState({
       userId: this.context.userId
     })
-    /*todo set educatorId: data.data.educatorId from response*/
-    getWorkshop(this.props.computedMatch.params.id)
-      .then((data) => {
-        this.setState({
-          workshop: data.data
-        })
+    getWorkshop(this.props.computedMatch.params.id, this.getWorkshopCallback)
+  }
+  getWorkshopCallback(response) {
+    console.log(response)
+    if (response.status === 200) {
+      this.setState({
+        workshop: response.data
       })
+    }
+    else {
+      //show error message
+      console.log(response)
+    }
+  }
+  enrollWorshopCallback(response) {
+    if (response.status === 200) {
+      this.setState({ showMessage: true, message: 'You have succesfully enrolled!' })
+    }
+    else {
+      //show error message
+      this.setState({ showMessage: true, message: 'There was an error in enrollment. Please try again later.' })
+      console.log(response)
+    }
+  }
+  unenrollWorshopCallback(response) {
+    if (response.status === 200) {
+      this.setState({ showMessage: true, message: 'You have succesfully unenrolled!' })
+    }
+    else {
+      //show error message
+      this.setState({ showMessage: true, message: 'There was an error in unenrollment. Please try again later.' })
+      console.log(response)
+    }
+  }
+  messageCallback() {
+    this.setState({ showMessage: false, message: '' })
   }
 
+  onClickEnroll(e) {
+    e.preventDefault()
+    enrollWorkshop(this.state.workshop.id, this.enrollWorshopCallback)
+  }
+  onClickUnenroll(e) {
+    e.preventDefault()
+    unenrollWorkshop(this.state.workshop.id, this.enrollWorshopCallback)
+  }
   updateImage(location) {
     const formatted = location.replace(/\s/g, "-")
     const imagePath = `${process.env.PUBLIC_URL}/images/cover/${formatted}.jpg`
@@ -41,7 +85,7 @@ export default class Workshop extends Component {
   }
 
   render() {
-    const { workshop, userId, educatorId } = this.state
+    const { workshop, userId, educatorId, isEnrollSuccessful, enrollError } = this.state
     const attendees = (workshop.attendees ? workshop.attendees : []);
     const cover = workshop.imageUrl ? workshop.imageUrl : coverGenerator(workshop.id);
     const location = workshop.location ? workshop.location : "";
@@ -63,7 +107,7 @@ export default class Workshop extends Component {
           <div className="grid-x">
             <div className="small-12 instructor-info">
               <div className="photo-frame">
-                <img src={instructor.imageUrl} alt="" />
+                <img src={instructor.imageUrl} />
               </div>
 
               <p>Hosted by <strong>{instructor.firstName}  {instructor.lastName}</strong><br />
@@ -73,7 +117,7 @@ export default class Workshop extends Component {
 
 
           </div>
-          <div className="grid-x enroll-top">
+          < div className="grid-x enroll-top" >
             {/*todo if isUser && userId === educatorId then edit button. if isUser && workshopUsers does not include userId, change to enroll or cancel enroll? or enrolled??   */}
             {/* <Link type="button" to={isUser ? "/enroll" : "/login"} className="button expanded">ENROLL</Link> */}
             {
@@ -84,7 +128,7 @@ export default class Workshop extends Component {
                   : <button type="button" className="button expanded">ENROLL</button>
 
             }
-          </div>
+          </div >
 
           <div className="grid-x">
 
@@ -130,9 +174,21 @@ export default class Workshop extends Component {
             </section>
           </div>
         </div>
+        {
+          isEnrollSuccessful && (<MessageComponent message='You have succesfully enrolled!' callback={this.messageCallback} />)
+        }
+        {
+          enrollError && (<MessageComponent message='There was an error in enrollment. Please try again later' callback={this.messageCallback} />)
+        }
       </Fragment>
     )
   }
 }
 
+
 Workshop.contextType = UserContext
+
+
+
+
+
