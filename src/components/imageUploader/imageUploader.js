@@ -6,7 +6,7 @@ export default class ImageUploaderComponent extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = { selectedFile: '', previewImg: 'images/cover/profile-placeholder.png', isUploaded: false }
+    this.state = { selectedFile: '', previewImg: 'images/cover/profile-placeholder.png', isUploaded: false, uploadError: false }
     this.fileUploadCallback = this.fileUploadCallback.bind(this)
   }
 
@@ -22,16 +22,16 @@ export default class ImageUploaderComponent extends React.Component {
   }
 
   fileUploadCallback(response) {
-    if (response.data) {
+    if (response.status === 200) {
       this.setState({ isUploaded: true })
       this.props.setPicture(response.data)
     } else {
-      this.setState({ isUploaded: false })
+      this.setState({ isUploaded: false, uploadError: true })
       console.log(response)
     }
   }
   render() {
-    const { previewImg, isUploaded } = this.state
+    const { previewImg, isUploaded, uploadError } = this.state
     return (
       <div className='grid-container'>
         <div className="grid-y medium-grid-frame">
@@ -58,6 +58,11 @@ export default class ImageUploaderComponent extends React.Component {
                 </div>
               )}
             </div>
+            {uploadError && (
+              <div className='upload-error'>
+                Your image did not upload. Please try again later
+                </div>
+            )}
           </div>
         </div>
       </div >
