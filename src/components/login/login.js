@@ -25,7 +25,6 @@ export default class LoginComponent extends React.Component {
     signIn({ Username: formattedEmail, Password: password }, this.submitCallback)
   }
   submitCallback(response) {
-    console.log(response.status)
     if (response.status === 200) {
       localStorage.setItem('BTToken', response.data.token)
       this.setState({ loginSuccess: true })
