@@ -12,7 +12,6 @@ export default class ImageUploaderComponent extends React.Component {
 
   fileUploadHandler(e) {
     e.preventDefault()
-    console.log(e.target.files[0])
     this.setState({ previewImg: URL.createObjectURL(e.target.files[0]), selectedFile: e.target.files[0] })
   }
   fileUploadSubmitHandler(e) {

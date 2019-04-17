@@ -75,7 +75,6 @@ export const coverGenerator = (id) => {
   return `${process.env.PUBLIC_URL}/images/cover/cover_${id}.jpg`
 }
 export function uploadImage(data, callback) {
-  console.log(data)
   const url = 'http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/upload/image'
   axios.post(url, data)
     .then(response => {
