@@ -1,12 +1,12 @@
-  .grid-container h1 {
-  text-align: center
+  .workshop-title  {
+    padding-bottom: .5em;
+    font-size: 2em;
+    text-transform: capitalize;
   }
 
-  .enroll-top {
-  height: 20vh;
-  text-align: center;
-  }
-
+  .photo-frame {
+    float: left;
+  } 
 
   .calender {
   border: 1px solid #000;
@@ -29,6 +29,7 @@
   grid-template-columns: repeat(3, auto);
   grid-template-rows: 100px;
   grid-gap: 10px;
+  padding-top: 1em;
   }
 
   .attendees {
@@ -38,16 +39,11 @@
   margin-bottom: 4rem;
   }
 
-  @media only screen and (max-width: 600px) {
   .enroll {
-  padding-top: 6rem;
+    width: 100%;
   }
 
-  .detail {
-  padding-top: 1rem;
-  }
-
-  .description {
-  padding: 0rem 1rem 0rem 1rem;
-  }
+  .enroll-top {
+    margin-top: 1.5em;
+    margin-bottom: 1em;
   }

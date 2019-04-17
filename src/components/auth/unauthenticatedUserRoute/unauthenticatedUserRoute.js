@@ -1,12 +1,17 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
+import { UserConsumer } from '../../../UserProvider'
 
 const UnauthenticatedUserRoute = ({ component: Component, ...props }) => {
   //authentication stuff
   const token = localStorage.getItem('BTToken')
+  let isUser = false;
+  if (token) {
+    isUser = true;
+  }
   return (
-    <Route {...props} render={() =>
-      token ? <Redirect to='/' /> : <Component />} />
+    < Route {...props} render={() =>
+      token ? <Redirect to='/' /> : <Component isUser={isUser} />} />
   )
 }
 export default UnauthenticatedUserRoute

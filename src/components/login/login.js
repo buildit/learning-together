@@ -1,20 +1,18 @@
 import React, { Fragment } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { signIn } from '../../api'
-import { NavbarComponent } from '../navbar';
+import { NavbarComponent } from '../navbar'
+import './login.scss'
 
 export default class LoginComponent extends React.Component {
   constructor() {
     super()
-    this.state = { email: '', password: '', loginSuccess: false }
+    this.state = { email: '', password: '', loginSuccess: false, loginError: false }
     this.submitCallback = this.submitCallback.bind(this)
   }
 
-  emailHandler(e) {
-    this.setState({ email: e.target.value })
-  }
-  passwordHandler(e) {
-    this.setState({ password: e.target.value })
+  inputHandler(e) {
+    this.setState({ [e.target.name]: e.target.value })
   }
   formatEmail(email) {
     return email.trim()
@@ -27,11 +25,17 @@ export default class LoginComponent extends React.Component {
     signIn({ Username: formattedEmail, Password: password }, this.submitCallback)
   }
   submitCallback(response) {
-    localStorage.setItem('BTToken', response.data.token)
-    this.setState({ loginSuccess: true })
+    console.log(response.status)
+    if (response.status === 200) {
+      localStorage.setItem('BTToken', response.data.token)
+      this.setState({ loginSuccess: true })
+    }
+    else {
+      this.setState({ loginError: true })
+    }
   }
   render() {
-    const { email, password, loginSuccess } = this.state
+    const { email, password, loginSuccess, loginError } = this.state
     return (
       <Fragment>
         <NavbarComponent isUser={this.props.isUser} />
@@ -42,15 +46,20 @@ export default class LoginComponent extends React.Component {
                 <div className='row'>
                   <div className="small-12 columns">
                     <label>Email:
-                <input type="text" placeholder="Please Enter Your Email Address" autoComplete="user email" value={email} onChange={this.emailHandler.bind(this)} />
+                <input type="text" placeholder="Please Enter Your Email Address" autoComplete="user email" name='email' value={email} onChange={this.inputHandler.bind(this)} />
                     </label>
                   </div>
                 </div>
                 <div className='row'>
                   <div className="small-12 columns">
                     <label>Password:
-                <input type="password" autoComplete="current-password" placeholder="Please Enter Your Password." value={password} onChange={this.passwordHandler.bind(this)} />
+                <input type="password" autoComplete="current-password" placeholder="Please Enter Your Password." name='password' value={password} onChange={this.inputHandler.bind(this)} />
                     </label>
+                    {
+                      loginError && (
+                        <div className='login-error'>Username or password not found. Please try again.</div>
+                      )
+                    }
                   </div>
                 </div>
                 <div>

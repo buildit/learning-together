@@ -4,6 +4,9 @@ import Select from 'react-select'
 import makeAnimated from 'react-select/lib/animated'
 import { signUp } from '../../api'
 import { MessageComponent } from '../message'
+import { ImageUploaderComponent } from '../imageUploader'
+import { NavbarComponent } from '../navbar'
+import './register.scss'
 
 export default class RegisterComponent extends React.Component {
 
@@ -19,6 +22,7 @@ export default class RegisterComponent extends React.Component {
       selectedLocation: {},
       selectedRole: {},
       interests: [],
+      profilePicture: '',
       firstNameError: false,
       lastNameError: false,
       emailError: false,
@@ -30,11 +34,15 @@ export default class RegisterComponent extends React.Component {
       signUpSuccess: false,
       redirect: false
     }
-    this.locations = [{ value: '1', label: 'New York' }, { value: '2', label: 'Denver' }, { value: '3', label: 'Dallas' }, { value: '4', label: 'London' }]
+    this.locations = [{ value: '1', label: 'New York' }, { value: '2', label: 'Denver' }, { value: '3', label: 'Bangalore' },
+    { value: '4', label: 'Dublin' }, { value: '5', label: 'Edinburgh' }, { value: '6', label: 'Gdansk' }, { value: '7', label: 'London' },
+    { value: '8', label: 'Plano' }, { value: '9', label: 'Warsaw' }]
     this.roles = [{ value: '1', label: 'Front End Engineer' }, { value: '2', label: 'Platform Engineer' }, { value: '3', label: 'Creative Tech' }]
     this.interests = [{ value: 'fee', label: 'Front End Engineer' }, { value: 'pe', label: 'Platform Engineer' }, { value: 'ct', label: 'Creative Tech' }]
+    this.emails = [{ value: '@wipro.com', label: '@wipro.com' }, { value: '@designit.com', label: '@designit.com' }]
     this.messageCallback = this.messageCallback.bind(this)
     this.redirectCallback = this.redirectCallback.bind(this)
+    this.setProfilePicture = this.setProfilePicture.bind(this)
   }
   validateName(name) {
     if (name === '') {
@@ -50,8 +58,8 @@ export default class RegisterComponent extends React.Component {
     return password === password2
   }
   validateEmail(email) {
-    const regex = /^(([^<>()[\]\\.,;:\s@]+(\.[^<>()[\]\\.,;:\s@]+)*)|(.+))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    return regex.test(email)
+    const trimmedEmail = email.trim()
+    return trimmedEmail.indexOf('@') < 0
   }
   validateLocation(location) {
     if (location === '') {
@@ -69,12 +77,14 @@ export default class RegisterComponent extends React.Component {
   redirectCallback() {
     this.setState({ redirect: true })
   }
+  toggleError() {
+    this.setState({ signUpError: !this.state.signUpError })
+  }
   messageCallback(data) {
-    debugger
-    if (data) {
+    if (data.status === 200) {
       this.setState({ signUpSuccess: true, signUpError: false })
     } else {
-      this.setState({ signUpError: true, signUpSuccess: true })
+      this.setState({ signUpError: true, signUpSuccess: false })
     }
   }
 
@@ -93,18 +103,17 @@ export default class RegisterComponent extends React.Component {
   onChangeEmailHandler(isWipro) {
     this.setState({ isWipro })
   }
+  setProfilePicture(picturePath) {
+    this.setState({ profilePicture: picturePath })
+  }
 
   submitHandler(e) {
     e.preventDefault()
-    const { firstName, lastName, emailUsername, isWipro, password, passwordConfirmation, selectedLocation, selectedRole } = this.state
-    let email = emailUsername + '@wipro.com'
-    if (!isWipro) {
-      email = emailUsername + '@designit.com'
-    }
-    else { }
+    const { firstName, lastName, emailUsername, isWipro, password, passwordConfirmation, selectedLocation, selectedRole, profilePicture } = this.state
+    const email = emailUsername + isWipro.value
     let isValidatedFirstName = this.validateName(firstName)
     let isValidatedLastName = this.validateName(lastName)
-    let isValidatedEmail = this.validateEmail(email)
+    let isValidatedEmail = this.validateEmail(emailUsername)
     let isValidatedPassword = this.validatePassword(password)
     let isValidatedPasswordConfirm = this.comparePassword(password, passwordConfirmation)
     let isValidatedLocation = this.validateLocation(selectedLocation)
@@ -113,13 +122,15 @@ export default class RegisterComponent extends React.Component {
       this.setState({ firstNameError: !isValidatedFirstName, lastNameError: !isValidatedLastName, emailError: !isValidatedEmail, passwordError: !isValidatedPassword, passwordConfirmationError: !isValidatedPasswordConfirm, locationError: !isValidatedLocation, roleError: !isValidatedRole })
       return
     }
-    signUp({ FirstName: firstName, lastName: lastName, Username: email, Password: password, LocationId: selectedLocation.value, RoleId: selectedRole.value }, this.messageCallback)
+    signUp({ FirstName: firstName, lastName: lastName, Username: email, Password: password, LocationId: selectedLocation.value, RoleId: selectedRole.value, ImageUrl: profilePicture }, this.messageCallback)
   }
 
   render() {
-    const { name, emailUsername, isWipro, password, passwordConfirmation, emailError, passwordError, passwordConfirmationError, firstNameError, lastNameError, locationError, roleError, signUpSuccess, redirect } = this.state
+    const { name, emailUsername, password, passwordConfirmation, emailError, passwordError, passwordConfirmationError, firstNameError, lastNameError, locationError, roleError, signUpSuccess, signUpError, redirect } = this.state
+
     return (
       <Fragment>
+        <NavbarComponent isUser={this.props.isUser} />
         <div className="grid-container">
           <div className="grid-y medium-grid-frame">
             <div className="grid-x grid-padding-x align-middle">
@@ -127,31 +138,36 @@ export default class RegisterComponent extends React.Component {
                 <div className='row'>
                   <div className="small-12 columns">
                     <label>First Name:</label>
-                    <input type="text" placeholder="Please Enter Your First Name" name='firstName' value={name} onChange={this.onChangeHandler.bind(this)} />
+                    <input type="text" placeholder="Please Enter Your First Name" name='firstName' autoComplete='first name' value={name} onChange={this.onChangeHandler.bind(this)} />
                     {firstNameError && (
-                      <div>Please type in a valid name.</div>
+                      <span className='register-error'>Please type in a valid name.</span>
                     )}
                   </div>
                 </div>
                 <div className='row'>
                   <div className="small-12 columns">
                     <label>Last Name:</label>
-                    <input type="text" placeholder="Please Enter Your Last Name" name='lastName' value={name} onChange={this.onChangeHandler.bind(this)} />
+                    <input type="text" placeholder="Please Enter Your Last Name" name='lastName' autoComplete='last name' value={name} onChange={this.onChangeHandler.bind(this)} />
                     {lastNameError && (
-                      <div>Please type in a valid name.</div>
+                      <span className='register-error'>Please type in a valid name.</span>
                     )}
                   </div>
                 </div>
                 <div className='row'>
                   <div className="small-12 columns">
                     <label>Email:</label>
-                    <input type="text" placeholder="Please Enter Your Email." autoComplete="username" name='emailUsername' value={emailUsername} onChange={this.onChangeHandler.bind(this)} />
-                    <input type="radio" value="wipro" checked={isWipro} onChange={this.onChangeEmailHandler.bind(this, true)} />
-                    <label>@wipro.com</label>
-                    <input type="radio" value="designit" checked={!isWipro} onChange={this.onChangeEmailHandler.bind(this, false)} />
-                    <label>@designit.com</label>
+                    <div className='grid-x grid-padding-x align-center'>
+                      <input type="text" className="small-6" placeholder="Enter Your Email." autoComplete='username' name='emailUsername' value={emailUsername} onChange={this.onChangeHandler.bind(this)} />
+                      <Select className="small-5"
+                        defaultValue={[]}
+                        name="emails"
+                        options={this.emails}
+                        onChange={this.onChangeEmailHandler.bind(this)}
+                        isSearchable={false}
+                      />
+                    </div>
                     {emailError && (
-                      <div>Please enter a valid Wipro or Designit Email.</div>
+                      <span className='register-error'>Please enter remove the '@' character from your input.</span>
                     )}
                   </div>
                 </div>
@@ -160,7 +176,7 @@ export default class RegisterComponent extends React.Component {
                     <label>Password:</label>
                     <input type="password" autoComplete="new-password" placeholder="Please Enter Your Password." name='password' value={password} onChange={this.onChangeHandler.bind(this)} />
                     {passwordError && (
-                      <div>Your password must have one lower case letter, one upper case letter, one digit, and one special character.</div>
+                      <span className='register-error'>Your password must have one lower case letter, one upper case letter, one digit, and one special character.</span>
                     )}
                   </div>
                 </div>
@@ -169,7 +185,7 @@ export default class RegisterComponent extends React.Component {
                     <label>Confirm Password:</label>
                     <input type="password" autoComplete="new-password" placeholder="Please Confirm Your Password." name='passwordConfirmation' value={passwordConfirmation} onChange={this.onChangeHandler.bind(this)} />
                     {passwordConfirmationError && (
-                      <div>Your passwords must match.</div>
+                      <span className='register-error'>Your passwords must match.</span>
                     )}
                   </div>
                 </div>
@@ -184,7 +200,7 @@ export default class RegisterComponent extends React.Component {
                       name='locations'
                     />
                     {locationError && (
-                      <div>Please select a location.</div>
+                      <span className='register-error'>Please select a location.</span>
                     )}
                   </div>
                 </div>
@@ -199,11 +215,11 @@ export default class RegisterComponent extends React.Component {
                       name='roles'
                     />
                     {roleError && (
-                      <div>Please select a role.</div>
+                      <span className='register-error'>Please select a role.</span>
                     )}
                   </div>
                 </div>
-                <div className='row'>
+                {/* <div className='row'>
                   <div className="small-12 columns">
                     <label>What are your interests?</label>
                     <Select
@@ -217,6 +233,12 @@ export default class RegisterComponent extends React.Component {
                       onChange={this.onClickInterestsHandler.bind(this)}
                       isSearchable={false}
                     />
+                  </div>
+                </div> */}
+                <div className='row'>
+                  <div className="small-12 columns">
+                    <label>Profile picture:</label>
+                    <ImageUploaderComponent setPicture={this.setProfilePicture} />
                   </div>
                 </div>
                 <div className='row'>
@@ -233,7 +255,8 @@ export default class RegisterComponent extends React.Component {
             </div>
           </div>
         </div >
-        {signUpSuccess && (<MessageComponent message='SUCCESSFUL' callback={this.redirectCallback} />)}
+        {signUpSuccess && (<MessageComponent message='Your account was successfully created.' callback={this.redirectCallback} />)}
+        {signUpError && (<MessageComponent message='Your account was unsuccesfully created. Try again later.' callback={this.toggleError.bind(this)} />)}
         {redirect && (<Redirect to='/login' />)}
       </Fragment>
     )

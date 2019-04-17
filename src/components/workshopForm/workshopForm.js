@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import moment from "moment";
 import { SingleDatePicker } from "react-dates";
 import { Link } from "react-router-dom";
+import { createWorkshop, getCategoryList } from '../../api.js'
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import "./workshopForm.scss";
@@ -11,11 +12,13 @@ class WorkshopForm extends Component {
     super(props);
     this.state = {
       name: "",
-      location: "New York",
+      location: 1,
       link: "",
       description: "",
       date: moment(),
       calendarFocused: false,
+      categoryList: [],
+      categorySelected: 1,
       time: "",
       error: {}
     };
@@ -24,6 +27,16 @@ class WorkshopForm extends Component {
     this.onFocusChange = this.onFocusChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.validateForm = this.validateForm.bind(this);
+  }
+
+  //TODO Handle Error
+  componentDidMount() {
+     getCategoryList ()
+    .then(response => this.setState({ categoryList: response.data}))
+    .catch(error => {
+      //this.setState({ error: 'Please try again later'})
+      console.log(error)
+    })
   }
 
   handleChange(e) {
@@ -79,7 +92,8 @@ class WorkshopForm extends Component {
     return invalid;
   }
 
-  //TO DO: REDIRECT TO USER TO SUCCESS PAGE
+  //TO DO: REDIRECT USER TO SUCCESS PAGE
+  //CONFIRM WITH CHRIS LOCATION ID IS ACCURATE
   handleSubmit(e) {
     e.preventDefault();
 
@@ -88,15 +102,16 @@ class WorkshopForm extends Component {
     if (error) {
       window.scrollTo(0, 0);
     } else {
-      console.log({
-        name: this.state.name,
-        date: this.state.date,
-        location: this.state.location,
-        link: this.state.link,
-        description: this.state.description
-      });
 
-      console.log("form was submitted");
+      const data = {
+        name: this.state.name,
+        start: this.state.date.format('YYYY-MM-DDTHH:mm:ss.SSS'),
+        locationId: this.state.location,
+        categoryId: this.state.categorySelected,
+        webex: this.state.link,
+        description: this.state.description
+      }
+      createWorkshop(data)
     }
   }
 
@@ -118,6 +133,19 @@ class WorkshopForm extends Component {
                     autoFocus
                   />
                   <span className="error">{this.state.error.name}</span>
+                </label>
+              </div>
+              <div className="medium-8 cell">
+                <label>
+                  Category
+                  <select
+                    name="categorySelected"
+                    value={this.state.categorySelected}
+                    onChange={this.handleChange}>
+                    {this.state.categoryList.map(category => {
+                       return <option value={category.id}>{category.name}</option>
+                    })}
+                  </select>
                 </label>
               </div>
               <div className="medium-8 cell">
@@ -151,17 +179,16 @@ class WorkshopForm extends Component {
                   <select
                     name="location"
                     value={this.state.location}
-                    onChange={this.handleChange}
-                  >
-                    <option value="New York">New York </option>
-                    <option value="Denver">Denver </option>
-                    <option value="Bangalore">Bangalore </option>
-                    <option value="Dublin">Dublin</option>
-                    <option value="Edinburgh">Edinburgh </option>
-                    <option value="Gdansk">Gdansk</option>
-                    <option value="London">London</option>
-                    <option value="Plano">Plano</option>
-                    <option value="Warshaw">Warsaw </option>
+                    onChange={this.handleChange}>
+                    <option value="1">New York </option>
+                    <option value="2">Denver </option>
+                    <option value="3">Bangalore </option>
+                    <option value="4">Dublin</option>
+                    <option value="5">Edinburgh </option>
+                    <option value="6">Gdansk</option>
+                    <option value="7">London</option>
+                    <option value="8">Plano</option>
+                    <option value="9">Warsaw </option>
                   </select>
                 </label>
               </div>
