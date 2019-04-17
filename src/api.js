@@ -54,8 +54,16 @@ export const getWorkshop = (id, callback) => {
 }
 
 export const enrollWorkshop = (id, callback) => {
+  const token = localStorage.getItem('BTToken')
   const url = `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops/${id}/enroll`
-  axios.put(url)
+  axios.request({
+    url,
+    method: 'put',
+    headers: {
+      'Authorization':
+        'Bearer ' + token
+    }
+  })
     .then(response => {
       callback(response)
     })
@@ -63,9 +71,18 @@ export const enrollWorkshop = (id, callback) => {
       callback(error)
     })
 }
+
 export const unenrollWorkshop = (id, callback) => {
+  const token = localStorage.getItem('BTToken')
   const url = `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops/${id}/enroll`
-  axios.delete(url)
+  axios.request({
+    url,
+    method: 'delete',
+    headers: {
+      'Authorization':
+        'Bearer ' + token
+    }
+  })
     .then(response => {
       callback(response)
     })
