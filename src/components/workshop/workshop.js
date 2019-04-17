@@ -3,7 +3,6 @@ import { JumbotronComponent } from '../jumbotron'
 import './workshop.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { UserPreviewComponent } from '../userpreview'
-import workshopData from "./mock-workshops.json"
 import Moment from 'react-moment';
 import { NavbarComponent } from '../navbar';
 import { Link } from 'react-router-dom';
@@ -17,7 +16,8 @@ export default class Workshop extends Component {
     this.state = {
       workshop: {},
       confirmation: false,
-      userId: ''
+      userId: null,
+      educatorId: 12
     };
   };
 
@@ -25,15 +25,13 @@ export default class Workshop extends Component {
     this.setState({
       userId: this.context.userId
     })
-
+    /*todo set educatorId: data.data.educatorId from response*/
     getWorkshop(this.props.computedMatch.params.id)
       .then((data) => {
-        console.log(data.data)
         this.setState({
           workshop: data.data
         })
       })
-
   }
 
   updateImage(location) {
@@ -43,13 +41,16 @@ export default class Workshop extends Component {
   }
 
   render() {
-    console.log('workshop state', this.state.userId)
-    const { workshop, userId } = this.state
+    const { workshop, userId, educatorId } = this.state
     const attendees = (workshop.attendees ? workshop.attendees : []);
     const cover = workshop.imageUrl ? workshop.imageUrl : coverGenerator(workshop.id);
     const location = workshop.location ? workshop.location : "";
     const instructor = (workshop.educator ? workshop.educator : { firstName: "", lastName: "" })
     const { isUser } = this.props
+    const isEducator = userId === educatorId
+    const isAttending = null /*selector function here to parse userId from workshop.workshopAttendees*/
+    console.log('userId: ', typeof userId, 'educatorId: ', typeof educatorId, 'isEducator: ', isEducator)
+    console.log('context userID: ', this.context.userId)
     return (
       <Fragment>
         <NavbarComponent isUser={isUser} location={this.props.location} />
@@ -62,7 +63,7 @@ export default class Workshop extends Component {
           <div className="grid-x">
             <div className="small-12 instructor-info">
               <div className="photo-frame">
-                <img src={instructor.imageUrl} />
+                <img src={instructor.imageUrl} alt="" />
               </div>
 
               <p>Hosted by <strong>{instructor.firstName}  {instructor.lastName}</strong><br />
@@ -74,7 +75,15 @@ export default class Workshop extends Component {
           </div>
           <div className="grid-x enroll-top">
             {/*todo if isUser && userId === educatorId then edit button. if isUser && workshopUsers does not include userId, change to enroll or cancel enroll? or enrolled??   */}
-            <Link type="button" to={isUser ? "/enroll" : "/login"} className="button expanded">ENROLL</Link>
+            {/* <Link type="button" to={isUser ? "/enroll" : "/login"} className="button expanded">ENROLL</Link> */}
+            {
+              isEducator
+                ? <button className="button expanded">EDIT</button>
+                : isAttending
+                  ? <button type="button" className="button expanded">UNENROLL</button>
+                  : <button type="button" className="button expanded">ENROLL</button>
+
+            }
           </div>
 
           <div className="grid-x">
