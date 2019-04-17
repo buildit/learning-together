@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import moment from "moment";
 import { SingleDatePicker } from "react-dates";
 import { Link } from "react-router-dom";
-import { createWorkshop, getCategoryList } from '../../api.js'
+import { createWorkshop, getCategoryList } from "../../api.js";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import "./workshopForm.scss";
@@ -12,14 +12,16 @@ class WorkshopForm extends Component {
     super(props);
     this.state = {
       name: "",
-      location: "New York",
+      location: 1,
       link: "",
       description: "",
-      date: moment(),
+      startDate: moment(),
+      endDate: null,
       calendarFocused: false,
       categoryList: [],
       categorySelected: 1,
-      time: "",
+      startTime: "",
+      endTime: "",
       error: {}
     };
     this.handleChange = this.handleChange.bind(this);
@@ -29,32 +31,43 @@ class WorkshopForm extends Component {
     this.validateForm = this.validateForm.bind(this);
   }
 
-  //Handle Error
+  //TODO Handle Error
   componentDidMount() {
-     getCategoryList ()
-    .then(response => {
-      this.setState({ categoryList: response.data})
-  })
-    .catch(error => {
-      //this.setState({ error: 'Please try again later'})
-      console.log(error)
-    })
+    getCategoryList()
+      .then(response => this.setState({ categoryList: response.data }))
+      .catch(error => {
+        //this.setState({ error: 'Please try again later'})
+        console.log(error);
+      });
   }
 
+  //If input is start time or date time modify moment object
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
-    if (e.target.name === "time") {
-      this.setState({ time: e.target.value });
+    if (e.target.name === "startTime" || e.target.name === "endTime") {
+      this.setState({ [e.target.name]: e.target.value });
 
-      if (this.state.date) {
-        this.state.date.set({ h: e.target.value.slice(0, 2) });
-        this.state.date.set({ m: e.target.value.slice(3, 5) });
+      if (e.target.name === "startTime" && this.state.startDate) {
+        this.state.startDate.set({ h: e.target.value.slice(0, 2) });
+        this.state.startDate.set({ m: e.target.value.slice(3, 5) });
+      }
+
+      if (e.target.name === "endTime" && this.state.endDate) {
+        const endDate = this.state.startDate.clone();
+        endDate.set({ h: e.target.value.slice(0, 2) });
+        endDate.set({ m: e.target.value.slice(3, 5) });
+        this.setState({ endDate });
       }
     }
   }
 
   onDateChange(date) {
-    this.setState({ date });
+    this.setState({
+      startDate: date,
+      endDate: date,
+      startTime: "",
+      endTime: ""
+    });
   }
 
   onFocusChange({ focused }) {
@@ -70,12 +83,16 @@ class WorkshopForm extends Component {
       invalid = true;
     }
 
-    if (this.state.date === null) {
+    if (this.state.startDate === null) {
       errors["date"] = "Pick valid date";
       invalid = true;
     }
 
-    if (this.state.time === "") {
+    if (
+      this.state.startTime === "" ||
+      this.state.endTime === "" ||
+      this.state.startTime > this.state.endTime
+    ) {
       errors["time"] = "Pick valid time";
       invalid = true;
     }
@@ -95,7 +112,6 @@ class WorkshopForm extends Component {
   }
 
   //TO DO: REDIRECT USER TO SUCCESS PAGE
-  //FIX LOCATION TO BE SET DYNAMICALLY
   handleSubmit(e) {
     e.preventDefault();
 
@@ -104,16 +120,16 @@ class WorkshopForm extends Component {
     if (error) {
       window.scrollTo(0, 0);
     } else {
-
       const data = {
         name: this.state.name,
-        date: this.state.date,
-        locationId: 1,
+        start: this.state.startDate.format("YYYY-MM-DDTHH:mm:ss.SSS"),
+        end: this.state.endDate.format("YYYY-MM-DDTHH:mm:ss.SSS"),
+        locationId: this.state.location,
         categoryId: this.state.categorySelected,
-        link: this.state.link,
+        webex: this.state.link,
         description: this.state.description
-      }
-      createWorkshop(data)
+      };
+      createWorkshop(data);
     }
   }
 
@@ -146,7 +162,11 @@ class WorkshopForm extends Component {
                     onChange={this.handleChange}
                   >
                     {this.state.categoryList.map(category => {
-                       return <option value={category.id}>{category.name}</option>
+                      return (
+                        <option key={category.id} value={category.id}>
+                          {category.name}
+                        </option>
+                      );
                     })}
                   </select>
                 </label>
@@ -154,22 +174,36 @@ class WorkshopForm extends Component {
               <div className="medium-8 cell">
                 <label>Date</label>
                 <SingleDatePicker
-                  date={this.state.date}
+                  date={this.state.startDate}
                   onDateChange={this.onDateChange}
                   focused={this.state.calendarFocused}
                   onFocusChange={this.onFocusChange}
                   numberOfMonths={1}
                 />
                 <span className="error">{this.state.error.date}</span>
+              </div>
+              <div className="medium-8 cell">
                 <label>
-                  {" "}
-                  Time
+                  Start Time
                   <input
                     type="time"
-                    name="time"
+                    name="startTime"
                     min="10:00"
                     max="18:00"
-                    value={this.state.time}
+                    value={this.state.startTime}
+                    required
+                    onChange={this.handleChange}
+                  />
+                  <span className="error">{this.state.error.time}</span>
+                </label>
+                <label>
+                  End Time
+                  <input
+                    type="time"
+                    name="endTime"
+                    min="10:00"
+                    max="18:00"
+                    value={this.state.endTime}
                     required
                     onChange={this.handleChange}
                   />
@@ -184,15 +218,12 @@ class WorkshopForm extends Component {
                     value={this.state.location}
                     onChange={this.handleChange}
                   >
-                    <option value="New York">New York </option>
-                    <option value="Denver">Denver </option>
-                    <option value="Bangalore">Bangalore </option>
-                    <option value="Dublin">Dublin</option>
-                    <option value="Edinburgh">Edinburgh </option>
-                    <option value="Gdansk">Gdansk</option>
-                    <option value="London">London</option>
-                    <option value="Plano">Plano</option>
-                    <option value="Warshaw">Warsaw </option>
+                    <option value="1">New York </option>
+                    <option value="2">London</option>
+                    <option value="3">Edinburgh </option>
+                    <option value="4">Dublin</option>
+                    <option value="5">Denver </option>
+                    <option value="6">Dallas </option>
                   </select>
                 </label>
               </div>

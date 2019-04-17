@@ -6,7 +6,7 @@ import "./workshopPreview.scss";
 
 const WorkshopPreview = ({ workshop }) => {
   return (
-   
+
     <article className="workshop grid-container">
  <Link to={`/workshop/${workshop.id}`} className="workshop-link grid-x grid-margin-x">
     <div className="cell small-12 cell">
@@ -19,7 +19,7 @@ const WorkshopPreview = ({ workshop }) => {
 </div>
         </Link>
     </article>
-  
+
   );
 };
 export default WorkshopPreview;

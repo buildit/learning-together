@@ -2,11 +2,19 @@ import React, { Fragment } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { signIn } from '../../api'
 import { NavbarComponent } from '../navbar';
+import { UserContext } from '../../UserProvider'
+import './login.scss'
 
 export default class LoginComponent extends React.Component {
   constructor() {
     super()
-    this.state = { email: '', password: '', loginSuccess: false }
+    this.state = {
+      email: '',
+      password: '',
+      loginSuccess: false,
+      loginError: false,
+      userId: ''
+    }
     this.submitCallback = this.submitCallback.bind(this)
   }
 
@@ -24,14 +32,24 @@ export default class LoginComponent extends React.Component {
     signIn({ Username: formattedEmail, Password: password }, this.submitCallback)
   }
   submitCallback(response) {
-    localStorage.setItem('BTToken', response.data.token)
-    this.setState({ loginSuccess: true })
+    if (response.status === 200) {
+      localStorage.setItem('BTToken', response.data.token)
+      this.context.updateUser(response.data.id)
+      this.setState({
+        loginSuccess: true,
+        userId: response.data.id
+      })
+    }
+    else {
+      this.setState({ loginError: true })
+    }
   }
+
   render() {
-    const { email, password, loginSuccess } = this.state
+    const { email, password, loginSuccess, userId, loginError } = this.state
     return (
       <Fragment>
-        <NavbarComponent isUser={this.props.isUser} />
+        <NavbarComponent isUser={this.props.isUser} userId={userId} />
         <div className="grid-container">
           <div className="grid-y medium-grid-frame">
             <div className="grid-x grid-padding-x align-middle">
@@ -48,6 +66,11 @@ export default class LoginComponent extends React.Component {
                     <label>Password:
                 <input type="password" autoComplete="current-password" placeholder="Please Enter Your Password." name='password' value={password} onChange={this.inputHandler.bind(this)} />
                     </label>
+                    {
+                      loginError && (
+                        <div className='login-error'>Username or password not found. Please try again.</div>
+                      )
+                    }
                   </div>
                 </div>
                 <div>
@@ -69,11 +92,13 @@ export default class LoginComponent extends React.Component {
         </div >
         {
           loginSuccess && (
-            <Redirect to='/' />
+            <Redirect to={{ pathname: '/', state: { userId } }} />
           )
         }
-      </Fragment >
+      </Fragment>
 
     )
   }
 }
+
+LoginComponent.contextType = UserContext
