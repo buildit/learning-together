@@ -22,8 +22,7 @@ export default class Workshop extends Component {
     this.getWorkshopCallback = this.getWorkshopCallback.bind(this)
     this.enrollWorshopCallback = this.enrollWorshopCallback.bind(this)
     this.unenrollWorshopCallback = this.unenrollWorshopCallback.bind(this)
-    this.successfulMessageCallback = this.successfulMessageCallback.bind(this)
-    this.unsuccessfulMessageCallback = this.unsuccessfulMessageCallback.bind(this)
+    this.messageCallback = this.messageCallback.bind(this)
   };
 
   componentDidMount() {
@@ -61,7 +60,7 @@ export default class Workshop extends Component {
       console.log(response)
     }
   }
-  successfulMessageCallback() {
+  messageCallback() {
     this.setState({ showMessage: false, message: '' })
   }
 
@@ -159,10 +158,10 @@ export default class Workshop extends Component {
           </div>
         </div>
         {
-          isEnrollSuccessful && (<MessageComponent message='You have succesfully enrolled!' callback={this.successfulMessageCallback} />)
+          isEnrollSuccessful && (<MessageComponent message='You have succesfully enrolled!' callback={this.messageCallback} />)
         }
         {
-          enrollError && (<MessageComponent message='There was an error in enrollment. Please try again later' callback={this.unsuccessfulMessageCallback} />)
+          enrollError && (<MessageComponent message='There was an error in enrollment. Please try again later' callback={this.messageCallback} />)
         }
       </Fragment>
     )
