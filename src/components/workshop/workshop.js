@@ -7,6 +7,7 @@ import workshopData from "./mock-workshops.json"
 import Moment from 'react-moment';
 import { NavbarComponent } from '../navbar';
 import { Link, withRouter } from 'react-router-dom';
+import { getWorkshop,coverGenerator } from '../../api';
 
 export default class Workshop extends Component {
 
@@ -19,9 +20,14 @@ export default class Workshop extends Component {
   };
 
   componentDidMount() {
-    this.setState({
-      workshop: workshopData[0]
+    getWorkshop(this.props.computedMatch.params.id)
+    .then((data) => {
+      console.log(data.data)
+      this.setState({
+        workshop: data.data
+      })
     })
+
   }
 
   updateImage(location) {
@@ -34,8 +40,9 @@ export default class Workshop extends Component {
 
     const workshop = this.state.workshop
     const attendees = (workshop.attendees ? workshop.attendees : []);
-    const cover = (workshop.location ? this.updateImage(workshop.location) : "")
-    const instructor = (workshop.instructor ? workshop.instructor : { first: "", last: "" })
+    const cover = workshop.imageUrl ? workshop.imageUrl : coverGenerator(workshop.id);
+    const location = workshop.location ? workshop.location : "";
+    const instructor = (workshop.educator ? workshop.educator : { firstName: "", lastName: "" })
     const { isUser } = this.props
     return (
       <Fragment>
@@ -49,10 +56,10 @@ export default class Workshop extends Component {
             <div className="grid-x">
             <div className="small-12 instructor-info">
               <div className="photo-frame">
-              <img src={instructor.image} />
+              <img src={instructor.imageUrl} />
               </div>
               
-              <p>Hosted by <strong>{instructor.first}  {instructor.last}</strong><br />
+              <p>Hosted by <strong>{instructor.firstName}  {instructor.lastName}</strong><br />
               <a href="true" className="email">Contact Instructor</a></p>
             
               </div>
@@ -81,20 +88,17 @@ export default class Workshop extends Component {
                     <FontAwesomeIcon icon="map-marker" size="2x"/>
                 </div>
                 <div className="small-10">
-                  <p> Brooklyn <br />
-                  Black <br /><a href={workshop.remote}>Webex</a> </p>
+                  <p> {location.name} <br />
+                  Black <br /><a href={workshop.webex}>Webex</a> </p>
                 </div>
             </div>
             </div>
          
 
-            <JumbotronComponent image={workshop.image}/>
+            <JumbotronComponent image={cover}/>
             <div className="grid-container">
             <p className="description">
-              Does it sound like an ad? Maybe. Is it true? Let’s figure it out!
-  
-              Comm’n join me for uBuildit Knowledge Sharing Session titled “Custom Elements or why you don’t need React anymore”
-              I will talk about this powerful but heavily underestimated technology  and share my personal experience of working with it in production
+              {workshop.description}
   
             </p>
             <hr />

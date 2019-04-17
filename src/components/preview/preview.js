@@ -1,26 +1,38 @@
 import React from "react";
 import Moment from 'react-moment';
 import './preview.scss'
+import {coverGenerator} from '../../api';
 
 //TODO: ADD IN EDUCATOR NAME & WORKSHOP IMAGE
-const Preview = ( workshop) => {
-  const {name, start} = workshop.workshop
-  const {firstName, lastName} = workshop.workshop.educator
-
+const Preview = ({ workshop }) => {
+  const img = workshop.imageUrl ? workshop.imageUrl : coverGenerator(workshop.id);
+  const {name, start} = workshop
+  const {firstName, lastName} = workshop.educator
   return (
-    <div className="card-scroll-single">
-      <div className="card" style={{ width: "84vw" }}>
+   
+      <div className="card" style={{ width: "100vw" }}>
       <div className="picture-frame">
-        <img src='https://source.unsplash.com/random/400x400' alt='workshop' />
-        </div>
+        <img src={img} alt='workshop' />
+      </div>
 
         <div className="card-section">
         <Moment format="LLLL">{start}</Moment>
-          <h2>{name}</h2>
-          <p>Instructor: {firstName} {lastName}</p>
+          <h4 className="workshop-preview-title">{name}</h4>
+          <p>Instructor: <b>{firstName} {lastName}</b></p>
         </div>
       </div>
-    </div>
+
   )
 };
 export default Preview;
+
+Preview.defaultProps = {
+  workshop : {
+    id: "",
+    educator : {
+      firstName: '',
+      lastName: "",
+      imageUrl: ""
+    }
+  }
+}
