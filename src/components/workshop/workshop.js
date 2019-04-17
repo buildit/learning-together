@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { UserContext } from '../../UserProvider'
 import { getWorkshop, coverGenerator, enrollWorkshop, unenrollWorkshop } from '../../api';
 import { MessageComponent } from '../message'
+import { filterAttendees } from '../../selectors'
 
 export default class Workshop extends Component {
 
@@ -18,7 +19,7 @@ export default class Workshop extends Component {
       workshop: {},
       confirmation: false,
       userId: null,
-      educatorId: 12,
+      educatorId: null,
       showMessage: false,
       message: ''
     };
@@ -36,9 +37,11 @@ export default class Workshop extends Component {
   }
   getWorkshopCallback(response) {
     console.log(response)
+    const { data } = response
     if (response.status === 200) {
       this.setState({
-        workshop: response.data
+        workshop: data,
+        educatorId: data.educator.id
       })
     }
     else {
@@ -53,7 +56,7 @@ export default class Workshop extends Component {
     else {
       //show error message
       this.setState({ showMessage: true, message: 'There was an error in enrollment. Please try again later.' })
-      console.log(response)
+      console.log('unenroll', response)
     }
   }
   unenrollWorshopCallback(response) {
@@ -63,7 +66,7 @@ export default class Workshop extends Component {
     else {
       //show error message
       this.setState({ showMessage: true, message: 'There was an error in unenrollment. Please try again later.' })
-      console.log(response)
+      console.log('unenroll', response)
     }
   }
   messageCallback() {
@@ -72,10 +75,12 @@ export default class Workshop extends Component {
 
   onClickEnroll(e) {
     e.preventDefault()
+    console.log('enroll onClick', this.state.workshop.id)
     enrollWorkshop(this.state.workshop.id, this.enrollWorshopCallback)
   }
   onClickUnenroll(e) {
     e.preventDefault()
+    console.log('unenroll onClick', this.state.workshop.id)
     unenrollWorkshop(this.state.workshop.id, this.enrollWorshopCallback)
   }
   updateImage(location) {
@@ -92,8 +97,8 @@ export default class Workshop extends Component {
     const instructor = (workshop.educator ? workshop.educator : { firstName: "", lastName: "" })
     const { isUser } = this.props
     const isEducator = userId === educatorId
-    const isAttending = null /*selector function here to parse userId from workshop.workshopAttendees*/
-    console.log('userId: ', typeof userId, 'educatorId: ', typeof educatorId, 'isEducator: ', isEducator)
+    const isAttending = filterAttendees(userId, workshop) /*selector function here to parse userId from workshop.workshopAttendees*/
+    console.log('userId: ', userId, 'educatorId: ', educatorId, 'isEducator: ', isEducator)
     console.log('context userID: ', this.context.userId)
     return (
       <Fragment>
@@ -107,7 +112,7 @@ export default class Workshop extends Component {
           <div className="grid-x">
             <div className="small-12 instructor-info">
               <div className="photo-frame">
-                <img src={instructor.imageUrl} />
+                <img src={instructor.imageUrl} alt="" />
               </div>
 
               <p>Hosted by <strong>{instructor.firstName}  {instructor.lastName}</strong><br />
@@ -122,10 +127,10 @@ export default class Workshop extends Component {
             {/* <Link type="button" to={isUser ? "/enroll" : "/login"} className="button expanded">ENROLL</Link> */}
             {
               isEducator
-                ? <button className="button expanded">EDIT</button>
+                ? <button className="button expanded" onClick={() => { }}>EDIT</button>
                 : isAttending
-                  ? <button type="button" className="button expanded">UNENROLL</button>
-                  : <button type="button" className="button expanded">ENROLL</button>
+                  ? <button type="button" className="button expanded" onClick={this.onClickUnenroll.bind(this)}>UNENROLL</button>
+                  : <button type="button" className="button expanded" onClick={this.onClickEnroll.bind(this)}>ENROLL</button>
 
             }
           </div >
