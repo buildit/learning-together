@@ -36,12 +36,11 @@ export default class Workshop extends Component {
     getWorkshop(this.props.computedMatch.params.id, this.getWorkshopCallback)
   }
   getWorkshopCallback(response) {
-    console.log(response)
     const { data } = response
     if (response.status === 200) {
       this.setState({
         workshop: data,
-        educatorId: data.educator.id
+        educatorId: data.educator.id,
       })
     }
     else {
@@ -51,22 +50,22 @@ export default class Workshop extends Component {
   }
   enrollWorshopCallback(response) {
     if (response.status === 200) {
-      this.setState({ showMessage: true, message: 'You have succesfully enrolled!' })
+      this.setState({ showMessage: true, message: 'You have successfully enrolled!' })
+      getWorkshop(this.props.computedMatch.params.id, this.getWorkshopCallback)
     }
     else {
       //show error message
       this.setState({ showMessage: true, message: 'There was an error in enrollment. Please try again later.' })
-      console.log('unenroll', response)
     }
   }
   unenrollWorshopCallback(response) {
     if (response.status === 200) {
-      this.setState({ showMessage: true, message: 'You have succesfully unenrolled!' })
+      this.setState({ showMessage: true, message: 'You have succesfsully unenrolled!' })
+      getWorkshop(this.props.computedMatch.params.id, this.getWorkshopCallback)
     }
     else {
       //show error message
       this.setState({ showMessage: true, message: 'There was an error in unenrollment. Please try again later.' })
-      console.log('unenroll', response)
     }
   }
   messageCallback() {
@@ -75,13 +74,11 @@ export default class Workshop extends Component {
 
   onClickEnroll(e) {
     e.preventDefault()
-    console.log('enroll onClick', this.state.workshop.id)
     enrollWorkshop(this.state.workshop.id, this.enrollWorshopCallback)
   }
   onClickUnenroll(e) {
     e.preventDefault()
-    console.log('unenroll onClick', this.state.workshop.id)
-    unenrollWorkshop(this.state.workshop.id, this.enrollWorshopCallback)
+    unenrollWorkshop(this.state.workshop.id, this.unenrollWorshopCallback)
   }
   updateImage(location) {
     const formatted = location.replace(/\s/g, "-")
@@ -90,18 +87,20 @@ export default class Workshop extends Component {
   }
 
   render() {
-    const { workshop, userId, educatorId, isEnrollSuccessful, enrollError } = this.state
+    const { workshop, userId, educatorId, isEnrollSuccessful, enrollError, showMessage, message } = this.state
     const attendees = (workshop.attendees ? workshop.attendees : []);
     const cover = workshop.imageUrl ? workshop.imageUrl : coverGenerator(workshop.id);
     const location = workshop.location ? workshop.location : "";
     const instructor = (workshop.educator ? workshop.educator : { firstName: "", lastName: "" })
     const { isUser } = this.props
     const isEducator = userId === educatorId
-    const isAttending = filterAttendees(userId, workshop) /*selector function here to parse userId from workshop.workshopAttendees*/
-    console.log('userId: ', userId, 'educatorId: ', educatorId, 'isEducator: ', isEducator)
-    console.log('context userID: ', this.context.userId)
+    const isAttending = workshop && filterAttendees(userId, workshop)
+    console.log('message', message)
     return (
       <Fragment>
+        {
+          showMessage && <MessageComponent message={message} callback={this.messageCallback} />
+        }
         <NavbarComponent isUser={isUser} location={this.props.location} />
         <div className="grid-container">
           <div className="grid-x">
