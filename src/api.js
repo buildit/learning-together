@@ -7,7 +7,7 @@ export async function signIn(data, callback) {
         callback(response)
       })
       .catch(error => {
-        return error
+        callback(error)
       })
   })
 }
