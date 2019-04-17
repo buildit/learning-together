@@ -95,7 +95,6 @@ export default class Workshop extends Component {
     const { isUser } = this.props
     const isEducator = userId === educatorId
     const isAttending = workshop && filterAttendees(userId, workshop)
-    console.log('message', message)
     return (
       <Fragment>
         {
@@ -122,15 +121,14 @@ export default class Workshop extends Component {
 
           </div>
           < div className="grid-x enroll-top" >
-            {/*todo if isUser && userId === educatorId then edit button. if isUser && workshopUsers does not include userId, change to enroll or cancel enroll? or enrolled??   */}
-            {/* <Link type="button" to={isUser ? "/enroll" : "/login"} className="button expanded">ENROLL</Link> */}
             {
-              isEducator
-                ? <button className="button expanded" onClick={() => { }}>EDIT</button>
-                : isAttending
-                  ? <button type="button" className="button expanded" onClick={this.onClickUnenroll.bind(this)}>UNENROLL</button>
-                  : <button type="button" className="button expanded" onClick={this.onClickEnroll.bind(this)}>ENROLL</button>
-
+              isUser
+                ? isEducator
+                  ? <button className="button expanded" onClick={() => { }}>EDIT</button>
+                  : isAttending
+                    ? <button type="button" className="button expanded" onClick={this.onClickUnenroll.bind(this)}>UNENROLL</button>
+                    : <button type="button" className="button expanded" onClick={this.onClickEnroll.bind(this)}>ENROLL</button>
+                : <Link type="button" to="/login" className="button expanded" onClick={() => { }}>LOGIN TO ENROLL</Link>
             }
           </div >
 
