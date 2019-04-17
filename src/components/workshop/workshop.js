@@ -22,7 +22,6 @@ export default class Workshop extends Component {
   componentDidMount() {
     getWorkshop(this.props.computedMatch.params.id)
     .then((data) => {
-      console.log(data.data)
       this.setState({
         workshop: data.data
       })
@@ -38,12 +37,14 @@ export default class Workshop extends Component {
 
   render() {
 
-    const workshop = this.state.workshop
-    const attendees = (workshop.attendees ? workshop.attendees : []);
+    const workshop = this.state.workshop;
+    const attendees = (workshop.workshopAttendees ? workshop.workshopAttendees : []);
     const cover = workshop.imageUrl ? workshop.imageUrl : coverGenerator(workshop.id);
     const location = workshop.location ? workshop.location : "";
     const instructor = (workshop.educator ? workshop.educator : { firstName: "", lastName: "" })
-    const { isUser } = this.props
+    const { isUser } = this.props;
+    const baseUrl = "http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/";
+ 
     return (
       <Fragment>
         <NavbarComponent isUser={isUser} location={this.props.location}/>
@@ -56,7 +57,7 @@ export default class Workshop extends Component {
             <div className="grid-x">
             <div className="small-12 instructor-info">
               <div className="photo-frame">
-              <img src={instructor.imageUrl} />
+              <img src={`${baseUrl}${instructor.imageUrl}`} />
               </div>
               
               <p>Hosted by <strong>{instructor.firstName}  {instructor.lastName}</strong><br />
@@ -107,7 +108,7 @@ export default class Workshop extends Component {
               <section className="grid-display attendee-grid">
 
                 {attendees.map((attendee, index) => (
-
+                 
                   <UserPreviewComponent key={index} attendee={attendee} />
 
                 ))}

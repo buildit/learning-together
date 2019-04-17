@@ -26,7 +26,7 @@
 }
 
   .attendee-grid {
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: repeat(4, auto);
   grid-template-rows: 100px;
   grid-gap: 10px;
   padding-top: 1em;
@@ -34,6 +34,10 @@
 
   .attendees {
   width: 100%;
+
+    .photo-frame {
+      margin-right: 0;
+    }
   }
   .email {
   margin-bottom: 4rem;

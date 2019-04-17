@@ -1,24 +1,40 @@
 import React, { Component, Fragment } from "react";
 import { WorkshopPreviewComponent } from "../workshopPreview";
 import { NavbarComponent } from "../navbar";
-import workshopData from "./mock-workshops.json"
+import workshopData from "./mock-workshops.json";
+import { getWorkshopList,coverGenerator } from "../../api";
 import "./workshoplist.scss";
 
 class WorkshopList extends Component {
-  render() {
-    // const workshopList = this.props.location.state.filter(workshop => {
-    //   return workshop.category === this.props.location.category;
-    // });
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: "",
+      workshops: []
+    }
+  }
+  
+  componentDidMount(){
+    getWorkshopList(this.props.computedMatch.params.id)
+    .then((data) => {
+      this.setState({
+        workshops: data.data,
+        title: this.props.computedMatch.params.title
+      })
+    })
+  }
 
+  render() {
     return (
       <Fragment>
         <NavbarComponent isUser={this.props.isUser} location={this.props.location} />
         <section className="current-category">
-          <h1 className="section-title"><b>UX</b></h1>
+          <h1 className="section-title"><b>{this.state.title}</b></h1>
         </section>
-        <section class="workshop-list grid-container">
+        <section className="workshop-list grid-container">
         <div className="grid-x">
-        {workshopData.map(workshop => (
+        {this.state.workshops.map(workshop => (
           <WorkshopPreviewComponent key={workshop.id} workshop={workshop} />
         ))}
         {/* {workshopList.length === 0 ? (

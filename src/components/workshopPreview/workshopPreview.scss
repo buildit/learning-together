@@ -2,10 +2,12 @@
   color: #0a0a0a;
 }
 .workshops {
+
   .workshop {
     border-bottom: 1px solid #ccc;
     margin-bottom: 1em;
   }
+  
   .button {
     max-height: 3.5em;
     margin-bottom: 0;
@@ -28,7 +30,6 @@
 
     span:nth-child(2) {
       font-weight: 900;
-      font-size: 2rem;
     }
   }
 }

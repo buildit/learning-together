@@ -6,6 +6,7 @@ import Moment from 'react-moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NavbarComponent } from '../navbar';
 import { WorkshopPreviewComponent } from "../workshopPreview";
+import { getUser,coverGenerator } from '../../api';
 
 export default class UserProfileComponent extends React.Component {
 
@@ -20,23 +21,30 @@ export default class UserProfileComponent extends React.Component {
 
     componentDidMount() {
         //Merge attended and teaching array
-        let attending = userData[0].classes.attending.map((workshop) => {
-            workshop.status = "attending"
-            return workshop
+        getUser(this.props.computedMatch.params.id)
+        .then((data) => {
+          
+            let attending = data.data.workshopsAttending.map((workshop) => {
+                workshop.status = "attending"
+                return workshop
+            })
+    
+            let teaching = data.data.workshopsTeaching.map((workshop) => {
+                workshop.status = "teaching"
+                return workshop
+            })
+    
+            const all = attending.concat(teaching);
+
+            this.setState({
+                user: data.data,
+                classes: all,
+                all: all
+            })
+            
         })
 
-        let teaching = userData[0].classes.teaching.map((workshop) => {
-            workshop.status = "teaching"
-            return workshop
-        })
 
-        const all = attending.concat(teaching);
-
-        this.setState({
-            user: userData[0],
-            classes: all,
-            all: all
-        })
     }
 
     updateWorkshopList(event) {
@@ -58,7 +66,10 @@ export default class UserProfileComponent extends React.Component {
     }
 
     render() {
-        const { isUser } = this.props
+        const { isUser } = this.props;
+        const user = this.state.user;
+        const baseUrl = "http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/";
+        const profile = (user.imageUrl !== "") ? `${baseUrl}${user.imageUrl}` : "";
         return (
             <Fragment>
                 <NavbarComponent isUser={this.props.isUser} />
@@ -67,14 +78,17 @@ export default class UserProfileComponent extends React.Component {
                             <div className="cell small-6">
                                 <div className="profile-pic">
                                     <div className="profile-frame">
-                                        <img src={profile} alt="" />
+                                    <img src={profile} />
                                     </div>
                                     <a href="/">Edit</a>
                                 </div>
                                 <div className="user-info">
-                                    <h2>Clarence Morris</h2>
-                                    <h3><FontAwesomeIcon icon="map-marker" /> <strong>Buildit Brooklyn</strong></h3>
-                                    <h3>Creative Tech</h3>
+                                    <h2>{user.firstName} {user.lastName}</h2>
+                                    {
+                                        user.location ? <h3><FontAwesomeIcon icon="map-marker" /> <strong>{user.location.name}</strong></h3> : ""
+                                    }
+                                    
+                                    <h3>{user.role ? user.role.name : ""} </h3>
                                 </div>
                             </div>
                         </div>
