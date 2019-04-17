@@ -2,15 +2,17 @@ import React, { Fragment } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { signIn } from '../../api'
 import { NavbarComponent } from '../navbar';
-import { UserContext, UserConsumer } from '../../UserProvider'
+import { UserContext } from '../../UserProvider'
+import './login.scss'
 
 export default class LoginComponent extends React.Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
       email: '',
       password: '',
       loginSuccess: false,
+      loginError: false,
       userId: ''
     }
     this.submitCallback = this.submitCallback.bind(this)
@@ -30,16 +32,21 @@ export default class LoginComponent extends React.Component {
     signIn({ Username: formattedEmail, Password: password }, this.submitCallback)
   }
   submitCallback(response) {
-    const { data } = response
-    localStorage.setItem('BTToken', data.token)
-    this.context.updateUser(data.id)
-    this.setState({
-      loginSuccess: true,
-      userId: data.id
-    })
+    if (response.status === 200) {
+      localStorage.setItem('BTToken', response.data.token)
+      this.context.updateUser(response.data.id)
+      this.setState({
+        loginSuccess: true,
+        userId: response.data.id
+      })
+    }
+    else {
+      this.setState({ loginError: true })
+    }
   }
+
   render() {
-    const { email, password, loginSuccess, userId } = this.state
+    const { email, password, loginSuccess, userId, loginError } = this.state
     return (
       <Fragment>
         <NavbarComponent isUser={this.props.isUser} userId={userId} />
@@ -59,6 +66,11 @@ export default class LoginComponent extends React.Component {
                     <label>Password:
                 <input type="password" autoComplete="current-password" placeholder="Please Enter Your Password." name='password' value={password} onChange={this.inputHandler.bind(this)} />
                     </label>
+                    {
+                      loginError && (
+                        <div className='login-error'>Username or password not found. Please try again.</div>
+                      )
+                    }
                   </div>
                 </div>
                 <div>

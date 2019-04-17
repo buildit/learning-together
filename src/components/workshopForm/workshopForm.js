@@ -12,7 +12,7 @@ class WorkshopForm extends Component {
     super(props);
     this.state = {
       name: "",
-      location: "New York",
+      location: 1,
       link: "",
       description: "",
       date: moment(),
@@ -29,12 +29,10 @@ class WorkshopForm extends Component {
     this.validateForm = this.validateForm.bind(this);
   }
 
-  //Handle Error
+  //TODO Handle Error
   componentDidMount() {
      getCategoryList ()
-    .then(response => {
-      this.setState({ categoryList: response.data})
-  })
+    .then(response => this.setState({ categoryList: response.data}))
     .catch(error => {
       //this.setState({ error: 'Please try again later'})
       console.log(error)
@@ -95,7 +93,7 @@ class WorkshopForm extends Component {
   }
 
   //TO DO: REDIRECT USER TO SUCCESS PAGE
-  //FIX LOCATION TO BE SET DYNAMICALLY
+  //CONFIRM WITH CHRIS LOCATION ID IS ACCURATE
   handleSubmit(e) {
     e.preventDefault();
 
@@ -107,10 +105,10 @@ class WorkshopForm extends Component {
 
       const data = {
         name: this.state.name,
-        date: this.state.date,
-        locationId: 1,
+        start: this.state.date.format('YYYY-MM-DDTHH:mm:ss.SSS'),
+        locationId: this.state.location,
         categoryId: this.state.categorySelected,
-        link: this.state.link,
+        webex: this.state.link,
         description: this.state.description
       }
       createWorkshop(data)
@@ -143,8 +141,7 @@ class WorkshopForm extends Component {
                   <select
                     name="categorySelected"
                     value={this.state.categorySelected}
-                    onChange={this.handleChange}
-                  >
+                    onChange={this.handleChange}>
                     {this.state.categoryList.map(category => {
                        return <option value={category.id}>{category.name}</option>
                     })}
@@ -182,17 +179,16 @@ class WorkshopForm extends Component {
                   <select
                     name="location"
                     value={this.state.location}
-                    onChange={this.handleChange}
-                  >
-                    <option value="New York">New York </option>
-                    <option value="Denver">Denver </option>
-                    <option value="Bangalore">Bangalore </option>
-                    <option value="Dublin">Dublin</option>
-                    <option value="Edinburgh">Edinburgh </option>
-                    <option value="Gdansk">Gdansk</option>
-                    <option value="London">London</option>
-                    <option value="Plano">Plano</option>
-                    <option value="Warshaw">Warsaw </option>
+                    onChange={this.handleChange}>
+                    <option value="1">New York </option>
+                    <option value="2">Denver </option>
+                    <option value="3">Bangalore </option>
+                    <option value="4">Dublin</option>
+                    <option value="5">Edinburgh </option>
+                    <option value="6">Gdansk</option>
+                    <option value="7">London</option>
+                    <option value="8">Plano</option>
+                    <option value="9">Warsaw </option>
                   </select>
                 </label>
               </div>
