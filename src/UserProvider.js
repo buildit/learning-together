@@ -8,7 +8,7 @@ class UserProvider extends Component {
   constructor() {
     super()
     this.state = {
-      userId: 'Hi, I am a userId!',
+      userId: 'hi',
       updateUser: id => {
         this.setState({ userId: id })
       }

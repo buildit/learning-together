@@ -30,11 +30,11 @@ export default class Workshop extends Component {
   };
 
   componentDidMount() {
-    this.setState({
-      userId: this.context.userId
-    })
+    const userId = localStorage.getItem('userId')
+    this.setState({ userId: Number(userId) })
     getWorkshop(this.props.computedMatch.params.id, this.getWorkshopCallback)
   }
+
   getWorkshopCallback(response) {
     const { data } = response
     if (response.status === 200) {

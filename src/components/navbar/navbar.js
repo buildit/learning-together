@@ -26,6 +26,7 @@ class Navbar extends Component {
   }
   logoutHandler() {
     localStorage.removeItem('BTToken')
+    localStorage.removeItem('userId')
   }
 
   render() {
