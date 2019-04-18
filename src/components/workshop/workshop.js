@@ -156,7 +156,7 @@ export default class Workshop extends Component {
           <div className="grid-x enroll-top">
             {isUser ? (
               isEducator ? (
-                <button className="button expanded" onClick={() => {}}>
+                <button className="button expanded" onClick={() => { }}>
                   EDIT
                 </button>
               ) : isAttending ? (
@@ -168,24 +168,24 @@ export default class Workshop extends Component {
                   UNENROLL
                 </button>
               ) : (
-                <button
-                  type="button"
-                  className="button expanded"
-                  onClick={this.onClickEnroll.bind(this)}
-                >
-                  ENROLL
+                    <button
+                      type="button"
+                      className="button expanded"
+                      onClick={this.onClickEnroll.bind(this)}
+                    >
+                      ENROLL
                 </button>
-              )
+                  )
             ) : (
-              <Link
-                type="button"
-                to="/login"
-                className="button expanded"
-                onClick={() => {}}
-              >
-                LOGIN TO ENROLL
+                <Link
+                  type="button"
+                  to="/login"
+                  className="button expanded"
+                  onClick={() => { }}
+                >
+                  LOGIN TO ENROLL
               </Link>
-            )}
+              )}
           </div>
 
           <div className="grid-x">
@@ -202,7 +202,7 @@ export default class Workshop extends Component {
                 <Moment format="LT">{workshop.start}</Moment> -{" "}
                 <Moment format="LT">{workshop.end}</Moment>
                 <br />
-                <a href="true">Add to Calender</a>
+                <a href="true">Add to Calendar</a>
               </p>
             </div>
           </div>

@@ -53,6 +53,7 @@ export default class RegisterComponent extends React.Component {
   }
 
   getLocationCallback(response) {
+    console.log(response.data)
     if (response.status === 200) {
       let locationArray = []
       response.data.forEach(instance => {
@@ -60,7 +61,14 @@ export default class RegisterComponent extends React.Component {
       })
       this.setState({ locations: locationArray })
     } else {
-      this.setState({ locationFetchError: true })
+      const locationArray = [{ label: "London", value: 2 },
+      { label: "Brooklyn", value: 1 },
+      { label: "Edinburgh", value: 3 },
+      { label: "Dublin", value: 4 },
+      { label: "Denver", value: 5 },
+      { label: "Dallas", value: 6 }
+      ]
+      this.setState({ locationFetchError: true, locations: locationArray })
     }
   }
   toggleLocationError() {
