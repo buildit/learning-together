@@ -34,7 +34,7 @@ export default class LoginComponent extends React.Component {
   submitCallback(response) {
     if (response.status === 200) {
       localStorage.setItem('BTToken', response.data.token)
-      this.context.updateUser(response.data.id)
+      localStorage.setItem('userId', response.data.id)
       this.setState({
         loginSuccess: true,
         userId: response.data.id

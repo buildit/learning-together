@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import moment from "moment";
 import { SingleDatePicker } from "react-dates";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { MessageComponent } from "../message";
+import { ImageUploaderComponent } from "../imageUploader";
 import { createWorkshop, getCategoryList } from "../../api.js";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
@@ -22,13 +24,20 @@ class WorkshopForm extends Component {
       categorySelected: 1,
       startTime: "",
       endTime: "",
-      error: {}
+      error: {},
+      success: false,
+      redirect: false,
+      workshopPicture: "",
+      workshopId: null,
+      room: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.onDateChange = this.onDateChange.bind(this);
     this.onFocusChange = this.onFocusChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.validateForm = this.validateForm.bind(this);
+    this.redirectCallback = this.redirectCallback.bind(this);
+    this.setWorkshopPicture = this.setWorkshopPicture.bind(this);
   }
 
   //TODO Handle Error
@@ -36,7 +45,6 @@ class WorkshopForm extends Component {
     getCategoryList()
       .then(response => this.setState({ categoryList: response.data }))
       .catch(error => {
-        //this.setState({ error: 'Please try again later'})
         console.log(error);
       });
   }
@@ -52,7 +60,7 @@ class WorkshopForm extends Component {
         this.state.startDate.set({ m: e.target.value.slice(3, 5) });
       }
 
-      if (e.target.name === "endTime" && this.state.endDate) {
+      if (e.target.name === "endTime" && this.state.startDate) {
         const endDate = this.state.startDate.clone();
         endDate.set({ h: e.target.value.slice(0, 2) });
         endDate.set({ m: e.target.value.slice(3, 5) });
@@ -107,11 +115,15 @@ class WorkshopForm extends Component {
       invalid = true;
     }
 
+    if (this.state.room === "") {
+      errors["room"] = "Enter a room where workshop will be held";
+      invalid = true;
+    }
+
     this.setState({ error: errors });
     return invalid;
   }
 
-  //TO DO: REDIRECT USER TO SUCCESS PAGE
   handleSubmit(e) {
     e.preventDefault();
 
@@ -127,10 +139,25 @@ class WorkshopForm extends Component {
         locationId: this.state.location,
         categoryId: this.state.categorySelected,
         webex: this.state.link,
-        description: this.state.description
+        description: this.state.description,
+        imageUrl: this.state.workshopPicture,
+        room: this.state.room
       };
-      createWorkshop(data);
+      console.log("data", data);
+      createWorkshop(data).then(response => {
+        if (response.status === 200) {
+          this.setState({ success: true, workshopId: response.data });
+        }
+      });
     }
+  }
+
+  redirectCallback() {
+    this.setState({ redirect: true });
+  }
+
+  setWorkshopPicture(picturePath) {
+    this.setState({ workshopPicture: picturePath });
   }
 
   render() {
@@ -170,6 +197,10 @@ class WorkshopForm extends Component {
                     })}
                   </select>
                 </label>
+              </div>
+              <div className="medium-8 cell">
+                <label>Workshop Image:</label>
+                <ImageUploaderComponent setPicture={this.setWorkshopPicture} />
               </div>
               <div className="medium-8 cell">
                 <label>Date</label>
@@ -229,6 +260,18 @@ class WorkshopForm extends Component {
               </div>
               <div className="medium-8 cell">
                 <label>
+                  Room
+                  <input
+                    name="room"
+                    onChange={this.handleChange}
+                    type="text"
+                    placeholder="room"
+                  />
+                  <span className="error">{this.state.error.room}</span>
+                </label>
+              </div>
+              <div className="medium-8 cell">
+                <label>
                   WebEx Link
                   <input
                     name="link"
@@ -239,7 +282,6 @@ class WorkshopForm extends Component {
                   <span className="error">{this.state.error.link}</span>
                 </label>
               </div>
-
               <div className="medium-8 cell">
                 <label>
                   Description
@@ -264,6 +306,15 @@ class WorkshopForm extends Component {
             </Link>
           </div>
         </form>
+        {this.state.success && (
+          <MessageComponent
+            message="Success"
+            callback={this.redirectCallback}
+          />
+        )}
+        {this.state.redirect && (
+          <Redirect to={`/workshop/${this.state.workshopId}`} />
+        )}
       </div>
     );
   }
