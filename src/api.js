@@ -35,16 +35,66 @@ export async function loadCategories() {
       return error
     })
 }
-export const getWorkshopList = () => {
+export const getWorkshopList = (id) => {
+  const category = id ? `filter?categoryId=${id}` : "";
   return axios.request({
-    url: 'http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops',
+    url: `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops/${category}`,
     method: 'get'
   })
 }
 
-export const getWorkshop = (id) => {
+export const getWorkshop = (id, callback) => {
+  const url = `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops/${id}`
+  axios.get(url)
+    .then(response => {
+      callback(response)
+    })
+    .catch(error => {
+      callback(error)
+    })
+}
+
+export const enrollWorkshop = (id, callback) => {
+  const token = localStorage.getItem('BTToken')
+  const url = `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops/${id}/enroll`
+  axios.request({
+    url,
+    method: 'put',
+    headers: {
+      'Authorization':
+        'Bearer ' + token
+    }
+  })
+    .then(response => {
+      callback(response)
+    })
+    .catch(error => {
+      callback(error)
+    })
+}
+
+export const unenrollWorkshop = (id, callback) => {
+  const token = localStorage.getItem('BTToken')
+  const url = `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops/${id}/enroll`
+  axios.request({
+    url,
+    method: 'delete',
+    headers: {
+      'Authorization':
+        'Bearer ' + token
+    }
+  })
+    .then(response => {
+      callback(response)
+    })
+    .catch(error => {
+      callback(error)
+    })
+}
+
+export const getUser = (id) => {
   return axios.request({
-    url: `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops/${id}`,
+    url: `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/users/${id}`,
     method: 'get'
   })
 }
@@ -75,7 +125,6 @@ export const coverGenerator = (id) => {
   return `${process.env.PUBLIC_URL}/images/cover/cover_${id}.jpg`
 }
 export function uploadImage(data, callback) {
-  console.log(data)
   const url = 'http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/upload/image'
   axios.post(url, data)
     .then(response => {
@@ -91,4 +140,15 @@ export const getCategoryList = () => {
     url: 'http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/disciplines/categories',
     method: 'get'
   })
+}
+
+export const getLocationList = (callback) => {
+  const url = `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/locations`
+  axios.get(url)
+    .then(response => {
+      callback(response)
+    })
+    .catch(error => {
+      callback(error)
+    })
 }

@@ -54,12 +54,12 @@
         margin: 1em;
         margin-top: 0;
         margin-left: 0;
-
-        span:nth-child(2){
-            font-weight: 900;
-            font-size: 2rem;
-        }
     }
+
+    .from-now {
+        color: #666666;
+        font-weight: 600;
+      }
 }
 
 .button-container {

@@ -1,14 +1,18 @@
 import React, { Component, Fragment } from "react";
-import { Link, withRouter, Redirect } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import './navbar.scss';
 import logo from './logo.png';
 import { LoadingComponent } from '../loading'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class Navbar extends Component {
-  constructor() {
-    super()
-    this.state = { isLoading: false, search: '', response: {} }
+  constructor(props, context) {
+    super(props, context)
+    this.state = {
+      isLoading: false,
+      search: '',
+      response: {}
+    }
   }
 
   searchHandler(e) {
