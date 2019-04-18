@@ -9,7 +9,6 @@ import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import "./workshopForm.scss";
 
-console.log(ImageUploaderComponent);
 class WorkshopForm extends Component {
   constructor(props) {
     super(props);
@@ -60,7 +59,7 @@ class WorkshopForm extends Component {
         this.state.startDate.set({ m: e.target.value.slice(3, 5) });
       }
 
-      if (e.target.name === "endTime" && this.state.endDate) {
+      if (e.target.name === "endTime" && this.state.startDate) {
         const endDate = this.state.startDate.clone();
         endDate.set({ h: e.target.value.slice(0, 2) });
         endDate.set({ m: e.target.value.slice(3, 5) });
@@ -119,7 +118,6 @@ class WorkshopForm extends Component {
     return invalid;
   }
 
-  //TO DO: REDIRECT USER TO WORKSHOP PAGE
   handleSubmit(e) {
     e.preventDefault();
 
@@ -128,6 +126,8 @@ class WorkshopForm extends Component {
     if (error) {
       window.scrollTo(0, 0);
     } else {
+      console.log(this.state.startDate);
+      console.log(this.state.endDate);
       const data = {
         name: this.state.name,
         start: this.state.startDate.format("YYYY-MM-DDTHH:mm:ss.SSS"),
@@ -152,7 +152,6 @@ class WorkshopForm extends Component {
   }
 
   setWorkshopPicture(picturePath) {
-    console.log(picturePath);
     this.setState({ workshopPicture: picturePath });
   }
 
