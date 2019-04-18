@@ -28,7 +28,8 @@ class WorkshopForm extends Component {
       success: false,
       redirect: false,
       workshopPicture: "",
-      workshopId: null
+      workshopId: null,
+      room: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.onDateChange = this.onDateChange.bind(this);
@@ -114,6 +115,11 @@ class WorkshopForm extends Component {
       invalid = true;
     }
 
+    if (this.state.room === "") {
+      errors["room"] = "Enter a room where workshop will be held";
+      invalid = true;
+    }
+
     this.setState({ error: errors });
     return invalid;
   }
@@ -126,8 +132,6 @@ class WorkshopForm extends Component {
     if (error) {
       window.scrollTo(0, 0);
     } else {
-      console.log(this.state.startDate);
-      console.log(this.state.endDate);
       const data = {
         name: this.state.name,
         start: this.state.startDate.format("YYYY-MM-DDTHH:mm:ss.SSS"),
@@ -136,7 +140,8 @@ class WorkshopForm extends Component {
         categoryId: this.state.categorySelected,
         webex: this.state.link,
         description: this.state.description,
-        imageUrl: this.state.workshopPicture
+        imageUrl: this.state.workshopPicture,
+        room: this.state.room
       };
       console.log("data", data);
       createWorkshop(data).then(response => {
@@ -255,6 +260,18 @@ class WorkshopForm extends Component {
               </div>
               <div className="medium-8 cell">
                 <label>
+                  Room
+                  <input
+                    name="room"
+                    onChange={this.handleChange}
+                    type="text"
+                    placeholder="room"
+                  />
+                  <span className="error">{this.state.error.room}</span>
+                </label>
+              </div>
+              <div className="medium-8 cell">
+                <label>
                   WebEx Link
                   <input
                     name="link"
@@ -265,7 +282,6 @@ class WorkshopForm extends Component {
                   <span className="error">{this.state.error.link}</span>
                 </label>
               </div>
-
               <div className="medium-8 cell">
                 <label>
                   Description
