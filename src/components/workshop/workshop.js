@@ -214,7 +214,7 @@ export default class Workshop extends Component {
               <p>
                 {" "}
                 {location.name} <br />
-                Black <br />
+                {workshop.room} <br />
                 <a href={workshop.webex}>Webex</a>{" "}
               </p>
             </div>
