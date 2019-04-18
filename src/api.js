@@ -41,13 +41,13 @@ export async function loadCategories() {
       return error;
     });
 }
-export const getWorkshopList = () => {
+export const getWorkshopList = (id) => {
+  const category = id ? `filter?categoryId=${id}` : "";
   return axios.request({
-    url:
-      "http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops",
-    method: "get"
-  });
-};
+    url: `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops/${category}`,
+    method: 'get'
+  })
+}
 
 export const getWorkshop = (id, callback) => {
   const url = `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops/${id}`;
@@ -99,6 +99,13 @@ export const unenrollWorkshop = (id, callback) => {
     });
 };
 
+export const getUser = (id) => {
+  return axios.request({
+    url: `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/users/${id}`,
+    method: 'get'
+  })
+}
+
 // Make a request for a user with a given token
 export const createWorkshop = data => {
   const token = localStorage.getItem("BTToken");
@@ -141,8 +148,19 @@ export function uploadImage(data, callback) {
 
 export const getCategoryList = () => {
   return axios.request({
-    url:
-      "http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/disciplines/categories",
-    method: "get"
-  });
-};
+    url: 'http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/disciplines/categories',
+    method: 'get'
+  })
+}
+
+export const getLocationList = (callback) => {
+  const url = `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/locations`
+  axios.get(url)
+    .then(response => {
+      callback(response)
+    })
+    .catch(error => {
+      callback(error)
+    })
+}
+

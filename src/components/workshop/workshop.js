@@ -3,12 +3,13 @@ import { JumbotronComponent } from '../jumbotron'
 import './workshop.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { UserPreviewComponent } from '../userpreview'
-import workshopData from "./mock-workshops.json"
 import Moment from 'react-moment';
 import { NavbarComponent } from '../navbar';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { UserContext } from '../../UserProvider'
 import { getWorkshop, coverGenerator, enrollWorkshop, unenrollWorkshop } from '../../api';
 import { MessageComponent } from '../message'
+import { filterAttendees } from '../../selectors'
 
 export default class Workshop extends Component {
 
@@ -16,6 +17,9 @@ export default class Workshop extends Component {
     super(props);
     this.state = {
       workshop: {},
+      confirmation: false,
+      userId: null,
+      educatorId: null,
       showMessage: false,
       message: ''
     };
@@ -26,13 +30,17 @@ export default class Workshop extends Component {
   };
 
   componentDidMount() {
+    const userId = localStorage.getItem('userId')
+    this.setState({ userId: Number(userId) })
     getWorkshop(this.props.computedMatch.params.id, this.getWorkshopCallback)
   }
+
   getWorkshopCallback(response) {
-    console.log(response)
+    const { data } = response
     if (response.status === 200) {
       this.setState({
-        workshop: response.data
+        workshop: data,
+        educatorId: data.educator.id,
       })
     }
     else {
@@ -42,22 +50,22 @@ export default class Workshop extends Component {
   }
   enrollWorshopCallback(response) {
     if (response.status === 200) {
-      this.setState({ showMessage: true, message: 'You have succesfully enrolled!' })
+      this.setState({ showMessage: true, message: 'You have successfully enrolled!' })
+      getWorkshop(this.props.computedMatch.params.id, this.getWorkshopCallback)
     }
     else {
       //show error message
       this.setState({ showMessage: true, message: 'There was an error in enrollment. Please try again later.' })
-      console.log(response)
     }
   }
   unenrollWorshopCallback(response) {
     if (response.status === 200) {
-      this.setState({ showMessage: true, message: 'You have succesfully unenrolled!' })
+      this.setState({ showMessage: true, message: 'You have succesfsully unenrolled!' })
+      getWorkshop(this.props.computedMatch.params.id, this.getWorkshopCallback)
     }
     else {
       //show error message
       this.setState({ showMessage: true, message: 'There was an error in unenrollment. Please try again later.' })
-      console.log(response)
     }
   }
   messageCallback() {
@@ -70,7 +78,7 @@ export default class Workshop extends Component {
   }
   onClickUnenroll(e) {
     e.preventDefault()
-    unenrollWorkshop(this.state.workshop.id, this.enrollWorshopCallback)
+    unenrollWorkshop(this.state.workshop.id, this.unenrollWorshopCallback)
   }
   updateImage(location) {
     const formatted = location.replace(/\s/g, "-")
@@ -79,15 +87,20 @@ export default class Workshop extends Component {
   }
 
   render() {
-
-    const { workshop, isEnrollSuccessful, enrollError } = this.state
+    const { workshop, userId, educatorId, isEnrollSuccessful, enrollError, showMessage, message } = this.state
     const attendees = (workshop.attendees ? workshop.attendees : []);
     const cover = workshop.imageUrl ? workshop.imageUrl : coverGenerator(workshop.id);
     const location = workshop.location ? workshop.location : "";
     const instructor = (workshop.educator ? workshop.educator : { firstName: "", lastName: "" })
     const { isUser } = this.props
+    const isEducator = userId === educatorId
+    const isAttending = workshop && filterAttendees(userId, workshop)
+    const baseUrl = "http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/";
     return (
       <Fragment>
+        {
+          showMessage && <MessageComponent message={message} callback={this.messageCallback} />
+        }
         <NavbarComponent isUser={isUser} location={this.props.location} />
         <div className="grid-container">
           <div className="grid-x">
@@ -98,7 +111,7 @@ export default class Workshop extends Component {
           <div className="grid-x">
             <div className="small-12 instructor-info">
               <div className="photo-frame">
-                <img src={instructor.imageUrl} />
+              <img src={`${baseUrl}${instructor.imageUrl}`} />
               </div>
 
               <p>Hosted by <strong>{instructor.firstName}  {instructor.lastName}</strong><br />
@@ -108,10 +121,17 @@ export default class Workshop extends Component {
 
 
           </div>
-          <div className="grid-x enroll-top">
-
-            <Link type="button" to={isUser ? "/enroll" : "/login"} className="button expanded">ENROLL</Link>
-          </div>
+          < div className="grid-x enroll-top" >
+            {
+              isUser
+                ? isEducator
+                  ? <button className="button expanded" onClick={() => { }}>EDIT</button>
+                  : isAttending
+                    ? <button type="button" className="button expanded" onClick={this.onClickUnenroll.bind(this)}>UNENROLL</button>
+                    : <button type="button" className="button expanded" onClick={this.onClickEnroll.bind(this)}>ENROLL</button>
+                : <Link type="button" to="/login" className="button expanded" onClick={() => { }}>LOGIN TO ENROLL</Link>
+            }
+          </div >
 
           <div className="grid-x">
 
@@ -167,3 +187,11 @@ export default class Workshop extends Component {
     )
   }
 }
+
+
+Workshop.contextType = UserContext
+
+
+
+
+

@@ -6,6 +6,8 @@ import Moment from 'react-moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NavbarComponent } from '../navbar';
 import { WorkshopPreviewComponent } from "../workshopPreview";
+import { getUser,coverGenerator } from '../../api';
+import { UserContext } from '../../UserProvider'
 
 export default class UserProfileComponent extends React.Component {
 
@@ -20,23 +22,30 @@ export default class UserProfileComponent extends React.Component {
 
     componentDidMount() {
         //Merge attended and teaching array
-        let attending = userData[0].classes.attending.map((workshop) => {
-            workshop.status = "attending"
-            return workshop
+        getUser(this.props.computedMatch.params.id)
+        .then((data) => {
+          
+            let attending = data.data.workshopsAttending.map((workshop) => {
+                workshop.status = "attending"
+                return workshop
+            })
+    
+            let teaching = data.data.workshopsTeaching.map((workshop) => {
+                workshop.status = "teaching"
+                return workshop
+            })
+    
+            const all = attending.concat(teaching);
+
+            this.setState({
+                user: data.data,
+                classes: all,
+                all: all
+            })
+            
         })
 
-        let teaching = userData[0].classes.teaching.map((workshop) => {
-            workshop.status = "teaching"
-            return workshop
-        })
 
-        const all = attending.concat(teaching);
-
-        this.setState({
-            user: userData[0],
-            classes: all,
-            all: all
-        })
     }
 
     updateWorkshopList(event) {
@@ -58,51 +67,64 @@ export default class UserProfileComponent extends React.Component {
     }
 
     render() {
-        const { isUser } = this.props
+        const { isUser } = this.props;
+        const user = this.state.user;
+        const baseUrl = "http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/";
+        const profile = (user.imageUrl !== "") ? `${baseUrl}${user.imageUrl}` : "";
         return (
             <Fragment>
-                <NavbarComponent isUser={this.props.isUser} />
+                <NavbarComponent isUser={isUser} />
                     <section className="user grid-container full">
                         <div className="grid-x user-profile">
                             <div className="cell small-6">
                                 <div className="profile-pic">
                                     <div className="profile-frame">
-                                        <img src={profile} alt="" />
+                                    <img src={profile} />
                                     </div>
                                     <a href="/">Edit</a>
                                 </div>
                                 <div className="user-info">
-                                    <h2>Clarence Morris</h2>
-                                    <h3><FontAwesomeIcon icon="map-marker" /> <strong>Buildit Brooklyn</strong></h3>
-                                    <h3>Creative Tech</h3>
+                                    <h2>{user.firstName} {user.lastName}</h2>
+                                    {
+                                        user.location ? <h3><FontAwesomeIcon icon="map-marker" /> <strong>{user.location.name}</strong></h3> : ""
+                                    }
+                                    
+                                    <h3>{user.role ? user.role.name : ""} </h3>
                                 </div>
+                                <a href="/">Edit</a>
+                            </div>
+                            <div className="user-info">
+                                <h2>Clarence Morris</h2>
+                                <h3><FontAwesomeIcon icon="map-marker" /> <strong>Buildit Brooklyn</strong></h3>
+                                <h3>Creative Tech</h3>
                             </div>
                         </div>
-
-                        <div className="courses">
-                            <hr />
-                            <div className="upcoming">
-                                <div className="grid-container">
-                                    <h2><b>Upcoming Courses</b></h2>
-                                    <select name="schedule-dropdown" onChange={this.updateWorkshopList.bind(this)}>
-                                        <option value="date">All</option>
-                                        <option value="teaching">Teaching</option>
-                                        <option value="attending">Attending</option>
-                                    </select>
-                                </div>
-                                <section className="workshops-list">
-
-                                    {this.state.classes.map((workshop, index) => (
-                                        <WorkshopPreviewComponent key={workshop.id} workshop={workshop} />
-
-                                    ))}
-
-                                </section>
+                    <div className="courses">
+                        <hr />
+                        <div className="upcoming">
+                            <div className="grid-container">
+                                <h2><b>Upcoming Courses</b></h2>
+                                <select name="schedule-dropdown" onChange={this.updateWorkshopList.bind(this)}>
+                                    <option value="date">All</option>
+                                    <option value="teaching">Teaching</option>
+                                    <option value="attending">Attending</option>
+                                </select>
                             </div>
+                            <section className="workshops-list">
+
+                                {this.state.classes.map((workshop, idx) => (
+                                    <WorkshopPreviewComponent key={idx} workshop={workshop} />
+
+                                ))}
+
+                            </section>
                         </div>
-                    </section>
+                    </div>
+                </section>
 
             </Fragment>
         )
     }
 }
+
+UserProfileComponent.contextType = UserContext
