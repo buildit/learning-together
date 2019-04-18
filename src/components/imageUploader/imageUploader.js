@@ -37,7 +37,7 @@ export default class ImageUploaderComponent extends React.Component {
         <div className="grid-y medium-grid-frame">
           <div className='row'>
             <div className="grid-x grid-padding-x align-center align-middle image-margin-1">
-              <div className='photo-frame'>
+              <div className='photo-frame-uploader'>
                 <img src={previewImg} accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*" alt='preview' />
               </div>
             </div>

@@ -53,7 +53,6 @@ export default class RegisterComponent extends React.Component {
   }
 
   getLocationCallback(response) {
-    response.status = 100
     if (response.status === 200) {
       let locationArray = []
       response.data.forEach(instance => {
