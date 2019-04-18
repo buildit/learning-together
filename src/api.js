@@ -35,9 +35,10 @@ export async function loadCategories() {
       return error
     })
 }
-export const getWorkshopList = () => {
+export const getWorkshopList = (id) => {
+  const category = id ? `filter?categoryId=${id}` : "";
   return axios.request({
-    url: 'http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops',
+    url: `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops/${category}`,
     method: 'get'
   })
 }
@@ -89,6 +90,13 @@ export const unenrollWorkshop = (id, callback) => {
     .catch(error => {
       callback(error)
     })
+}
+
+export const getUser = (id) => {
+  return axios.request({
+    url: `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/users/${id}`,
+    method: 'get'
+  })
 }
 
 // Make a request for a user with a given token

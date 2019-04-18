@@ -95,6 +95,7 @@ export default class Workshop extends Component {
     const { isUser } = this.props
     const isEducator = userId === educatorId
     const isAttending = workshop && filterAttendees(userId, workshop)
+    const baseUrl = "http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/";
     return (
       <Fragment>
         {
@@ -110,7 +111,7 @@ export default class Workshop extends Component {
           <div className="grid-x">
             <div className="small-12 instructor-info">
               <div className="photo-frame">
-                <img src={instructor.imageUrl} alt="" />
+              <img src={`${baseUrl}${instructor.imageUrl}`} />
               </div>
 
               <p>Hosted by <strong>{instructor.firstName}  {instructor.lastName}</strong><br />

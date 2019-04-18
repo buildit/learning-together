@@ -15,7 +15,7 @@ class CategoryList extends Component {
         <div key={index} className="cell small-6 ">
           <Link
             to={{
-              pathname: "/workshops",
+              pathname: `/workshops/categories/${category.id}/${category.name}`,
               category,
               state: this.props.workshop
             }}

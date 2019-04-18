@@ -5,17 +5,19 @@ import { NavLink } from 'react-router-dom';
 const UserPreviewComponent = ({ attendee }) => {
 
     const showPhoto = () => {
-        return ((attendee.picture !== "") ? `${attendee.picture}.jpg` : "");
+        return ((attendee.imageUrl !== "") ? `${baseUrl}${attendee.imageUrl}` : "");
     }
+
+    const baseUrl = "http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/";
 
     return (
         <div className="user-preview">
-            <NavLink to="/user" className="">
+            <NavLink to={`/user/${attendee.userId}`} className="">
                 <div className="photo-frame">
                     <img src={showPhoto()} alt="" />
                 </div>
                 <div>
-                    <p>{attendee.name.first}<br />{attendee.name.last}</p>
+                    <p>{attendee.firstName}<br />{attendee.lastName}</p>
                 </div>
             </NavLink>
         </div>
