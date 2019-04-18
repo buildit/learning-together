@@ -119,12 +119,12 @@ export const createWorkshop = data => {
         Authorization: "Bearer " + token
       }
     })
-    .then(function(response) {
+    .then(function (response) {
       // handle success
       console.log(response);
       return response;
     })
-    .catch(function(error) {
+    .catch(function (error) {
       // handle error
       console.log(error);
     });
@@ -163,4 +163,16 @@ export const getLocationList = (callback) => {
       callback(error)
     })
 }
+
+export const getRolesList = (callback) => {
+  const url = 'http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/roles'
+  axios.get(url)
+    .then(response => {
+      callback(response)
+    })
+    .catch(error => {
+      callback(error)
+    })
+}
+
 
