@@ -31,7 +31,6 @@ export default class RoutesComponent extends React.Component {
               <Route component={Page404Component} />
             </Switch>
           </div>
-
         </Router>
       </UserProvider>
     );
