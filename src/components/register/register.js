@@ -186,7 +186,7 @@ export default class RegisterComponent extends React.Component {
     return (
       <Fragment>
         <NavbarComponent isUser={this.props.isUser} />
-        <div className="grid-container">
+        <div className="grid-container first-container">
           <div className="grid-y medium-grid-frame">
             <div className="grid-x grid-padding-x align-middle">
               <form className='cell medium-12' onSubmit={this.submitHandler.bind(this)}>

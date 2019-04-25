@@ -1,18 +1,16 @@
 import React, { Fragment } from 'react'
 import { Link, Redirect } from 'react-router-dom'
-import { signIn } from '../../api'
-import { NavbarComponent } from '../navbar';
-import { UserContext } from '../../UserProvider'
-import './login.scss'
+import { NavbarComponent } from '../navbar'
+import { MessageComponent } from '../message'
 
-export default class LoginComponent extends React.Component {
+export default class ForgotPasswordComponent extends React.Component {
   constructor() {
     super()
     this.state = {
       email: '',
       password: '',
-      loginSuccess: false,
-      loginError: false,
+      resetSuccess: false,
+      resetError: false,
       userId: ''
     }
     this.submitCallback = this.submitCallback.bind(this)
@@ -26,27 +24,24 @@ export default class LoginComponent extends React.Component {
   }
   submitHandler(e) {
     e.preventDefault()
-    const { email, password } = this.state
+    const { email } = this.state
     const formattedEmail = this.formatEmail(email)
     //add logic for api call
-    signIn({ Username: formattedEmail, Password: password }, this.submitCallback)
+    //passwordReset({ Username: formattedEmail }, this.submitCallback)
   }
   submitCallback(response) {
     if (response.status === 200) {
-      localStorage.setItem('BTToken', response.data.token)
-      localStorage.setItem('userId', response.data.id)
-      this.setState({
-        loginSuccess: true,
-        userId: response.data.id
-      })
+
     }
     else {
-      this.setState({ loginError: true })
+      this.setState({ resetError: true })
     }
   }
-
+  toggleResetError() {
+    this.setState({ resetError: !this.state.resetError })
+  }
   render() {
-    const { email, password, loginSuccess, userId, loginError } = this.state
+    const { email, resetSuccess, userId, resetError } = this.state
     return (
       <Fragment>
         <NavbarComponent isUser={this.props.isUser} userId={userId} />
@@ -61,24 +56,14 @@ export default class LoginComponent extends React.Component {
                     </label>
                   </div>
                 </div>
-                <div className='row'>
-                  <div className="small-12 columns">
-                    <label>Password:
-                <input type="password" autoComplete="current-password" placeholder="Please Enter Your Password." name='password' value={password} onChange={this.inputHandler.bind(this)} />
-                    </label>
-                    {
-                      loginError && (
-                        <div className='login-error'>Username or password not found. Please try again.</div>
-                      )
-                    }
-                  </div>
-                </div>
                 <div>
                   <div className='grid-x grid-padding-x align-center'>
                     <input type="submit" className="button success align-center cell medium-6" value="Submit" />
                   </div>
+                </div>
+                <div className='row'>
                   <div className='grid-x grid-padding-x align-center'>
-                    <Link to='/forgot-password' >Forgot your password?</Link>
+                    <Link to='/reset-password' >Reset your password</Link>
                   </div>
                 </div>
                 <div className='row'>
@@ -91,8 +76,13 @@ export default class LoginComponent extends React.Component {
           </div>
         </div >
         {
-          loginSuccess && (
+          resetSuccess && (
             <Redirect to={{ pathname: '/', state: { userId } }} />
+          )
+        }
+        {
+          resetError && (
+            <MessageComponent message='Password Reset is down right nopw. Please try again later' callback={this.toggleResetError.bind(this)} />
           )
         }
       </Fragment>
@@ -100,5 +90,3 @@ export default class LoginComponent extends React.Component {
     )
   }
 }
-
-LoginComponent.contextType = UserContext
