@@ -3,8 +3,9 @@ node_js:
 - stable
 warnings_are_errors: false
 env:
-- SERVER_IP_ADDRESS=ec2-18-224-56-34.us-east-2.compute.amazonaws.com
-- SKIP_SASS_BINARY_DOWNLOAD_FOR_CI=true
+  global:
+    - SERVER_IP_ADDRESS=ec2-18-224-56-34.us-east-2.compute.amazonaws.com
+    - SKIP_SASS_BINARY_DOWNLOAD_FOR_CI=true
 branches:
   only:
   - development
