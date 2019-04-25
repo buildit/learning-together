@@ -38,7 +38,11 @@ export default class Workshop extends Component {
     this.setState({ userId: Number(userId) });
     getWorkshop(this.props.computedMatch.params.id, this.getWorkshopCallback);
   }
-
+  componentDidUpdate(prevProps) {
+    if (this.props.computedMatch.params.id !== prevProps.computedMatch.params.id) {
+      getWorkshop(this.props.computedMatch.params.id, this.getWorkshopCallback);
+    }
+  }
   getWorkshopCallback(response) {
     const { data } = response;
     if (response.status === 200) {
@@ -128,7 +132,7 @@ export default class Workshop extends Component {
           <MessageComponent message={message} callback={this.messageCallback} />
         )}
         <NavbarComponent isUser={isUser} location={this.props.location} />
-        <div className="grid-container">
+        <div className="grid-container first-container">
           <div className="grid-x">
             <h1 className="workshop-title">
               <b>{workshop.name}</b>

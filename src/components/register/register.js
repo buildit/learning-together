@@ -22,7 +22,7 @@ export default class RegisterComponent extends React.Component {
       selectedLocation: {},
       selectedRole: {},
       interests: [],
-      profilePicture: '',
+      profilePicture: 'images/cover/profile-placeholder.png',
       firstNameError: false,
       lastNameError: false,
       emailError: false,
