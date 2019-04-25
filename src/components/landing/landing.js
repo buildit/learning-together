@@ -43,20 +43,22 @@ export default class Landing extends Component {
     });
     const { isUser, location } = this.props
     return (
-      <div>
+      <div >
         <NavbarComponent isUser={isUser} location={location} />
-        <Hero title="Better Together" />
-        <div className="grid-container landing-preview">
-          <h2 className="section-title">Upcoming Workshops</h2>
-          <Carousel heightMode="max" initialSlideHeight={255} >
-            {this.state.error ? <p>{this.state.error}</p> : wrkshopPreview}
-          </Carousel>
+        <div className='first-container'>
+          <Hero title="Better Together" />
+          <div className="grid-container landing-preview">
+            <h2 className="section-title">Upcoming Workshops</h2>
+            <Carousel heightMode="max" initialSlideHeight={255} >
+              {this.state.error ? <p>{this.state.error}</p> : wrkshopPreview}
+            </Carousel>
+          </div>
+          <div className="grid-container landing-preview">
+            <h2 className="section-title">Categories</h2>
+            <CategoryListComponent workshop={this.state.workshops} categories={this.state.categories} />
+          </div>
+          <FooterComponent isUser={isUser} userId={this.state.userId} />
         </div>
-        <div className="grid-container landing-preview">
-          <h2 className="section-title">Categories</h2>
-          <CategoryListComponent workshop={this.state.workshops} categories={this.state.categories} />
-        </div>
-        <FooterComponent isUser={isUser} userId={this.state.userId} />
       </div>
     );
   }

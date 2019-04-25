@@ -1,0 +1,11 @@
+.search-container {
+  position: relative;
+  margin-top:1rem;
+  .button {
+      position: absolute;
+      top: 1px;
+      right: 0;
+      background: transparent;
+      color: #000;
+  }
+}

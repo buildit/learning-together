@@ -171,7 +171,7 @@ class WorkshopForm extends Component {
     });
 
     return (
-      <div className="workshop-form">
+      <div className="workshop-form first-container">
         <form onSubmit={this.handleSubmit}>
           <div className="grid-container">
             <div className="grid-x grid-padding-x align-center">
