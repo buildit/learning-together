@@ -113,11 +113,6 @@ class WorkshopForm extends Component {
       invalid = true;
     }
 
-    if (this.state.description === "") {
-      errors["description"] = "Enter a workshop description";
-      invalid = true;
-    }
-
     this.setState({ error: errors });
     return invalid;
   }
