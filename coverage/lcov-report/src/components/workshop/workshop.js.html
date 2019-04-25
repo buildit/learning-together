@@ -1,0 +1,836 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/components/workshop/workshop.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">All files</a> / <a href="index.html">src/components/workshop</a> workshop.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">2.44% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>1/41</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/30</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/13</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">2.44% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>1/41</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { Component, Fragment } from "react";
+import { JumbotronComponent } from "../jumbotron";
+import "./workshop.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { UserPreviewComponent } from "../userpreview";
+import Moment from "react-moment";
+import { NavbarComponent } from "../navbar";
+import { Link } from "react-router-dom";
+import { UserContext } from "../../UserProvider";
+import {
+  getWorkshop,
+  coverGenerator,
+  enrollWorkshop,
+  unenrollWorkshop
+} from "../../api";
+import { MessageComponent } from "../message";
+import { filterAttendees } from "../../selectors";
+&nbsp;
+export default class Workshop extends Component {
+<span class="fstat-no" title="function not covered" >  co</span>nstructor(props) {
+<span class="cstat-no" title="statement not covered" >    super(props);</span>
+<span class="cstat-no" title="statement not covered" >    this.state = {</span>
+      workshop: {},
+      confirmation: false,
+      userId: null,
+      educatorId: null,
+      showMessage: false,
+      message: ""
+    };
+<span class="cstat-no" title="statement not covered" >    this.getWorkshopCallback = this.getWorkshopCallback.bind(this);</span>
+<span class="cstat-no" title="statement not covered" >    this.enrollWorshopCallback = this.enrollWorshopCallback.bind(this);</span>
+<span class="cstat-no" title="statement not covered" >    this.unenrollWorshopCallback = this.unenrollWorshopCallback.bind(this);</span>
+<span class="cstat-no" title="statement not covered" >    this.messageCallback = this.messageCallback.bind(this);</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  co</span>mponentDidMount() {
+    const userId = <span class="cstat-no" title="statement not covered" >localStorage.getItem("userId");</span>
+<span class="cstat-no" title="statement not covered" >    this.setState({ userId: Number(userId) });</span>
+<span class="cstat-no" title="statement not covered" >    getWorkshop(this.props.computedMatch.params.id, this.getWorkshopCallback);</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  ge</span>tWorkshopCallback(response) {
+    const { data } = <span class="cstat-no" title="statement not covered" >response;</span>
+<span class="cstat-no" title="statement not covered" >    if (response.status === 200) {</span>
+<span class="cstat-no" title="statement not covered" >      this.setState({</span>
+        workshop: data,
+        educatorId: data.educator.id
+      });
+    } else {
+      //show error message
+<span class="cstat-no" title="statement not covered" >      console.log(response);</span>
+    }
+  }
+<span class="fstat-no" title="function not covered" >  en</span>rollWorshopCallback(response) {
+<span class="cstat-no" title="statement not covered" >    if (response.status === 200) {</span>
+<span class="cstat-no" title="statement not covered" >      this.setState({</span>
+        showMessage: true,
+        message: "You have successfully enrolled!"
+      });
+<span class="cstat-no" title="statement not covered" >      getWorkshop(this.props.computedMatch.params.id, this.getWorkshopCallback);</span>
+    } else {
+      //show error message
+<span class="cstat-no" title="statement not covered" >      this.setState({</span>
+        showMessage: true,
+        message: "There was an error in enrollment. Please try again later."
+      });
+    }
+  }
+<span class="fstat-no" title="function not covered" >  un</span>enrollWorshopCallback(response) {
+<span class="cstat-no" title="statement not covered" >    if (response.status === 200) {</span>
+<span class="cstat-no" title="statement not covered" >      this.setState({</span>
+        showMessage: true,
+        message: "You have succesfully unenrolled!"
+      });
+<span class="cstat-no" title="statement not covered" >      getWorkshop(this.props.computedMatch.params.id, this.getWorkshopCallback);</span>
+    } else {
+      //show error message
+<span class="cstat-no" title="statement not covered" >      this.setState({</span>
+        showMessage: true,
+        message: "There was an error in unenrollment. Please try again later."
+      });
+    }
+  }
+<span class="fstat-no" title="function not covered" >  me</span>ssageCallback() {
+<span class="cstat-no" title="statement not covered" >    this.setState({ showMessage: false, message: "" });</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  on</span>ClickEnroll(e) {
+<span class="cstat-no" title="statement not covered" >    e.preventDefault();</span>
+<span class="cstat-no" title="statement not covered" >    enrollWorkshop(this.state.workshop.id, this.enrollWorshopCallback);</span>
+  }
+<span class="fstat-no" title="function not covered" >  on</span>ClickUnenroll(e) {
+<span class="cstat-no" title="statement not covered" >    e.preventDefault();</span>
+<span class="cstat-no" title="statement not covered" >    unenrollWorkshop(this.state.workshop.id, this.unenrollWorshopCallback);</span>
+  }
+<span class="fstat-no" title="function not covered" >  up</span>dateImage(location) {
+    const formatted = <span class="cstat-no" title="statement not covered" >location.replace(/\s/g, "-");</span>
+    const imagePath = <span class="cstat-no" title="statement not covered" >`${process.env.PUBLIC_URL}/images/cover/${formatted}.jpg`;</span>
+<span class="cstat-no" title="statement not covered" >    return imagePath;</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  re</span>nder() {
+    const {
+      workshop,
+      userId,
+      educatorId,
+      isEnrollSuccessful,
+      enrollError,
+      showMessage,
+      message
+    } = <span class="cstat-no" title="statement not covered" >this.state;</span>
+    const attendees = <span class="cstat-no" title="statement not covered" >workshop.attendees ? workshop.attendees : [];</span>
+    const baseUrl = <span class="cstat-no" title="statement not covered" >"http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/";</span>
+    const cover = <span class="cstat-no" title="statement not covered" >workshop.imageUrl</span>
+      ? `${baseUrl}${workshop.imageUrl}`
+      : coverGenerator(workshop.id);
+    const location = <span class="cstat-no" title="statement not covered" >workshop.location ? workshop.location : "";</span>
+    const instructor = <span class="cstat-no" title="statement not covered" >workshop.educator</span>
+      ? workshop.educator
+      : { firstName: "", lastName: "" };
+    const { isUser } = <span class="cstat-no" title="statement not covered" >this.props;</span>
+    const isEducator = <span class="cstat-no" title="statement not covered" >userId === educatorId;</span>
+    const isAttending = <span class="cstat-no" title="statement not covered" >workshop &amp;&amp; filterAttendees(userId, workshop);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return (</span>
+      &lt;Fragment&gt;
+        {showMessage &amp;&amp; (
+          &lt;MessageComponent message={message} callback={this.messageCallback} /&gt;
+        )}
+        &lt;NavbarComponent isUser={isUser} location={this.props.location} /&gt;
+        &lt;div className="grid-container"&gt;
+          &lt;div className="grid-x"&gt;
+            &lt;h1 className="workshop-title"&gt;
+              &lt;b&gt;{workshop.name}&lt;/b&gt;
+            &lt;/h1&gt;
+          &lt;/div&gt;
+&nbsp;
+          &lt;div className="grid-x"&gt;
+            &lt;div className="small-12 instructor-info"&gt;
+              &lt;div className="photo-frame"&gt;
+                &lt;img src={`${baseUrl}${instructor.imageUrl}`} /&gt;
+              &lt;/div&gt;
+&nbsp;
+              &lt;p&gt;
+                Hosted by{" "}
+                &lt;strong&gt;
+                  {instructor.firstName} {instructor.lastName}
+                &lt;/strong&gt;
+                &lt;br /&gt;
+                &lt;a href="true" className="email"&gt;
+                  Contact Instructor
+                &lt;/a&gt;
+              &lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div className="grid-x enroll-top"&gt;
+            {isUser ? (
+              isEducator ? (
+                &lt;button className="button expanded" onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; {}}&gt;
+                  EDIT
+                &lt;/button&gt;
+              ) : isAttending ? (
+                &lt;button
+                  type="button"
+                  className="button expanded"
+                  onClick={this.onClickUnenroll.bind(this)}
+                &gt;
+                  UNENROLL
+                &lt;/button&gt;
+              ) : (
+                &lt;button
+                  type="button"
+                  className="button expanded"
+                  onClick={this.onClickEnroll.bind(this)}
+                &gt;
+                  ENROLL
+                &lt;/button&gt;
+              )
+            ) : (
+              &lt;Link
+                type="button"
+                to="/login"
+                className="button expanded"
+                onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; {}}
+              &gt;
+                LOGIN TO ENROLL
+              &lt;/Link&gt;
+            )}
+          &lt;/div&gt;
+&nbsp;
+          &lt;div className="grid-x"&gt;
+            &lt;div className="small-2"&gt;
+              &lt;FontAwesomeIcon icon="clock" size="2x" /&gt;
+            &lt;/div&gt;
+            &lt;div className="small-9"&gt;
+              &lt;p&gt;
+                &lt;span&gt;
+                  &lt;Moment format="dddd"&gt;{workshop.start}&lt;/Moment&gt;,{" "}
+                  &lt;Moment format="LL"&gt;{workshop.start}&lt;/Moment&gt;
+                &lt;/span&gt;
+                &lt;br /&gt;
+                &lt;Moment format="LT"&gt;{workshop.start}&lt;/Moment&gt; -{" "}
+                &lt;Moment format="LT"&gt;{workshop.end}&lt;/Moment&gt;
+                &lt;br /&gt;
+                &lt;a href="true"&gt;Add to Calendar&lt;/a&gt;
+              &lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div className="grid-x detail"&gt;
+            &lt;div className="small-2"&gt;
+              &lt;FontAwesomeIcon icon="map-marker" size="2x" /&gt;
+            &lt;/div&gt;
+            &lt;div className="small-10"&gt;
+              &lt;p&gt;
+                {" "}
+                {location.name} &lt;br /&gt;
+                {workshop.room} &lt;br /&gt;
+                {workshop.webex === "" ? null : (
+                  &lt;a href={workshop.webex}&gt;Webex&lt;/a&gt;
+                )}
+              &lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;JumbotronComponent image={cover} /&gt;
+        &lt;div className="grid-container"&gt;
+          &lt;p className="description"&gt;{workshop.description}&lt;/p&gt;
+          &lt;hr /&gt;
+          &lt;div className="attendees"&gt;
+            &lt;h3&gt;
+              &lt;b&gt;Attendees&lt;/b&gt;
+            &lt;/h3&gt;
+            &lt;section className="grid-display attendee-grid"&gt;
+              {attendees.map(<span class="fstat-no" title="function not covered" >(a</span>ttendee, index) =&gt; (
+<span class="cstat-no" title="statement not covered" >                &lt;UserPreviewComponent key={index} attendee={attendee} /&gt;</span>
+              ))}
+            &lt;/section&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        {isEnrollSuccessful &amp;&amp; (
+          &lt;MessageComponent
+            message="You have succesfully enrolled!"
+            callback={this.messageCallback}
+          /&gt;
+        )}
+        {enrollError &amp;&amp; (
+          &lt;MessageComponent
+            message="There was an error in enrollment. Please try again later"
+            callback={this.messageCallback}
+          /&gt;
+        )}
+      &lt;/Fragment&gt;
+    );
+  }
+}
+&nbsp;
+Workshop.contextType = UserContext;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Apr 25 2019 11:12:07 GMT-0400 (EDT)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>
