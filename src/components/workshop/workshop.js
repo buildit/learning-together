@@ -128,7 +128,7 @@ export default class Workshop extends Component {
           <MessageComponent message={message} callback={this.messageCallback} />
         )}
         <NavbarComponent isUser={isUser} location={this.props.location} />
-        <div className="grid-container">
+        <div className="grid-container first-container">
           <div className="grid-x">
             <h1 className="workshop-title">
               <b>{workshop.name}</b>

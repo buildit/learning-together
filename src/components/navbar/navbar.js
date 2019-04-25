@@ -4,25 +4,19 @@ import './navbar.scss';
 import logo from './logo.png';
 import { LoadingComponent } from '../loading'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { SearchComponent } from '../search'
 
 class Navbar extends Component {
   constructor(props, context) {
     super(props, context)
     this.state = {
       isLoading: false,
-      search: '',
+      showSearch: false,
       response: {}
     }
   }
-
-  searchHandler(e) {
-    this.setState({ [e.target.name]: e.target.value })
-    //api call
-
-  }
-  searchCallback(response) {
-    this.setState({ response, isLoading: false })
-
+  toggleShowSearch() {
+    this.setState({ showSearch: !this.state.showSearch })
   }
   logoutHandler() {
     localStorage.removeItem('BTToken')
@@ -35,20 +29,15 @@ class Navbar extends Component {
     return (
       <Fragment>
         <div className="navbar grid-container">
-          <div className="grid-x grid-margin-x align-justify align-middle">
+          <div className="grid-x grid-margin-x align-justify align-middle ">
             <div className="cell small-2">
               <nav className='logo'>
                 <Link to="/"><img src={logo} alt="logo"></img></Link>
               </nav>
             </div>
-            {/* <div className="cell small-7">
-              <div className="search-container">
-                <input type="search" name='search' placeholder="Search" value={this.state.search} onChange={this.searchHandler.bind(this)} />
-                <button type="button" className="button">
-                  <FontAwesomeIcon icon="search" />
-                </button>
-              </div>
-            </div> */}
+            <div className="cell small-6">
+              <FontAwesomeIcon icon="search" onClick={this.toggleShowSearch.bind(this)} />
+            </div>
             <div className='cell small-4'>
               <div className="grid-x align-spaced align-middle flex-dir-row">
                 <div className="cell small-2">
@@ -68,6 +57,9 @@ class Navbar extends Component {
               </div>
             </div>
           </div>
+          {
+            this.state.showSearch && (<SearchComponent />)
+          }
         </div >
         <div>
           {

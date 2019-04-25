@@ -175,4 +175,14 @@ export const getRolesList = (callback) => {
     })
 }
 
+export const getSearchResults = (input, callback) => {
+  const url = `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com//api/search?search=${input}&maxResults=5`
+  axios.get(url)
+    .then(response => {
+      callback(response)
+    })
+    .catch(error => {
+      callback(error)
+    })
+}
 

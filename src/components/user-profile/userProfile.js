@@ -74,7 +74,7 @@ export default class UserProfileComponent extends React.Component {
         return (
             <Fragment>
                 <NavbarComponent isUser={isUser} />
-                <section className="user grid-container full">
+                <section className="user grid-container full first-container">
                     <div className="grid-x user-profile">
                         <div className="cell small-6">
                             <div className="profile-pic">
