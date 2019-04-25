@@ -4,6 +4,8 @@ node_js:
 warnings_are_errors: false
 env:
 - SERVER_IP_ADDRESS=ec2-18-224-56-34.us-east-2.compute.amazonaws.com
+  global:
+    - SKIP_SASS_BINARY_DOWNLOAD_FOR_CI=true
 branches:
   only:
   - development
@@ -20,8 +22,6 @@ before_deploy:
 - ssh-keyscan -H 18.224.56.34 >> ~/.ssh/known_hosts
 install:
 - npm ci
-before_script:
-- npm rebuild node-sass
 cache:
   directories:
   - "$HOME/.npm"
