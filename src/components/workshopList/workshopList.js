@@ -24,6 +24,17 @@ class WorkshopList extends Component {
         })
       })
   }
+  componentDidUpdate(prevProps) {
+    if (this.props.computedMatch.params.id !== prevProps.computedMatch.params.id) {
+      getWorkshopList(this.props.computedMatch.params.id)
+        .then((data) => {
+          this.setState({
+            workshops: data.data,
+            title: this.props.computedMatch.params.title
+          })
+        })
+    }
+  }
 
   render() {
     return (

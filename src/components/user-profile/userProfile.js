@@ -18,36 +18,45 @@ export default class UserProfileComponent extends React.Component {
             classes: [],
             all: []
         };
+        this.getUserCallback = this.getUserCallback.bind(this)
     };
 
     componentDidMount() {
         //Merge attended and teaching array
         getUser(this.props.computedMatch.params.id)
             .then((data) => {
-
-                let attending = data.data.workshopsAttending.map((workshop) => {
-                    workshop.status = "attending"
-                    return workshop
-                })
-
-                let teaching = data.data.workshopsTeaching.map((workshop) => {
-                    workshop.status = "teaching"
-                    return workshop
-                })
-
-                const all = attending.concat(teaching);
-
-                this.setState({
-                    user: data.data,
-                    classes: all,
-                    all: all
-                })
-
+                this.getUserCallback(data)
             })
-
-
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.computedMatch.params.id !== prevProps.computedMatch.params.id) {
+            getUser(this.props.computedMatch.params.id)
+                .then((data) => {
+                    this.getUserCallback(data)
+                })
+        }
+    }
+
+    getUserCallback(data) {
+        let attending = data.data.workshopsAttending.map((workshop) => {
+            workshop.status = "attending"
+            return workshop
+        })
+
+        let teaching = data.data.workshopsTeaching.map((workshop) => {
+            workshop.status = "teaching"
+            return workshop
+        })
+
+        const all = attending.concat(teaching);
+
+        this.setState({
+            user: data.data,
+            classes: all,
+            all: all
+        })
+    }
     updateWorkshopList(event) {
 
         if (event.target.value === "attending" || event.target.value === "teaching") {
