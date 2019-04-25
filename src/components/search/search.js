@@ -1,20 +1,17 @@
 import React, { Fragment } from 'react'
 import { getSearchResults } from '../../api'
 import { WorkshopPreviewComponent } from '../workshopPreview'
+import { MessageComponent } from '../message'
 import './search.scss'
 
 export default class SearchComponent extends React.Component {
   constructor() {
     super()
-    this.state = { searchInput: '', searchResults: [], isSearchActive: false, isError: false }
-    this.toggleError = this.toggleError.bind(this)
+    this.state = { searchInput: '', searchResults: [], isError: false }
     this.searchCallback = this.searchCallback.bind(this)
   }
 
-  toggleSearch(e) {
-    this.setState({ isSearchActive: !this.state.isSearchActive })
-  }
-  toggleError(e) {
+  errorCallback() {
     this.setState({ isError: !this.state.isError })
   }
   searchHandler(e) {
@@ -28,7 +25,7 @@ export default class SearchComponent extends React.Component {
       this.setState({ searchResults: this.sortResultsData(response.data) })
     }
     else {
-      this.toggleError({ isError: true })
+      this.setState({ isError: true, searchInput: '' })
     }
   }
   sortResultsData(data) {
@@ -56,7 +53,7 @@ export default class SearchComponent extends React.Component {
     return results
   }
   render() {
-    const { searchResults } = this.state
+    const { searchResults, isError } = this.state
     return (
       <Fragment>
         <div className="search-container">
@@ -72,6 +69,11 @@ export default class SearchComponent extends React.Component {
             }
           </div>
         </div>
+        {
+          isError && (
+            <MessageComponent message='Search functionality is not working at the moment. Please try later' callback={this.errorCallback.bind(this)} />
+          )
+        }
       </Fragment>
     )
   }

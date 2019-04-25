@@ -14,6 +14,12 @@ class Navbar extends Component {
       showSearch: false,
       response: {}
     }
+    this.toggleShowSearch = this.toggleShowSearch.bind(this)
+  }
+  componentDidUpdate(prevProps) {
+    if (this.props.match.params.id !== prevProps.match.params.id) {
+      this.toggleShowSearch()
+    }
   }
   toggleShowSearch() {
     this.setState({ showSearch: !this.state.showSearch })
@@ -36,7 +42,7 @@ class Navbar extends Component {
               </nav>
             </div>
             <div className="cell small-6">
-              <FontAwesomeIcon icon="search" onClick={this.toggleShowSearch.bind(this)} />
+              <FontAwesomeIcon icon="search" onClick={this.toggleShowSearch} />
             </div>
             <div className='cell small-4'>
               <div className="grid-x align-spaced align-middle flex-dir-row">
