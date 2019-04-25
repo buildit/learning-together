@@ -63,11 +63,6 @@ export default class ForgotPasswordComponent extends React.Component {
                 </div>
                 <div className='row'>
                   <div className='grid-x grid-padding-x align-center'>
-                    <Link to='/reset-password' >Reset your password</Link>
-                  </div>
-                </div>
-                <div className='row'>
-                  <div className='grid-x grid-padding-x align-center'>
                     <Link to='/register' >Don't have an account?</Link>
                   </div>
                 </div>
