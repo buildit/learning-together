@@ -156,9 +156,19 @@ export default class Workshop extends Component {
           <div className="grid-x enroll-top">
             {isUser ? (
               isEducator ? (
-                <button className="button expanded" onClick={() => {}}>
-                  EDIT
-                </button>
+                <Link to={`/edit/${this.props.computedMatch.params.id}`}>
+                  <button
+                    type="button"
+                    className="button expanded"
+                    onClick={() => {
+                      console.log("clicked");
+
+                      console.log(this.props);
+                    }}
+                  >
+                    EDIT
+                  </button>
+                </Link>
               ) : isAttending ? (
                 <button
                   type="button"
