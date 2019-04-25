@@ -18,7 +18,10 @@ before_deploy:
 - mkdir -p ~/.ssh  &&  echo "Host *" > ~/.ssh/config && echo " StrictHostKeyChecking
   no" >> ~/.ssh/config
 - ssh-keyscan -H 18.224.56.34 >> ~/.ssh/known_hosts
-install: travis_wait 3 npm ci
+install:
+- npm ci
+before_script:
+- npm rebuild node-sass
 cache:
   directories:
   - "$HOME/.npm"
