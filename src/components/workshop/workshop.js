@@ -142,7 +142,7 @@ export default class Workshop extends Component {
           <div className="grid-x">
             <div className="small-12 instructor-info">
               <div className="photo-frame">
-                <img src={`${baseUrl}${instructor.imageUrl}`} />
+                <img src={`${baseUrl}${instructor.imageUrl}`} alt='instructor' />
               </div>
 
               <p>
@@ -236,7 +236,6 @@ export default class Workshop extends Component {
             </h3>
             <section className="grid-display attendee-grid">
               {attendees.map((attendee, index) => {
-                console.log(attendee)
                 return <UserPreviewComponent key={index} attendee={attendee} />
               }
               )}
