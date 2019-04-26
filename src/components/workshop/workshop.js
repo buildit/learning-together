@@ -113,7 +113,7 @@ export default class Workshop extends Component {
       showMessage,
       message
     } = this.state;
-    const attendees = workshop.attendees ? workshop.attendees : [];
+    const attendees = workshop.workshopAttendees ? workshop.workshopAttendees : [];
     const baseUrl = "http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/";
     const cover = workshop.imageUrl
       ? `${baseUrl}${workshop.imageUrl}`
@@ -125,7 +125,7 @@ export default class Workshop extends Component {
     const { isUser } = this.props;
     const isEducator = userId === educatorId;
     const isAttending = workshop && filterAttendees(userId, workshop);
-
+    console.log(workshop)
     return (
       <Fragment>
         {showMessage && (
@@ -160,7 +160,7 @@ export default class Workshop extends Component {
           <div className="grid-x enroll-top">
             {isUser ? (
               isEducator ? (
-                <button className="button expanded" onClick={() => {}}>
+                <button className="button expanded" onClick={() => { }}>
                   EDIT
                 </button>
               ) : isAttending ? (
@@ -172,24 +172,24 @@ export default class Workshop extends Component {
                   UNENROLL
                 </button>
               ) : (
-                <button
-                  type="button"
-                  className="button expanded"
-                  onClick={this.onClickEnroll.bind(this)}
-                >
-                  ENROLL
+                    <button
+                      type="button"
+                      className="button expanded"
+                      onClick={this.onClickEnroll.bind(this)}
+                    >
+                      ENROLL
                 </button>
-              )
+                  )
             ) : (
-              <Link
-                type="button"
-                to="/login"
-                className="button expanded"
-                onClick={() => {}}
-              >
-                LOGIN TO ENROLL
+                <Link
+                  type="button"
+                  to="/login"
+                  className="button expanded"
+                  onClick={() => { }}
+                >
+                  LOGIN TO ENROLL
               </Link>
-            )}
+              )}
           </div>
 
           <div className="grid-x">
@@ -235,9 +235,11 @@ export default class Workshop extends Component {
               <b>Attendees</b>
             </h3>
             <section className="grid-display attendee-grid">
-              {attendees.map((attendee, index) => (
-                <UserPreviewComponent key={index} attendee={attendee} />
-              ))}
+              {attendees.map((attendee, index) => {
+                console.log(attendee)
+                return <UserPreviewComponent key={index} attendee={attendee} />
+              }
+              )}
             </section>
           </div>
         </div>
