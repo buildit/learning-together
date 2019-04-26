@@ -1,9 +1,11 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { RoutesComponent } from './components';
 
-it("renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<App />, div);
-  //ReactDOM.unmountComponentAtNode(div);
+jest.mock('./components')
+
+it('renders without crashing', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<RoutesComponent />, div);
+  ReactDOM.unmountComponentAtNode(div);
 });
