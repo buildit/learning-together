@@ -12,7 +12,7 @@ const UserPreviewComponent = ({ attendee }) => {
 
     return (
         <div className="user-preview">
-            <NavLink to={`/user/${attendee.userId}`} className="">
+            <NavLink to={`/user/${attendee.id}`} className="">
                 <div className="photo-frame">
                     <img src={showPhoto()} alt="" />
                 </div>

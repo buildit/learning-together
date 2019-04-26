@@ -38,7 +38,11 @@ export default class Workshop extends Component {
     this.setState({ userId: Number(userId) });
     getWorkshop(this.props.computedMatch.params.id, this.getWorkshopCallback);
   }
-
+  componentDidUpdate(prevProps) {
+    if (this.props.computedMatch.params.id !== prevProps.computedMatch.params.id) {
+      getWorkshop(this.props.computedMatch.params.id, this.getWorkshopCallback);
+    }
+  }
   getWorkshopCallback(response) {
     const { data } = response;
     if (response.status === 200) {
@@ -128,7 +132,7 @@ export default class Workshop extends Component {
           <MessageComponent message={message} callback={this.messageCallback} />
         )}
         <NavbarComponent isUser={isUser} location={this.props.location} />
-        <div className="grid-container">
+        <div className="grid-container first-container">
           <div className="grid-x">
             <h1 className="workshop-title">
               <b>{workshop.name}</b>
@@ -156,7 +160,7 @@ export default class Workshop extends Component {
           <div className="grid-x enroll-top">
             {isUser ? (
               isEducator ? (
-                <button className="button expanded" onClick={() => { }}>
+                <button className="button expanded" onClick={() => {}}>
                   EDIT
                 </button>
               ) : isAttending ? (
@@ -168,24 +172,24 @@ export default class Workshop extends Component {
                   UNENROLL
                 </button>
               ) : (
-                    <button
-                      type="button"
-                      className="button expanded"
-                      onClick={this.onClickEnroll.bind(this)}
-                    >
-                      ENROLL
-                </button>
-                  )
-            ) : (
-                <Link
+                <button
                   type="button"
-                  to="/login"
                   className="button expanded"
-                  onClick={() => { }}
+                  onClick={this.onClickEnroll.bind(this)}
                 >
-                  LOGIN TO ENROLL
+                  ENROLL
+                </button>
+              )
+            ) : (
+              <Link
+                type="button"
+                to="/login"
+                className="button expanded"
+                onClick={() => {}}
+              >
+                LOGIN TO ENROLL
               </Link>
-              )}
+            )}
           </div>
 
           <div className="grid-x">
@@ -215,7 +219,9 @@ export default class Workshop extends Component {
                 {" "}
                 {location.name} <br />
                 {workshop.room} <br />
-                <a href={workshop.webex}>Webex</a>{" "}
+                {workshop.webex === "" ? null : (
+                  <a href={workshop.webex}>Webex</a>
+                )}
               </p>
             </div>
           </div>

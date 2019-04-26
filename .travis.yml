@@ -1,9 +1,10 @@
 language: node_js
 node_js:
-- stable
+- 11.14.0
 warnings_are_errors: false
 env:
-- SERVER_IP_ADDRESS=ec2-18-224-56-34.us-east-2.compute.amazonaws.com
+  global:
+    - SERVER_IP_ADDRESS=ec2-18-224-56-34.us-east-2.compute.amazonaws.com
 branches:
   only:
   - development

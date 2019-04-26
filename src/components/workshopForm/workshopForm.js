@@ -4,7 +4,7 @@ import { SingleDatePicker } from "react-dates";
 import { Link, Redirect } from "react-router-dom";
 import { MessageComponent } from "../message";
 import { ImageUploaderComponent } from "../imageUploader";
-import { createWorkshop, getCategoryList } from "../../api.js";
+import { createWorkshop, getCategoryList, getLocationList } from "../../api.js";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import "./workshopForm.scss";
@@ -15,6 +15,7 @@ class WorkshopForm extends Component {
     this.state = {
       name: "",
       location: 1,
+      locationList: [],
       link: "",
       description: "",
       startDate: moment(),
@@ -38,6 +39,7 @@ class WorkshopForm extends Component {
     this.validateForm = this.validateForm.bind(this);
     this.redirectCallback = this.redirectCallback.bind(this);
     this.setWorkshopPicture = this.setWorkshopPicture.bind(this);
+    this.getLocationCallBack = this.getLocationCallBack.bind(this);
   }
 
   //TODO Handle Error
@@ -47,14 +49,14 @@ class WorkshopForm extends Component {
       .catch(error => {
         console.log(error);
       });
+
+    getLocationList(this.getLocationCallBack);
   }
 
   //If input is start time or date time modify moment object
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
     if (e.target.name === "startTime" || e.target.name === "endTime") {
-      this.setState({ [e.target.name]: e.target.value });
-
       if (e.target.name === "startTime" && this.state.startDate) {
         this.state.startDate.set({ h: e.target.value.slice(0, 2) });
         this.state.startDate.set({ m: e.target.value.slice(3, 5) });
@@ -66,6 +68,12 @@ class WorkshopForm extends Component {
         endDate.set({ m: e.target.value.slice(3, 5) });
         this.setState({ endDate });
       }
+    }
+  }
+
+  getLocationCallBack(response) {
+    if (response.status === 200) {
+      this.setState({ locationList: response.data });
     }
   }
 
@@ -102,21 +110,6 @@ class WorkshopForm extends Component {
       this.state.startTime > this.state.endTime
     ) {
       errors["time"] = "Pick valid time";
-      invalid = true;
-    }
-
-    if (this.state.link === "") {
-      errors["link"] = "Enter a valid Url";
-      invalid = true;
-    }
-
-    if (this.state.description === "") {
-      errors["description"] = "Enter a workshop description";
-      invalid = true;
-    }
-
-    if (this.state.room === "") {
-      errors["room"] = "Enter a room where workshop will be held";
       invalid = true;
     }
 
@@ -161,8 +154,24 @@ class WorkshopForm extends Component {
   }
 
   render() {
+    const categories = this.state.categoryList.map(category => {
+      return (
+        <option key={category.id} value={category.id}>
+          {category.name}
+        </option>
+      );
+    });
+
+    const locations = this.state.locationList.map(location => {
+      return (
+        <option key={location.id} value={location.id}>
+          {location.name}
+        </option>
+      );
+    });
+
     return (
-      <div className="workshop-form">
+      <div className="workshop-form first-container">
         <form onSubmit={this.handleSubmit}>
           <div className="grid-container">
             <div className="grid-x grid-padding-x align-center">
@@ -188,13 +197,7 @@ class WorkshopForm extends Component {
                     value={this.state.categorySelected}
                     onChange={this.handleChange}
                   >
-                    {this.state.categoryList.map(category => {
-                      return (
-                        <option key={category.id} value={category.id}>
-                          {category.name}
-                        </option>
-                      );
-                    })}
+                    {categories}
                   </select>
                 </label>
               </div>
@@ -219,8 +222,6 @@ class WorkshopForm extends Component {
                   <input
                     type="time"
                     name="startTime"
-                    min="10:00"
-                    max="18:00"
                     value={this.state.startTime}
                     required
                     onChange={this.handleChange}
@@ -232,8 +233,6 @@ class WorkshopForm extends Component {
                   <input
                     type="time"
                     name="endTime"
-                    min="10:00"
-                    max="18:00"
                     value={this.state.endTime}
                     required
                     onChange={this.handleChange}
@@ -249,12 +248,7 @@ class WorkshopForm extends Component {
                     value={this.state.location}
                     onChange={this.handleChange}
                   >
-                    <option value="1">New York </option>
-                    <option value="2">London</option>
-                    <option value="3">Edinburgh </option>
-                    <option value="4">Dublin</option>
-                    <option value="5">Denver </option>
-                    <option value="6">Dallas </option>
+                    {locations}
                   </select>
                 </label>
               </div>
