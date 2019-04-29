@@ -11,7 +11,8 @@ import {
   getWorkshop,
   coverGenerator,
   enrollWorkshop,
-  unenrollWorkshop
+  unenrollWorkshop,
+  cancelWorkshop
 } from "../../api";
 import { MessageComponent } from "../message";
 import { filterAttendees } from "../../selectors";
@@ -25,12 +26,14 @@ export default class Workshop extends Component {
       userId: null,
       educatorId: null,
       showMessage: false,
-      message: ""
+      message: "",
+      cancel: false
     };
     this.getWorkshopCallback = this.getWorkshopCallback.bind(this);
     this.enrollWorshopCallback = this.enrollWorshopCallback.bind(this);
     this.unenrollWorshopCallback = this.unenrollWorshopCallback.bind(this);
     this.messageCallback = this.messageCallback.bind(this);
+    this.cancelWorkshopCallback = this.cancelWorkshopCallback.bind(this)
   }
 
   componentDidMount() {
@@ -91,6 +94,32 @@ export default class Workshop extends Component {
     this.setState({ showMessage: false, message: "" });
   }
 
+  confirmCancelWorkshop() {
+    cancelWorkshop(this.state.workshop.id, this.cancelWorkshopCallback)
+  }
+
+  cancelWorkshopCallback(response) {
+    if (response.status === 200) {
+      this.setState({
+        showMessage: true,
+        message: "You have cancelled your workshop"
+      });
+    } else {
+      //show error message
+      this.setState({
+        showMessage: true,
+        message: "There was an error in cancellation. Please try again later."
+      });
+    }
+  }
+
+  cancelCallback() {
+    this.setState({
+      showMessage: false,
+      message: ''
+    })
+  }
+
   onClickEnroll(e) {
     e.preventDefault();
     enrollWorkshop(this.state.workshop.id, this.enrollWorshopCallback);
@@ -98,6 +127,13 @@ export default class Workshop extends Component {
   onClickUnenroll(e) {
     e.preventDefault();
     unenrollWorkshop(this.state.workshop.id, this.unenrollWorshopCallback);
+  }
+  onClickCancel(e) {
+    e.preventDefault()
+    this.setState({
+      showMessage: true,
+      message: 'Are you sure you want to cancel?'
+    })
   }
   updateImage(location) {
     const formatted = location.replace(/\s/g, "-");
@@ -110,12 +146,12 @@ export default class Workshop extends Component {
       workshop,
       userId,
       educatorId,
-      isEnrollSuccessful,
-      enrollError,
       showMessage,
       message
     } = this.state;
-    const attendees = workshop.workshopAttendees ? workshop.workshopAttendees : [];
+    const attendees = workshop.workshopAttendees
+      ? workshop.workshopAttendees
+      : [];
     const baseUrl = "http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/";
     const cover = workshop.imageUrl
       ? `${baseUrl}${workshop.imageUrl}`
@@ -130,7 +166,7 @@ export default class Workshop extends Component {
     return (
       <Fragment>
         {showMessage && (
-          <MessageComponent message={message} callback={this.messageCallback} />
+          <MessageComponent message={message} callback={this.messageCallback} cancel={this.cancelCallback.bind(this)} />
         )}
         <NavbarComponent isUser={isUser} location={this.props.location} />
         <div className="grid-container first-container">
@@ -143,7 +179,10 @@ export default class Workshop extends Component {
           <div className="grid-x">
             <div className="small-12 instructor-info">
               <div className="photo-frame">
-                <img src={`${baseUrl}${instructor.imageUrl}`} alt='instructor' />
+                <img
+                  src={`${baseUrl}${instructor.imageUrl}`}
+                  alt="instructor"
+                />
               </div>
 
               <p>
@@ -161,12 +200,19 @@ export default class Workshop extends Component {
           <div className="grid-x enroll-top">
             {isUser ? (
               isEducator ? (
-                [<Link to={`/edit/${this.props.computedMatch.params.id}`}>
-                  <button type="button" className="button expanded">
+                [<Link to={`/edit/${this.props.computedMatch.params.id}`}
+                  className="button expanded">
+                  <button
+                    type="button">
                     EDIT
                   </button>
                 </Link>,
-                <button type="button" className="button danger">CANCEL</button>
+                <button
+                  type="button"
+                  className="hollow button alert expanded"
+                  onClick={this.onClickCancel.bind(this)}>
+                  CANCEL
+                  </button>
                 ]) : isAttending ? (
                   <button
                     type="button"
@@ -240,25 +286,12 @@ export default class Workshop extends Component {
             </h3>
             <section className="grid-display attendee-grid">
               {attendees.map((attendee, index) => {
-                return <UserPreviewComponent key={index} attendee={attendee} />
-              }
-              )}
+                return <UserPreviewComponent key={index} attendee={attendee} />;
+              })}
             </section>
           </div>
         </div>
-        {isEnrollSuccessful && (
-          <MessageComponent
-            message="You have succesfully enrolled!"
-            callback={this.messageCallback}
-          />
-        )}
-        {enrollError && (
-          <MessageComponent
-            message="There was an error in enrollment. Please try again later"
-            callback={this.messageCallback}
-          />
-        )}
-      </Fragment>
+      </Fragment >
     );
   }
 }
