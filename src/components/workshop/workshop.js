@@ -7,6 +7,7 @@ import Moment from "react-moment";
 import { NavbarComponent } from "../navbar";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../UserProvider";
+import AddToCalendar from 'react-add-to-calendar';
 import {
   getWorkshop,
   coverGenerator,
@@ -125,7 +126,14 @@ export default class Workshop extends Component {
     const { isUser } = this.props;
     const isEducator = userId === educatorId;
     const isAttending = workshop && filterAttendees(userId, workshop);
-    console.log(workshop)
+    const event = {
+      title: workshop.name ? workshop.name : '',
+      description: workshop.description ? workshop.description : '',
+      location: workshop.location ? workshop.location.name : '',
+      startTime: workshop.start ? workshop.start : '',
+      endTime: workshop.end ? workshop.end : ''
+    }
+    let icon = { 'calendar-plus-o': 'left' }
     return (
       <Fragment>
         {showMessage && (
@@ -206,7 +214,7 @@ export default class Workshop extends Component {
                 <Moment format="LT">{workshop.start}</Moment> -{" "}
                 <Moment format="LT">{workshop.end}</Moment>
                 <br />
-                <a href="true">Add to Calendar</a>
+                <AddToCalendar event={event} buttonClassOpen='button' buttonClassClosed='button' dropdownClass='ics-dropdown' />
               </p>
             </div>
           </div>
