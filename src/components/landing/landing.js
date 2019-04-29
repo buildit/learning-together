@@ -74,7 +74,13 @@ export default class Landing extends Component {
            </Slider>
       </CarouselProvider>
         </div>
+        <div className="grid-container landing-preview">
+          <h2 className="section-title">Categories</h2>
+          <CategoryListComponent workshop={this.state.workshops} categories={this.state.categories} />
+        </div>
+        <FooterComponent isUser={isUser} userId={this.state.userId} />
       </div>
+
     );
   }
 }

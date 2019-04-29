@@ -10,14 +10,60 @@
 }
 
 .navbar {
-    position:absolute;
+    position:fixed;
     background: #ffffff;
     padding-top: 20px;
     padding-top: 10px;
     padding-bottom:10px;
     margin-bottom: 1.5em;
     z-index:9999;
+    width: 100vw;
 }
 .input-search-icon{
     text-decoration:none;
 }
+
+.spacing {
+    height: 70px;
+}
+
+.account-dropdown::before {
+    width: 0;
+height: 0;
+border-style: solid;
+border-width: 0 12.5px 25px 12.5px;
+border-color: transparent transparent #cccccc transparent;
+}
+
+.account-dropdown {
+    position: absolute;
+    width: 200px;
+    margin-left: -130px;
+    top: 60px;
+    background: #cccccc;
+    z-index: 9999999;
+    ul {
+        margin: 0;
+        text-align: center;
+    }
+    li {
+        list-style: none;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: .5em;
+    }
+    
+}
+
+/* Small only */
+@media screen and (max-width: 39.9375em) {
+    .account-dropdown {
+        width: 100vw;
+        left: 0;
+        top: 60px;
+        margin: 0;
+    }
+}
+
