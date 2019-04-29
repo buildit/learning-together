@@ -41,13 +41,13 @@ export async function loadCategories() {
       return error;
     });
 }
-export const getWorkshopList = (id) => {
+export const getWorkshopList = id => {
   const category = id ? `filter?categoryId=${id}` : "";
   return axios.request({
     url: `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops/${category}`,
-    method: 'get'
-  })
-}
+    method: "get"
+  });
+};
 
 export const getWorkshop = (id, callback) => {
   const url = `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops/${id}`;
@@ -99,12 +99,12 @@ export const unenrollWorkshop = (id, callback) => {
     });
 };
 
-export const getUser = (id) => {
+export const getUser = id => {
   return axios.request({
     url: `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/users/${id}`,
-    method: 'get'
-  })
-}
+    method: "get"
+  });
+};
 
 // Make a request for a user with a given token
 export const createWorkshop = data => {
@@ -119,12 +119,12 @@ export const createWorkshop = data => {
         Authorization: "Bearer " + token
       }
     })
-    .then(function (response) {
+    .then(function(response) {
       // handle success
       console.log(response);
       return response;
     })
-    .catch(function (error) {
+    .catch(function(error) {
       // handle error
       console.log(error);
     });
@@ -133,6 +133,7 @@ export const createWorkshop = data => {
 export const coverGenerator = id => {
   return `${process.env.PUBLIC_URL}/images/cover/cover_${id}.jpg`;
 };
+
 export function uploadImage(data, callback) {
   const url =
     "http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/upload/image";
@@ -148,41 +149,67 @@ export function uploadImage(data, callback) {
 
 export const getCategoryList = () => {
   return axios.request({
-    url: 'http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/disciplines/categories',
-    method: 'get'
-  })
-}
+    url:
+      "http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/disciplines/categories",
+    method: "get"
+  });
+};
 
-export const getLocationList = (callback) => {
-  const url = `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/locations`
-  axios.get(url)
+export const getLocationList = callback => {
+  const url = `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/locations`;
+  axios
+    .get(url)
     .then(response => {
-      callback(response)
+      callback(response);
     })
     .catch(error => {
-      callback(error)
-    })
-}
+      callback(error);
+    });
+};
 
-export const getRolesList = (callback) => {
-  const url = 'http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/roles'
-  axios.get(url)
+export const getRolesList = callback => {
+  const url =
+    "http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/roles";
+  axios
+    .get(url)
     .then(response => {
-      callback(response)
+      callback(response);
     })
     .catch(error => {
-      callback(error)
-    })
-}
+      callback(error);
+    });
+};
 
 export const getSearchResults = (input, callback) => {
-  const url = `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com//api/search?search=${input}&maxResults=5`
-  axios.get(url)
+  const url = `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com//api/search?search=${input}&maxResults=5`;
+  axios
+    .get(url)
     .then(response => {
-      callback(response)
+      callback(response);
     })
     .catch(error => {
-      callback(error)
-    })
-}
+      callback(error);
+    });
+};
 
+// Make a request for a user with a given token
+export const updateWorkshop = (id, data) => {
+  const token = localStorage.getItem("BTToken");
+  return axios
+    .request({
+      url: `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops/${id}`,
+      method: "put",
+      data,
+      headers: {
+        Authorization: "Bearer " + token
+      }
+    })
+    .then(function(response) {
+      // handle success
+      return response;
+    })
+    .catch(function(error) {
+      // handle error
+      console.log(error);
+    });
+};
