@@ -11,7 +11,6 @@ import { WorkshopCreateComponent } from "../workshopCreate";
 import { WorkshopEditComponent } from "../workshopEdit";
 import { WorkshopComponent } from "../workshop";
 import { ConfirmationComponent } from "../confirmation";
-import { ForgotPasswordComponent } from '../forgotPassword'
 import UserProvider from '../../UserProvider'
 
 export default class RoutesComponent extends React.Component {
