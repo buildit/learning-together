@@ -40,7 +40,9 @@ export default class Workshop extends Component {
     getWorkshop(this.props.computedMatch.params.id, this.getWorkshopCallback);
   }
   componentDidUpdate(prevProps) {
-    if (this.props.computedMatch.params.id !== prevProps.computedMatch.params.id) {
+    if (
+      this.props.computedMatch.params.id !== prevProps.computedMatch.params.id
+    ) {
       getWorkshop(this.props.computedMatch.params.id, this.getWorkshopCallback);
     }
   }
@@ -114,7 +116,9 @@ export default class Workshop extends Component {
       showMessage,
       message
     } = this.state;
-    const attendees = workshop.workshopAttendees ? workshop.workshopAttendees : [];
+    const attendees = workshop.workshopAttendees
+      ? workshop.workshopAttendees
+      : [];
     const baseUrl = "http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/";
     const cover = workshop.imageUrl
       ? `${baseUrl}${workshop.imageUrl}`
@@ -133,7 +137,6 @@ export default class Workshop extends Component {
       startTime: workshop.start ? workshop.start : '',
       endTime: workshop.end ? workshop.end : ''
     }
-    let icon = { 'calendar-plus-o': 'left' }
     return (
       <Fragment>
         {showMessage && (
@@ -150,7 +153,10 @@ export default class Workshop extends Component {
           <div className="grid-x">
             <div className="small-12 instructor-info">
               <div className="photo-frame">
-                <img src={`${baseUrl}${instructor.imageUrl}`} alt='instructor' />
+                <img
+                  src={`${baseUrl}${instructor.imageUrl}`}
+                  alt="instructor"
+                />
               </div>
 
               <p>
@@ -168,9 +174,14 @@ export default class Workshop extends Component {
           <div className="grid-x enroll-top">
             {isUser ? (
               isEducator ? (
-                <button className="button expanded" onClick={() => { }}>
-                  EDIT
-                </button>
+                <Link
+                  className="cell small-12"
+                  to={`/edit/${this.props.computedMatch.params.id}`}
+                >
+                  <button type="button" className="button expanded">
+                    EDIT
+                  </button>
+                </Link>
               ) : isAttending ? (
                 <button
                   type="button"
@@ -244,9 +255,8 @@ export default class Workshop extends Component {
             </h3>
             <section className="grid-display attendee-grid">
               {attendees.map((attendee, index) => {
-                return <UserPreviewComponent key={index} attendee={attendee} />
-              }
-              )}
+                return <UserPreviewComponent key={index} attendee={attendee} />;
+              })}
             </section>
           </div>
         </div>
