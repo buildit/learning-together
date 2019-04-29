@@ -2,10 +2,16 @@
     width: 100%;
 }
 
+/* Medium and up */
+@media screen and (min-width: 40em) {
+    .logo {
+        max-width: 50px;
+    }
+}
+
 .navbar {
     background: #ffffff;
     padding-top: 20px;
-    margin-bottom: 1.5em;
 }
 
 .search-container {

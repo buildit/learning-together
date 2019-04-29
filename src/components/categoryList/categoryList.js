@@ -12,7 +12,7 @@ class CategoryList extends Component {
   render() {
     const WrkshpCategories = this.props.categories.map((category, index) => {
       return (
-        <div key={index} className="cell small-6 ">
+        <div key={index} className="cell small-6 medium-4 large-3">
           <Link
             to={{
               pathname: `/workshops/categories/${category.id}/${category.name}`,

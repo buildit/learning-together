@@ -9,13 +9,29 @@
     }
 }
 
+.cover-frame {
+  height: 30vh;
+}
+
+
+
+@media screen and (min-width: 40em) {
+
+  .cover-frame {
+    height: 460px;
+  }
+
+  .card {
+    margin-right: 10px;
+  }
+}
+
 .preview-card {
   padding: .5rem;
 }
 .card-scroll-single {
   display: inline-block;
 }
-
 .card-scroll-single:hover {
   opacity: 0.7;
 }

@@ -25,10 +25,12 @@
 
   .cell .custom-cards {
     background-color: rgba(94,155,177,1);
+    margin-bottom: 10px;
   }
 
-  .cell:nth-child(2n + 1) .custom-cards {
+  .cell:hover .custom-cards {
     background-color: rgba(232,144,180,1);
+    color: #fff;
   }
 }
 

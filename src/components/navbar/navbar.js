@@ -32,14 +32,14 @@ class Navbar extends Component {
     const { isUser } = this.props
     return (
       <Fragment>
-        <div className="navbar grid-container">
+        <div className="navbar grid-container fluid">
           <div className="grid-x grid-margin-x">
-            <div className="cell small-2">
+            <div className="cell small-2 medium-1">
               <nav className='logo'>
                 <Link to="/"><img src={logo} alt="logo"></img></Link>
               </nav>
             </div>
-            <div className="cell small-7">
+            <div className="cell small-8 medium-9">
               <div className="search-container">
                 <input type="search" name='search' placeholder="Search" value={this.state.search} onChange={this.searchHandler.bind(this)} />
                 <button type="button" className="button">
@@ -47,7 +47,7 @@ class Navbar extends Component {
                 </button>
               </div>
             </div>
-            <div className="cell small-2">
+            <div className="cell small-1">
               {
                 isUser
                   ? <Link to="/login" onClick={this.logoutHandler.bind(this)}>Logout</Link>
