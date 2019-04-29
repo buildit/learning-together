@@ -51,3 +51,22 @@
     margin-top: 1.5em;
     margin-bottom: 1em;
   }
+
+.ics-dropdown{
+  border: solid grey 1px;
+  display:flex;
+  background-color:white;
+  justify-content:center;
+  position:absolute;
+  width:50%;
+  ul {
+    list-style-type: none;
+    width:100%;
+    margin:0;
+    li{
+      text-align:center;
+      width:100%;
+      border-bottom:solid grey 1px;
+    }
+  }
+}
