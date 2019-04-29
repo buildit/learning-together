@@ -166,7 +166,7 @@ export default class Workshop extends Component {
                     EDIT
                   </button>
                 </Link>,
-                <button>CANCEL</button>
+                <button type="button" className="button danger">CANCEL</button>
                 ]) : isAttending ? (
                   <button
                     type="button"
