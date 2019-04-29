@@ -19,12 +19,12 @@ class CategoryList extends Component {
               category,
               state: this.props.workshop
             }}
-            
+
             className="card custom-cards"
           >
 
             <b>{category.name}</b>
-           
+
           </Link>
         </div>
       );
@@ -32,7 +32,7 @@ class CategoryList extends Component {
 
     return (
       <div>
-          <div className="grid-x category-container">{WrkshpCategories}</div>
+        <div className="grid-x category-container">{WrkshpCategories}</div>
       </div>
     );
   }
@@ -41,5 +41,5 @@ class CategoryList extends Component {
 export default CategoryList;
 
 CategoryList.defaultProps = {
-  categories : []
+  categories: []
 }

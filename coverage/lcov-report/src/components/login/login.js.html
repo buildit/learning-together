@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/components/login/login.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">All files</a> / <a href="index.html">src/components/login</a> login.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">70.59% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>12/17</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">33.33% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>2/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">83.33% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>5/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">70.59% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>12/17</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span></td><td class="text"><pre class="prettyprint lang-js">import React, { Fragment } from 'react'
+import { Link, Redirect } from 'react-router-dom'
+import { signIn } from '../../api'
+import { NavbarComponent } from '../navbar';
+import { UserContext } from '../../UserProvider'
+import './login.scss'
+&nbsp;
+export default class LoginComponent extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      email: '',
+      password: '',
+      loginSuccess: false,
+      loginError: false,
+      userId: ''
+    }
+    this.submitCallback = this.submitCallback.bind(this)
+  }
+&nbsp;
+  inputHandler(e) {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+  formatEmail(email) {
+    return email.trim()
+  }
+  submitHandler(e) {
+    e.preventDefault()
+    const { email, password } = this.state
+    const formattedEmail = this.formatEmail(email)
+    //add logic for api call
+    signIn({ Username: formattedEmail, Password: password }, this.submitCallback)
+  }
+<span class="fstat-no" title="function not covered" >  su</span>bmitCallback(response) {
+<span class="cstat-no" title="statement not covered" >    if (response.status === 200) {</span>
+<span class="cstat-no" title="statement not covered" >      localStorage.setItem('BTToken', response.data.token)</span>
+<span class="cstat-no" title="statement not covered" >      localStorage.setItem('userId', response.data.id)</span>
+<span class="cstat-no" title="statement not covered" >      this.setState({</span>
+        loginSuccess: true,
+        userId: response.data.id
+      })
+    }
+    else {
+<span class="cstat-no" title="statement not covered" >      this.setState({ loginError: true })</span>
+    }
+  }
+&nbsp;
+  render() {
+    const { email, password, loginSuccess, userId, loginError } = this.state
+    return (
+      &lt;Fragment&gt;
+        &lt;NavbarComponent isUser={this.props.isUser} userId={userId} /&gt;
+        &lt;div className="grid-container"&gt;
+          &lt;div className="grid-y medium-grid-frame"&gt;
+            &lt;div className="grid-x grid-padding-x align-middle"&gt;
+              &lt;form className='cell medium-12' onSubmit={this.submitHandler.bind(this)}&gt;
+                &lt;div className='row'&gt;
+                  &lt;div className="small-12 columns"&gt;
+                    &lt;label&gt;Email:
+                &lt;input type="text" placeholder="Please Enter Your Email Address" autoComplete="user email" name='email' value={email} onChange={this.inputHandler.bind(this)} /&gt;
+                    &lt;/label&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div className='row'&gt;
+                  &lt;div className="small-12 columns"&gt;
+                    &lt;label&gt;Password:
+                &lt;input type="password" autoComplete="current-password" placeholder="Please Enter Your Password." name='password' value={password} onChange={this.inputHandler.bind(this)} /&gt;
+                    &lt;/label&gt;
+                    {
+                      loginError &amp;&amp; (
+<span class="branch-1 cbranch-no" title="branch not covered" >                        &lt;div className='login-error'&gt;Username or password not found. Please try again.&lt;/div&gt;</span>
+                      )
+                    }
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div&gt;
+                  &lt;div className='grid-x grid-padding-x align-center'&gt;
+                    &lt;input type="submit" className="button success align-center cell medium-6" value="Submit" /&gt;
+                  &lt;/div&gt;
+                  &lt;div className='grid-x grid-padding-x align-center'&gt;
+                    &lt;Link to='' &gt;Forgot your password?&lt;/Link&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div className='row'&gt;
+                  &lt;div className='grid-x grid-padding-x align-center'&gt;
+                    &lt;Link to='/register' &gt;Don't have an account?&lt;/Link&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/form&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div &gt;
+        {
+          loginSuccess &amp;&amp; (
+<span class="branch-1 cbranch-no" title="branch not covered" >            &lt;Redirect to={{ pathname: '/', state: { userId } }} /&gt;</span>
+          )
+        }
+      &lt;/Fragment&gt;
+&nbsp;
+    )
+  }
+}
+&nbsp;
+LoginComponent.contextType = UserContext</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Apr 25 2019 11:12:07 GMT-0400 (EDT)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

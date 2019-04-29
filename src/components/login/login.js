@@ -34,7 +34,7 @@ export default class LoginComponent extends React.Component {
   submitCallback(response) {
     if (response.status === 200) {
       localStorage.setItem('BTToken', response.data.token)
-      this.context.updateUser(response.data.id)
+      localStorage.setItem('userId', response.data.id)
       this.setState({
         loginSuccess: true,
         userId: response.data.id
@@ -50,7 +50,7 @@ export default class LoginComponent extends React.Component {
     return (
       <Fragment>
         <NavbarComponent isUser={this.props.isUser} userId={userId} />
-        <div className="grid-container">
+        <div className="grid-container first-container">
           <div className="grid-y medium-grid-frame">
             <div className="grid-x grid-padding-x align-middle">
               <form className='cell medium-12' onSubmit={this.submitHandler.bind(this)}>
@@ -78,7 +78,7 @@ export default class LoginComponent extends React.Component {
                     <input type="submit" className="button success align-center cell medium-6" value="Submit" />
                   </div>
                   <div className='grid-x grid-padding-x align-center'>
-                    <Link to='' >Forgot your password?</Link>
+                    <Link to='/forgot-password' >Forgot your password?</Link>
                   </div>
                 </div>
                 <div className='row'>

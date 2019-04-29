@@ -53,7 +53,7 @@ export default class Landing extends Component {
 
     const { isUser, location } = this.props
     return (
-      <div>
+      <div >
         <NavbarComponent isUser={isUser} location={location} />
         <Hero title="Better Together" />
         <div className="grid-container landing-preview">
@@ -74,11 +74,6 @@ export default class Landing extends Component {
            </Slider>
       </CarouselProvider>
         </div>
-        <div className="grid-container landing-preview">
-          <h2 className="section-title">Categories</h2>
-          <CategoryListComponent workshop={this.state.workshops} categories={this.state.categories} />
-        </div>
-        <FooterComponent isUser={isUser} userId={this.state.userId} />
       </div>
     );
   }

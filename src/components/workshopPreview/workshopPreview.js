@@ -6,9 +6,7 @@ import "./workshopPreview.scss";
 
 const WorkshopPreview = ({ workshop }) => {
   return (
-
-    
- <Link to={`/workshop/${workshop.id}`} className="workshop-link grid-x grid-margin-x">
+<Link to={`/workshop/${workshop.workshopId ? workshop.workshopId : workshop.id}`} className="workshop-link grid-x grid-margin-x" >
     <div className="cell small-12 cell">
     <p className="from-now"><Moment format="dddd">{workshop.startDate}</Moment> <Moment format="LT">{workshop.startDate}</Moment> | <Moment fromNow>{workshop.startDate}</Moment></p>
     </div>

@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import Select from 'react-select'
 import makeAnimated from 'react-select/lib/animated'
-import { signUp, getLocationList } from '../../api'
+import { signUp, getLocationList, getRolesList } from '../../api'
 import { MessageComponent } from '../message'
 import { ImageUploaderComponent } from '../imageUploader'
 import { NavbarComponent } from '../navbar'
@@ -22,7 +22,7 @@ export default class RegisterComponent extends React.Component {
       selectedLocation: {},
       selectedRole: {},
       interests: [],
-      profilePicture: '',
+      profilePicture: 'images/cover/profile-placeholder.png',
       firstNameError: false,
       lastNameError: false,
       emailError: false,
@@ -34,40 +34,71 @@ export default class RegisterComponent extends React.Component {
       signUpSuccess: false,
       redirect: false,
       locations: [],
+      roles: [],
+      rolesFetchError: false,
       locationFetchError: false
     }
     this.locations = [{ value: '1', label: 'New York' }, { value: '2', label: 'Denver' }, { value: '3', label: 'Bangalore' },
     { value: '4', label: 'Dublin' }, { value: '5', label: 'Edinburgh' }, { value: '6', label: 'Gdansk' }, { value: '7', label: 'London' },
     { value: '8', label: 'Plano' }, { value: '9', label: 'Warsaw' }]
-    this.roles = [{ value: '1', label: 'Front End Engineer' }, { value: '2', label: 'Platform Engineer' }, { value: '3', label: 'Creative Tech' }]
     this.interests = [{ value: 'fee', label: 'Front End Engineer' }, { value: 'pe', label: 'Platform Engineer' }, { value: 'ct', label: 'Creative Tech' }]
     this.emails = [{ value: '@wipro.com', label: '@wipro.com' }, { value: '@designit.com', label: '@designit.com' }]
     this.messageCallback = this.messageCallback.bind(this)
     this.redirectCallback = this.redirectCallback.bind(this)
     this.setProfilePicture = this.setProfilePicture.bind(this)
     this.getLocationCallback = this.getLocationCallback.bind(this)
+    this.getRolesCallback = this.getRolesCallback.bind(this)
   }
 
   componentDidMount() {
     getLocationList(this.getLocationCallback)
+    getRolesList(this.getRolesCallback)
   }
 
   getLocationCallback(response) {
-    response.status = 100
     if (response.status === 200) {
-      let locationArray = []
+      let locationsArray = []
       response.data.forEach(instance => {
-        locationArray.push({ value: instance.id, label: instance.name })
+        locationsArray.push({ value: instance.id, label: instance.name })
       })
-      this.setState({ locations: locationArray })
+      this.setState({ locations: locationsArray })
     } else {
-      this.setState({ locationFetchError: true })
+      const locationArray = [{ label: "London", value: 2 },
+      { label: "Brooklyn", value: 1 },
+      { label: "Edinburgh", value: 3 },
+      { label: "Dublin", value: 4 },
+      { label: "Denver", value: 5 },
+      { label: "Dallas", value: 6 }
+      ]
+      this.setState({ locationFetchError: true, locations: locationArray })
+    }
+  }
+  getRolesCallback(response) {
+    if (response.status === 200) {
+      let rolesArray = []
+      response.data.forEach(instance => {
+        rolesArray.push({ value: instance.id, label: instance.name })
+      })
+      this.setState({ roles: rolesArray })
+    } else {
+      const rolesArray = [{ label: "Creative Technologist", value: 1 },
+      { label: "Frontend", value: 2 },
+      { label: "Backend", value: 3 },
+      { label: "Fullstack", value: 4 },
+      { label: "Design", value: 5 },
+      { label: "Product", value: 6 },
+      { label: "Delivery", value: 7 },
+      { label: "Leadership", value: 8 }
+      ]
+      this.setState({ rolesFetchError: true, roles: rolesArray })
     }
   }
   toggleLocationError() {
     this.setState({ locationFetchError: !this.state.locationFetchError })
   }
-
+  toggleRolesError() {
+    this.setState({ rolesFetchError: !this.state.rolesFetchError })
+  }
   validateName(name) {
     if (name === '') {
       return false
@@ -150,12 +181,12 @@ export default class RegisterComponent extends React.Component {
   }
 
   render() {
-    const { name, emailUsername, password, passwordConfirmation, emailError, passwordError, passwordConfirmationError, firstNameError, lastNameError, locationError, roleError, signUpSuccess, signUpError, redirect, locationFetchError } = this.state
+    const { name, emailUsername, password, passwordConfirmation, emailError, passwordError, passwordConfirmationError, firstNameError, lastNameError, locationError, roleError, signUpSuccess, signUpError, redirect, locationFetchError, rolesFetchError } = this.state
 
     return (
       <Fragment>
         <NavbarComponent isUser={this.props.isUser} />
-        <div className="grid-container">
+        <div className="grid-container first-container">
           <div className="grid-y medium-grid-frame">
             <div className="grid-x grid-padding-x align-middle">
               <form className='cell medium-12' onSubmit={this.submitHandler.bind(this)}>
@@ -234,7 +265,7 @@ export default class RegisterComponent extends React.Component {
                     <Select
                       placeholder='Please select a role'
                       onChange={this.onClickRoleHandler.bind(this)}
-                      options={this.roles}
+                      options={this.state.roles}
                       isSearchable={false}
                       name='roles'
                     />
@@ -282,6 +313,7 @@ export default class RegisterComponent extends React.Component {
         {signUpSuccess && (<MessageComponent message='Your account was successfully created.' callback={this.redirectCallback} />)}
         {signUpError && (<MessageComponent message='Your account was unsuccesfully created. Try again later.' callback={this.toggleError.bind(this)} />)}
         {locationFetchError && (<MessageComponent message='Locations service is down. Please try again later' callback={this.toggleLocationError.bind(this)} />)}
+        {rolesFetchError && (<MessageComponent message='Roles service is down. Please try again later' callback={this.toggleRolesError.bind(this)} />)}
         {redirect && (<Redirect to='/login' />)}
       </Fragment>
     )

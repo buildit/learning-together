@@ -10,17 +10,14 @@
 }
 
 .navbar {
+    position:absolute;
     background: #ffffff;
     padding-top: 20px;
+    padding-top: 10px;
+    padding-bottom:10px;
+    margin-bottom: 1.5em;
+    z-index:9999;
 }
-
-.search-container {
-    position: relative;
-    .button {
-        position: absolute;
-        top: 1px;
-        right: 0;
-        background: transparent;
-        color: #000;
-    }
+.input-search-icon{
+    text-decoration:none;
 }

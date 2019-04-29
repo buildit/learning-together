@@ -22,7 +22,7 @@ const FooterComponent = ({ isUser, userId }) => {
       {
         !isUser &&
         <Link
-          to="/create-workshop"
+          to="/login"
           className="flex flex-column justify-center align-items-center"
         >
           <FontAwesomeIcon icon="pencil-alt" />
