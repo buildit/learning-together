@@ -24,14 +24,13 @@ export default class SearchComponent extends React.Component {
   }
   searchCallback(response) {
     if (response.status === 200) {
-      this.setState({ searchResults: this.sortResultsData(response.data) })
+      this.sortResultsData(response.data)
     }
     else {
       this.setState({ isError: true, searchInput: '' })
     }
   }
   sortResultsData(data) {
-    let results = []
     const { categoryResults, locationResults, userResults, workshopResults } = data
     if (data.categoryResults !== null) {
       this.setState({ categoryResults })
@@ -45,7 +44,6 @@ export default class SearchComponent extends React.Component {
     if (data.workshopResults !== null) {
       this.setState({ workshopResults })
     }
-    return results
   }
   render() {
     const { workshopResults, categoryResults, locationResults, userResults, isError } = this.state
