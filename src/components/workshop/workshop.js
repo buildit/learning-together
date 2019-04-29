@@ -125,7 +125,6 @@ export default class Workshop extends Component {
     const { isUser } = this.props;
     const isEducator = userId === educatorId;
     const isAttending = workshop && filterAttendees(userId, workshop);
-    console.log(workshop)
     return (
       <Fragment>
         {showMessage && (
