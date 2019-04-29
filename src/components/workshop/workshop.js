@@ -161,20 +161,21 @@ export default class Workshop extends Component {
           <div className="grid-x enroll-top">
             {isUser ? (
               isEducator ? (
-                <Link to={`/edit/${this.props.computedMatch.params.id}`}>
+                [<Link to={`/edit/${this.props.computedMatch.params.id}`}>
                   <button type="button" className="button expanded">
                     EDIT
                   </button>
-                </Link>
-              ) : isAttending ? (
-                <button
-                  type="button"
-                  className="button expanded"
-                  onClick={this.onClickUnenroll.bind(this)}
-                >
-                  UNENROLL
+                </Link>,
+                <button>CANCEL</button>
+                ]) : isAttending ? (
+                  <button
+                    type="button"
+                    className="button expanded"
+                    onClick={this.onClickUnenroll.bind(this)}
+                  >
+                    UNENROLL
                 </button>
-              ) : (
+                ) : (
                     <button
                       type="button"
                       className="button expanded"
