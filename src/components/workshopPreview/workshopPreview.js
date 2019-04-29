@@ -8,12 +8,13 @@ const WorkshopPreview = ({ workshop }) => {
   return (
 <Link to={`/workshop/${workshop.workshopId ? workshop.workshopId : workshop.id}`} className="workshop-link grid-x grid-margin-x" >
     <div className="cell small-12 cell">
-    <p className="from-now"><Moment format="dddd">{workshop.startDate}</Moment> <Moment format="LT">{workshop.startDate}</Moment> | <Moment fromNow>{workshop.startDate}</Moment></p>
+    <p className="from-now"><Moment format="dddd">{workshop.start}</Moment> <Moment format="LT">{workshop.start}</Moment> | <Moment fromNow>{workshop.start}</Moment></p>
     </div>
-            <div className="start small-3 cell"><p className="calender"><span><Moment format="MMM">{workshop.startDate}</Moment></span> <span><Moment format="DD">{workshop.startDate}</Moment></span></p>
+            <div className="start small-3 medium-1 cell"><p className="calender"><span><Moment format="MMM">{workshop.start}</Moment></span> <span><Moment format="DD">{workshop.start}</Moment></span></p>
             </div>
             <div className="small-9 cell">
-<h3><strong>{workshop.name}</strong></h3>
+<h3 className="title"><strong>{workshop.name}</strong></h3>
+<p>{workshop.description}</p>
 </div>
         </Link>
    
