@@ -39,7 +39,9 @@ export default class Workshop extends Component {
     getWorkshop(this.props.computedMatch.params.id, this.getWorkshopCallback);
   }
   componentDidUpdate(prevProps) {
-    if (this.props.computedMatch.params.id !== prevProps.computedMatch.params.id) {
+    if (
+      this.props.computedMatch.params.id !== prevProps.computedMatch.params.id
+    ) {
       getWorkshop(this.props.computedMatch.params.id, this.getWorkshopCallback);
     }
   }
@@ -160,9 +162,11 @@ export default class Workshop extends Component {
           <div className="grid-x enroll-top">
             {isUser ? (
               isEducator ? (
-                <button className="button expanded" onClick={() => { }}>
-                  EDIT
-                </button>
+                <Link to={`/edit/${this.props.computedMatch.params.id}`}>
+                  <button type="button" className="button expanded">
+                    EDIT
+                  </button>
+                </Link>
               ) : isAttending ? (
                 <button
                   type="button"
