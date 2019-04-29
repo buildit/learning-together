@@ -153,10 +153,7 @@ export default class Workshop extends Component {
           <div className="grid-x">
             <div className="small-12 instructor-info">
               <div className="photo-frame">
-                <img
-                  src={`${baseUrl}${instructor.imageUrl}`}
-                  alt="instructor"
-                />
+              { instructor.imageUrl ? <img src={`${baseUrl}${instructor.imageUrl}`} /> : <FontAwesomeIcon icon="user-circle" size="3x"/>}
               </div>
 
               <p>
