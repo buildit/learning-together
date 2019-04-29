@@ -4,7 +4,7 @@ import { SingleDatePicker } from "react-dates";
 import { Link, Redirect } from "react-router-dom";
 import { MessageComponent } from "../message";
 import { ImageUploaderComponent } from "../imageUploader";
-import { createWorkshop, getCategoryList, getLocationList } from "../../api.js";
+import { getCategoryList, getLocationList } from "../../api.js";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import "./workshopForm.scss";
@@ -13,25 +13,32 @@ class WorkshopForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      location: 1,
+      name: props.data ? props.data.name : "",
+      location: props.data ? props.data.locationId : 1,
       locationList: [],
-      link: "",
-      description: "",
-      startDate: moment(),
-      endDate: null,
+      link: props.data ? props.data.webex : "",
+      description: props.data ? props.data.description : "",
+      startDate: props.data ? moment(props.data.start) : moment(),
+      endDate: props.data ? moment(props.data.end) : null,
       calendarFocused: false,
       categoryList: [],
-      categorySelected: 1,
-      startTime: "",
-      endTime: "",
+      categorySelected: props.data ? props.data.categoryId : 1,
+      startTime: props.data
+        ? moment(props.data.start)
+            .format("HH:mm:ss")
+            .slice(0, 5)
+        : "",
+      endTime: props.data
+        ? moment(props.data.end)
+            .format("HH:mm:ss")
+            .slice(0, 5)
+        : "",
       error: {},
-      success: false,
       redirect: false,
-      workshopPicture: "",
-      workshopId: null,
-      room: ""
+      workshopPicture: props.data ? props.data.imageUrl : "",
+      room: props.data ? props.data.room : ""
     };
+
     this.handleChange = this.handleChange.bind(this);
     this.onDateChange = this.onDateChange.bind(this);
     this.onFocusChange = this.onFocusChange.bind(this);
@@ -51,6 +58,62 @@ class WorkshopForm extends Component {
       });
 
     getLocationList(this.getLocationCallBack);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.data) {
+      if (nextProps.data.name !== this.props.data.name) {
+        this.setState({ name: nextProps.data.name });
+      }
+
+      if (nextProps.data.categoryId !== this.props.data.categoryId) {
+        this.setState({
+          categorySelected: nextProps.data.categoryId
+        });
+      }
+
+      if (nextProps.data.imageUrl !== this.props.data.imageUrl) {
+        this.setState({
+          workshopPicture: nextProps.data.imageUrl
+        });
+      }
+
+      if (nextProps.data.start !== this.props.data.start) {
+        this.setState({
+          startTime: moment(nextProps.data.start)
+            .format("HH:mm:ss")
+            .slice(0, 5),
+          startDate: moment(nextProps.data.start),
+          endDate: moment(nextProps.data.end)
+        });
+      }
+
+      if (nextProps.data.end !== this.props.data.end) {
+        this.setState({
+          endTime: moment(nextProps.data.end)
+            .format("HH:mm:ss")
+            .slice(0, 5)
+        });
+      }
+
+      if (nextProps.data.locationId !== this.props.data.locationId) {
+        this.setState({
+          location: nextProps.data.locationId
+        });
+      }
+
+      if (nextProps.data.webex !== this.props.data.webex) {
+        this.setState({ link: nextProps.data.webex });
+      }
+
+      if (nextProps.data.room !== this.props.data.room) {
+        this.setState({ room: nextProps.data.room });
+      }
+
+      if (nextProps.data.description !== this.props.data.description) {
+        this.setState({ description: nextProps.data.description });
+      }
+    }
   }
 
   //If input is start time or date time modify moment object
@@ -130,18 +193,13 @@ class WorkshopForm extends Component {
         start: this.state.startDate.format("YYYY-MM-DDTHH:mm:ss.SSS"),
         end: this.state.endDate.format("YYYY-MM-DDTHH:mm:ss.SSS"),
         locationId: this.state.location,
-        categoryId: this.state.categorySelected,
+        categoryId: parseInt(this.state.categorySelected),
         webex: this.state.link,
         description: this.state.description,
         imageUrl: this.state.workshopPicture,
         room: this.state.room
       };
-      console.log("data", data);
-      createWorkshop(data).then(response => {
-        if (response.status === 200) {
-          this.setState({ success: true, workshopId: response.data });
-        }
-      });
+      this.props.handleSubmit(data);
     }
   }
 
@@ -183,7 +241,6 @@ class WorkshopForm extends Component {
                     name="name"
                     value={this.state.name}
                     onChange={this.handleChange}
-                    placeholder="workshop name"
                     autoFocus
                   />
                   <span className="error">{this.state.error.name}</span>
@@ -257,6 +314,7 @@ class WorkshopForm extends Component {
                   Room
                   <input
                     name="room"
+                    value={this.state.room}
                     onChange={this.handleChange}
                     type="text"
                     placeholder="room"
@@ -269,6 +327,7 @@ class WorkshopForm extends Component {
                   WebEx Link
                   <input
                     name="link"
+                    value={this.state.link}
                     onChange={this.handleChange}
                     type="url"
                     placeholder="webex link"
@@ -283,6 +342,7 @@ class WorkshopForm extends Component {
                     name="description"
                     type="text"
                     onChange={this.handleChange}
+                    value={this.state.description}
                     placeholder="workshop description"
                     style={{ height: "100px" }}
                   />
@@ -293,22 +353,21 @@ class WorkshopForm extends Component {
           </div>
           <div className="grid-x align-center">
             <button className="button custom-button submit" type="submit">
-              Create{" "}
+              {this.props.edit ? "Update" : "Create"}
             </button>
             <Link to="/" className="hollow button secondary custom-button">
               Cancel{" "}
             </Link>
           </div>
         </form>
-        {this.state.success && (
+
+        {this.props.success && (
           <MessageComponent
             message="Success"
             callback={this.redirectCallback}
           />
         )}
-        {this.state.redirect && (
-          <Redirect to={`/workshop/${this.state.workshopId}`} />
-        )}
+        {this.state.redirect && <Redirect to={`/workshop/${this.props.id}`} />}
       </div>
     );
   }
