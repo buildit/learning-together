@@ -6,13 +6,14 @@ import { LoginComponent } from "../login";
 import { UserProfileComponent } from "../user-profile";
 import { Page404Component } from "../page404";
 import { LandingComponent } from "../landing";
+import { BrowseComponent } from "../browse";
 import { WorkshopListComponent } from "../workshopList";
 import { WorkshopCreateComponent } from "../workshopCreate";
 import { WorkshopEditComponent } from "../workshopEdit";
 import { WorkshopComponent } from "../workshop";
 import { ConfirmationComponent } from "../confirmation";
-import { ForgotPasswordComponent } from '../forgotPassword'
-import UserProvider from '../../UserProvider'
+import { ForgotPasswordComponent } from "../forgotPassword";
+import UserProvider from "../../UserProvider";
 
 export default class RoutesComponent extends React.Component {
   render() {
@@ -22,15 +23,51 @@ export default class RoutesComponent extends React.Component {
           <div className="main">
             <Switch>
               <UserRoute exact path="/" component={LandingComponent} />
-              <UnauthenticatedUserRoute exact path="/login" component={LoginComponent} />
-              <UnauthenticatedUserRoute exact path="/register" component={RegisterComponent} />
-              <UnauthenticatedUserRoute exact path="/forgot-password" component={ForgotPasswordComponent} />
-              <UserRoute exact path="/user/:id" component={UserProfileComponent} />
-              <UserRoute path="/workshops/categories/:id/:title" component={WorkshopListComponent} />
-              <UserRoute exact path="/workshop/:id" component={WorkshopComponent} />
-              <UserRoute exact path="/confirmation/enroll" component={ConfirmationComponent} />
-              <UserRoute exact path="/create" component={WorkshopCreateComponent} />
-              <UserRoute exact path="/edit/:id" component={WorkshopEditComponent} />
+              <UnauthenticatedUserRoute
+                exact
+                path="/login"
+                component={LoginComponent}
+              />
+              <UnauthenticatedUserRoute
+                exact
+                path="/register"
+                component={RegisterComponent}
+              />
+              <UnauthenticatedUserRoute
+                exact
+                path="/forgot-password"
+                component={ForgotPasswordComponent}
+              />
+              <UserRoute
+                exact
+                path="/user/:id"
+                component={UserProfileComponent}
+              />
+              <UserRoute
+                path="/workshops/categories/:id/:title"
+                component={WorkshopListComponent}
+              />
+              <UserRoute
+                exact
+                path="/workshop/:id"
+                component={WorkshopComponent}
+              />
+              <UserRoute exact path="/workshops" component={BrowseComponent} />
+              <UserRoute
+                exact
+                path="/confirmation/enroll"
+                component={ConfirmationComponent}
+              />
+              <UserRoute
+                exact
+                path="/create"
+                component={WorkshopCreateComponent}
+              />
+              <UserRoute
+                exact
+                path="/edit/:id"
+                component={WorkshopEditComponent}
+              />
               <Route component={Page404Component} />
             </Switch>
           </div>

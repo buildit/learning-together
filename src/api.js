@@ -192,7 +192,6 @@ export const getSearchResults = (input, callback) => {
     });
 };
 
-// Make a request for a user with a given token
 export const updateWorkshop = (id, data) => {
   const token = localStorage.getItem("BTToken");
   return axios
@@ -207,6 +206,31 @@ export const updateWorkshop = (id, data) => {
     .then(function(response) {
       // handle success
       return response;
+    })
+    .catch(function(error) {
+      // handle error
+      console.log(error);
+    });
+};
+
+export const fetchWorkshops = () => {
+  //const token = localStorage.getItem("BTToken");
+  return axios
+    .request({
+      url:
+        "http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops",
+      method: "get"
+      //data,
+      //headers: {
+      //  Authorization: "Bearer " + token
+      //}
+    })
+    .then(function(response) {
+      // handle success
+      if (response.data && response.status === 200) {
+        //console.log("response", response);
+        return response.data;
+      }
     })
     .catch(function(error) {
       // handle error
