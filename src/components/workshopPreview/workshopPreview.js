@@ -5,6 +5,8 @@ import Moment from 'react-moment';
 import "./workshopPreview.scss";
 
 const WorkshopPreview = ({ workshop }) => {
+  const start = workshop.start ? workshop.start : workshop.startDate
+  const wrkshopId = workshop.id ? workshop.id : workshop.workshopId
   return (
 <Link to={`/workshop/${workshop.workshopId ? workshop.workshopId : workshop.id}`} className="workshop-link grid-x grid-margin-x" >
     <div className="cell small-12 cell">
