@@ -17,6 +17,7 @@ export default class Landing extends Component {
     super(props);
     this.state = {
       workshops: [],
+      noslides: 0,
       error: null
     };
   }
@@ -27,6 +28,7 @@ export default class Landing extends Component {
       .then(response => {
         let workshops = response.data
         this.setState({ workshops })
+        this.setState({noslides: this.getNumberofSlides()})
       })
       .catch(error => this.setState({ error: 'Please try again later' }))
 
@@ -37,6 +39,7 @@ export default class Landing extends Component {
           categories: data
         })
       })
+      
   }
 
   getNumberofSlides(){
@@ -62,7 +65,7 @@ export default class Landing extends Component {
             naturalSlideWidth={300}
             naturalSlideHeight={400}
             totalSlides={this.state.workshops.length}
-            visibleSlides={this.getNumberofSlides()}
+            visibleSlides={this.state.noslides}
       > <Slider>
           {this.state.workshops.map((workshop,index) => (
            
