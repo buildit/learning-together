@@ -16,6 +16,7 @@ import {
   cancelWorkshop
 } from "../../api";
 import { MessageComponent } from "../message";
+import { MessageConfirmComponent } from "../messageConfirm";
 import { filterAttendees } from "../../selectors";
 
 export default class Workshop extends Component {
@@ -28,6 +29,7 @@ export default class Workshop extends Component {
       educatorId: null,
       showMessage: false,
       message: "",
+      confirmCancel: false,
       redirect: false
     };
     this.getWorkshopCallback = this.getWorkshopCallback.bind(this);
@@ -92,19 +94,24 @@ export default class Workshop extends Component {
     }
   }
   messageCallback() {
-    this.setState({ showMessage: false, message: "" });
+    this.setState({
+      showMessage: false,
+      message: "",
+      redirect: true
+    });
   }
 
   cancelWorkshopCallback(response) {
     if (response.status === 200) {
       this.setState({
+        confirmCancel: false,
         showMessage: true,
-        message: "You have cancelled your workshop",
-        redirect: true
+        message: "You have cancelled your workshop"
       });
     } else {
       //show error message
       this.setState({
+        confirmCancel: false,
         showMessage: true,
         message: "There was an error in cancellation. Please try again later."
       });
@@ -125,9 +132,24 @@ export default class Workshop extends Component {
     e.preventDefault();
     unenrollWorkshop(this.state.workshop.id, this.unenrollWorshopCallback);
   }
+
   onClickCancel(e) {
     e.preventDefault()
+    this.setState({
+      confirmCancel: true,
+      message: "Are you sure you want to cancel this workshop? There are __ attendees."
+    })
+  }
+
+  cancelWorkshopConfirmed() {
     cancelWorkshop(this.state.workshop.id, this.cancelWorkshopCallback)
+  }
+
+  cancelWorkshopNoConfirm() {
+    this.setState({
+      confirmCancel: false,
+      message: ''
+    })
   }
   updateImage(location) {
     const formatted = location.replace(/\s/g, "-");
@@ -169,6 +191,11 @@ export default class Workshop extends Component {
         {showMessage && (
           <MessageComponent message={message} callback={this.messageCallback} />
         )}
+        {
+          this.state.confirmCancel && (
+            <MessageConfirmComponent message={message} yesCancel={this.cancelWorkshopConfirmed.bind(this)} noCancel={this.cancelWorkshopNoConfirm.bind(this)} />
+          )
+        }
         {
           this.renderRedirect()
         }
