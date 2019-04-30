@@ -1,4 +1,6 @@
 import axios from "axios";
+const token = localStorage.getItem("BTToken");
+
 export async function signIn(data, callback) {
   const url =
     "http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/users/authenticate";
@@ -62,7 +64,6 @@ export const getWorkshop = (id, callback) => {
 };
 
 export const enrollWorkshop = (id, callback) => {
-  const token = localStorage.getItem("BTToken");
   const url = `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops/${id}/enroll`;
   axios
     .request({
@@ -81,7 +82,6 @@ export const enrollWorkshop = (id, callback) => {
 };
 
 export const unenrollWorkshop = (id, callback) => {
-  const token = localStorage.getItem("BTToken");
   const url = `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops/${id}/enroll`;
   axios
     .request({
@@ -108,7 +108,6 @@ export const getUser = id => {
 
 // Make a request for a user with a given token
 export const createWorkshop = data => {
-  const token = localStorage.getItem("BTToken");
   return axios
     .request({
       url:
@@ -119,12 +118,12 @@ export const createWorkshop = data => {
         Authorization: "Bearer " + token
       }
     })
-    .then(function(response) {
+    .then(function (response) {
       // handle success
       console.log(response);
       return response;
     })
-    .catch(function(error) {
+    .catch(function (error) {
       // handle error
       console.log(error);
     });
@@ -193,7 +192,6 @@ export const getSearchResults = (input, callback) => {
 };
 
 export const updateWorkshop = (id, data) => {
-  const token = localStorage.getItem("BTToken");
   return axios
     .request({
       url: `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops/${id}`,
@@ -203,11 +201,11 @@ export const updateWorkshop = (id, data) => {
         Authorization: "Bearer " + token
       }
     })
-    .then(function(response) {
+    .then(function (response) {
       // handle success
       return response;
     })
-    .catch(function(error) {
+    .catch(function (error) {
       // handle error
       console.log(error);
     });
@@ -237,3 +235,22 @@ export const fetchWorkshops = () => {
       console.log(error);
     });
 };
+
+export const cancelWorkshop = (id, callback) => {
+  return axios
+    .request({
+      url:
+        `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops/${id}`,
+      method: "delete",
+      headers: {
+        Authorization: "Bearer " + token
+      }
+    })
+    .then(function (response) {
+      callback(response)
+    })
+    .catch(function (error) {
+      callback(error)
+    });
+}
+

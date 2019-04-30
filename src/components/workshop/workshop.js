@@ -5,15 +5,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { UserPreviewComponent } from "../userpreview";
 import Moment from "react-moment";
 import { NavbarComponent } from "../navbar";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { UserContext } from "../../UserProvider";
+import AddToCalendar from 'react-add-to-calendar';
 import {
   getWorkshop,
   coverGenerator,
   enrollWorkshop,
-  unenrollWorkshop
+  unenrollWorkshop,
+  cancelWorkshop
 } from "../../api";
 import { MessageComponent } from "../message";
+import { MessageConfirmComponent } from "../messageConfirm";
 import { filterAttendees } from "../../selectors";
 
 export default class Workshop extends Component {
@@ -25,12 +28,15 @@ export default class Workshop extends Component {
       userId: null,
       educatorId: null,
       showMessage: false,
-      message: ""
+      message: "",
+      confirmCancel: false,
+      redirect: false
     };
     this.getWorkshopCallback = this.getWorkshopCallback.bind(this);
     this.enrollWorshopCallback = this.enrollWorshopCallback.bind(this);
     this.unenrollWorshopCallback = this.unenrollWorshopCallback.bind(this);
     this.messageCallback = this.messageCallback.bind(this);
+    this.cancelWorkshopCallback = this.cancelWorkshopCallback.bind(this)
   }
 
   componentDidMount() {
@@ -88,7 +94,34 @@ export default class Workshop extends Component {
     }
   }
   messageCallback() {
-    this.setState({ showMessage: false, message: "" });
+    this.setState({
+      showMessage: false,
+      message: "",
+      redirect: true
+    });
+  }
+
+  cancelWorkshopCallback(response) {
+    if (response.status === 200) {
+      this.setState({
+        confirmCancel: false,
+        showMessage: true,
+        message: "You have cancelled your workshop"
+      });
+    } else {
+      //show error message
+      this.setState({
+        confirmCancel: false,
+        showMessage: true,
+        message: "There was an error in cancellation. Please try again later."
+      });
+    }
+  }
+
+  renderRedirect() {
+    if (this.state.redirect) {
+      return <Redirect to={`/user/${this.state.userId}`} />
+    }
   }
 
   onClickEnroll(e) {
@@ -98,6 +131,25 @@ export default class Workshop extends Component {
   onClickUnenroll(e) {
     e.preventDefault();
     unenrollWorkshop(this.state.workshop.id, this.unenrollWorshopCallback);
+  }
+
+  onClickCancel(e) {
+    e.preventDefault()
+    this.setState({
+      confirmCancel: true,
+      message: "Are you sure you want to cancel this workshop? There are __ attendees."
+    })
+  }
+
+  cancelWorkshopConfirmed() {
+    cancelWorkshop(this.state.workshop.id, this.cancelWorkshopCallback)
+  }
+
+  cancelWorkshopNoConfirm() {
+    this.setState({
+      confirmCancel: false,
+      message: ''
+    })
   }
   updateImage(location) {
     const formatted = location.replace(/\s/g, "-");
@@ -110,8 +162,6 @@ export default class Workshop extends Component {
       workshop,
       userId,
       educatorId,
-      isEnrollSuccessful,
-      enrollError,
       showMessage,
       message
     } = this.state;
@@ -129,11 +179,26 @@ export default class Workshop extends Component {
     const { isUser } = this.props;
     const isEducator = userId === educatorId;
     const isAttending = workshop && filterAttendees(userId, workshop);
+    const event = {
+      title: workshop.name ? workshop.name : '',
+      description: workshop.description ? workshop.description : '',
+      location: workshop.location ? workshop.location.name : '',
+      startTime: workshop.start ? workshop.start : '',
+      endTime: workshop.end ? workshop.end : ''
+    }
     return (
       <Fragment>
         {showMessage && (
           <MessageComponent message={message} callback={this.messageCallback} />
         )}
+        {
+          this.state.confirmCancel && (
+            <MessageConfirmComponent message={message} yesCancel={this.cancelWorkshopConfirmed.bind(this)} noCancel={this.cancelWorkshopNoConfirm.bind(this)} />
+          )
+        }
+        {
+          this.renderRedirect()
+        }
         <NavbarComponent isUser={isUser} location={this.props.location} />
         <div className="grid-container first-container">
           <div className="grid-x">
@@ -145,10 +210,7 @@ export default class Workshop extends Component {
           <div className="grid-x">
             <div className="small-12 instructor-info">
               <div className="photo-frame">
-                <img
-                  src={`${baseUrl}${instructor.imageUrl}`}
-                  alt="instructor"
-                />
+                {instructor.imageUrl ? <img src={`${baseUrl}${instructor.imageUrl}`} /> : <FontAwesomeIcon icon="user-circle" size="3x" />}
               </div>
 
               <p>
@@ -166,41 +228,46 @@ export default class Workshop extends Component {
           <div className="grid-x enroll-top">
             {isUser ? (
               isEducator ? (
-                <Link
-                  className="cell small-12"
-                  to={`/edit/${this.props.computedMatch.params.id}`}
-                >
-                  <button type="button" className="button expanded">
+                [<Link to={`/edit/${this.props.computedMatch.params.id}`}
+                  className="button expanded">
+                  <button
+                    type="button">
                     EDIT
                   </button>
-                </Link>
-              ) : isAttending ? (
+                </Link>,
                 <button
                   type="button"
-                  className="button expanded"
-                  onClick={this.onClickUnenroll.bind(this)}
-                >
-                  UNENROLL
+                  className="hollow button alert expanded"
+                  onClick={this.onClickCancel.bind(this)}>
+                  CANCEL WORKSHOP
+                  </button>
+                ]) : isAttending ? (
+                  <button
+                    type="button"
+                    className="button expanded"
+                    onClick={this.onClickUnenroll.bind(this)}
+                  >
+                    UNENROLL
                 </button>
-              ) : (
-                <button
-                  type="button"
-                  className="button expanded"
-                  onClick={this.onClickEnroll.bind(this)}
-                >
-                  ENROLL
+                ) : (
+                    <button
+                      type="button"
+                      className="button expanded"
+                      onClick={this.onClickEnroll.bind(this)}
+                    >
+                      ENROLL
                 </button>
-              )
+                  )
             ) : (
-              <Link
-                type="button"
-                to="/login"
-                className="button expanded"
-                onClick={() => {}}
-              >
-                LOGIN TO ENROLL
+                <Link
+                  type="button"
+                  to="/login"
+                  className="button expanded"
+                  onClick={() => { }}
+                >
+                  LOGIN TO ENROLL
               </Link>
-            )}
+              )}
           </div>
 
           <div className="grid-x">
@@ -217,7 +284,7 @@ export default class Workshop extends Component {
                 <Moment format="LT">{workshop.start}</Moment> -{" "}
                 <Moment format="LT">{workshop.end}</Moment>
                 <br />
-                <a href="true">Add to Calendar</a>
+                <AddToCalendar event={event} buttonClassOpen='button' buttonClassClosed='button' dropdownClass='ics-dropdown' />
               </p>
             </div>
           </div>
@@ -252,19 +319,7 @@ export default class Workshop extends Component {
             </section>
           </div>
         </div>
-        {isEnrollSuccessful && (
-          <MessageComponent
-            message="You have succesfully enrolled!"
-            callback={this.messageCallback}
-          />
-        )}
-        {enrollError && (
-          <MessageComponent
-            message="There was an error in enrollment. Please try again later"
-            callback={this.messageCallback}
-          />
-        )}
-      </Fragment>
+      </Fragment >
     );
   }
 }

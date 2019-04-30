@@ -3,7 +3,8 @@ import Moment from "react-moment";
 import "./preview.scss";
 import { coverGenerator } from "../../api";
 
-//TODO: ADD IN EDUCATOR NAME
+//TODO: ADD IN EDUCATOR NAME & WORKSHOP IMAGE
+
 const Preview = ({ workshop }) => {
   const img = workshop.imageUrl
     ? `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com${
@@ -13,12 +14,16 @@ const Preview = ({ workshop }) => {
   const { name, start } = workshop;
   const { firstName, lastName } = workshop.educator;
   return (
-    <div className="card" style={{ width: "100vw" }}>
-      <div className="picture-frame">
-        <img src={img} alt="workshop" />
-      </div>
+   
+      <div className="preview card" >
+      {
+        img ? <div className="picture-frame"><img src={img} alt={name} /> </div>
+        : ""
+      }
 
-      <div className="card-section">
+      
+        
+        <div className="card-section">
         <Moment format="LLLL">{start}</Moment>
         <h4 className="workshop-preview-title">{name}</h4>
         <p>
