@@ -1,12 +1,13 @@
 .workshop-link {
   color: #0a0a0a;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 1em;
+
+  .title {
+    text-transform: capitalize;
+  }
 }
 .workshops {
-
-  .workshop {
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 1em;
-  }
   
   .button {
     max-height: 3.5em;

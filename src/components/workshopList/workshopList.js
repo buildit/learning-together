@@ -44,14 +44,12 @@ class WorkshopList extends Component {
           <h1 className="section-title"><b>{this.state.title}</b></h1>
         </section>
         <section className="workshop-list grid-container">
-          <div className="grid-x">
+            <div className="grid medium-6">
             {this.state.workshops.map(workshop => (
               <WorkshopPreviewComponent key={workshop.id} workshop={workshop} />
+              
             ))}
-            {/* {workshopList.length === 0 ? (
-          <p>No workshops under this category</p>
-        ) : null} */}
-          </div>
+        </div>
         </section>
 
       </Fragment>
