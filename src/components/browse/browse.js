@@ -1,7 +1,10 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { fetchWorkshops } from "../../api";
 import { WorkshopPreviewComponent } from "../workshopPreview";
+import { NavbarComponent } from "../navbar";
+import { SortComponent } from "../sort";
 import moment from "moment";
+import "./browse.scss";
 
 class Browse extends Component {
   state = {
@@ -10,7 +13,7 @@ class Browse extends Component {
 
   componentDidMount() {
     fetchWorkshops().then(workshops => {
-      //console.log("received", workshops);
+      console.log(workshops)
       this.setState({ workshops });
     });
   }
@@ -20,17 +23,19 @@ class Browse extends Component {
       workshop.start.slice(0, 10)
     );
 
-    //console.log("dates array", dates);
-
     return (
-      <div>
-        <h1>All workshops</h1>
+      <Fragment>
+        <NavbarComponent isUser={this.props.isUser} />
+        <section id="browser-container" className="current-category first-container">
+          <h1 className="section-title"><b>All Workshops</b></h1>
+        </section>
+        <SortComponent/>
         {this.state.workshops.map(workshop => {
           return (
             <WorkshopPreviewComponent key={workshop.id} workshop={workshop} />
           );
         })}
-      </div>
+      </Fragment>
     );
   }
 }
