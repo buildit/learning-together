@@ -8,6 +8,10 @@ export default class MessageComponent extends React.Component {
     this.props.callback()
   }
 
+  onClickCancelCallback() {
+    this.props.cancel()
+  }
+
   render() {
     return (
       <div className='message-container'>
@@ -16,6 +20,7 @@ export default class MessageComponent extends React.Component {
             {this.props.message}
           </div>
           <button type='button' className='success button' onClick={this.onClickCallback.bind(this)} >Confirm</button>
+          {this.props.cancel && <button type='button' className='hollow alert button' onClick={this.onClickCancelCallback.bind(this)}>Cancel</button>}
         </div>
       </div>
     )

@@ -33,6 +33,7 @@ export default class UserProfileComponent extends React.Component {
         if (this.props.computedMatch.params.id !== prevProps.computedMatch.params.id) {
             getUser(this.props.computedMatch.params.id)
                 .then((data) => {
+                    console.log('this.data', data)
                     this.getUserCallback(data)
                 })
         }
@@ -80,6 +81,7 @@ export default class UserProfileComponent extends React.Component {
         const user = this.state.user;
         const baseUrl = "http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/";
         const profile = (user.imageUrl !== "") ? `${baseUrl}${user.imageUrl}` : "";
+        console.log('all classes', this.state.classes)
         return (
             <Fragment>
                 <NavbarComponent isUser={isUser} />
