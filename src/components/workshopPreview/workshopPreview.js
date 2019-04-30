@@ -5,20 +5,19 @@ import Moment from 'react-moment';
 import "./workshopPreview.scss";
 
 const WorkshopPreview = ({ workshop }) => {
+  const start = workshop.start ? workshop.start : workshop.startDate
   return (
+    <Link to={`/workshop/${start}`} className="workshop-link grid-x grid-margin-x" >
+      <div className="cell small-12 cell">
+        <p className="from-now"><Moment format="dddd">{start}</Moment> <Moment format="LT">{start}</Moment> | <Moment fromNow>{start}</Moment></p>
+      </div>
+      <div className="start small-3 cell"><p className="calender"><span><Moment format="MMM">{start}</Moment></span> <span><Moment format="DD">{start}</Moment></span></p>
+      </div>
+      <div className="small-9 cell">
+        <h3><strong>{workshop.name}</strong></h3>
+      </div>
+    </Link>
 
-    <article className="workshop grid-container">
-      <Link to={`/workshop/${workshop.workshopId ? workshop.workshopId : workshop.id}`} className="workshop-link grid-x grid-margin-x" >
-        <div className="cell small-12 cell">
-          <p className="from-now"><Moment format="dddd">{workshop.start}</Moment> <Moment format="LT">{workshop.start}</Moment> | <Moment fromNow>{workshop.start}</Moment></p>
-        </div>
-        <div className="start small-3 cell"><p className="calender"><span><Moment format="MMM">{workshop.start}</Moment></span> <span><Moment format="DD">{workshop.start}</Moment></span></p>
-        </div>
-        <div className="small-9 cell">
-          <h3><strong>{workshop.name}</strong></h3>
-        </div>
-      </Link>
-    </article>
 
   );
 };

@@ -13,7 +13,6 @@ export default class MessageComponent extends React.Component {
   }
 
   render() {
-    console.log('this.props.message', this.props)
     return (
       <div className='message-container'>
         <div className='message-wrapper'>

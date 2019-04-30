@@ -5,8 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { UserPreviewComponent } from "../userpreview";
 import Moment from "react-moment";
 import { NavbarComponent } from "../navbar";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { UserContext } from "../../UserProvider";
+import AddToCalendar from 'react-add-to-calendar';
 import {
   getWorkshop,
   coverGenerator,
@@ -27,7 +28,7 @@ export default class Workshop extends Component {
       educatorId: null,
       showMessage: false,
       message: "",
-      cancel: false
+      redirect: false
     };
     this.getWorkshopCallback = this.getWorkshopCallback.bind(this);
     this.enrollWorshopCallback = this.enrollWorshopCallback.bind(this);
@@ -94,15 +95,12 @@ export default class Workshop extends Component {
     this.setState({ showMessage: false, message: "" });
   }
 
-  confirmCancelWorkshop() {
-    cancelWorkshop(this.state.workshop.id, this.cancelWorkshopCallback)
-  }
-
   cancelWorkshopCallback(response) {
     if (response.status === 200) {
       this.setState({
         showMessage: true,
-        message: "You have cancelled your workshop"
+        message: "You have cancelled your workshop",
+        redirect: true
       });
     } else {
       //show error message
@@ -113,11 +111,10 @@ export default class Workshop extends Component {
     }
   }
 
-  cancelCallback() {
-    this.setState({
-      showMessage: false,
-      message: ''
-    })
+  renderRedirect() {
+    if (this.state.redirect) {
+      return <Redirect to={`/user/${this.state.userId}`} />
+    }
   }
 
   onClickEnroll(e) {
@@ -130,10 +127,7 @@ export default class Workshop extends Component {
   }
   onClickCancel(e) {
     e.preventDefault()
-    this.setState({
-      showMessage: true,
-      message: 'Are you sure you want to cancel?'
-    })
+    cancelWorkshop(this.state.workshop.id, this.cancelWorkshopCallback)
   }
   updateImage(location) {
     const formatted = location.replace(/\s/g, "-");
@@ -163,11 +157,21 @@ export default class Workshop extends Component {
     const { isUser } = this.props;
     const isEducator = userId === educatorId;
     const isAttending = workshop && filterAttendees(userId, workshop);
+    const event = {
+      title: workshop.name ? workshop.name : '',
+      description: workshop.description ? workshop.description : '',
+      location: workshop.location ? workshop.location.name : '',
+      startTime: workshop.start ? workshop.start : '',
+      endTime: workshop.end ? workshop.end : ''
+    }
     return (
       <Fragment>
         {showMessage && (
-          <MessageComponent message={message} callback={this.messageCallback} cancel={this.cancelCallback.bind(this)} />
+          <MessageComponent message={message} callback={this.messageCallback} />
         )}
+        {
+          this.renderRedirect()
+        }
         <NavbarComponent isUser={isUser} location={this.props.location} />
         <div className="grid-container first-container">
           <div className="grid-x">
@@ -179,10 +183,7 @@ export default class Workshop extends Component {
           <div className="grid-x">
             <div className="small-12 instructor-info">
               <div className="photo-frame">
-                <img
-                  src={`${baseUrl}${instructor.imageUrl}`}
-                  alt="instructor"
-                />
+                {instructor.imageUrl ? <img src={`${baseUrl}${instructor.imageUrl}`} /> : <FontAwesomeIcon icon="user-circle" size="3x" />}
               </div>
 
               <p>
@@ -211,7 +212,7 @@ export default class Workshop extends Component {
                   type="button"
                   className="hollow button alert expanded"
                   onClick={this.onClickCancel.bind(this)}>
-                  CANCEL
+                  CANCEL WORKSHOP
                   </button>
                 ]) : isAttending ? (
                   <button
@@ -256,7 +257,7 @@ export default class Workshop extends Component {
                 <Moment format="LT">{workshop.start}</Moment> -{" "}
                 <Moment format="LT">{workshop.end}</Moment>
                 <br />
-                <a href="true">Add to Calendar</a>
+                <AddToCalendar event={event} buttonClassOpen='button' buttonClassClosed='button' dropdownClass='ics-dropdown' />
               </p>
             </div>
           </div>

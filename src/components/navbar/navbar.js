@@ -12,9 +12,11 @@ class Navbar extends Component {
     this.state = {
       isLoading: false,
       showSearch: false,
+      showAccount: false,
       response: {}
     }
     this.toggleShowSearch = this.toggleShowSearch.bind(this)
+    this.toggleShowAccount = this.toggleShowAccount.bind(this)
   }
   componentDidUpdate(prevProps) {
     if (this.props.match.params.id !== prevProps.match.params.id) {
@@ -24,6 +26,9 @@ class Navbar extends Component {
   toggleShowSearch() {
     this.setState({ showSearch: !this.state.showSearch })
   }
+  toggleShowAccount(){
+    this.setState({showAccount: !this.state.showAccount})
+  }
   logoutHandler() {
     localStorage.removeItem('BTToken')
     localStorage.removeItem('userId')
@@ -32,46 +37,53 @@ class Navbar extends Component {
   render() {
     const { isUser } = this.props
     const userId = localStorage.getItem('userId')
+    const accountDropDown = (
+    <nav className="account-dropdown">
+      <ul>
+      <li><Link to={`/user/${userId}`}>View Profile</Link></li>
+      <li><Link to="/login" onClick={this.logoutHandler.bind(this)}>Logout</Link></li>
+      </ul>
+      </nav>
+    )
     return (
       <Fragment>
-        <div className="navbar grid-container">
-          <div className="grid-x grid-margin-x align-justify align-middle ">
+        <nav className="navbar">
+          <div className="grid-container">
+          <div className="grid-x grid-margin-x align-center-middle">
             <div className="cell small-2">
               <nav className='logo'>
                 <Link to="/"><img src={logo} alt="logo"></img></Link>
               </nav>
             </div>
-            <div className="cell small-6">
-              <FontAwesomeIcon icon="search" onClick={this.toggleShowSearch} />
+            <div className="cell small-2 medium-1 small-offset-6 medium-offset-8 text-center">
+              <FontAwesomeIcon icon="search" onClick={this.toggleShowSearch} size="2x"/>
             </div>
-            <div className='cell small-4'>
-              <div className="grid-x align-spaced align-middle flex-dir-row">
-                <div className="cell small-2">
+                <div className="cell small-2 medium-1 text-center dropdown">
                   {
-                    isUser && (
-                      <Link to={`/user/${userId}`}><FontAwesomeIcon icon="user-circle" size="2x" /></Link>
+                    isUser ? (
+                      <Fragment>
+                      <FontAwesomeIcon icon="user-circle" size="2x" onClick={this.toggleShowAccount} />
+                      {
+                        this.state.showAccount && (accountDropDown) 
+                      }
+                      </Fragment>
                     )
-                  }
-                </div>
-                <div className="cell small-5">
-                  {
-                    isUser
-                      ? <Link to="/login" onClick={this.logoutHandler.bind(this)}>Logout</Link>
-                      : <Link to="/login">Login</Link>
+                    :
+                    <Link to="/login">Login</Link>
                   }
                 </div>
               </div>
-            </div>
-          </div>
           {
             this.state.showSearch && (<SearchComponent />)
           }
-        </div >
+          </div>
+        </nav>
         <div>
           {
             this.state.isLoading && (<LoadingComponent />)
           }
         </div>
+        <section className="spacing"></section>
       </Fragment >
     );
   }

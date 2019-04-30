@@ -77,9 +77,9 @@ export default class LoginComponent extends React.Component {
                   <div className='grid-x grid-padding-x align-center'>
                     <input type="submit" className="button success align-center cell medium-6" value="Submit" />
                   </div>
-                  <div className='grid-x grid-padding-x align-center'>
+                  {/* <div className='grid-x grid-padding-x align-center'>
                     <Link to='/forgot-password' >Forgot your password?</Link>
-                  </div>
+                  </div> */}
                 </div>
                 <div className='row'>
                   <div className='grid-x grid-padding-x align-center'>
