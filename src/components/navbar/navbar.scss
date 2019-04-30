@@ -18,6 +18,7 @@
     margin-bottom: 1.5em;
     z-index:9999;
     width: 100vw;
+    max-width: 1440px;
 }
 .input-search-icon{
     text-decoration:none;
@@ -25,6 +26,7 @@
 
 .spacing {
     height: 70px;
+    margin-bottom: 1em;
 }
 
 .account-dropdown::before {

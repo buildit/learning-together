@@ -199,16 +199,17 @@ export default class Workshop extends Component {
         {
           this.renderRedirect()
         }
-        <NavbarComponent isUser={isUser} location={this.props.location} />
-        <div className="grid-container first-container">
-          <div className="grid-x">
+        <NavbarComponent isUser={isUser} location={this.props.location} />          
+            <section className="grid-container class-info">
+            <article className="grid-x align-middle">
+            <div className="small-12 medium-8 instructor-info">
+            <span>
+                  <Moment format="dddd">{workshop.start}</Moment>,{" "}
+                  <Moment format="LL">{workshop.start}</Moment>
+                </span>
             <h1 className="workshop-title">
               <b>{workshop.name}</b>
             </h1>
-          </div>
-
-          <div className="grid-x">
-            <div className="small-12 instructor-info">
               <div className="photo-frame">
                 {instructor.imageUrl ? <img src={`${baseUrl}${instructor.imageUrl}`} /> : <FontAwesomeIcon icon="user-circle" size="3x" />}
               </div>
@@ -224,14 +225,15 @@ export default class Workshop extends Component {
                 </a>
               </p>
             </div>
-          </div>
-          <div className="grid-x enroll-top">
+         
+          <div className="cell small-12 medium-4 flex-container enroll-button">
             {isUser ? (
               isEducator ? (
-                [<Link to={`/edit/${this.props.computedMatch.params.id}`}
-                  className="button expanded">
-                  <button
-                    type="button">
+                [<Link
+                  className=""
+                  to={`/edit/${this.props.computedMatch.params.id}`}
+                >
+                  <button type="button" className="button flex-child-auto">
                     EDIT
                   </button>
                 </Link>,
@@ -244,7 +246,7 @@ export default class Workshop extends Component {
                 ]) : isAttending ? (
                   <button
                     type="button"
-                    className="button expanded"
+                    className="button unenroll flex-child-auto large-flex-child-shrink"
                     onClick={this.onClickUnenroll.bind(this)}
                   >
                     UNENROLL
@@ -252,7 +254,7 @@ export default class Workshop extends Component {
                 ) : (
                     <button
                       type="button"
-                      className="button expanded"
+                      className="button flex-child-auto large-flex-child-shrink"
                       onClick={this.onClickEnroll.bind(this)}
                     >
                       ENROLL
@@ -262,19 +264,47 @@ export default class Workshop extends Component {
                 <Link
                   type="button"
                   to="/login"
-                  className="button expanded"
+                  className="button expanded button flex-child-auto large-flex-child-shrink"
                   onClick={() => { }}
                 >
                   LOGIN TO ENROLL
               </Link>
               )}
           </div>
+  
+          </article>
+   
+          </section>
+          <section className="grid-container">
+         
+          <article className="grid-x grid-margin-x">
+       
+ 
+        <div className="cell small-12 medium-8 small-order-2 medium-order-1">
+        <JumbotronComponent image={cover} />
+        <h4>
+              <b>Details</b>
+            </h4>
+          <p className="description">{workshop.description}</p>
+  
+          <div className="attendees">
+            <h4>
+              <b>Attendees</b>
+            </h4>
+            <section className="grid-display attendee-grid">
+              {attendees.map((attendee, index) => {
+                return <UserPreviewComponent key={index} attendee={attendee} />;
+              })}
+            </section>
+          </div>
+          </div>
 
-          <div className="grid-x">
-            <div className="small-2">
+          <div className="cell small-12 medium-4 small-order-1 medium-order-2">
+          <article className="detail">           
+        <div className="detail-icon">
               <FontAwesomeIcon icon="clock" size="2x" />
             </div>
-            <div className="small-9">
+            <div className="detail-copy">
               <p>
                 <span>
                   <Moment format="dddd">{workshop.start}</Moment>,{" "}
@@ -287,12 +317,12 @@ export default class Workshop extends Component {
                 <AddToCalendar event={event} buttonClassOpen='button' buttonClassClosed='button' dropdownClass='ics-dropdown' />
               </p>
             </div>
-          </div>
-          <div className="grid-x detail">
-            <div className="small-2">
+            </article>
+          <article className="detail">
+            <div className="detail-icon">
               <FontAwesomeIcon icon="map-marker" size="2x" />
             </div>
-            <div className="small-10">
+            <div className="detail-copy">
               <p>
                 {" "}
                 {location.name} <br />
@@ -302,24 +332,13 @@ export default class Workshop extends Component {
                 )}
               </p>
             </div>
-          </div>
+          </article>
+
         </div>
-        <JumbotronComponent image={cover} />
-        <div className="grid-container">
-          <p className="description">{workshop.description}</p>
-          <hr />
-          <div className="attendees">
-            <h3>
-              <b>Attendees</b>
-            </h3>
-            <section className="grid-display attendee-grid">
-              {attendees.map((attendee, index) => {
-                return <UserPreviewComponent key={index} attendee={attendee} />;
-              })}
-            </section>
-          </div>
-        </div>
-      </Fragment >
+
+          </article>
+        </section>
+      </Fragment>
     );
   }
 }
