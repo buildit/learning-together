@@ -2,23 +2,20 @@ import React, { Component, Fragment } from "react";
 
 class Sort extends Component {
   state = {
-    sortBy: 'name'
+    sortBy: 'date'
   };
+  
 
   handleChange(e) {
-    if (e.target.value === 'date') {
-      console.log('sorting by date')
-      this.setState({sortBy: 'date'})
-    } else if (e.target.value === 'name'){
-      console.log('sorting by name')
-      this.setState({sortBy: 'name'})
-    }
+    const value = e.target.value
+    this.setState({[e.target.name]: value})
+    this.props.handleSort(value)
   }
 
   render() {
     return (
       <Fragment>
-        <select value={this.state.sortBy} onChange={this.handleChange.bind(this)}>
+        <select name="sortBy" value={this.state.sortBy} onChange={this.handleChange.bind(this)}>
           <option value="date">Date</option>
           <option value="name">Workshop Name</option>
         </select>    

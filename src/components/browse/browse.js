@@ -8,20 +8,28 @@ import "./browse.scss";
 
 class Browse extends Component {
   state = {
-    workshops: []
+    workshops: [],
+    sortBy: 'date'
   };
 
   componentDidMount() {
     fetchWorkshops().then(workshops => {
-      console.log(workshops)
       this.setState({ workshops });
     });
   }
 
+ handleSort(sort) {
+    this.setState({sortBy: sort})
+ }
+
   render() {
-    const dates = this.state.workshops.map(workshop =>
-      workshop.start.slice(0, 10)
-    );
+    const sortedWorkshops = this.state.workshops.sort((a,b) => {
+      if (this.state.sortBy === 'date') {
+        return a.start > b.start ? 1 : -1
+      } else if (this.state.sortBy === 'name') {
+        return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1
+      }
+    })
 
     return (
       <Fragment>
@@ -29,8 +37,8 @@ class Browse extends Component {
         <section id="browser-container" className="current-category first-container">
           <h1 className="section-title"><b>All Workshops</b></h1>
         </section>
-        <SortComponent/>
-        {this.state.workshops.map(workshop => {
+        <SortComponent handleSort={this.handleSort.bind(this)} />
+        {sortedWorkshops.map(workshop => {
           return (
             <WorkshopPreviewComponent key={workshop.id} workshop={workshop} />
           );
