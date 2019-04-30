@@ -28,7 +28,10 @@ const FooterComponent = ({ isUser, userId }) => {
         </Link>
       )}
       <Link
-        to="/workshops"
+        to={{
+          pathname: "/workshops",
+          state: {isUser}
+        }}
         className="flex flex-column justify-center align-items-center"
       >
         <FontAwesomeIcon icon="search" />
