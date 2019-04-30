@@ -6,6 +6,9 @@ import './App.scss'
 
 library.add(faMapMarker, faUserCircle, faPencilAlt, faSearch, faVideo, faBuilding, faClock, faSpinner, faCheck, faMinus);
 class App extends Component {
+  componentDidMount() {
+    // send token to chris so i can get userId
+  }
   render() {
     return (
       <RoutesComponent />

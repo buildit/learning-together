@@ -1,9 +1,11 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
+import { getToken } from '../utils'
 
 const UnauthenticatedUserRoute = ({ component: Component, ...props }) => {
   //authentication stuff
-  const token = localStorage.getItem('BTToken')
+  console.log(getToken())
+  const token = getToken()
   let isUser = false;
   if (token) {
     isUser = true;

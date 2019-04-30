@@ -1,18 +1,10 @@
 import axios from "axios";
 const token = localStorage.getItem("BTToken");
 
-export async function signIn(data, callback) {
-  const url =
-    "http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/users/authenticate";
+export async function signIn({ url, options }) {
   return new Promise((resolve, reject) => {
     axios
-      .post(url, data)
-      .then(response => {
-        callback(response);
-      })
-      .catch(error => {
-        callback(error);
-      });
+      .post(url, options)
   });
 }
 
