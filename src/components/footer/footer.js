@@ -30,7 +30,7 @@ const FooterComponent = ({ isUser, userId }) => {
       <Link
         to={{
           pathname: "/workshops",
-          state: {isUser}
+          state: { isUser }
         }}
         className="flex flex-column justify-center align-items-center"
       >
