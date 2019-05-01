@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import Select from 'react-select'
-import makeAnimated from 'react-select/lib/animated'
 import { signUp, getLocationList, getRolesList } from '../../api'
 import { MessageComponent } from '../message'
 import { ImageUploaderComponent } from '../imageUploader'

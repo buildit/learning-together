@@ -3,7 +3,6 @@ import { fetchWorkshops } from "../../api";
 import { WorkshopPreviewComponent } from "../workshopPreview";
 import { NavbarComponent } from "../navbar";
 import { SortComponent } from "../sort";
-import moment from "moment";
 import "./browse.scss";
 
 class Browse extends Component {
@@ -28,7 +27,7 @@ class Browse extends Component {
         return a.start > b.start ? 1 : -1
       } else if (this.state.sortBy === 'name') {
         return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1
-      }
+      } 
     })
 
     return (
