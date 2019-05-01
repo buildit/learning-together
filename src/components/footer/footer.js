@@ -15,7 +15,7 @@ const FooterComponent = ({ isUser, userId }) => {
           className="flex flex-column justify-center align-items-center"
         >
           <FontAwesomeIcon icon="pencil-alt" />
-          <p>Create Class</p>
+          <p>Create Workshop</p>
         </Link>
       )}
       {!isUser && (
@@ -30,7 +30,7 @@ const FooterComponent = ({ isUser, userId }) => {
       <Link
         to={{
           pathname: "/workshops",
-          state: {isUser}
+          state: { isUser }
         }}
         className="flex flex-column justify-center align-items-center"
       >

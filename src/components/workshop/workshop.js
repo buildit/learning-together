@@ -40,6 +40,7 @@ export default class Workshop extends Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     const userId = localStorage.getItem("userId");
     this.setState({ userId: Number(userId) });
     getWorkshop(this.props.computedMatch.params.id, this.getWorkshopCallback);
@@ -135,10 +136,15 @@ export default class Workshop extends Component {
 
   onClickCancel(e) {
     e.preventDefault();
+    const attendees =
+      this.state.workshop.workshopAttendees.length > 0
+        ? `There are ${
+            this.state.workshop.workshopAttendees.length
+          } attendee(s).`
+        : "";
     this.setState({
       confirmCancel: true,
-      message:
-        "Are you sure you want to cancel this workshop? There are __ attendees."
+      message: `Are you sure you want to cancel this workshop? ${attendees}`
     });
   }
 
@@ -227,26 +233,28 @@ export default class Workshop extends Component {
                 </a>
               </p>
             </div>
-         
-          <div className="cell small-12 medium-4 flex-container enroll-button">
-            {isUser ? (
-              isEducator ? (
-                [<Link
-                  className=""
-                  to={`/edit/${this.props.computedMatch.params.id}`}
-                >
-                  <button type="button" className="button flex-child-auto">
-                    EDIT
-                  </button>
-                </Link>,
-                <button
-                  type="button"
-                  className="button flex-child-auto large-flex-child-shrink unenroll"
-                  onClick={this.onClickCancel.bind(this)}>
-                  CANCEL WORKSHOP
-                  </button>
-                ]) : isAttending ? (
 
+            <div className="cell small-12 medium-4 flex-container enroll-button">
+              {isUser ? (
+                isEducator ? (
+                  [
+                    <Link
+                      className=""
+                      to={`/edit/${this.props.computedMatch.params.id}`}
+                    >
+                      <button type="button" className="button flex-child-auto">
+                        EDIT
+                      </button>
+                    </Link>,
+                    <button
+                      type="button"
+                      className="button flex-child-auto large-flex-child-shrink unenroll"
+                      onClick={this.onClickCancel.bind(this)}
+                    >
+                      CANCEL WORKSHOP
+                    </button>
+                  ]
+                ) : isAttending ? (
                   <button
                     type="button"
                     className="button unenroll flex-child-auto large-flex-child-shrink"
