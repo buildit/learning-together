@@ -135,10 +135,13 @@ export default class Workshop extends Component {
 
   onClickCancel(e) {
     e.preventDefault();
+    const attendees = this.state.workshop.workshopAttendees.length
     this.setState({
       confirmCancel: true,
       message:
-        "Are you sure you want to cancel this workshop? There are __ attendees."
+        attendees > 0
+          ? `Are you sure you want to cancel this workshop? There are ${attendees} attendees.`
+          : `Are you sure you want to cancel this workshop?`
     });
   }
 
