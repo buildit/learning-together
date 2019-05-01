@@ -7,7 +7,7 @@ import { coverGenerator } from "../../api";
 
 const Preview = ({ workshop }) => {
   const img = workshop.imageUrl
-    ? `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com${
+    ? `https://bettertogether.buildit.systems${
         workshop.imageUrl
       }`
     : coverGenerator(workshop.id);
