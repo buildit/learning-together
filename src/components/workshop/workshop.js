@@ -33,8 +33,8 @@ export default class Workshop extends Component {
       redirect: false
     };
     this.getWorkshopCallback = this.getWorkshopCallback.bind(this);
-    this.enrollWorshopCallback = this.enrollWorshopCallback.bind(this);
-    this.unenrollWorshopCallback = this.unenrollWorshopCallback.bind(this);
+    this.enrollWorkshopCallback = this.enrollWorkshopCallback.bind(this);
+    this.unenrollWorkshopCallback = this.unenrollWorkshopCallback.bind(this);
     this.messageCallback = this.messageCallback.bind(this);
     this.cancelWorkshopCallback = this.cancelWorkshopCallback.bind(this);
   }
@@ -63,7 +63,7 @@ export default class Workshop extends Component {
       console.log(response);
     }
   }
-  enrollWorshopCallback(response) {
+  enrollWorkshopCallback(response) {
     if (response.status === 200) {
       this.setState({
         showMessage: true,
@@ -78,7 +78,7 @@ export default class Workshop extends Component {
       });
     }
   }
-  unenrollWorshopCallback(response) {
+  unenrollWorkshopCallback(response) {
     if (response.status === 200) {
       this.setState({
         showMessage: true,
@@ -126,11 +126,11 @@ export default class Workshop extends Component {
 
   onClickEnroll(e) {
     e.preventDefault();
-    enrollWorkshop(this.state.workshop.id, this.enrollWorshopCallback);
+    enrollWorkshop(this.state.workshop.id, this.enrollWorkshopCallback);
   }
   onClickUnenroll(e) {
     e.preventDefault();
-    unenrollWorkshop(this.state.workshop.id, this.unenrollWorshopCallback);
+    unenrollWorkshop(this.state.workshop.id, this.unenrollWorkshopCallback);
   }
 
   onClickCancel(e) {
@@ -212,8 +212,8 @@ export default class Workshop extends Component {
                     alt="Instructor"
                   />
                 ) : (
-                  <FontAwesomeIcon icon="user-circle" size="3x" />
-                )}
+                    <FontAwesomeIcon icon="user-circle" size="3x" />
+                  )}
               </div>
 
               <p>
@@ -227,52 +227,52 @@ export default class Workshop extends Component {
                 </a>
               </p>
             </div>
-         
-          <div className="cell small-12 medium-4 flex-container enroll-button">
-            {isUser ? (
-              isEducator ? (
-                [<Link
-                  className=""
-                  to={`/edit/${this.props.computedMatch.params.id}`}
-                >
-                  <button type="button" className="button flex-child-auto">
-                    EDIT
-                  </button>
-                </Link>,
-                <button
-                  type="button"
-                  className="button flex-child-auto large-flex-child-shrink unenroll"
-                  onClick={this.onClickCancel.bind(this)}>
-                  CANCEL WORKSHOP
-                  </button>
-                ]) : isAttending ? (
 
+            <div className="cell small-12 medium-4 flex-container enroll-button">
+              {isUser ? (
+                isEducator ? (
+                  [<Link
+                    className=""
+                    to={`/edit/${this.props.computedMatch.params.id}`}
+                  >
+                    <button type="button" className="button flex-child-auto">
+                      EDIT
+                  </button>
+                  </Link>,
                   <button
                     type="button"
-                    className="button unenroll flex-child-auto large-flex-child-shrink"
-                    onClick={this.onClickUnenroll.bind(this)}
-                  >
-                    UNENROLL
+                    className="button flex-child-auto large-flex-child-shrink unenroll"
+                    onClick={this.onClickCancel.bind(this)}>
+                    CANCEL WORKSHOP
                   </button>
-                ) : (
-                  <button
-                    type="button"
-                    className="button flex-child-auto large-flex-child-shrink"
-                    onClick={this.onClickEnroll.bind(this)}
-                  >
-                    ENROLL
+                  ]) : isAttending ? (
+
+                    <button
+                      type="button"
+                      className="button unenroll flex-child-auto large-flex-child-shrink"
+                      onClick={this.onClickUnenroll.bind(this)}
+                    >
+                      UNENROLL
                   </button>
-                )
+                  ) : (
+                      <button
+                        type="button"
+                        className="button flex-child-auto large-flex-child-shrink"
+                        onClick={this.onClickEnroll.bind(this)}
+                      >
+                        ENROLL
+                  </button>
+                    )
               ) : (
-                <Link
-                  type="button"
-                  to="/login"
-                  className="button expanded button flex-child-auto large-flex-child-shrink"
-                  onClick={() => {}}
-                >
-                  LOGIN TO ENROLL
+                  <Link
+                    type="button"
+                    to="/login"
+                    className="button expanded button flex-child-auto large-flex-child-shrink"
+                    onClick={() => { }}
+                  >
+                    LOGIN TO ENROLL
                 </Link>
-              )}
+                )}
             </div>
           </article>
         </section>
