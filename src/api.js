@@ -118,12 +118,12 @@ export const createWorkshop = data => {
         Authorization: "Bearer " + token
       }
     })
-    .then(function (response) {
+    .then(function(response) {
       // handle success
       console.log(response);
       return response;
     })
-    .catch(function (error) {
+    .catch(function(error) {
       // handle error
       console.log(error);
     });
@@ -201,27 +201,22 @@ export const updateWorkshop = (id, data) => {
         Authorization: "Bearer " + token
       }
     })
-    .then(function (response) {
+    .then(function(response) {
       // handle success
       return response;
     })
-    .catch(function (error) {
+    .catch(function(error) {
       // handle error
       console.log(error);
     });
 };
 
 export const fetchWorkshops = () => {
-  //const token = localStorage.getItem("BTToken");
   return axios
     .request({
       url:
         "https://bettertogether.buildit.systems/api/workshops",
       method: "get"
-      //data,
-      //headers: {
-      //  Authorization: "Bearer " + token
-      //}
     })
     .then(function(response) {
       // handle success
@@ -246,11 +241,10 @@ export const cancelWorkshop = (id, callback) => {
         Authorization: "Bearer " + token
       }
     })
-    .then(function (response) {
-      callback(response)
+    .then(function(response) {
+      callback(response);
     })
-    .catch(function (error) {
-      callback(error)
+    .catch(function(error) {
+      callback(error);
     });
-}
-
+};
