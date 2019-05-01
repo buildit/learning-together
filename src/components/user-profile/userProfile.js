@@ -34,7 +34,6 @@ export default class UserProfileComponent extends React.Component {
         this.getUserCallback(data);
       });
     }
-
   }
 
   getUserCallback(data) {
@@ -56,6 +55,7 @@ export default class UserProfileComponent extends React.Component {
       all: all
     });
   }
+
   updateWorkshopList(event) {
     if (
       event.target.value === "attending" ||
@@ -72,81 +72,71 @@ export default class UserProfileComponent extends React.Component {
       this.setState({
         classes: this.state.all
       });
-
-    updateWorkshopList(event) {
-
-        if (event.target.value === "attending" || event.target.value === "teaching") {
-            const filtered = this.state.all.filter((workshop) => {
-                return workshop.status === event.target.value
-            })
-
-            this.setState({
-                classes: filtered
-            })
-
-        } else {
-            this.setState({
-                classes: this.state.all
-            })
-        }
-    }
-
-    render() {
-        const { isUser } = this.props;
-        const user = this.state.user;
-        const baseUrl = "https://bettertogether.buildit.systems/";
-        const profile = (user.imageUrl !== "") ? `${baseUrl}${user.imageUrl}` : "";
-        return (
-            <Fragment>
-                <NavbarComponent isUser={isUser} />
-                <section className="user grid-container full first-container">
-                    <div className="grid-x user-profile">
-                        <div className="cell small-6">
-                            <div className="profile-pic">
-                                <div className="profile-frame">
-                                    <img src={profile} />
-                                </div>
-                                <a href="/">Edit</a>
-                            </div>
-                            <div className="user-info">
-                                <h2>{user.firstName} {user.lastName}</h2>
-                                {
-                                    user.location ? <h3><FontAwesomeIcon icon="map-marker" /> <strong>{user.location.name}</strong></h3> : ""
-                                }
-
-                                <h3>{user.role ? user.role.name : ""} </h3>
-                            </div>
-                            <a href="/">Edit</a>
-                        </div>
-                    </div>
-                    <div className="courses">
-                        <hr />
-                        <div className="upcoming">
-                            <div className="grid-container">
-                                <h2><b>Upcoming Courses</b></h2>
-                                <select name="schedule-dropdown" onChange={this.updateWorkshopList.bind(this)}>
-                                    <option value="date">All</option>
-                                    <option value="teaching">Teaching</option>
-                                    <option value="attending">Attending</option>
-                                </select>
-                            </div>
-                            <section className="workshops-list">
-
-                                {this.state.classes.map((workshop, idx) => (
-                                    <WorkshopPreviewComponent key={idx} workshop={workshop} />
-
-                                ))}
-
-                            </section>
-                        </div>
-                    </div>
-                </section>
-
-            </Fragment>
-        )
     }
   }
 
+  render() {
+    const { isUser } = this.props;
+    const user = this.state.user;
+    const baseUrl = "https://bettertogether.buildit.systems/";
+    const profile = user.imageUrl !== "" ? `${baseUrl}${user.imageUrl}` : "";
+    return (
+      <Fragment>
+        <NavbarComponent isUser={isUser} />
+        <section className="user grid-container full first-container">
+          <div className="grid-x user-profile">
+            <div className="cell small-6">
+              <div className="profile-pic">
+                <div className="profile-frame">
+                  <img src={profile} />
+                </div>
+                <a href="/">Edit</a>
+              </div>
+              <div className="user-info">
+                <h2>
+                  {user.firstName} {user.lastName}
+                </h2>
+                {user.location ? (
+                  <h3>
+                    <FontAwesomeIcon icon="map-marker" />{" "}
+                    <strong>{user.location.name}</strong>
+                  </h3>
+                ) : (
+                  ""
+                )}
 
+                <h3>{user.role ? user.role.name : ""} </h3>
+              </div>
+              <a href="/">Edit</a>
+            </div>
+          </div>
+          <div className="courses">
+            <hr />
+            <div className="upcoming">
+              <div className="grid-container">
+                <h2>
+                  <b>Upcoming Courses</b>
+                </h2>
+                <select
+                  name="schedule-dropdown"
+                  onChange={this.updateWorkshopList.bind(this)}
+                >
+                  <option value="date">All</option>
+                  <option value="teaching">Teaching</option>
+                  <option value="attending">Attending</option>
+                </select>
+              </div>
+              <section className="workshops-list">
+                {this.state.classes.map((workshop, idx) => (
+                  <WorkshopPreviewComponent key={idx} workshop={workshop} />
+                ))}
+              </section>
+            </div>
+          </div>
+        </section>
+      </Fragment>
+    );
+  }
+}
 
 UserProfileComponent.contextType = UserContext;
