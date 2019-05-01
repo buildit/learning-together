@@ -76,7 +76,7 @@ export default class UserProfileComponent extends React.Component {
     render() {
         const { isUser } = this.props;
         const user = this.state.user;
-        const baseUrl = "http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/";
+        const baseUrl = "https://bettertogether.buildit.systems/";
         const profile = (user.imageUrl !== "") ? `${baseUrl}${user.imageUrl}` : "";
         return (
             <Fragment>

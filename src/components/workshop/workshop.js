@@ -239,7 +239,7 @@ export default class Workshop extends Component {
                 </Link>,
                 <button
                   type="button"
-                  className="hollow button alert expanded"
+                  className="button flex-child-auto large-flex-child-shrink unenroll"
                   onClick={this.onClickCancel.bind(this)}>
                   CANCEL WORKSHOP
                   </button>
