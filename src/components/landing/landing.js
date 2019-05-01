@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component} from "react";
 import { NavLink } from 'react-router-dom'
 import { Hero } from "../hero";
 import { PreviewComponent } from "../preview";
@@ -8,7 +8,7 @@ import { getWorkshopList } from '../../api'
 import './landing.scss';
 import { NavbarComponent } from "../navbar";
 import { loadCategories } from '../../api';
-import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
+import { CarouselProvider, Slider, Slide} from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 
 
@@ -69,7 +69,7 @@ export default class Landing extends Component {
       > <Slider>
           {this.state.workshops.map((workshop,index) => (
            
-              <Slide index={index}>
+              <Slide key={index} index={index}>
                   <NavLink to={`/workshop/${workshop.id}`} className="preview-card" key={index}><PreviewComponent workshop={workshop} /></NavLink>
               </Slide>
            

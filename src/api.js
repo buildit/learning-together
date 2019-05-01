@@ -3,7 +3,7 @@ const token = localStorage.getItem("BTToken");
 
 export async function signIn(data, callback) {
   const url =
-    "http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/users/authenticate";
+    "https://bettertogether.buildit.systems/api/users/authenticate";
   return new Promise((resolve, reject) => {
     axios
       .post(url, data)
@@ -18,7 +18,7 @@ export async function signIn(data, callback) {
 
 export function signUp(data, callback) {
   const url =
-    "http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/users/register";
+    "https://bettertogether.buildit.systems/api/users/register";
   return new Promise((resolve, reject) => {
     axios
       .post(url, data)
@@ -33,7 +33,7 @@ export function signUp(data, callback) {
 
 export async function loadCategories() {
   const url =
-    "http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/disciplines/categories";
+    "https://bettertogether.buildit.systems/api/disciplines/categories";
   return axios
     .get(url)
     .then(response => {
@@ -46,13 +46,13 @@ export async function loadCategories() {
 export const getWorkshopList = id => {
   const category = id ? `filter?categoryId=${id}` : "";
   return axios.request({
-    url: `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops/${category}`,
+    url: `https://bettertogether.buildit.systems/api/workshops/${category}`,
     method: "get"
   });
 };
 
 export const getWorkshop = (id, callback) => {
-  const url = `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops/${id}`;
+  const url = `https://bettertogether.buildit.systems/api/workshops/${id}`;
   axios
     .get(url)
     .then(response => {
@@ -64,7 +64,7 @@ export const getWorkshop = (id, callback) => {
 };
 
 export const enrollWorkshop = (id, callback) => {
-  const url = `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops/${id}/enroll`;
+  const url = `https://bettertogether.buildit.systems/api/workshops/${id}/enroll`;
   axios
     .request({
       url,
@@ -82,7 +82,7 @@ export const enrollWorkshop = (id, callback) => {
 };
 
 export const unenrollWorkshop = (id, callback) => {
-  const url = `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops/${id}/enroll`;
+  const url = `https://bettertogether.buildit.systems/api/workshops/${id}/enroll`;
   axios
     .request({
       url,
@@ -101,7 +101,7 @@ export const unenrollWorkshop = (id, callback) => {
 
 export const getUser = id => {
   return axios.request({
-    url: `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/users/${id}`,
+    url: `https://bettertogether.buildit.systems/api/users/${id}`,
     method: "get"
   });
 };
@@ -111,19 +111,19 @@ export const createWorkshop = data => {
   return axios
     .request({
       url:
-        "http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops/create",
+        "https://bettertogether.buildit.systems/api/workshops/create",
       method: "post",
       data,
       headers: {
         Authorization: "Bearer " + token
       }
     })
-    .then(function (response) {
+    .then(function(response) {
       // handle success
       console.log(response);
       return response;
     })
-    .catch(function (error) {
+    .catch(function(error) {
       // handle error
       console.log(error);
     });
@@ -135,7 +135,7 @@ export const coverGenerator = id => {
 
 export function uploadImage(data, callback) {
   const url =
-    "http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/upload/image";
+    "https://bettertogether.buildit.systems/api/upload/image";
   axios
     .post(url, data)
     .then(response => {
@@ -149,13 +149,13 @@ export function uploadImage(data, callback) {
 export const getCategoryList = () => {
   return axios.request({
     url:
-      "http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/disciplines/categories",
+      "https://bettertogether.buildit.systems/api/disciplines/categories",
     method: "get"
   });
 };
 
 export const getLocationList = callback => {
-  const url = `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/locations`;
+  const url = `https://bettertogether.buildit.systems/api/locations`;
   axios
     .get(url)
     .then(response => {
@@ -168,7 +168,7 @@ export const getLocationList = callback => {
 
 export const getRolesList = callback => {
   const url =
-    "http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/roles";
+    "https://bettertogether.buildit.systems/api/roles";
   axios
     .get(url)
     .then(response => {
@@ -180,7 +180,7 @@ export const getRolesList = callback => {
 };
 
 export const getSearchResults = (input, callback) => {
-  const url = `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com//api/search?search=${input}&maxResults=5`;
+  const url = `https://bettertogether.buildit.systems//api/search?search=${input}&maxResults=5`;
   axios
     .get(url)
     .then(response => {
@@ -194,34 +194,29 @@ export const getSearchResults = (input, callback) => {
 export const updateWorkshop = (id, data) => {
   return axios
     .request({
-      url: `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops/${id}`,
+      url: `https://bettertogether.buildit.systems/api/workshops/${id}`,
       method: "put",
       data,
       headers: {
         Authorization: "Bearer " + token
       }
     })
-    .then(function (response) {
+    .then(function(response) {
       // handle success
       return response;
     })
-    .catch(function (error) {
+    .catch(function(error) {
       // handle error
       console.log(error);
     });
 };
 
 export const fetchWorkshops = () => {
-  //const token = localStorage.getItem("BTToken");
   return axios
     .request({
       url:
-        "http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops",
+        "https://bettertogether.buildit.systems/api/workshops",
       method: "get"
-      //data,
-      //headers: {
-      //  Authorization: "Bearer " + token
-      //}
     })
     .then(function(response) {
       // handle success
@@ -240,17 +235,16 @@ export const cancelWorkshop = (id, callback) => {
   return axios
     .request({
       url:
-        `http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/api/workshops/${id}`,
+        `https://bettertogether.buildit.systems/api/workshops/${id}`,
       method: "delete",
       headers: {
         Authorization: "Bearer " + token
       }
     })
-    .then(function (response) {
-      callback(response)
+    .then(function(response) {
+      callback(response);
     })
-    .catch(function (error) {
-      callback(error)
+    .catch(function(error) {
+      callback(error);
     });
-}
-
+};

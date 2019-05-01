@@ -7,7 +7,7 @@ import Moment from "react-moment";
 import { NavbarComponent } from "../navbar";
 import { Link, Redirect } from "react-router-dom";
 import { UserContext } from "../../UserProvider";
-import AddToCalendar from 'react-add-to-calendar';
+import AddToCalendar from "react-add-to-calendar";
 import {
   getWorkshop,
   coverGenerator,
@@ -36,7 +36,7 @@ export default class Workshop extends Component {
     this.enrollWorshopCallback = this.enrollWorshopCallback.bind(this);
     this.unenrollWorshopCallback = this.unenrollWorshopCallback.bind(this);
     this.messageCallback = this.messageCallback.bind(this);
-    this.cancelWorkshopCallback = this.cancelWorkshopCallback.bind(this)
+    this.cancelWorkshopCallback = this.cancelWorkshopCallback.bind(this);
   }
 
   componentDidMount() {
@@ -120,7 +120,7 @@ export default class Workshop extends Component {
 
   renderRedirect() {
     if (this.state.redirect) {
-      return <Redirect to={`/user/${this.state.userId}`} />
+      return <Redirect to={`/user/${this.state.userId}`} />;
     }
   }
 
@@ -134,22 +134,23 @@ export default class Workshop extends Component {
   }
 
   onClickCancel(e) {
-    e.preventDefault()
+    e.preventDefault();
     this.setState({
       confirmCancel: true,
-      message: "Are you sure you want to cancel this workshop? There are __ attendees."
-    })
+      message:
+        "Are you sure you want to cancel this workshop? There are __ attendees."
+    });
   }
 
   cancelWorkshopConfirmed() {
-    cancelWorkshop(this.state.workshop.id, this.cancelWorkshopCallback)
+    cancelWorkshop(this.state.workshop.id, this.cancelWorkshopCallback);
   }
 
   cancelWorkshopNoConfirm() {
     this.setState({
       confirmCancel: false,
-      message: ''
-    })
+      message: ""
+    });
   }
   updateImage(location) {
     const formatted = location.replace(/\s/g, "-");
@@ -158,13 +159,7 @@ export default class Workshop extends Component {
   }
 
   render() {
-    const {
-      workshop,
-      userId,
-      educatorId,
-      showMessage,
-      message
-    } = this.state;
+    const { workshop, userId, educatorId, showMessage, message } = this.state;
     const attendees = workshop.workshopAttendees
       ? workshop.workshopAttendees
       : [];
@@ -180,38 +175,45 @@ export default class Workshop extends Component {
     const isEducator = userId === educatorId;
     const isAttending = workshop && filterAttendees(userId, workshop);
     const event = {
-      title: workshop.name ? workshop.name : '',
-      description: workshop.description ? workshop.description : '',
-      location: workshop.location ? workshop.location.name : '',
-      startTime: workshop.start ? workshop.start : '',
-      endTime: workshop.end ? workshop.end : ''
-    }
+      title: workshop.name ? workshop.name : "",
+      description: workshop.description ? workshop.description : "",
+      location: workshop.location ? workshop.location.name : "",
+      startTime: workshop.start ? workshop.start : "",
+      endTime: workshop.end ? workshop.end : ""
+    };
     return (
       <Fragment>
         {showMessage && (
           <MessageComponent message={message} callback={this.messageCallback} />
         )}
-        {
-          this.state.confirmCancel && (
-            <MessageConfirmComponent message={message} yesCancel={this.cancelWorkshopConfirmed.bind(this)} noCancel={this.cancelWorkshopNoConfirm.bind(this)} />
-          )
-        }
-        {
-          this.renderRedirect()
-        }
-        <NavbarComponent isUser={isUser} location={this.props.location} />          
-            <section className="grid-container class-info">
-            <article className="grid-x align-middle">
+        {this.state.confirmCancel && (
+          <MessageConfirmComponent
+            message={message}
+            yesCancel={this.cancelWorkshopConfirmed.bind(this)}
+            noCancel={this.cancelWorkshopNoConfirm.bind(this)}
+          />
+        )}
+        {this.renderRedirect()}
+        <NavbarComponent isUser={isUser} location={this.props.location} />
+        <section className="grid-container class-info">
+          <article className="grid-x align-middle">
             <div className="small-12 medium-8 instructor-info">
-            <span>
-                  <Moment format="dddd">{workshop.start}</Moment>,{" "}
-                  <Moment format="LL">{workshop.start}</Moment>
-                </span>
-            <h1 className="workshop-title">
-              <b>{workshop.name}</b>
-            </h1>
+              <span>
+                <Moment format="dddd">{workshop.start}</Moment>,{" "}
+                <Moment format="LL">{workshop.start}</Moment>
+              </span>
+              <h1 className="workshop-title">
+                <b>{workshop.name}</b>
+              </h1>
               <div className="photo-frame">
-                {instructor.imageUrl ? <img src={`${baseUrl}${instructor.imageUrl}`} /> : <FontAwesomeIcon icon="user-circle" size="3x" />}
+                {instructor.imageUrl ? (
+                  <img
+                    src={`${baseUrl}${instructor.imageUrl}`}
+                    alt="Instructor"
+                  />
+                ) : (
+                  <FontAwesomeIcon icon="user-circle" size="3x" />
+                )}
               </div>
 
               <p>
@@ -239,103 +241,104 @@ export default class Workshop extends Component {
                 </Link>,
                 <button
                   type="button"
-                  className="hollow button alert expanded"
+                  className="button flex-child-auto large-flex-child-shrink unenroll"
                   onClick={this.onClickCancel.bind(this)}>
                   CANCEL WORKSHOP
                   </button>
                 ]) : isAttending ? (
+
                   <button
                     type="button"
                     className="button unenroll flex-child-auto large-flex-child-shrink"
                     onClick={this.onClickUnenroll.bind(this)}
                   >
                     UNENROLL
-                </button>
+                  </button>
                 ) : (
-                    <button
-                      type="button"
-                      className="button flex-child-auto large-flex-child-shrink"
-                      onClick={this.onClickEnroll.bind(this)}
-                    >
-                      ENROLL
-                </button>
-                  )
-            ) : (
+                  <button
+                    type="button"
+                    className="button flex-child-auto large-flex-child-shrink"
+                    onClick={this.onClickEnroll.bind(this)}
+                  >
+                    ENROLL
+                  </button>
+                )
+              ) : (
                 <Link
                   type="button"
                   to="/login"
                   className="button expanded button flex-child-auto large-flex-child-shrink"
-                  onClick={() => { }}
+                  onClick={() => {}}
                 >
                   LOGIN TO ENROLL
-              </Link>
+                </Link>
               )}
-          </div>
-  
+            </div>
           </article>
-   
-          </section>
-          <section className="grid-container">
-         
+        </section>
+        <section className="grid-container">
           <article className="grid-x grid-margin-x">
-       
- 
-        <div className="cell small-12 medium-8 small-order-2 medium-order-1">
-        <JumbotronComponent image={cover} />
-        <h4>
-              <b>Details</b>
-            </h4>
-          <p className="description">{workshop.description}</p>
-  
-          <div className="attendees">
-            <h4>
-              <b>Attendees</b>
-            </h4>
-            <section className="grid-display attendee-grid">
-              {attendees.map((attendee, index) => {
-                return <UserPreviewComponent key={index} attendee={attendee} />;
-              })}
-            </section>
-          </div>
-          </div>
+            <div className="cell small-12 medium-8 small-order-2 medium-order-1">
+              <JumbotronComponent image={cover} />
+              <h4>
+                <b>Details</b>
+              </h4>
+              <p className="description">{workshop.description}</p>
 
-          <div className="cell small-12 medium-4 small-order-1 medium-order-2">
-          <article className="detail">           
-        <div className="detail-icon">
-              <FontAwesomeIcon icon="clock" size="2x" />
+              <div className="attendees">
+                <h4>
+                  <b>Attendees</b>
+                </h4>
+                <section className="grid-display attendee-grid">
+                  {attendees.map((attendee, index) => {
+                    return (
+                      <UserPreviewComponent key={index} attendee={attendee} />
+                    );
+                  })}
+                </section>
+              </div>
             </div>
-            <div className="detail-copy">
-              <p>
-                <span>
-                  <Moment format="dddd">{workshop.start}</Moment>,{" "}
-                  <Moment format="LL">{workshop.start}</Moment>
-                </span>
-                <br />
-                <Moment format="LT">{workshop.start}</Moment> -{" "}
-                <Moment format="LT">{workshop.end}</Moment>
-                <br />
-                <AddToCalendar event={event} buttonClassOpen='button' buttonClassClosed='button' dropdownClass='ics-dropdown' />
-              </p>
-            </div>
-            </article>
-          <article className="detail">
-            <div className="detail-icon">
-              <FontAwesomeIcon icon="map-marker" size="2x" />
-            </div>
-            <div className="detail-copy">
-              <p>
-                {" "}
-                {location.name} <br />
-                {workshop.room} <br />
-                {workshop.webex === "" ? null : (
-                  <a href={workshop.webex}>Webex</a>
-                )}
-              </p>
-            </div>
-          </article>
 
-        </div>
-
+            <div className="cell small-12 medium-4 small-order-1 medium-order-2">
+              <article className="detail">
+                <div className="detail-icon">
+                  <FontAwesomeIcon icon="clock" size="2x" />
+                </div>
+                <div className="detail-copy">
+                  <p>
+                    <span>
+                      <Moment format="dddd">{workshop.start}</Moment>,{" "}
+                      <Moment format="LL">{workshop.start}</Moment>
+                    </span>
+                    <br />
+                    <Moment format="LT">{workshop.start}</Moment> -{" "}
+                    <Moment format="LT">{workshop.end}</Moment>
+                    <br />
+                    <AddToCalendar
+                      event={event}
+                      buttonClassOpen="button"
+                      buttonClassClosed="button"
+                      dropdownClass="ics-dropdown"
+                    />
+                  </p>
+                </div>
+              </article>
+              <article className="detail">
+                <div className="detail-icon">
+                  <FontAwesomeIcon icon="map-marker" size="2x" />
+                </div>
+                <div className="detail-copy">
+                  <p>
+                    {" "}
+                    {location.name} <br />
+                    {workshop.room} <br />
+                    {workshop.webex === "" ? null : (
+                      <a href={workshop.webex}>Webex</a>
+                    )}
+                  </p>
+                </div>
+              </article>
+            </div>
           </article>
         </section>
       </Fragment>
