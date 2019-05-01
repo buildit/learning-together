@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { WorkshopPreviewComponent } from "../workshopPreview";
 import { NavbarComponent } from "../navbar";
-import workshopData from "./mock-workshops.json";
 import { getWorkshopList, coverGenerator } from "../../api";
 import "./workshoplist.scss";
 

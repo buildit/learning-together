@@ -1,8 +1,5 @@
 import React, { Fragment } from 'react';
 import './user-profile.scss';
-import profile from './pics/2.jpg';
-import userData from './mock-data.json';
-import Moment from 'react-moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NavbarComponent } from '../navbar';
 import { WorkshopPreviewComponent } from "../workshopPreview";
@@ -81,7 +78,6 @@ export default class UserProfileComponent extends React.Component {
         const user = this.state.user;
         const baseUrl = "http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/";
         const profile = (user.imageUrl !== "") ? `${baseUrl}${user.imageUrl}` : "";
-        console.log('all classes', this.state.classes)
         return (
             <Fragment>
                 <NavbarComponent isUser={isUser} />
