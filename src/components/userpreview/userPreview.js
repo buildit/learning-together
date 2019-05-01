@@ -3,7 +3,7 @@ import './userpreview.scss';
 import { NavLink } from 'react-router-dom';
 
 const UserPreviewComponent = ({ attendee }) => {
-    const baseUrl = "http://ec2-18-224-56-34.us-east-2.compute.amazonaws.com/";
+    const baseUrl = "https://bettertogether.buildit.systems/";
     const showPhoto = () => {
         return ((attendee.imageUrl !== "") ? `${baseUrl}${attendee.imageUrl}` : "");
     }

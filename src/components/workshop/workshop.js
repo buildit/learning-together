@@ -227,28 +227,26 @@ export default class Workshop extends Component {
                 </a>
               </p>
             </div>
+         
+          <div className="cell small-12 medium-4 flex-container enroll-button">
+            {isUser ? (
+              isEducator ? (
+                [<Link
+                  className=""
+                  to={`/edit/${this.props.computedMatch.params.id}`}
+                >
+                  <button type="button" className="button flex-child-auto">
+                    EDIT
+                  </button>
+                </Link>,
+                <button
+                  type="button"
+                  className="button flex-child-auto large-flex-child-shrink unenroll"
+                  onClick={this.onClickCancel.bind(this)}>
+                  CANCEL WORKSHOP
+                  </button>
+                ]) : isAttending ? (
 
-            <div className="cell small-12 medium-4 flex-container enroll-button">
-              {isUser ? (
-                isEducator ? (
-                  [
-                    <Link
-                      className=""
-                      to={`/edit/${this.props.computedMatch.params.id}`}
-                    >
-                      <button type="button" className="button flex-child-auto">
-                        EDIT
-                      </button>
-                    </Link>,
-                    <button
-                      type="button"
-                      className="hollow button alert expanded"
-                      onClick={this.onClickCancel.bind(this)}
-                    >
-                      CANCEL WORKSHOP
-                    </button>
-                  ]
-                ) : isAttending ? (
                   <button
                     type="button"
                     className="button unenroll flex-child-auto large-flex-child-shrink"
