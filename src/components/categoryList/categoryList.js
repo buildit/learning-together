@@ -4,11 +4,6 @@ import "./categoryList.scss";
 
 
 class CategoryList extends Component {
-
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const WrkshpCategories = this.props.categories.map((category, index) => {
       return (

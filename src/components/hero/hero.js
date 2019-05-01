@@ -1,6 +1,5 @@
 import React from "react";
 import "./hero.scss";
-import logo from './logo.png';
 
 
 
