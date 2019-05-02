@@ -26,7 +26,8 @@ export default class Landing extends Component {
 
     getWorkshopList()
       .then(response => {
-        let workshops = response.data.slice(0,6)
+        let sorted = this.sortByDate(response.data)
+        let workshops = sorted.slice(0,6)
         this.setState({ workshops })
         this.setState({noslides: this.getNumberofSlides()})
       })
@@ -40,6 +41,12 @@ export default class Landing extends Component {
         })
       })
       
+  }
+
+  sortByDate = (workshops) => {
+    return workshops.sort(function(a, b){
+      return new Date(a.start) - new Date(b.start);
+    });
   }
 
   getNumberofSlides(){

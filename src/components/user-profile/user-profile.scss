@@ -1,4 +1,8 @@
 .user{
+
+    .schedule-dropdown {
+        max-width: 370px;
+    }
 .user-profile {
     justify-content: center;
 
@@ -29,6 +33,7 @@
         object-fit: cover;
     }
 }
+
 
 .user-info {
     text-align: center;
