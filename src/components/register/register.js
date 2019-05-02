@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import Select from 'react-select'
-import makeAnimated from 'react-select/lib/animated'
 import { signUp, getLocationList, getRolesList } from '../../api'
 import { MessageComponent } from '../message'
 import { ImageUploaderComponent } from '../imageUploader'
@@ -22,7 +21,7 @@ export default class RegisterComponent extends React.Component {
       selectedLocation: {},
       selectedRole: {},
       interests: [],
-      profilePicture: '',
+      profilePicture: 'images/cover/profile-placeholder.png',
       firstNameError: false,
       lastNameError: false,
       emailError: false,
@@ -186,7 +185,7 @@ export default class RegisterComponent extends React.Component {
     return (
       <Fragment>
         <NavbarComponent isUser={this.props.isUser} />
-        <div className="grid-container">
+        <div className="grid-container first-container">
           <div className="grid-y medium-grid-frame">
             <div className="grid-x grid-padding-x align-middle">
               <form className='cell medium-12' onSubmit={this.submitHandler.bind(this)}>

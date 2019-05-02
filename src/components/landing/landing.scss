@@ -9,13 +9,58 @@
     }
 }
 
+.cover-frame {
+  height: auto;
+  .copy {
+    background: rgba(0,0,0,0.4);
+    padding: 2em;
+  }
+}
+
+.carousel__dot-group {
+  position: relative;
+  margin: 0 auto;
+  height: 20px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.carousel__dot {
+  height: 20px;
+  width: 20px;
+  display: block;
+  float: left;
+  background-color: rgb(202, 202, 202);
+  margin-right: 10px;
+  border-radius: 10px;
+  &:hover {
+    background-color: rgba(232,144,180,1);
+  }
+  
+  &.carousel__dot--selected {
+    background-color: rgba(94,155,177,1);
+  }
+
+}
+
+@media screen and (min-width: 40em) {
+
+  .cover-frame {
+    height: 460px;
+  }
+
+  .card {
+    margin-right: 10px;
+  }
+}
+
 .preview-card {
   padding: .5rem;
 }
 .card-scroll-single {
   display: inline-block;
 }
-
 .card-scroll-single:hover {
   opacity: 0.7;
 }

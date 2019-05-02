@@ -4,7 +4,7 @@ import { SingleDatePicker } from "react-dates";
 import { Link, Redirect } from "react-router-dom";
 import { MessageComponent } from "../message";
 import { ImageUploaderComponent } from "../imageUploader";
-import { createWorkshop, getCategoryList } from "../../api.js";
+import { getCategoryList, getLocationList } from "../../api.js";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import "./workshopForm.scss";
@@ -13,24 +13,32 @@ class WorkshopForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      location: 1,
-      link: "",
-      description: "",
-      startDate: moment(),
-      endDate: null,
+      name: props.data ? props.data.name : "",
+      location: props.data ? props.data.locationId : 1,
+      locationList: [],
+      link: props.data ? props.data.webex : "",
+      description: props.data ? props.data.description : "",
+      startDate: props.data ? moment(props.data.start) : moment(),
+      endDate: props.data ? moment(props.data.end) : null,
       calendarFocused: false,
       categoryList: [],
-      categorySelected: 1,
-      startTime: "",
-      endTime: "",
+      categorySelected: props.data ? props.data.categoryId : 1,
+      startTime: props.data
+        ? moment(props.data.start)
+            .format("HH:mm:ss")
+            .slice(0, 5)
+        : "",
+      endTime: props.data
+        ? moment(props.data.end)
+            .format("HH:mm:ss")
+            .slice(0, 5)
+        : "",
       error: {},
-      success: false,
       redirect: false,
-      workshopPicture: "",
-      workshopId: null,
-      room: ""
+      workshopPicture: props.data ? props.data.imageUrl : "",
+      room: props.data ? props.data.room : ""
     };
+
     this.handleChange = this.handleChange.bind(this);
     this.onDateChange = this.onDateChange.bind(this);
     this.onFocusChange = this.onFocusChange.bind(this);
@@ -38,6 +46,7 @@ class WorkshopForm extends Component {
     this.validateForm = this.validateForm.bind(this);
     this.redirectCallback = this.redirectCallback.bind(this);
     this.setWorkshopPicture = this.setWorkshopPicture.bind(this);
+    this.getLocationCallBack = this.getLocationCallBack.bind(this);
   }
 
   //TODO Handle Error
@@ -47,14 +56,70 @@ class WorkshopForm extends Component {
       .catch(error => {
         console.log(error);
       });
+
+    getLocationList(this.getLocationCallBack);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.data) {
+      if (nextProps.data.name !== this.props.data.name) {
+        this.setState({ name: nextProps.data.name });
+      }
+
+      if (nextProps.data.categoryId !== this.props.data.categoryId) {
+        this.setState({
+          categorySelected: nextProps.data.categoryId
+        });
+      }
+
+      if (nextProps.data.imageUrl !== this.props.data.imageUrl) {
+        this.setState({
+          workshopPicture: nextProps.data.imageUrl
+        });
+      }
+
+      if (nextProps.data.start !== this.props.data.start) {
+        this.setState({
+          startTime: moment(nextProps.data.start)
+            .format("HH:mm:ss")
+            .slice(0, 5),
+          startDate: moment(nextProps.data.start),
+          endDate: moment(nextProps.data.end)
+        });
+      }
+
+      if (nextProps.data.end !== this.props.data.end) {
+        this.setState({
+          endTime: moment(nextProps.data.end)
+            .format("HH:mm:ss")
+            .slice(0, 5)
+        });
+      }
+
+      if (nextProps.data.locationId !== this.props.data.locationId) {
+        this.setState({
+          location: nextProps.data.locationId
+        });
+      }
+
+      if (nextProps.data.webex !== this.props.data.webex) {
+        this.setState({ link: nextProps.data.webex });
+      }
+
+      if (nextProps.data.room !== this.props.data.room) {
+        this.setState({ room: nextProps.data.room });
+      }
+
+      if (nextProps.data.description !== this.props.data.description) {
+        this.setState({ description: nextProps.data.description });
+      }
+    }
   }
 
   //If input is start time or date time modify moment object
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
     if (e.target.name === "startTime" || e.target.name === "endTime") {
-      this.setState({ [e.target.name]: e.target.value });
-
       if (e.target.name === "startTime" && this.state.startDate) {
         this.state.startDate.set({ h: e.target.value.slice(0, 2) });
         this.state.startDate.set({ m: e.target.value.slice(3, 5) });
@@ -66,6 +131,12 @@ class WorkshopForm extends Component {
         endDate.set({ m: e.target.value.slice(3, 5) });
         this.setState({ endDate });
       }
+    }
+  }
+
+  getLocationCallBack(response) {
+    if (response.status === 200) {
+      this.setState({ locationList: response.data });
     }
   }
 
@@ -105,21 +176,6 @@ class WorkshopForm extends Component {
       invalid = true;
     }
 
-    if (this.state.link === "") {
-      errors["link"] = "Enter a valid Url";
-      invalid = true;
-    }
-
-    if (this.state.description === "") {
-      errors["description"] = "Enter a workshop description";
-      invalid = true;
-    }
-
-    if (this.state.room === "") {
-      errors["room"] = "Enter a room where workshop will be held";
-      invalid = true;
-    }
-
     this.setState({ error: errors });
     return invalid;
   }
@@ -137,18 +193,13 @@ class WorkshopForm extends Component {
         start: this.state.startDate.format("YYYY-MM-DDTHH:mm:ss.SSS"),
         end: this.state.endDate.format("YYYY-MM-DDTHH:mm:ss.SSS"),
         locationId: this.state.location,
-        categoryId: this.state.categorySelected,
+        categoryId: parseInt(this.state.categorySelected),
         webex: this.state.link,
         description: this.state.description,
         imageUrl: this.state.workshopPicture,
         room: this.state.room
       };
-      console.log("data", data);
-      createWorkshop(data).then(response => {
-        if (response.status === 200) {
-          this.setState({ success: true, workshopId: response.data });
-        }
-      });
+      this.props.handleSubmit(data);
     }
   }
 
@@ -161,8 +212,24 @@ class WorkshopForm extends Component {
   }
 
   render() {
+    const categories = this.state.categoryList.map(category => {
+      return (
+        <option key={category.id} value={category.id}>
+          {category.name}
+        </option>
+      );
+    });
+
+    const locations = this.state.locationList.map(location => {
+      return (
+        <option key={location.id} value={location.id}>
+          {location.name}
+        </option>
+      );
+    });
+
     return (
-      <div className="workshop-form">
+      <div className="workshop-form first-container">
         <form onSubmit={this.handleSubmit}>
           <div className="grid-container">
             <div className="grid-x grid-padding-x align-center">
@@ -174,7 +241,6 @@ class WorkshopForm extends Component {
                     name="name"
                     value={this.state.name}
                     onChange={this.handleChange}
-                    placeholder="workshop name"
                     autoFocus
                   />
                   <span className="error">{this.state.error.name}</span>
@@ -188,13 +254,7 @@ class WorkshopForm extends Component {
                     value={this.state.categorySelected}
                     onChange={this.handleChange}
                   >
-                    {this.state.categoryList.map(category => {
-                      return (
-                        <option key={category.id} value={category.id}>
-                          {category.name}
-                        </option>
-                      );
-                    })}
+                    {categories}
                   </select>
                 </label>
               </div>
@@ -219,8 +279,6 @@ class WorkshopForm extends Component {
                   <input
                     type="time"
                     name="startTime"
-                    min="10:00"
-                    max="18:00"
                     value={this.state.startTime}
                     required
                     onChange={this.handleChange}
@@ -232,8 +290,6 @@ class WorkshopForm extends Component {
                   <input
                     type="time"
                     name="endTime"
-                    min="10:00"
-                    max="18:00"
                     value={this.state.endTime}
                     required
                     onChange={this.handleChange}
@@ -249,12 +305,7 @@ class WorkshopForm extends Component {
                     value={this.state.location}
                     onChange={this.handleChange}
                   >
-                    <option value="1">New York </option>
-                    <option value="2">London</option>
-                    <option value="3">Edinburgh </option>
-                    <option value="4">Dublin</option>
-                    <option value="5">Denver </option>
-                    <option value="6">Dallas </option>
+                    {locations}
                   </select>
                 </label>
               </div>
@@ -263,6 +314,7 @@ class WorkshopForm extends Component {
                   Room
                   <input
                     name="room"
+                    value={this.state.room}
                     onChange={this.handleChange}
                     type="text"
                     placeholder="room"
@@ -275,6 +327,7 @@ class WorkshopForm extends Component {
                   WebEx Link
                   <input
                     name="link"
+                    value={this.state.link}
                     onChange={this.handleChange}
                     type="url"
                     placeholder="webex link"
@@ -289,6 +342,7 @@ class WorkshopForm extends Component {
                     name="description"
                     type="text"
                     onChange={this.handleChange}
+                    value={this.state.description}
                     placeholder="workshop description"
                     style={{ height: "100px" }}
                   />
@@ -299,22 +353,21 @@ class WorkshopForm extends Component {
           </div>
           <div className="grid-x align-center">
             <button className="button custom-button submit" type="submit">
-              Create{" "}
+              {this.props.edit ? "Update" : "Create"}
             </button>
             <Link to="/" className="hollow button secondary custom-button">
               Cancel{" "}
             </Link>
           </div>
         </form>
-        {this.state.success && (
+
+        {this.props.success && (
           <MessageComponent
             message="Success"
             callback={this.redirectCallback}
           />
         )}
-        {this.state.redirect && (
-          <Redirect to={`/workshop/${this.state.workshopId}`} />
-        )}
+        {this.state.redirect && <Redirect to={`/workshop/${this.props.id}`} />}
       </div>
     );
   }

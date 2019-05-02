@@ -6,31 +6,32 @@ import "./footer.scss";
 const FooterComponent = ({ isUser, userId }) => {
   return (
     <div className="footer">
-      {
-        isUser &&
+      {isUser && (
         <Link
           to={{
-            pathname: "/create-workshop",
-            state: { userId },
+            pathname: "/create",
+            state: { userId }
           }}
           className="flex flex-column justify-center align-items-center"
         >
           <FontAwesomeIcon icon="pencil-alt" />
-          <p>Create Class</p>
+          <p>Create Workshop</p>
         </Link>
-      }
-      {
-        !isUser &&
+      )}
+      {!isUser && (
         <Link
-          to="/create-workshop"
+          to="/login"
           className="flex flex-column justify-center align-items-center"
         >
           <FontAwesomeIcon icon="pencil-alt" />
           <p>Create Class</p>
         </Link>
-      }
+      )}
       <Link
-        to="/workshops"
+        to={{
+          pathname: "/workshops",
+          state: { isUser }
+        }}
         className="flex flex-column justify-center align-items-center"
       >
         <FontAwesomeIcon icon="search" />
