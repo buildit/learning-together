@@ -84,8 +84,8 @@ export default class UserProfileComponent extends React.Component {
       <Fragment>
         <NavbarComponent isUser={isUser} />
         <section className="user grid-container full first-container">
-          <div className="grid-x user-profile">
-            <div className="cell small-6">
+          <div className="grid-x user-profile grid-margin-x">
+            <div className="cell small-6 medium-align-left">
               <div className="profile-pic">
                 <div className="profile-frame">
                   <img src={profile} alt="profile" />
@@ -119,6 +119,7 @@ export default class UserProfileComponent extends React.Component {
                 </h2>
                 <select
                   name="schedule-dropdown"
+                  className="schedule-dropdown"
                   onChange={this.updateWorkshopList.bind(this)}
                 >
                   <option value="date">All</option>
@@ -126,9 +127,11 @@ export default class UserProfileComponent extends React.Component {
                   <option value="attending">Attending</option>
                 </select>
               </div>
-              <section className="workshops-list">
+              <section className="workshops-list grid-container">
                 {this.state.classes.map((workshop, idx) => (
+                  <div className="cell medium-6">
                   <WorkshopPreviewComponent key={idx} workshop={workshop} />
+                  </div>
                 ))}
               </section>
             </div>
