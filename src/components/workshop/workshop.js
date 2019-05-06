@@ -7,7 +7,7 @@ import Moment from "react-moment";
 import { NavbarComponent } from "../navbar";
 import { Link, Redirect } from "react-router-dom";
 import { UserContext } from "../../UserProvider";
-import AddToCalendar from 'react-add-to-calendar';
+import AddToCalendar from "react-add-to-calendar";
 import {
   getWorkshop,
   coverGenerator,
@@ -16,6 +16,7 @@ import {
   cancelWorkshop
 } from "../../api";
 import { MessageComponent } from "../message";
+import { MessageConfirmComponent } from "../messageConfirm";
 import { filterAttendees } from "../../selectors";
 
 export default class Workshop extends Component {
@@ -28,16 +29,18 @@ export default class Workshop extends Component {
       educatorId: null,
       showMessage: false,
       message: "",
+      confirmCancel: false,
       redirect: false
     };
     this.getWorkshopCallback = this.getWorkshopCallback.bind(this);
     this.enrollWorshopCallback = this.enrollWorshopCallback.bind(this);
     this.unenrollWorshopCallback = this.unenrollWorshopCallback.bind(this);
     this.messageCallback = this.messageCallback.bind(this);
-    this.cancelWorkshopCallback = this.cancelWorkshopCallback.bind(this)
+    this.cancelWorkshopCallback = this.cancelWorkshopCallback.bind(this);
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     const userId = localStorage.getItem("userId");
     this.setState({ userId: Number(userId) });
     getWorkshop(this.props.computedMatch.params.id, this.getWorkshopCallback);
@@ -92,19 +95,24 @@ export default class Workshop extends Component {
     }
   }
   messageCallback() {
-    this.setState({ showMessage: false, message: "" });
+    this.setState({
+      showMessage: false,
+      message: "",
+      redirect: true
+    });
   }
 
   cancelWorkshopCallback(response) {
     if (response.status === 200) {
       this.setState({
+        confirmCancel: false,
         showMessage: true,
-        message: "You have cancelled your workshop",
-        redirect: true
+        message: "You have cancelled your workshop"
       });
     } else {
       //show error message
       this.setState({
+        confirmCancel: false,
         showMessage: true,
         message: "There was an error in cancellation. Please try again later."
       });
@@ -113,7 +121,7 @@ export default class Workshop extends Component {
 
   renderRedirect() {
     if (this.state.redirect) {
-      return <Redirect to={`/user/${this.state.userId}`} />
+      return <Redirect to={`/user/${this.state.userId}`} />;
     }
   }
 
@@ -125,9 +133,30 @@ export default class Workshop extends Component {
     e.preventDefault();
     unenrollWorkshop(this.state.workshop.id, this.unenrollWorshopCallback);
   }
+
   onClickCancel(e) {
-    e.preventDefault()
-    cancelWorkshop(this.state.workshop.id, this.cancelWorkshopCallback)
+    e.preventDefault();
+    const attendees =
+      this.state.workshop.workshopAttendees.length > 0
+        ? `There are ${
+            this.state.workshop.workshopAttendees.length
+          } attendee(s).`
+        : "";
+    this.setState({
+      confirmCancel: true,
+      message: `Are you sure you want to cancel this workshop? ${attendees}`
+    });
+  }
+
+  cancelWorkshopConfirmed() {
+    cancelWorkshop(this.state.workshop.id, this.cancelWorkshopCallback);
+  }
+
+  cancelWorkshopNoConfirm() {
+    this.setState({
+      confirmCancel: false,
+      message: ""
+    });
   }
   updateImage(location) {
     const formatted = location.replace(/\s/g, "-");
@@ -136,13 +165,7 @@ export default class Workshop extends Component {
   }
 
   render() {
-    const {
-      workshop,
-      userId,
-      educatorId,
-      showMessage,
-      message
-    } = this.state;
+    const { workshop, userId, educatorId, showMessage, message } = this.state;
     const attendees = workshop.workshopAttendees
       ? workshop.workshopAttendees
       : [];
@@ -158,32 +181,45 @@ export default class Workshop extends Component {
     const isEducator = userId === educatorId;
     const isAttending = workshop && filterAttendees(userId, workshop);
     const event = {
-      title: workshop.name ? workshop.name : '',
-      description: workshop.description ? workshop.description : '',
-      location: workshop.location ? workshop.location.name : '',
-      startTime: workshop.start ? workshop.start : '',
-      endTime: workshop.end ? workshop.end : ''
-    }
+      title: workshop.name ? workshop.name : "",
+      description: workshop.description ? workshop.description : "",
+      location: workshop.location ? workshop.location.name : "",
+      startTime: workshop.start ? workshop.start : "",
+      endTime: workshop.end ? workshop.end : ""
+    };
     return (
       <Fragment>
         {showMessage && (
           <MessageComponent message={message} callback={this.messageCallback} />
         )}
-        {
-          this.renderRedirect()
-        }
+        {this.state.confirmCancel && (
+          <MessageConfirmComponent
+            message={message}
+            yesCancel={this.cancelWorkshopConfirmed.bind(this)}
+            noCancel={this.cancelWorkshopNoConfirm.bind(this)}
+          />
+        )}
+        {this.renderRedirect()}
         <NavbarComponent isUser={isUser} location={this.props.location} />
-        <div className="grid-container first-container">
-          <div className="grid-x">
-            <h1 className="workshop-title">
-              <b>{workshop.name}</b>
-            </h1>
-          </div>
-
-          <div className="grid-x">
-            <div className="small-12 instructor-info">
+        <section className="grid-container class-info">
+          <article className="grid-x align-middle">
+            <div className="small-12 medium-8 instructor-info">
+              <span>
+                <Moment format="dddd">{workshop.start}</Moment>,{" "}
+                <Moment format="LL">{workshop.start}</Moment>
+              </span>
+              <h1 className="workshop-title">
+                <b>{workshop.name}</b>
+              </h1>
               <div className="photo-frame">
-                {instructor.imageUrl ? <img src={`${baseUrl}${instructor.imageUrl}`} /> : <FontAwesomeIcon icon="user-circle" size="3x" />}
+                {instructor.imageUrl ? (
+                  <img
+                    src={`${baseUrl}${instructor.imageUrl}`}
+                    alt="Instructor"
+                  />
+                ) : (
+                  <FontAwesomeIcon icon="user-circle" size="3x" />
+                )}
               </div>
 
               <p>
@@ -197,102 +233,123 @@ export default class Workshop extends Component {
                 </a>
               </p>
             </div>
-          </div>
-          <div className="grid-x enroll-top">
-            {isUser ? (
-              isEducator ? (
-                [<Link to={`/edit/${this.props.computedMatch.params.id}`}
-                  className="button expanded">
-                  <button
-                    type="button">
-                    EDIT
-                  </button>
-                </Link>,
-                <button
-                  type="button"
-                  className="hollow button alert expanded"
-                  onClick={this.onClickCancel.bind(this)}>
-                  CANCEL WORKSHOP
-                  </button>
-                ]) : isAttending ? (
+
+            <div className="cell small-12 medium-4 flex-container enroll-button">
+              {isUser ? (
+                isEducator ? (
+                  [
+                    <Link
+                      className=""
+                      to={`/edit/${this.props.computedMatch.params.id}`}
+                    >
+                      <button type="button" className="button flex-child-auto">
+                        EDIT
+                      </button>
+                    </Link>,
+                    <button
+                      type="button"
+                      className="button flex-child-auto large-flex-child-shrink unenroll"
+                      onClick={this.onClickCancel.bind(this)}
+                    >
+                      CANCEL WORKSHOP
+                    </button>
+                  ]
+                ) : isAttending ? (
                   <button
                     type="button"
-                    className="button expanded"
+                    className="button unenroll flex-child-auto large-flex-child-shrink"
                     onClick={this.onClickUnenroll.bind(this)}
                   >
                     UNENROLL
-                </button>
+                  </button>
                 ) : (
-                    <button
-                      type="button"
-                      className="button expanded"
-                      onClick={this.onClickEnroll.bind(this)}
-                    >
-                      ENROLL
-                </button>
-                  )
-            ) : (
+                  <button
+                    type="button"
+                    className="button flex-child-auto large-flex-child-shrink"
+                    onClick={this.onClickEnroll.bind(this)}
+                  >
+                    ENROLL
+                  </button>
+                )
+              ) : (
                 <Link
                   type="button"
                   to="/login"
-                  className="button expanded"
-                  onClick={() => { }}
+                  className="button expanded button flex-child-auto large-flex-child-shrink"
+                  onClick={() => {}}
                 >
                   LOGIN TO ENROLL
-              </Link>
+                </Link>
               )}
-          </div>
+            </div>
+          </article>
+        </section>
+        <section className="grid-container">
+          <article className="grid-x grid-margin-x">
+            <div className="cell small-12 medium-8 small-order-2 medium-order-1">
+              <JumbotronComponent image={cover} />
+              <h4>
+                <b>Details</b>
+              </h4>
+              <p className="description">{workshop.description}</p>
 
-          <div className="grid-x">
-            <div className="small-2">
-              <FontAwesomeIcon icon="clock" size="2x" />
+              <div className="attendees">
+                <h4>
+                  <b>Attendees</b>
+                </h4>
+                <section className="grid-display attendee-grid">
+                  {attendees.map((attendee, index) => {
+                    return (
+                      <UserPreviewComponent key={index} attendee={attendee} />
+                    );
+                  })}
+                </section>
+              </div>
             </div>
-            <div className="small-9">
-              <p>
-                <span>
-                  <Moment format="dddd">{workshop.start}</Moment>,{" "}
-                  <Moment format="LL">{workshop.start}</Moment>
-                </span>
-                <br />
-                <Moment format="LT">{workshop.start}</Moment> -{" "}
-                <Moment format="LT">{workshop.end}</Moment>
-                <br />
-                <AddToCalendar event={event} buttonClassOpen='button' buttonClassClosed='button' dropdownClass='ics-dropdown' />
-              </p>
+
+            <div className="cell small-12 medium-4 small-order-1 medium-order-2">
+              <article className="detail">
+                <div className="detail-icon">
+                  <FontAwesomeIcon icon="clock" size="2x" />
+                </div>
+                <div className="detail-copy">
+                  <p>
+                    <span>
+                      <Moment format="dddd">{workshop.start}</Moment>,{" "}
+                      <Moment format="LL">{workshop.start}</Moment>
+                    </span>
+                    <br />
+                    <Moment format="LT">{workshop.start}</Moment> -{" "}
+                    <Moment format="LT">{workshop.end}</Moment>
+                    <br />
+                    <AddToCalendar
+                      event={event}
+                      buttonClassOpen="button"
+                      buttonClassClosed="button"
+                      dropdownClass="ics-dropdown"
+                    />
+                  </p>
+                </div>
+              </article>
+              <article className="detail">
+                <div className="detail-icon">
+                  <FontAwesomeIcon icon="map-marker" size="2x" />
+                </div>
+                <div className="detail-copy">
+                  <p>
+                    {" "}
+                    {location.name} <br />
+                    {workshop.room} <br />
+                    {workshop.webex === "" ? null : (
+                      <a href={workshop.webex}>Webex</a>
+                    )}
+                  </p>
+                </div>
+              </article>
             </div>
-          </div>
-          <div className="grid-x detail">
-            <div className="small-2">
-              <FontAwesomeIcon icon="map-marker" size="2x" />
-            </div>
-            <div className="small-10">
-              <p>
-                {" "}
-                {location.name} <br />
-                {workshop.room} <br />
-                {workshop.webex === "" ? null : (
-                  <a href={workshop.webex}>Webex</a>
-                )}
-              </p>
-            </div>
-          </div>
-        </div>
-        <JumbotronComponent image={cover} />
-        <div className="grid-container">
-          <p className="description">{workshop.description}</p>
-          <hr />
-          <div className="attendees">
-            <h3>
-              <b>Attendees</b>
-            </h3>
-            <section className="grid-display attendee-grid">
-              {attendees.map((attendee, index) => {
-                return <UserPreviewComponent key={index} attendee={attendee} />;
-              })}
-            </section>
-          </div>
-        </div>
-      </Fragment >
+          </article>
+        </section>
+      </Fragment>
     );
   }
 }

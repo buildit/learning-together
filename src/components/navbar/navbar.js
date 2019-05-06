@@ -50,12 +50,13 @@ class Navbar extends Component {
         <nav className="navbar">
           <div className="grid-container">
           <div className="grid-x grid-margin-x align-center-middle">
-            <div className="cell small-2">
+            <div className="cell small-8 flex-container align-middle">
               <nav className='logo'>
                 <Link to="/"><img src={logo} alt="logo"></img></Link>
               </nav>
+              <Link to="/"><h5>Better Together</h5></Link>
             </div>
-            <div className="cell small-2 medium-1 small-offset-6 medium-offset-8 text-center">
+            <div className="cell small-2 medium-1 text-center">
               <FontAwesomeIcon icon="search" onClick={this.toggleShowSearch} size="2x"/>
             </div>
                 <div className="cell small-2 medium-1 text-center dropdown">

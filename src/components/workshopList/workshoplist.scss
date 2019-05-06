@@ -1,9 +1,8 @@
 .current-category {
     background: #e890b4;
-    height: 20vh;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     margin-bottom: 2em;
 
     .section-title {

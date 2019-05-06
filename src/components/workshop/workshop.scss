@@ -4,6 +4,26 @@
     text-transform: capitalize;
   }
 
+  .class-info {
+    background: #fff;
+    padding-top: 20px;
+
+    margin-bottom: 2em;
+  }
+  .enroll-button {
+      .button {
+        margin: 0 auto;
+        min-width: 200px;
+        font-weight: 900;
+        background-color: green;
+        margin-right: 10px;
+      }
+
+      .unenroll {
+        background-color: red;
+      }
+  }
+
   .photo-frame {
     float: left;
     text-align: center;
@@ -52,6 +72,11 @@
     margin-top: 1.5em;
     margin-bottom: 1em;
   }
+
+.detail {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+}
 
 .ics-dropdown{
   border: solid grey 1px;
