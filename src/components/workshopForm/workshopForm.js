@@ -5,6 +5,8 @@ import { Link, Redirect } from "react-router-dom";
 import { MessageComponent } from "../message";
 import { ImageUploaderComponent } from "../imageUploader";
 import { getCategoryList, getLocationList } from "../../api.js";
+import TimePicker from "rc-time-picker";
+import "rc-time-picker/assets/index.css";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import "./workshopForm.scss";
@@ -118,7 +120,9 @@ class WorkshopForm extends Component {
 
   //If input is start time or date time modify moment object
   handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    console.log(e);
+    this.setState({ startTime: moment(e) });
+    /*this.setState({ [e.target.name]: e.target.value });
     if (e.target.name === "startTime" || e.target.name === "endTime") {
       if (e.target.name === "startTime" && this.state.startDate) {
         this.state.startDate.set({ h: e.target.value.slice(0, 2) });
@@ -131,7 +135,7 @@ class WorkshopForm extends Component {
         endDate.set({ m: e.target.value.slice(3, 5) });
         this.setState({ endDate });
       }
-    }
+    }*/
   }
 
   getLocationCallBack(response) {
@@ -298,6 +302,21 @@ class WorkshopForm extends Component {
                 </label>
               </div>
               <div className="medium-8 cell">
+                <label>Test Time</label>
+                <TimePicker
+                  name="startTime"
+                  defaultValue={null}
+                  showSecond={false}
+                  minuteStep={15}
+                  allowEmpty={false}
+                  use12Hours={true}
+                  focusOnOpen={true}
+                  onChange={this.handleChange}
+                  value={this.state.startTime}
+                />
+                <span className="error">{this.state.error.time}</span>
+              </div>
+              <div className="medium-8 cell">
                 <label>
                   Location
                   <select
@@ -358,6 +377,7 @@ class WorkshopForm extends Component {
             <Link to="/" className="hollow button secondary custom-button">
               Cancel{" "}
             </Link>
+            {console.log("state is", this.state.startTime)}
           </div>
         </form>
 

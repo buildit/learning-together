@@ -13,6 +13,7 @@
     "npm": "^6.9.0",
     "nuka-carousel": "^4.5.4",
     "pure-react-carousel": "^1.19.4",
+    "rc-time-picker": "^3.6.4",
     "react": "^16.8.6",
     "react-add-to-calendar": "^0.1.5",
     "react-dates": "^20.1.0",
