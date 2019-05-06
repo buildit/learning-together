@@ -4,6 +4,11 @@
     margin-right: 10px;
 }
 
+.search {
+  color: #C0C0C0;
+  opacity: 0.4;
+}
+
 /* Medium and up */
 @media screen and (min-width: 40em) {
     .logo {
@@ -68,6 +73,10 @@ border-color: transparent transparent #cccccc transparent;
         left: 0;
         top: 60px;
         margin: 0;
+    }
+
+    .desktop {
+     display: none;
     }
 }
 
