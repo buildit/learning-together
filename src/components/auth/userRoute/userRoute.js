@@ -1,10 +1,10 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import { getToken } from '../utils'
+import { getToken, getUserInfo } from '../utils'
 
 const UserRoute = ({ component: Component, ...props }) => {
   const token = getToken();
-  console.log(token)
+  // console.log(getUserInfo())
   let isUser = false;
   if (token) {
     isUser = true;
@@ -13,4 +13,5 @@ const UserRoute = ({ component: Component, ...props }) => {
     <Route {...props} render={() => <Component isUser={isUser} {...props} />} />
   );
 };
+
 export default UserRoute;

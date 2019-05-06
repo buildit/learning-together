@@ -17,3 +17,11 @@ export const adalApiFetch = (fetch, url, options) =>
 export const getToken = () => {
   return authContext.getCachedToken(authContext.config.clientId);
 };
+
+export const logout = () => {
+  return authContext.logOut();
+};
+
+export const getUserInfo = (callback) => {
+  return authContext.getUser(callback);
+};

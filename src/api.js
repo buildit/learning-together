@@ -1,12 +1,28 @@
 import axios from "axios";
-const token = localStorage.getItem("BTToken");
+import { getToken } from './components/auth/utils'
+const token = getToken()
 
-export async function signIn(data, callback) {
+export async function signIn({ userName, profile }, callback) {
+  console.log(profile)
   const url =
     "https://bettertogether.buildit.systems/api/users/authenticate";
   return new Promise((resolve, reject) => {
+    const data = { Username: userName }
     axios
-      .post(url, options)
+      .request({
+        url,
+        method: "post",
+        data,
+        headers: {
+          Authorization: "Bearer " + token
+        }
+      })
+      .then(response => {
+        callback(response);
+      })
+      .catch(error => {
+        callback(error);
+      });
   });
 }
 

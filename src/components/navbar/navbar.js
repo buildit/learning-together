@@ -5,6 +5,7 @@ import logo from './logo.png';
 import { LoadingComponent } from '../loading'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SearchComponent } from '../search'
+import { logout } from '../auth/utils'
 
 class Navbar extends Component {
   constructor(props, context) {
@@ -26,8 +27,8 @@ class Navbar extends Component {
   toggleShowSearch() {
     this.setState({ showSearch: !this.state.showSearch })
   }
-  toggleShowAccount(){
-    this.setState({showAccount: !this.state.showAccount})
+  toggleShowAccount() {
+    this.setState({ showAccount: !this.state.showAccount })
   }
   logoutHandler() {
     localStorage.removeItem('BTToken')
@@ -38,45 +39,45 @@ class Navbar extends Component {
     const { isUser } = this.props
     const userId = localStorage.getItem('userId')
     const accountDropDown = (
-    <nav className="account-dropdown">
-      <ul>
-      <li><Link to={`/user/${userId}`}>View Profile</Link></li>
-      <li><Link to="/login" onClick={this.logoutHandler.bind(this)}>Logout</Link></li>
-      </ul>
+      <nav className="account-dropdown">
+        <ul>
+          <li><Link to={`/user/${userId}`}>View Profile</Link></li>
+          <li><Link to="/login" onClick={logout}>Logout</Link></li>
+        </ul>
       </nav>
     )
     return (
       <Fragment>
         <nav className="navbar">
           <div className="grid-container">
-          <div className="grid-x grid-margin-x align-center-middle">
-            <div className="cell small-8 flex-container align-middle">
-              <nav className='logo'>
-                <Link to="/"><img src={logo} alt="logo"></img></Link>
-              </nav>
-              <Link to="/"><h5>Better Together</h5></Link>
-            </div>
-            <div className="cell small-2 medium-1 text-center">
-              <FontAwesomeIcon icon="search" onClick={this.toggleShowSearch} size="2x"/>
-            </div>
-                <div className="cell small-2 medium-1 text-center dropdown">
-                  {
-                    isUser ? (
-                      <Fragment>
+            <div className="grid-x grid-margin-x align-center-middle">
+              <div className="cell small-8 flex-container align-middle">
+                <nav className='logo'>
+                  <Link to="/"><img src={logo} alt="logo"></img></Link>
+                </nav>
+                <Link to="/"><h5>Better Together</h5></Link>
+              </div>
+              <div className="cell small-2 medium-1 text-center">
+                <FontAwesomeIcon icon="search" onClick={this.toggleShowSearch} size="2x" />
+              </div>
+              <div className="cell small-2 medium-1 text-center dropdown">
+                {
+                  isUser ? (
+                    <Fragment>
                       <FontAwesomeIcon icon="user-circle" size="2x" onClick={this.toggleShowAccount} />
                       {
-                        this.state.showAccount && (accountDropDown) 
+                        this.state.showAccount && (accountDropDown)
                       }
-                      </Fragment>
-                    )
+                    </Fragment>
+                  )
                     :
                     <Link to="/login">Login</Link>
-                  }
-                </div>
+                }
               </div>
-          {
-            this.state.showSearch && (<SearchComponent />)
-          }
+            </div>
+            {
+              this.state.showSearch && (<SearchComponent />)
+            }
           </div>
         </nav>
         <div>
