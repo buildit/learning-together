@@ -1,4 +1,4 @@
-import React, { Component} from "react";
+import React, { Component } from "react";
 import { NavLink } from 'react-router-dom'
 import { Hero } from "../hero";
 import { PreviewComponent } from "../preview";
@@ -8,7 +8,7 @@ import { getWorkshopList } from '../../api'
 import './landing.scss';
 import { NavbarComponent } from "../navbar";
 import { loadCategories } from '../../api';
-import { CarouselProvider, Slider, Slide, DotGroup, Dot} from 'pure-react-carousel';
+import { CarouselProvider, Slider, Slide, DotGroup, Dot } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 
 
@@ -27,9 +27,9 @@ export default class Landing extends Component {
     getWorkshopList()
       .then(response => {
         let sorted = this.sortByDate(response.data)
-        let workshops = sorted.slice(0,6)
+        let workshops = sorted.slice(0, 6)
         this.setState({ workshops })
-        this.setState({noslides: this.getNumberofSlides()})
+        this.setState({ noslides: this.getNumberofSlides() })
       })
       .catch(error => this.setState({ error: 'Please try again later' }))
 
@@ -40,22 +40,22 @@ export default class Landing extends Component {
           categories: data
         })
       })
-      
+
   }
 
   sortByDate = (workshops) => {
-    return workshops.sort(function(a, b){
+    return workshops.sort(function (a, b) {
       return new Date(a.start) - new Date(b.start);
     });
   }
 
-  getNumberofSlides(){
-    
-    if( window.matchMedia('(min-width: 40em) and (max-width: 63.9375em)').matches) {
+  getNumberofSlides() {
+
+    if (window.matchMedia('(min-width: 40em) and (max-width: 63.9375em)').matches) {
       return 2
     } else if (window.matchMedia('(min-width: 64em)').matches) {
       return 3
-    } else 
+    } else
       return 1
   }
 
@@ -65,7 +65,7 @@ export default class Landing extends Component {
     return (
       <div >
         <NavbarComponent isUser={isUser} location={location} />
-        <Hero title="Better Together" isUser={isUser}/>
+        <Hero title="Better Together" isUser={isUser} />
         <div className="grid-container landing-preview">
           <h2 className="section-title">Upcoming Workshops</h2>
           <CarouselProvider
@@ -73,26 +73,26 @@ export default class Landing extends Component {
             naturalSlideHeight={350}
             totalSlides={this.state.workshops.length}
             visibleSlides={this.state.noslides}
-      > <DotGroup /> 
-      <Slider>
-          {this.state.workshops.map((workshop,index) => (
-            <React.Fragment>
-              <Slide key={index} index={index}>
-                  <NavLink to={`/workshop/${workshop.id}`} className="preview-card" key={index}><PreviewComponent workshop={workshop} /></NavLink>
-              </Slide>
-            </React.Fragment>
-          ))}
+          > <DotGroup />
+            <Slider>
+              {this.state.workshops.map((workshop, index) => (
+                <React.Fragment>
+                  <Slide key={index} index={index}>
+                    <NavLink to={`/workshop/${workshop.id}`} className="preview-card" key={index}><PreviewComponent workshop={workshop} /></NavLink>
+                  </Slide>
+                </React.Fragment>
+              ))}
 
-           </Slider>
-           
-            
-      </CarouselProvider>
+            </Slider>
+
+
+          </CarouselProvider>
         </div>
         <div className="grid-container landing-preview">
           <h2 className="section-title">Categories</h2>
           <CategoryListComponent workshop={this.state.workshops} categories={this.state.categories} />
         </div>
-        <FooterComponent isUser={isUser} userId={this.state.userId} />
+        <FooterComponent className='footer' isUser={isUser} userId={this.state.userId} />
       </div>
 
     );
