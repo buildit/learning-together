@@ -5,13 +5,13 @@ import "./workshopPreview.scss";
 
 const WorkshopPreview = ({ workshop }) => {
   const start = workshop.start ? workshop.start : workshop.startDate;
-  //const wrkshopId = workshop.id ? workshop.id : workshop.workshopId;
+  const wrkshopId = workshop.id ? workshop.id : workshop.workshopId;
   console.log(workshop);
   return (
     <Link
       to={`/workshop/${
-        workshop.workshopId ? workshop.workshopId : workshop.id
-      }`}
+        wrkshopId
+        }`}
       className="workshop-link grid-x grid-margin-x"
     >
       <div className="cell small-12 cell">

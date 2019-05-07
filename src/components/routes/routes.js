@@ -24,6 +24,7 @@ export default class RoutesComponent extends React.Component {
             <Switch>
               <UserRoute exact path="/" component={LandingComponent} />
               <UserRoute exact path="/user/:id" component={UserProfileComponent} />
+              <UserRoute exact path="/settings/:id" component={RegisterComponent} />
               <UserRoute path="/workshops/categories/:id/:title" component={WorkshopListComponent} />
               <UserRoute exact path="/workshop/:id" component={WorkshopComponent} />
               <UserRoute exact path="/workshops" component={BrowseComponent} />
