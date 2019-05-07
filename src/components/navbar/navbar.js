@@ -50,7 +50,7 @@ class Navbar extends Component {
             </Link>
           </li>
           <li><Link to={`/user/${userId}`}>View Profile</Link></li>
-          <li><Link to="/login" onClick={this.logoutHandler.bind(this)}>Logout</Link></li>
+          <li><Link to="/login" onClick={logout}>Logout</Link></li>
         </ul>
       </nav>
     )
