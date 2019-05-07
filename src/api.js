@@ -116,6 +116,28 @@ export const getUser = id => {
   });
 };
 
+export const editUser = ({ firstName, lastName, username, password, roleId, locationId, imageUrl }, id) => {
+  const data = { firstName, lastName, username, password, roleId, locationId, imageUrl }
+  return axios
+    .request({
+      url:
+        `https://bettertogether.buildit.systems/api/users/${id}`,
+      method: "put",
+      data,
+      headers: {
+        Authorization: "Bearer " + token
+      }
+    })
+    .then(function (response) {
+      // handle success
+      console.log(response);
+      return response;
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    });
+}
 // Make a request for a user with a given token
 export const createWorkshop = data => {
   return axios
