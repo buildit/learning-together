@@ -23,8 +23,6 @@ export default class RoutesComponent extends React.Component {
           <div className="main">
             <Switch>
               <UserRoute exact path="/" component={LandingComponent} />
-              <UnauthenticatedUserRoute exact path="/login" component={LoginComponent} />
-              <UnauthenticatedUserRoute exact path="/register" component={RegisterComponent} />
               <UserRoute exact path="/user/:id" component={UserProfileComponent} />
               <UserRoute exact path="/settings/:id" component={RegisterComponent} />
               <UserRoute path="/workshops/categories/:id/:title" component={WorkshopListComponent} />

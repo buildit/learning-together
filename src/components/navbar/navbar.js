@@ -5,6 +5,7 @@ import logo from './logo.png';
 import { LoadingComponent } from '../loading'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SearchComponent } from '../search'
+import { logout } from '../auth/utils'
 
 class Navbar extends Component {
   constructor(props, context) {
@@ -50,7 +51,7 @@ class Navbar extends Component {
           </li>
           <li><Link to={`/user/${userId}`}>Profile</Link></li>
           <li><Link to={`/settings/${userId}`}>Settings</Link></li>
-          <li><Link to="/login" onClick={this.logoutHandler.bind(this)}>Logout</Link></li>
+          <li><Link to="/login" onClick={logout}>Logout</Link></li>
         </ul>
       </nav>
     )
