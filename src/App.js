@@ -21,7 +21,8 @@ class App extends Component {
     signIn(user, this.signInCallback)
   }
   signInCallback(response) {
-    if (response === 200) {
+    console.log(response)
+    if (response.status === 200) {
       localStorage.setItem('userId', response.data.id)
     }
     else {

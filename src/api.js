@@ -1,6 +1,6 @@
 import axios from "axios";
 import { getToken } from './components/auth/utils'
-const token = getToken()
+const token = getToken();
 
 export async function signIn({ userName, profile }, callback) {
   console.log(profile)
