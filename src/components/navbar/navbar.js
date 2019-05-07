@@ -41,8 +41,16 @@ class Navbar extends Component {
     const accountDropDown = (
       <nav className="account-dropdown">
         <ul>
+          <li>
+            <Link to={{
+              pathname: "/create",
+              state: { userId }
+            }} >
+              Create a workshop
+            </Link>
+          </li>
           <li><Link to={`/user/${userId}`}>View Profile</Link></li>
-          <li><Link to="/login" onClick={logout}>Logout</Link></li>
+          <li><Link to="/login" onClick={this.logoutHandler.bind(this)}>Logout</Link></li>
         </ul>
       </nav>
     )
@@ -55,10 +63,21 @@ class Navbar extends Component {
                 <nav className='logo'>
                   <Link to="/"><img src={logo} alt="logo"></img></Link>
                 </nav>
-                <Link to="/"><h5>Better Together</h5></Link>
+                {/* <Link to="/"><h5>Better Together</h5></Link> */}
               </div>
-              <div className="cell small-2 medium-1 text-center">
-                <FontAwesomeIcon icon="search" onClick={this.toggleShowSearch} size="2x" className='search' />
+              <div className="cell small-2 medium-1 text-center search">
+                <FontAwesomeIcon icon="search" onClick={this.toggleShowSearch} size="2x" />
+              </div>
+              <div className="desktop">
+                <Link
+                  to={{
+                    pathname: "/workshops",
+                    state: { isUser }
+                  }}
+                  className="flex flex-column justify-center align-items-center"
+                >
+                  Browse
+              </Link>
               </div>
               <div className="cell small-2 medium-1 text-center dropdown">
                 {
