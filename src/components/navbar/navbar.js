@@ -48,7 +48,8 @@ class Navbar extends Component {
               Create a workshop
             </Link>
           </li>
-          <li><Link to={`/user/${userId}`}>View Profile</Link></li>
+          <li><Link to={`/user/${userId}`}>Profile</Link></li>
+          <li><Link to={`/settings/${userId}`}>Settings</Link></li>
           <li><Link to="/login" onClick={this.logoutHandler.bind(this)}>Logout</Link></li>
         </ul>
       </nav>

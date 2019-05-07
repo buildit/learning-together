@@ -77,9 +77,10 @@ export default class UserProfileComponent extends React.Component {
 
   render() {
     const { isUser } = this.props;
-    const user = this.state.user;
+    const { user } = this.state;
     const baseUrl = "https://bettertogether.buildit.systems/";
     const profile = user.imageUrl !== "" ? `${baseUrl}${user.imageUrl}` : "";
+    console.log('state', user)
     return (
       <Fragment>
         <NavbarComponent isUser={isUser} />
@@ -99,23 +100,22 @@ export default class UserProfileComponent extends React.Component {
                 {user.location ? (
                   <h3>
                     <FontAwesomeIcon icon="map-marker" />{" "}
-                    <strong>{user.location.name}</strong>
+                    <strong>{user.location}</strong>
                   </h3>
                 ) : (
-                  ""
-                )}
-
-                <h3>{user.role ? user.role.name : ""} </h3>
+                    "Brooklyn"
+                  )}
+                <h5>{user.role ? user.role : "Front End Engineer"} </h5>
+                <h6>{user.userInterests ? "Professional Development, Social Activiites, Arts & Culture" : "Professional Development, Social Activiites, Arts & Culture"} </h6>
               </div>
-              <a href="/">Edit</a>
             </div>
           </div>
           <div className="courses">
             <hr />
             <div className="upcoming">
-              <div className="grid-container">
+              <div className="grid-container workshops-dropdown">
                 <h2>
-                  <b>Upcoming Courses</b>
+                  <b>My Workshops</b>
                 </h2>
                 <select
                   name="schedule-dropdown"
@@ -129,8 +129,8 @@ export default class UserProfileComponent extends React.Component {
               </div>
               <section className="workshops-list grid-container">
                 {this.state.classes.map((workshop, idx) => (
-                  <div className="cell medium-6">
-                  <WorkshopPreviewComponent key={idx} workshop={workshop} />
+                  <div className="cell medium-6" key={idx}>
+                    <WorkshopPreviewComponent workshop={workshop} />
                   </div>
                 ))}
               </section>
