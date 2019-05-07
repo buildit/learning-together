@@ -5,6 +5,7 @@ import logo from './logo.png';
 import { LoadingComponent } from '../loading'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SearchComponent } from '../search'
+import { logout } from '../auth/utils'
 
 class Navbar extends Component {
   constructor(props, context) {

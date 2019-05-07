@@ -1,12 +1,22 @@
 import axios from "axios";
-const token = localStorage.getItem("BTToken");
+import { getToken } from './components/auth/utils'
+const token = getToken()
 
-export async function signIn(data, callback) {
+export async function signIn({ userName, profile }, callback) {
+  console.log(profile)
   const url =
     "https://bettertogether.buildit.systems/api/users/authenticate";
   return new Promise((resolve, reject) => {
+    const data = { Username: userName }
     axios
-      .post(url, data)
+      .request({
+        url,
+        method: "post",
+        data,
+        headers: {
+          Authorization: "Bearer " + token
+        }
+      })
       .then(response => {
         callback(response);
       })
@@ -118,12 +128,12 @@ export const createWorkshop = data => {
         Authorization: "Bearer " + token
       }
     })
-    .then(function(response) {
+    .then(function (response) {
       // handle success
       console.log(response);
       return response;
     })
-    .catch(function(error) {
+    .catch(function (error) {
       // handle error
       console.log(error);
     });
@@ -201,11 +211,11 @@ export const updateWorkshop = (id, data) => {
         Authorization: "Bearer " + token
       }
     })
-    .then(function(response) {
+    .then(function (response) {
       // handle success
       return response;
     })
-    .catch(function(error) {
+    .catch(function (error) {
       // handle error
       console.log(error);
     });
@@ -218,14 +228,14 @@ export const fetchWorkshops = () => {
         "https://bettertogether.buildit.systems/api/workshops",
       method: "get"
     })
-    .then(function(response) {
+    .then(function (response) {
       // handle success
       if (response.data && response.status === 200) {
         //console.log("response", response);
         return response.data;
       }
     })
-    .catch(function(error) {
+    .catch(function (error) {
       // handle error
       console.log(error);
     });
@@ -241,10 +251,10 @@ export const cancelWorkshop = (id, callback) => {
         Authorization: "Bearer " + token
       }
     })
-    .then(function(response) {
+    .then(function (response) {
       callback(response);
     })
-    .catch(function(error) {
+    .catch(function (error) {
       callback(error);
     });
 };
