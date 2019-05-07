@@ -103,9 +103,9 @@ export default class UserProfileComponent extends React.Component {
                     <strong>{user.location.name}</strong>
                   </h3>
                 ) : (
-                    "Brooklyn"
+                    ""
                   )}
-                <h5>{user.role ? user.role.name : "Front End Engineer"} </h5>
+                <h5>{user.role ? user.role.name : ""} </h5>
                 <h6>{user.userInterests ? "Professional Development, Social Activiites, Arts & Culture" : "Professional Development, Social Activiites, Arts & Culture"} </h6>
               </div>
             </div>
