@@ -9,3 +9,14 @@
       color: #000;
   }
 }
+
+.search-results-container{
+  overflow-y:scroll;
+}
+
+.search-result-hover{
+  padding:.5rem;
+  :hover{
+    color:black;
+  }
+}

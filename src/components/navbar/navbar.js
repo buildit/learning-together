@@ -58,7 +58,7 @@ class Navbar extends Component {
                 <Link to="/"><h5>Better Together</h5></Link>
               </div>
               <div className="cell small-2 medium-1 text-center">
-                <FontAwesomeIcon icon="search" onClick={this.toggleShowSearch} size="2x" />
+                <FontAwesomeIcon icon="search" onClick={this.toggleShowSearch} size="2x" className='search' />
               </div>
               <div className="cell small-2 medium-1 text-center dropdown">
                 {
