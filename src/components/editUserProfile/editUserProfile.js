@@ -5,71 +5,59 @@ import { editUser, getUser, getLocationList, getRolesList } from '../../api'
 import { MessageComponent } from '../message'
 import { ImageUploaderComponent } from '../imageUploader'
 import { NavbarComponent } from '../navbar'
-import './register.scss'
+import './editUserProfile.scss'
 
-export default class RegisterComponent extends React.Component {
+export default class EditUserProfileComponent extends React.Component {
 
   constructor() {
     super()
     this.state = {
       firstName: '',
       lastName: '',
-      // emailUsername: '',
-      // isWipro: true,
-      // password: '',
-      // passwordConfirmation: '',
       selectedLocation: {},
       selectedRole: {},
       interests: [],
       profilePicture: 'images/cover/profile-placeholder.png',
-      // firstNameError: false,
-      // lastNameError: false,
-      // emailError: false,
-      // passwordError: false,
-      // passwordConfirmationError: false,
       locationError: false,
       roleError: false,
-      // isLoading: false,
-      // signUpSuccess: false,
+      editProfileSuccess: false,
+      editProfileError: false,
       redirect: false,
       locations: [],
       roles: [],
       rolesFetchError: false,
       locationFetchError: false,
+      interestsError: false,
       user: ''
     }
     this.interests = [{ value: 'Professional Development', label: 'Professional Development' }, { value: 'Arts and Culture', label: 'Lifestyle - Arts & Culture' }, { value: 'Technology', label: 'Technology' }, { value: 'Leadership', label: 'Leadership' }, { value: 'Social Activities', label: 'Social Actiivites' }]
-    // this.emails = [{ value: '@wipro.com', label: '@wipro.com' }, { value: '@designit.com', label: '@designit.com' }]
     this.messageCallback = this.messageCallback.bind(this)
     this.redirectCallback = this.redirectCallback.bind(this)
     this.setProfilePicture = this.setProfilePicture.bind(this)
     this.getLocationCallback = this.getLocationCallback.bind(this)
     this.getRolesCallback = this.getRolesCallback.bind(this)
+    this.getUserCallback = this.getUserCallback.bind(this)
   }
 
   componentDidMount() {
     getLocationList(this.getLocationCallback)
     getRolesList(this.getRolesCallback)
-    getUser(this.props.computedMatch.params.id).then(data => {
-      this.setState({
-        user: data.data
-      })
-    });
+    getUser(this.props.computedMatch.params.id, this.getUserCallback)
   }
 
   componentDidUpdate(prevProps) {
     if (
       this.props.computedMatch.params.id !== prevProps.computedMatch.params.id
     ) {
-      getUser(this.props.computedMatch.params.id).then(data => {
-        console.log('data', data.data)
-        this.setState({
-          user: data.data
-        })
-      });
+      getUser(this.props.computedMatch.params.id, this.getUserCallback)
     }
   }
-
+  getUserCallback(response) {
+    console.log('data', response.data)
+    this.setState({
+      user: response.data, profilePicture: response.data.imageUrl
+    })
+  }
   getLocationCallback(response) {
     if (response.status === 200) {
       let locationsArray = []
@@ -116,26 +104,8 @@ export default class RegisterComponent extends React.Component {
     }
     return true
   }
-  // validatePassword(password) {
-  //   const regex = /(?=^.{6,255}$)((?=.*\d)(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.*/
-  //   return regex.test(password)
-  // }
-  // comparePassword(password, password2) {
-  //   return password === password2
-  // }
-  // validateEmail(email) {
-  //   const trimmedEmail = email.trim()
-  //   return trimmedEmail.indexOf('@') < 0
-  // }
-
-  validateLocation(location) {
-    if (location === '') {
-      return false
-    }
-    return true
-  }
-  validateRole(role) {
-    if (role === '') {
+  validateArray(array) {
+    if (Object.keys(array).length === 0) {
       return false
     }
     return true
@@ -144,15 +114,12 @@ export default class RegisterComponent extends React.Component {
   redirectCallback() {
     this.setState({ redirect: true })
   }
-  // toggleError() {
-  //   this.setState({ signUpError: !this.state.signUpError })
-  // }
+
   messageCallback(data) {
     if (data.status === 200) {
-      console.log('successful post')
-      this.setState({ signUpSuccess: true, signUpError: false })
+      this.setState({ editProfileSuccess: true, editProfileError: false })
     } else {
-      this.setState({ signUpError: true, signUpSuccess: false })
+      this.setState({ editProfileError: true, editProfileSuccess: false })
     }
   }
 
@@ -160,6 +127,7 @@ export default class RegisterComponent extends React.Component {
     this.setState({ [e.target.name]: e.target.value })
   }
   onClickLocationHandler(selectedLocation) {
+    console.log(selectedLocation)
     this.setState({ selectedLocation })
   }
   onClickRoleHandler(selectedRole) {
@@ -168,29 +136,22 @@ export default class RegisterComponent extends React.Component {
   onClickInterestsHandler(selectedInterest) {
     this.setState({ interests: selectedInterest })
   }
-  // onChangeEmailHandler(isWipro) {
-  //   this.setState({ isWipro })
-  // }
   setProfilePicture(picturePath) {
     this.setState({ profilePicture: picturePath })
   }
 
   submitHandler(e) {
     e.preventDefault()
-    const { firstName, lastName, emailUsername, isWipro, password, passwordConfirmation, selectedLocation, selectedRole, profilePicture, user, interests } = this.state
-    // const email = emailUsername + isWipro.value
-    // let isValidatedFirstName = this.validateName(firstName)
-    // let isValidatedLastName = this.validateName(lastName)
-    // let isValidatedEmail = this.validateEmail(emailUsername)
-    // let isValidatedPassword = this.validatePassword(password)
-    // let isValidatedPasswordConfirm = this.comparePassword(password, passwordConfirmation)
-    let isValidatedLocation = this.validateLocation(selectedLocation)
-    let isValidatedRole = this.validateRole(selectedRole)
-    // if (!isValidatedFirstName || !isValidatedLastName || !isValidatedEmail || !isValidatedPassword || !isValidatedPasswordConfirm || !isValidatedLocation || !isValidatedRole) {
-    //   this.setState({ firstNameError: !isValidatedFirstName, lastNameError: !isValidatedLastName, emailError: !isValidatedEmail, passwordError: !isValidatedPassword, passwordConfirmationError: !isValidatedPasswordConfirm, locationError: !isValidatedLocation, roleError: !isValidatedRole })
-    //   return
-    // }
-    // signUp({ FirstName: firstName, lastName: lastName, Username: email, Password: password, LocationId: selectedLocation.value, RoleId: selectedRole.value, ImageUrl: profilePicture }, this.messageCallback)
+    const { firstName, lastName, selectedLocation, selectedRole, profilePicture, user, interests } = this.state
+    let isValidatedFirstName = this.validateName(firstName)
+    let isValidatedLastName = this.validateName(lastName)
+    let isValidatedLocation = this.validateArray(selectedLocation)
+    let isValidatedRole = this.validateArray(selectedRole)
+    //let isValidatedInterests = this.validateArray(interests)
+    if (!isValidatedFirstName || !isValidatedLastName || !isValidatedLocation || !isValidatedRole) { //|| !isValidatedInterests
+      this.setState({ firstNameError: !isValidatedFirstName, lastNameError: !isValidatedLastName, locationError: !isValidatedLocation, roleError: !isValidatedRole }) //interestsError: !isValidatedInterests
+      return
+    }
     editUser({
       firstName,
       lastName,
@@ -205,8 +166,9 @@ export default class RegisterComponent extends React.Component {
   }
 
   render() {
-    const { name, emailUsername, password, passwordConfirmation, emailError, passwordError, passwordConfirmationError, firstNameError, lastNameError, locationError, roleError, signUpSuccess, signUpError, redirect, locationFetchError, rolesFetchError } = this.state
-    console.log(this.state)
+    const { name, firstNameError, lastNameError, locationError, roleError, redirect, locationFetchError, rolesFetchError, profilePicture, editProfileSuccess, editProfileError, user } = this.state
+    const baseUrl = "https://bettertogether.buildit.systems/";
+    const profile = profilePicture !== "" ? `${baseUrl}${profilePicture}` : "";
     return (
       <Fragment>
         <NavbarComponent isUser={this.props.isUser} />
@@ -218,7 +180,7 @@ export default class RegisterComponent extends React.Component {
                   <div className="small-12 columns">
                     <h2>Edit Profile Settings</h2>
                     <label>Profile picture:</label>
-                    <ImageUploaderComponent setPicture={this.setProfilePicture} />
+                    <ImageUploaderComponent setPicture={this.setProfilePicture} imgUrl={profile} />
                   </div>
                 </div>
                 <div className='row'>
@@ -226,7 +188,7 @@ export default class RegisterComponent extends React.Component {
                     <label>First Name:</label>
                     <input type="text" placeholder="Please Enter Your First Name" name='firstName' autoComplete='first name' value={name} onChange={this.onChangeHandler.bind(this)} />
                     {firstNameError && (
-                      <span className='register-error'>Please type in a valid name.</span>
+                      <span className='edit-error'>Please type in a valid name.</span>
                     )}
                   </div>
                 </div>
@@ -235,46 +197,10 @@ export default class RegisterComponent extends React.Component {
                     <label>Last Name:</label>
                     <input type="text" placeholder="Please Enter Your Last Name" name='lastName' autoComplete='last name' value={name} onChange={this.onChangeHandler.bind(this)} />
                     {lastNameError && (
-                      <span className='register-error'>Please type in a valid name.</span>
+                      <span className='edit-error'>Please type in a valid name.</span>
                     )}
                   </div>
                 </div>
-                {/*<div className='row'>
-                  <div className="small-12 columns">
-                    <label>Email:</label>
-                    <div className='grid-x grid-padding-x align-center'>
-                      <input type="text" className="small-6" placeholder="Enter Your Email." autoComplete='username' name='emailUsername' value={emailUsername} onChange={this.onChangeHandler.bind(this)} />
-                      <Select className="small-5"
-                        defaultValue={[]}
-                        name="emails"
-                        options={this.emails}
-                        onChange={this.onChangeEmailHandler.bind(this)}
-                        isSearchable={false}
-                      />
-                    </div>
-                    {emailError && (
-                      <span className='register-error'>Please enter remove the '@' character from your input.</span>
-                    )}
-                  </div>
-                </div> */}
-                {/* <div className='row'>
-                  <div className="small-12 columns">
-                    <label>Password:</label>
-                    <input type="password" autoComplete="new-password" placeholder="Please Enter Your Password." name='password' value={password} onChange={this.onChangeHandler.bind(this)} />
-                    {passwordError && (
-                      <span className='register-error'>Your password must have one lower case letter, one upper case letter, one digit, and one special character.</span>
-                    )}
-                  </div>
-                </div>
-                <div className='row'>
-                  <div className="small-12 columns">
-                    <label>Confirm Password:</label>
-                    <input type="password" autoComplete="new-password" placeholder="Please Confirm Your Password." name='passwordConfirmation' value={passwordConfirmation} onChange={this.onChangeHandler.bind(this)} />
-                    {passwordConfirmationError && (
-                      <span className='register-error'>Your passwords must match.</span>
-                    )}
-                  </div>
-                </div> */}
                 <div className='row'>
                   <div className="small-12 columns">
                     <label>Location:</label>
@@ -286,7 +212,7 @@ export default class RegisterComponent extends React.Component {
                       name='locations'
                     />
                     {locationError && (
-                      <span className='register-error'>Please select a location.</span>
+                      <span className='edit-error'>Please select a location.</span>
                     )}
                   </div>
                 </div>
@@ -301,11 +227,11 @@ export default class RegisterComponent extends React.Component {
                       name='roles'
                     />
                     {roleError && (
-                      <span className='register-error'>Please select a role.</span>
+                      <span className='edit-error'>Please select a role.</span>
                     )}
                   </div>
                 </div>
-                <div className='row'>
+                {/* <div className='row'>
                   <div className="small-12 columns">
                     <label>What are your interests?</label>
                     <Select
@@ -315,31 +241,28 @@ export default class RegisterComponent extends React.Component {
                       options={this.interests}
                       className="basic-multi-select"
                       classNamePrefix="select"
-                      // components={makeAnimated()}
                       onChange={this.onClickInterestsHandler.bind(this)}
                       isSearchable={false}
                     />
+                    {roleError && (
+                      <span className='edit-error'>Please select your interests.</span>
+                    )}
                   </div>
-                </div>
+                </div> */}
                 <div className='row'>
                   <div className='grid-x grid-padding-x align-center'>
                     <input type="submit" className="button success align-center cell medium-6 align-middle" value="Submit" />
                   </div>
                 </div>
-                {/* <div className='row'>
-                  <div className='grid-x grid-padding-x align-center'>
-                    <Link to='/login' >Already have an account?</Link>
-                  </div>
-                </div> */}
               </form>
             </div>
           </div>
         </div >
-        {/* {signUpSuccess && (<MessageComponent message='Your account was successfully created.' callback={this.redirectCallback} />)} */}
-        {/* {signUpError && (<MessageComponent message='Your account was unsuccesfully created. Try again later.' callback={this.toggleError.bind(this)} />)} */}
+        {editProfileSuccess && (<MessageComponent message='Your profile was successfully changed.' callback={this.redirectCallback} />)}
+        {editProfileError && (<MessageComponent message='Your profile was unsuccesfully changed. Please Try again later.' callback={this.toggleError.bind(this)} />)}
         {locationFetchError && (<MessageComponent message='Locations service is down. Please try again later' callback={this.toggleLocationError.bind(this)} />)}
         {rolesFetchError && (<MessageComponent message='Roles service is down. Please try again later' callback={this.toggleRolesError.bind(this)} />)}
-        {/* {redirect && (<Redirect to='/login' />)} */}
+        {redirect && (<Redirect to={`/user/${user.id}`} />)}
       </Fragment>
     )
   }

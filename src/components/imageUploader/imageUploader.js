@@ -6,10 +6,14 @@ export default class ImageUploaderComponent extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = { previewImg: 'images/cover/profile-placeholder.png', isUploaded: false, uploadError: false }
+    this.state = { previewImg: props.imgUrl, isUploaded: false, uploadError: false }
     this.fileUploadCallback = this.fileUploadCallback.bind(this)
   }
-
+  componentDidUpdate(prevProps) {
+    if (prevProps.imgUrl !== this.props.imgUrl) {
+      this.setState({ previewImg: this.props.imgUrl })
+    }
+  }
   fileUploadHandler(e) {
     e.preventDefault()
     this.setState({ previewImg: URL.createObjectURL(e.target.files[0]) })

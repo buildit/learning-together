@@ -108,11 +108,17 @@ export const unenrollWorkshop = (id, callback) => {
     });
 };
 
-export const getUser = id => {
+export const getUser = (id, callback) => {
   return axios.request({
     url: `https://bettertogether.buildit.systems/api/users/${id}`,
     method: "get"
-  });
+  })
+    .then(response => {
+      callback(response)
+    })
+    .catch(error => {
+      callback(error)
+    })
 };
 
 export const editUser = ({ firstName, lastName, username, password, roleId, locationId, imageUrl, userInterests }, id, callback) => {
