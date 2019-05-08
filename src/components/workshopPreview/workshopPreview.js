@@ -6,7 +6,6 @@ import "./workshopPreview.scss";
 const WorkshopPreview = ({ workshop }) => {
   const start = workshop.start ? workshop.start : workshop.startDate;
   const wrkshopId = workshop.id ? workshop.id : workshop.workshopId;
-  console.log(workshop);
   return (
     <Link
       to={`/workshop/${

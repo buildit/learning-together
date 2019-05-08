@@ -108,15 +108,23 @@ export const unenrollWorkshop = (id, callback) => {
     });
 };
 
-export const getUser = id => {
+export const getUser = (id, callback) => {
   return axios.request({
     url: `https://bettertogether.buildit.systems/api/users/${id}`,
     method: "get"
-  });
+  })
+    .then(response => {
+      callback(response)
+    })
+    .catch(error => {
+      callback(error)
+    })
 };
 
-export const editUser = ({ firstName, lastName, username, password, roleId, locationId, imageUrl }, id) => {
+export const editUser = ({ firstName, lastName, username, password, roleId, locationId, imageUrl, userInterests }, id, callback) => {
+  //userInterests needs to be updated on server
   const data = { firstName, lastName, username, password, roleId, locationId, imageUrl }
+  console.log('data', data, 'id', id)
   return axios
     .request({
       url:
@@ -130,7 +138,7 @@ export const editUser = ({ firstName, lastName, username, password, roleId, loca
     .then(function (response) {
       // handle success
       console.log(response);
-      return response;
+      return callback(response);
     })
     .catch(function (error) {
       // handle error
@@ -279,3 +287,4 @@ export const cancelWorkshop = (id, callback) => {
       callback(error);
     });
 };
+
