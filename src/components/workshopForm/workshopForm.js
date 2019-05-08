@@ -25,16 +25,8 @@ class WorkshopForm extends Component {
       calendarFocused: false,
       categoryList: [],
       categorySelected: props.data ? props.data.categoryId : 1,
-      startTime: props.data
-        ? moment(props.data.start)
-        : //.format("HH:mm:ss")
-          // .slice(0, 5)
-          null,
-      endTime: props.data
-        ? moment(props.data.end)
-        : // .format("HH:mm:ss")
-          // .slice(0, 5)
-          null,
+      startTime: props.data ? moment(props.data.start) : null,
+      endTime: props.data ? moment(props.data.end) : null,
       error: {},
       redirect: false,
       workshopPicture: props.data ? props.data.imageUrl : "",
@@ -63,9 +55,6 @@ class WorkshopForm extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log("next", nextProps.data.end);
-    console.log("current", this.props.data.end);
-
     if (nextProps.data) {
       if (nextProps.data.name !== this.props.data.name) {
         this.setState({ name: nextProps.data.name });
@@ -86,10 +75,7 @@ class WorkshopForm extends Component {
       if (nextProps.data.start !== this.props.data.start) {
         this.setState({
           startTime: moment(nextProps.data.start),
-          /*.format("HH:mm:ss")
-            .slice(0, 5)*/ startDate: moment(
-            nextProps.data.start
-          ),
+          startDate: moment(nextProps.data.start),
           endDate: moment(nextProps.data.end)
         });
       }
@@ -97,8 +83,6 @@ class WorkshopForm extends Component {
       if (nextProps.data.end !== this.props.data.end) {
         this.setState({
           endTime: moment(nextProps.data.end)
-          /*.format("HH:mm:ss")
-            .slice(0, 5)*/
         });
       }
 
@@ -123,11 +107,7 @@ class WorkshopForm extends Component {
   }
   //If input is start time or date time modify moment object
   handleChange(e, name) {
-    console.log(name);
-    console.log("e", e);
-
-    if ((name !== undefined && name === "startTime") || name === "endTime") {
-      console.log("inputing", name);
+    if (name !== undefined && (name === "startTime" || name === "endTime")) {
       const month = this.state.startDate.month();
       const day = this.state.startDate.date();
       const year = this.state.startDate.year();
@@ -135,33 +115,10 @@ class WorkshopForm extends Component {
         .year(year)
         .month(month)
         .date(day);
-      console.log("new", time);
-      console.log(e);
       this.setState({ [name]: time });
     } else {
       this.setState({ [e.target.name]: e.target.value });
     }
-
-    //console.log(e.day('day'));
-    //this.setState({ startTime: moment(e, 'HH:mm:ss') });
-    console.log("e", moment(e, "HH:mm:ss"));
-    //console.log('cloning', moment(e, 'HH:mm:ss')
-    //console.log('e utc', moment(e, 'HH:mm:ss').utc())
-
-    /*this.setState({ [e.target.name]: e.target.value });
-    if (e.target.name === "startTime" || e.target.name === "endTime") {
-      if (e.target.name === "startTime" && this.state.startDate) {
-        this.state.startDate.set({ h: e.target.value.slice(0, 2) });
-        this.state.startDate.set({ m: e.target.value.slice(3, 5) });
-      }
-
-      if (e.target.name === "endTime" && this.state.startDate) {
-        const endDate = this.state.startDate.clone();
-        endDate.set({ h: e.target.value.slice(0, 2) });
-        endDate.set({ m: e.target.value.slice(3, 5) });
-        this.setState({ endDate });
-      }
-    }*/
   }
 
   getLocationCallBack(response) {
@@ -171,7 +128,6 @@ class WorkshopForm extends Component {
   }
 
   onDateChange(date) {
-    console.log("date is", date);
     const month = date.month();
     const day = date.date();
     const year = date.year();
@@ -195,7 +151,6 @@ class WorkshopForm extends Component {
         .year(year)
         .month(month)
         .date(day);
-      console.log(endTime);
       this.setState({ endTime });
     }
   }
@@ -240,10 +195,9 @@ class WorkshopForm extends Component {
       window.scrollTo(0, 0);
     } else {
       const data = {
-        //.format("YYYY-MM-DDTHH:mm:ss.SSS")
         name: this.state.name,
-        start: moment.utc(this.state.startTime),
-        end: moment.utc(this.state.endTime),
+        start: this.state.startTime.format("YYYY-MM-DDTHH:mm:ss.SSS"),
+        end: this.state.endTime.format("YYYY-MM-DDTHH:mm:ss.SSS"),
         locationId: this.state.location,
         categoryId: parseInt(this.state.categorySelected),
         webex: this.state.link,
@@ -251,10 +205,6 @@ class WorkshopForm extends Component {
         imageUrl: this.state.workshopPicture,
         room: this.state.room
       };
-      console.log(this.state.endDate);
-      console.log(data);
-      console.log(moment(data.end).valueOf());
-      console.log(moment(data.start).valueOf());
       this.props.handleSubmit(data);
     }
   }
@@ -332,6 +282,7 @@ class WorkshopForm extends Component {
               <div className="medium-8 cell">
                 <label>Start time</label>
                 <TimePicker
+                  className="custom-time-picker"
                   name="startTime"
                   defaultValue={null}
                   showSecond={false}
@@ -349,6 +300,7 @@ class WorkshopForm extends Component {
               <div className="medium-8 cell">
                 <label>End time</label>
                 <TimePicker
+                  className="custom-time-picker"
                   name="endTime"
                   defaultValue={null}
                   showSecond={false}
@@ -424,8 +376,6 @@ class WorkshopForm extends Component {
             <Link to="/" className="hollow button secondary custom-button">
               Cancel{" "}
             </Link>
-            {console.log("startTime state is", this.state.startTime)}
-            {console.log("endTime state is", this.state.endTime)}
           </div>
         </form>
 
