@@ -12,8 +12,8 @@ export default class RegisterComponent extends React.Component {
   constructor() {
     super()
     this.state = {
-      // firstName: '',
-      // lastName: '',
+      firstName: '',
+      lastName: '',
       // emailUsername: '',
       // isWipro: true,
       // password: '',
@@ -62,6 +62,7 @@ export default class RegisterComponent extends React.Component {
       this.props.computedMatch.params.id !== prevProps.computedMatch.params.id
     ) {
       getUser(this.props.computedMatch.params.id).then(data => {
+        console.log('data', data.data)
         this.setState({
           user: data.data
         })
@@ -109,12 +110,12 @@ export default class RegisterComponent extends React.Component {
     this.setState({ rolesFetchError: !this.state.rolesFetchError })
   }
 
-  // validateName(name) {
-  //   if (name === '') {
-  //     return false
-  //   }
-  //   return true
-  // }
+  validateName(name) {
+    if (name === '') {
+      return false
+    }
+    return true
+  }
   // validatePassword(password) {
   //   const regex = /(?=^.{6,255}$)((?=.*\d)(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.*/
   //   return regex.test(password)
@@ -191,13 +192,14 @@ export default class RegisterComponent extends React.Component {
     // }
     // signUp({ FirstName: firstName, lastName: lastName, Username: email, Password: password, LocationId: selectedLocation.value, RoleId: selectedRole.value, ImageUrl: profilePicture }, this.messageCallback)
     editUser({
-      firstName: user.firstName,
-      lastName: user.lastName,
+      firstName,
+      lastName,
       locationId: selectedLocation.value,
       roleId: selectedRole.value,
       password: null,
-      ImageUrl: profilePicture,
-      userInterests: interests
+      imageUrl: profilePicture,
+      userInterests: interests,
+      username: user.username
     }, user.id, this.messageCallback)
 
   }
@@ -219,7 +221,7 @@ export default class RegisterComponent extends React.Component {
                     <ImageUploaderComponent setPicture={this.setProfilePicture} />
                   </div>
                 </div>
-                {/* <div className='row'>
+                <div className='row'>
                   <div className="small-12 columns">
                     <label>First Name:</label>
                     <input type="text" placeholder="Please Enter Your First Name" name='firstName' autoComplete='first name' value={name} onChange={this.onChangeHandler.bind(this)} />
@@ -237,7 +239,7 @@ export default class RegisterComponent extends React.Component {
                     )}
                   </div>
                 </div>
-                <div className='row'>
+                {/*<div className='row'>
                   <div className="small-12 columns">
                     <label>Email:</label>
                     <div className='grid-x grid-padding-x align-center'>

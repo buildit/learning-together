@@ -118,6 +118,7 @@ export const getUser = id => {
 export const editUser = ({ firstName, lastName, username, password, roleId, locationId, imageUrl, userInterests }, id, callback) => {
   //userInterests needs to be updated on server
   const data = { firstName, lastName, username, password, roleId, locationId, imageUrl }
+  console.log('data', data, 'id', id)
   return axios
     .request({
       url:
@@ -280,3 +281,4 @@ export const cancelWorkshop = (id, callback) => {
       callback(error);
     });
 };
+
