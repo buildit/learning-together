@@ -116,7 +116,8 @@ export const getUser = id => {
   });
 };
 
-export const editUser = ({ firstName, lastName, username, password, roleId, locationId, imageUrl }, id) => {
+export const editUser = ({ firstName, lastName, username, password, roleId, locationId, imageUrl, userInterests }, id, callback) => {
+  //userInterests needs to be updated on server
   const data = { firstName, lastName, username, password, roleId, locationId, imageUrl }
   return axios
     .request({
@@ -131,7 +132,7 @@ export const editUser = ({ firstName, lastName, username, password, roleId, loca
     .then(function (response) {
       // handle success
       console.log(response);
-      return response;
+      return callback(response);
     })
     .catch(function (error) {
       // handle error

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import Select from 'react-select'
-import { signUp, getLocationList, getRolesList } from '../../api'
+import { editUser, getUser, getLocationList, getRolesList } from '../../api'
 import { MessageComponent } from '../message'
 import { ImageUploaderComponent } from '../imageUploader'
 import { NavbarComponent } from '../navbar'
@@ -12,36 +12,34 @@ export default class RegisterComponent extends React.Component {
   constructor() {
     super()
     this.state = {
-      firstName: '',
-      lastName: '',
-      emailUsername: '',
-      isWipro: true,
-      password: '',
-      passwordConfirmation: '',
+      // firstName: '',
+      // lastName: '',
+      // emailUsername: '',
+      // isWipro: true,
+      // password: '',
+      // passwordConfirmation: '',
       selectedLocation: {},
       selectedRole: {},
       interests: [],
       profilePicture: 'images/cover/profile-placeholder.png',
-      firstNameError: false,
-      lastNameError: false,
-      emailError: false,
-      passwordError: false,
-      passwordConfirmationError: false,
+      // firstNameError: false,
+      // lastNameError: false,
+      // emailError: false,
+      // passwordError: false,
+      // passwordConfirmationError: false,
       locationError: false,
       roleError: false,
-      isLoading: false,
-      signUpSuccess: false,
+      // isLoading: false,
+      // signUpSuccess: false,
       redirect: false,
       locations: [],
       roles: [],
       rolesFetchError: false,
-      locationFetchError: false
+      locationFetchError: false,
+      user: ''
     }
-    this.locations = [{ value: '1', label: 'New York' }, { value: '2', label: 'Denver' }, { value: '3', label: 'Bangalore' },
-    { value: '4', label: 'Dublin' }, { value: '5', label: 'Edinburgh' }, { value: '6', label: 'Gdansk' }, { value: '7', label: 'London' },
-    { value: '8', label: 'Plano' }, { value: '9', label: 'Warsaw' }]
     this.interests = [{ value: 'Professional Development', label: 'Professional Development' }, { value: 'Arts and Culture', label: 'Lifestyle - Arts & Culture' }, { value: 'Technology', label: 'Technology' }, { value: 'Leadership', label: 'Leadership' }, { value: 'Social Activities', label: 'Social Actiivites' }]
-    this.emails = [{ value: '@wipro.com', label: '@wipro.com' }, { value: '@designit.com', label: '@designit.com' }]
+    // this.emails = [{ value: '@wipro.com', label: '@wipro.com' }, { value: '@designit.com', label: '@designit.com' }]
     this.messageCallback = this.messageCallback.bind(this)
     this.redirectCallback = this.redirectCallback.bind(this)
     this.setProfilePicture = this.setProfilePicture.bind(this)
@@ -52,6 +50,23 @@ export default class RegisterComponent extends React.Component {
   componentDidMount() {
     getLocationList(this.getLocationCallback)
     getRolesList(this.getRolesCallback)
+    getUser(this.props.computedMatch.params.id).then(data => {
+      this.setState({
+        user: data.data
+      })
+    });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.computedMatch.params.id !== prevProps.computedMatch.params.id
+    ) {
+      getUser(this.props.computedMatch.params.id).then(data => {
+        this.setState({
+          user: data.data
+        })
+      });
+    }
   }
 
   getLocationCallback(response) {
@@ -61,8 +76,9 @@ export default class RegisterComponent extends React.Component {
         locationsArray.push({ value: instance.id, label: instance.name })
       })
       this.setState({ locations: locationsArray })
+
     } else {
-      const locationArray = [this.locations]
+      const locationArray = [{ value: 2, label: "London" }, { value: 1, label: "Brooklyn" }, { value: 3, label: "Edinburgh" }, { value: 4, label: "Dublin" }, { value: 5, label: "Denver" }, { value: 6, label: "Dallas" }]
       this.setState({ locationFetchError: true, locations: locationArray })
     }
   }
@@ -92,23 +108,25 @@ export default class RegisterComponent extends React.Component {
   toggleRolesError() {
     this.setState({ rolesFetchError: !this.state.rolesFetchError })
   }
-  validateName(name) {
-    if (name === '') {
-      return false
-    }
-    return true
-  }
-  validatePassword(password) {
-    const regex = /(?=^.{6,255}$)((?=.*\d)(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.*/
-    return regex.test(password)
-  }
-  comparePassword(password, password2) {
-    return password === password2
-  }
-  validateEmail(email) {
-    const trimmedEmail = email.trim()
-    return trimmedEmail.indexOf('@') < 0
-  }
+
+  // validateName(name) {
+  //   if (name === '') {
+  //     return false
+  //   }
+  //   return true
+  // }
+  // validatePassword(password) {
+  //   const regex = /(?=^.{6,255}$)((?=.*\d)(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.*/
+  //   return regex.test(password)
+  // }
+  // comparePassword(password, password2) {
+  //   return password === password2
+  // }
+  // validateEmail(email) {
+  //   const trimmedEmail = email.trim()
+  //   return trimmedEmail.indexOf('@') < 0
+  // }
+
   validateLocation(location) {
     if (location === '') {
       return false
@@ -125,11 +143,12 @@ export default class RegisterComponent extends React.Component {
   redirectCallback() {
     this.setState({ redirect: true })
   }
-  toggleError() {
-    this.setState({ signUpError: !this.state.signUpError })
-  }
+  // toggleError() {
+  //   this.setState({ signUpError: !this.state.signUpError })
+  // }
   messageCallback(data) {
     if (data.status === 200) {
+      console.log('successful post')
       this.setState({ signUpSuccess: true, signUpError: false })
     } else {
       this.setState({ signUpError: true, signUpSuccess: false })
@@ -148,16 +167,16 @@ export default class RegisterComponent extends React.Component {
   onClickInterestsHandler(selectedInterest) {
     this.setState({ interests: selectedInterest })
   }
-  onChangeEmailHandler(isWipro) {
-    this.setState({ isWipro })
-  }
+  // onChangeEmailHandler(isWipro) {
+  //   this.setState({ isWipro })
+  // }
   setProfilePicture(picturePath) {
     this.setState({ profilePicture: picturePath })
   }
 
   submitHandler(e) {
     e.preventDefault()
-    const { firstName, lastName, emailUsername, isWipro, password, passwordConfirmation, selectedLocation, selectedRole, profilePicture } = this.state
+    const { firstName, lastName, emailUsername, isWipro, password, passwordConfirmation, selectedLocation, selectedRole, profilePicture, user, interests } = this.state
     // const email = emailUsername + isWipro.value
     // let isValidatedFirstName = this.validateName(firstName)
     // let isValidatedLastName = this.validateName(lastName)
@@ -171,13 +190,21 @@ export default class RegisterComponent extends React.Component {
     //   return
     // }
     // signUp({ FirstName: firstName, lastName: lastName, Username: email, Password: password, LocationId: selectedLocation.value, RoleId: selectedRole.value, ImageUrl: profilePicture }, this.messageCallback)
-    signUp({ LocationId: selectedLocation.value, RoleId: selectedRole.value, ImageUrl: profilePicture }, this.messageCallback)
+    editUser({
+      firstName: user.firstName,
+      lastName: user.lastName,
+      locationId: selectedLocation.value,
+      roleId: selectedRole.value,
+      password: null,
+      ImageUrl: profilePicture,
+      userInterests: interests
+    }, user.id, this.messageCallback)
 
   }
 
   render() {
     const { name, emailUsername, password, passwordConfirmation, emailError, passwordError, passwordConfirmationError, firstNameError, lastNameError, locationError, roleError, signUpSuccess, signUpError, redirect, locationFetchError, rolesFetchError } = this.state
-
+    console.log(this.state)
     return (
       <Fragment>
         <NavbarComponent isUser={this.props.isUser} />
@@ -187,6 +214,7 @@ export default class RegisterComponent extends React.Component {
               <form className='cell medium-12' onSubmit={this.submitHandler.bind(this)}>
                 <div className='row'>
                   <div className="small-12 columns">
+                    <h2>Edit Profile Settings</h2>
                     <label>Profile picture:</label>
                     <ImageUploaderComponent setPicture={this.setProfilePicture} />
                   </div>
