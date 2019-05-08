@@ -2,7 +2,6 @@ import React from "react";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import { UserRoute, UnauthenticatedUserRoute } from "../auth";
 import { RegisterComponent } from "../register";
-import { LoginComponent } from "../login";
 import { UserProfileComponent } from "../user-profile";
 import { Page404Component } from "../page404";
 import { LandingComponent } from "../landing";
