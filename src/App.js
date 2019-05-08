@@ -18,12 +18,13 @@ class App extends Component {
     getUserInfo(this.getUserInfoCallback)
   }
   getUserInfoCallback(error, user) {
-    signIn(user, this.signInCallback)
+    signIn(user.userName, this.signInCallback)
   }
   signInCallback(response) {
     console.log(response)
     if (response.status === 200) {
       localStorage.setItem('userId', response.data.id)
+      localStorage.setItem('username', response.data.username)
     }
     else {
       console.log(response)
