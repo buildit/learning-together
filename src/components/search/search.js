@@ -78,13 +78,23 @@ export default class SearchComponent extends React.Component {
             placeholder="Search"
             value={this.state.searchInput}
             onChange={this.searchHandler.bind(this)}
+            autoFocus
           />
           <div className="search-results-container">
             {userResults.length !== 0 && (
               <div>
                 <h2>Users</h2>
                 {userResults.map((result, idx) => {
-                  return <UserPreviewComponent key={idx} attendee={result} />;
+                  return (
+                    <div className='search-result-hover'>
+                      <Link
+                        to={`/user/${result.id}`}
+                        key={idx}
+                      >
+                        <h5>{result.firstName} {result.lastName}</h5>
+                      </Link>
+                    </div>
+                  )
                 })}
               </div>
             )}
@@ -93,12 +103,14 @@ export default class SearchComponent extends React.Component {
                 <h2>Categories</h2>
                 {categoryResults.map((result, idx) => {
                   return (
-                    <Link
-                      to={`/workshops/categories/${result.id}/${result.name}`}
-                      key={idx}
-                    >
-                      <h5>{result.name}</h5>
-                    </Link>
+                    <div className='search-result-hover'>
+                      <Link
+                        to={`/workshops/categories/${result.id}/${result.name}`}
+                        key={idx}
+                      >
+                        <h5>{result.name}</h5>
+                      </Link>
+                    </div>
                   );
                 })}
               </div>
@@ -108,7 +120,15 @@ export default class SearchComponent extends React.Component {
                 <h2>Workshops</h2>
                 {workshopResults.map((result, idx) => {
                   return (
-                    <WorkshopPreviewComponent workshop={result} key={idx} />
+                    <div className='search-result-hover'>
+                      <Link
+                        to={`/workshop/${result.workshopId ? result.workshopId : result.id
+                          }`}
+                        key={idx}
+                      >
+                        <h5>{result.name}</h5>
+                      </Link>
+                    </div>
                   );
                 })}
               </div>

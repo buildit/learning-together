@@ -2,7 +2,6 @@ import React from "react";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import { UserRoute, UnauthenticatedUserRoute } from "../auth";
 import { RegisterComponent } from "../register";
-import { LoginComponent } from "../login";
 import { UserProfileComponent } from "../user-profile";
 import { Page404Component } from "../page404";
 import { LandingComponent } from "../landing";
@@ -23,9 +22,8 @@ export default class RoutesComponent extends React.Component {
           <div className="main">
             <Switch>
               <UserRoute exact path="/" component={LandingComponent} />
-              <UnauthenticatedUserRoute exact path="/login" component={LoginComponent} />
-              <UnauthenticatedUserRoute exact path="/register" component={RegisterComponent} />
               <UserRoute exact path="/user/:id" component={UserProfileComponent} />
+              <UserRoute exact path="/settings/:id" component={RegisterComponent} />
               <UserRoute path="/workshops/categories/:id/:title" component={WorkshopListComponent} />
               <UserRoute exact path="/workshop/:id" component={WorkshopComponent} />
               <UserRoute exact path="/workshops" component={BrowseComponent} />

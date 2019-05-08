@@ -41,7 +41,10 @@
   &.carousel__dot--selected {
     background-color: rgba(94,155,177,1);
   }
+}
 
+.footer {
+  display: none
 }
 
 @media screen and (min-width: 40em) {
@@ -78,5 +81,11 @@
   }
   .slider-control-centerright {
     display: none;
+  }
+}
+
+@media screen and (max-width: 39.9375em) {
+  .footer {
+    display: block
   }
 }

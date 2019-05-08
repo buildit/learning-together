@@ -1,6 +1,6 @@
 .footer{
 	position:fixed;
-	top:90%;
+	top:93%;
 	height:10%;
 	width:100%;
 	display:flex;
@@ -8,8 +8,9 @@
 	border-top: 1px solid grey;
 	justify-content: space-evenly;
   background-color:white;
-  padding: 1;
+	padding-top: 1em;
 }
+
 .flex{
   display:flex;
 }
