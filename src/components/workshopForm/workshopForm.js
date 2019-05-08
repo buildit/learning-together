@@ -29,7 +29,7 @@ class WorkshopForm extends Component {
         ? moment(props.data.start)
             .format("HH:mm:ss")
             .slice(0, 5)
-        : "",
+        : null,
       endTime: props.data
         ? moment(props.data.end)
             .format("HH:mm:ss")
@@ -119,9 +119,24 @@ class WorkshopForm extends Component {
   }
 
   //If input is start time or date time modify moment object
-  handleChange(e) {
+  handleChange( e) {
+    
+     console.log('e',e)
+    const month= this.state.startDate.month()
+    const day=this.state.startDate.date()
+    const year=this.state.startDate.year()
+    const startTime= e.year(year).month(month).date(day)
+    console.log('day', day)
+    console.log('year', year)
+    console.log('month', month)
+    console.log('new', startTime)
     console.log(e);
-    this.setState({ startTime: moment(e) });
+    //console.log(e.day('day'));
+    //this.setState({ startTime: moment(e, 'HH:mm:ss') });
+    console.log('e', moment(e, 'HH:mm:ss')     )
+    //console.log('cloning', moment(e, 'HH:mm:ss')   
+    //console.log('e utc', moment(e, 'HH:mm:ss').utc())
+    this.setState({ startTime: startTime});
     /*this.setState({ [e.target.name]: e.target.value });
     if (e.target.name === "startTime" || e.target.name === "endTime") {
       if (e.target.name === "startTime" && this.state.startDate) {
@@ -136,6 +151,12 @@ class WorkshopForm extends Component {
         this.setState({ endDate });
       }
     }*/
+
+   
+
+
+
+
   }
 
   getLocationCallBack(response) {
@@ -145,12 +166,22 @@ class WorkshopForm extends Component {
   }
 
   onDateChange(date) {
+    console.log('date is', date)
+    //console.log('format date', moment(date).get('year'))
     this.setState({
       startDate: date,
       endDate: date,
-      startTime: "",
-      endTime: ""
+      //startTime: date.clone(),
+      //endTime: ""
     });
+
+    if(this.state.startTime === null) {
+      console.log('it is null')
+    }
+    //console.log(this.state.startTime)
+
+    //const startTime = this.state.startDate.clone()
+    //console.log('clone', this.state.startTime)
   }
 
   onFocusChange({ focused }) {
@@ -282,8 +313,8 @@ class WorkshopForm extends Component {
                   Start Time
                   <input
                     type="time"
-                    name="startTime"
-                    value={this.state.startTime}
+                    //name="startTime"
+                    //value={this.state.startTime}
                     required
                     onChange={this.handleChange}
                   />
@@ -343,7 +374,7 @@ class WorkshopForm extends Component {
               </div>
               <div className="medium-8 cell">
                 <label>
-                  WebEx Link
+                  WebEx Link 
                   <input
                     name="link"
                     value={this.state.link}
@@ -356,7 +387,7 @@ class WorkshopForm extends Component {
               </div>
               <div className="medium-8 cell">
                 <label>
-                  Description
+                  Description 
                   <textarea
                     name="description"
                     type="text"
@@ -371,13 +402,15 @@ class WorkshopForm extends Component {
             </div>
           </div>
           <div className="grid-x align-center">
+
             <button className="button custom-button submit" type="submit">
               {this.props.edit ? "Update" : "Create"}
             </button>
             <Link to="/" className="hollow button secondary custom-button">
               Cancel{" "}
             </Link>
-            {console.log("state is", this.state.startTime)}
+            {console.log("startTime state is", this.state.startTime)}
+        
           </div>
         </form>
 
