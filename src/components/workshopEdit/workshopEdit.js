@@ -39,22 +39,31 @@ class workshopEdit extends Component {
 
   handleSubmit(data) {
     updateWorkshop(this.props.computedMatch.params.id, data).then(response => {
-      if (response.status === 200) {
+      /*if (response.status === 200) {
         this.setState({ success: true });
-      }
+      }*/ console.log(
+        response
+      );
     });
   }
 
   render() {
     const { data } = this.state;
+    console.log(data);
+    console.log(this.props.computedMatch.params.id);
     return (
-      <WorkshopFormComponent
-        data={data}
-        handleSubmit={this.handleSubmit.bind(this)}
-        success={this.state.success}
-        id={this.props.computedMatch.params.id}
-        edit={true}
-      />
+      <div>
+        Edit
+        {
+          <WorkshopFormComponent
+            data={data}
+            handleSubmit={this.handleSubmit.bind(this)}
+            success={this.state.success}
+            id={this.props.computedMatch.params.id}
+            edit={true}
+          />
+        }
+      </div>
     );
   }
 }

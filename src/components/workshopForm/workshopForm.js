@@ -27,14 +27,14 @@ class WorkshopForm extends Component {
       categorySelected: props.data ? props.data.categoryId : 1,
       startTime: props.data
         ? moment(props.data.start)
-            .format("HH:mm:ss")
-            .slice(0, 5)
-        : null,
+        : //.format("HH:mm:ss")
+          // .slice(0, 5)
+          null,
       endTime: props.data
         ? moment(props.data.end)
-            .format("HH:mm:ss")
-            .slice(0, 5)
-        : "",
+        : // .format("HH:mm:ss")
+          // .slice(0, 5)
+          null,
       error: {},
       redirect: false,
       workshopPicture: props.data ? props.data.imageUrl : "",
@@ -63,6 +63,9 @@ class WorkshopForm extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log("next", nextProps.data.end);
+    console.log("current", this.props.data.end);
+
     if (nextProps.data) {
       if (nextProps.data.name !== this.props.data.name) {
         this.setState({ name: nextProps.data.name });
@@ -82,10 +85,11 @@ class WorkshopForm extends Component {
 
       if (nextProps.data.start !== this.props.data.start) {
         this.setState({
-          startTime: moment(nextProps.data.start)
-            .format("HH:mm:ss")
-            .slice(0, 5),
-          startDate: moment(nextProps.data.start),
+          startTime: moment(nextProps.data.start),
+          /*.format("HH:mm:ss")
+            .slice(0, 5)*/ startDate: moment(
+            nextProps.data.start
+          ),
           endDate: moment(nextProps.data.end)
         });
       }
@@ -93,8 +97,8 @@ class WorkshopForm extends Component {
       if (nextProps.data.end !== this.props.data.end) {
         this.setState({
           endTime: moment(nextProps.data.end)
-            .format("HH:mm:ss")
-            .slice(0, 5)
+          /*.format("HH:mm:ss")
+            .slice(0, 5)*/
         });
       }
 
@@ -117,26 +121,33 @@ class WorkshopForm extends Component {
       }
     }
   }
-
   //If input is start time or date time modify moment object
-  handleChange( e) {
-    
-     console.log('e',e)
-    const month= this.state.startDate.month()
-    const day=this.state.startDate.date()
-    const year=this.state.startDate.year()
-    const startTime= e.year(year).month(month).date(day)
-    console.log('day', day)
-    console.log('year', year)
-    console.log('month', month)
-    console.log('new', startTime)
-    console.log(e);
+  handleChange(e, name) {
+    console.log(name);
+    console.log("e", e);
+
+    if ((name !== undefined && name === "startTime") || name === "endTime") {
+      console.log("inputing", name);
+      const month = this.state.startDate.month();
+      const day = this.state.startDate.date();
+      const year = this.state.startDate.year();
+      const time = e
+        .year(year)
+        .month(month)
+        .date(day);
+      console.log("new", time);
+      console.log(e);
+      this.setState({ [name]: time });
+    } else {
+      this.setState({ [e.target.name]: e.target.value });
+    }
+
     //console.log(e.day('day'));
     //this.setState({ startTime: moment(e, 'HH:mm:ss') });
-    console.log('e', moment(e, 'HH:mm:ss')     )
-    //console.log('cloning', moment(e, 'HH:mm:ss')   
+    console.log("e", moment(e, "HH:mm:ss"));
+    //console.log('cloning', moment(e, 'HH:mm:ss')
     //console.log('e utc', moment(e, 'HH:mm:ss').utc())
-    this.setState({ startTime: startTime});
+
     /*this.setState({ [e.target.name]: e.target.value });
     if (e.target.name === "startTime" || e.target.name === "endTime") {
       if (e.target.name === "startTime" && this.state.startDate) {
@@ -151,12 +162,6 @@ class WorkshopForm extends Component {
         this.setState({ endDate });
       }
     }*/
-
-   
-
-
-
-
   }
 
   getLocationCallBack(response) {
@@ -166,22 +171,33 @@ class WorkshopForm extends Component {
   }
 
   onDateChange(date) {
-    console.log('date is', date)
-    //console.log('format date', moment(date).get('year'))
+    console.log("date is", date);
+    const month = date.month();
+    const day = date.date();
+    const year = date.year();
     this.setState({
       startDate: date,
-      endDate: date,
-      //startTime: date.clone(),
-      //endTime: ""
+      endDate: date
     });
 
-    if(this.state.startTime === null) {
-      console.log('it is null')
+    if (this.state.startTime !== null) {
+      const startTime = this.state.startTime
+        .year(year)
+        .month(month)
+        .date(day);
+      this.setState({
+        startTime
+      });
     }
-    //console.log(this.state.startTime)
 
-    //const startTime = this.state.startDate.clone()
-    //console.log('clone', this.state.startTime)
+    if (this.state.endTime !== null) {
+      const endTime = this.state.endTime
+        .year(year)
+        .month(month)
+        .date(day);
+      console.log(endTime);
+      this.setState({ endTime });
+    }
   }
 
   onFocusChange({ focused }) {
@@ -224,9 +240,10 @@ class WorkshopForm extends Component {
       window.scrollTo(0, 0);
     } else {
       const data = {
+        //.format("YYYY-MM-DDTHH:mm:ss.SSS")
         name: this.state.name,
-        start: this.state.startDate.format("YYYY-MM-DDTHH:mm:ss.SSS"),
-        end: this.state.endDate.format("YYYY-MM-DDTHH:mm:ss.SSS"),
+        start: moment.utc(this.state.startTime),
+        end: moment.utc(this.state.endTime),
         locationId: this.state.location,
         categoryId: parseInt(this.state.categorySelected),
         webex: this.state.link,
@@ -234,6 +251,10 @@ class WorkshopForm extends Component {
         imageUrl: this.state.workshopPicture,
         room: this.state.room
       };
+      console.log(this.state.endDate);
+      console.log(data);
+      console.log(moment(data.end).valueOf());
+      console.log(moment(data.start).valueOf());
       this.props.handleSubmit(data);
     }
   }
@@ -309,31 +330,7 @@ class WorkshopForm extends Component {
                 <span className="error">{this.state.error.date}</span>
               </div>
               <div className="medium-8 cell">
-                <label>
-                  Start Time
-                  <input
-                    type="time"
-                    //name="startTime"
-                    //value={this.state.startTime}
-                    required
-                    onChange={this.handleChange}
-                  />
-                  <span className="error">{this.state.error.time}</span>
-                </label>
-                <label>
-                  End Time
-                  <input
-                    type="time"
-                    name="endTime"
-                    value={this.state.endTime}
-                    required
-                    onChange={this.handleChange}
-                  />
-                  <span className="error">{this.state.error.time}</span>
-                </label>
-              </div>
-              <div className="medium-8 cell">
-                <label>Test Time</label>
+                <label>Start time</label>
                 <TimePicker
                   name="startTime"
                   defaultValue={null}
@@ -342,8 +339,27 @@ class WorkshopForm extends Component {
                   allowEmpty={false}
                   use12Hours={true}
                   focusOnOpen={true}
-                  onChange={this.handleChange}
+                  onChange={(value, name = "startTime") =>
+                    this.handleChange(value, name)
+                  }
                   value={this.state.startTime}
+                />
+                <span className="error">{this.state.error.time}</span>
+              </div>
+              <div className="medium-8 cell">
+                <label>End time</label>
+                <TimePicker
+                  name="endTime"
+                  defaultValue={null}
+                  showSecond={false}
+                  minuteStep={15}
+                  allowEmpty={false}
+                  use12Hours={true}
+                  focusOnOpen={true}
+                  onChange={(value, name = "endTime") =>
+                    this.handleChange(value, name)
+                  }
+                  value={this.state.endTime}
                 />
                 <span className="error">{this.state.error.time}</span>
               </div>
@@ -374,7 +390,7 @@ class WorkshopForm extends Component {
               </div>
               <div className="medium-8 cell">
                 <label>
-                  WebEx Link 
+                  WebEx Link
                   <input
                     name="link"
                     value={this.state.link}
@@ -387,7 +403,7 @@ class WorkshopForm extends Component {
               </div>
               <div className="medium-8 cell">
                 <label>
-                  Description 
+                  Description
                   <textarea
                     name="description"
                     type="text"
@@ -402,7 +418,6 @@ class WorkshopForm extends Component {
             </div>
           </div>
           <div className="grid-x align-center">
-
             <button className="button custom-button submit" type="submit">
               {this.props.edit ? "Update" : "Create"}
             </button>
@@ -410,7 +425,7 @@ class WorkshopForm extends Component {
               Cancel{" "}
             </Link>
             {console.log("startTime state is", this.state.startTime)}
-        
+            {console.log("endTime state is", this.state.endTime)}
           </div>
         </form>
 
