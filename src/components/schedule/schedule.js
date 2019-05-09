@@ -141,7 +141,7 @@ render() {
                        
                         return (
                             <section>
-                                <b>{key}</b>
+                                <b className="time-header">{key}</b>
                                 <article className="workshopsforday">
                                 {date[key].map((workshop,index) => {
                                  return (
