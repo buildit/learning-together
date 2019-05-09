@@ -6,18 +6,19 @@ export default class ImageUploaderComponent extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = { selectedFile: '', previewImg: 'images/cover/profile-placeholder.png', isUploaded: false, uploadError: false }
+    this.state = { previewImg: 'images/cover/profile-placeholder.png', isUploaded: false, uploadError: false }
     this.fileUploadCallback = this.fileUploadCallback.bind(this)
   }
-
+  componentDidUpdate(prevProps) {
+    if (prevProps.imgUrl !== this.props.imgUrl) {
+      this.setState({ previewImg: this.props.imgUrl })
+    }
+  }
   fileUploadHandler(e) {
     e.preventDefault()
-    this.setState({ previewImg: URL.createObjectURL(e.target.files[0]), selectedFile: e.target.files[0] })
-  }
-  fileUploadSubmitHandler(e) {
-    e.preventDefault()
+    this.setState({ previewImg: URL.createObjectURL(e.target.files[0]) })
     const fd = new FormData()
-    fd.append('image', this.state.selectedFile, this.state.selectedFile.name)
+    fd.append('image', e.target.files[0], e.target.files[0].name)
     uploadImage(fd, this.fileUploadCallback)
   }
 
@@ -27,7 +28,6 @@ export default class ImageUploaderComponent extends React.Component {
       this.props.setPicture(response.data)
     } else {
       this.setState({ isUploaded: false, uploadError: true })
-      console.log(response)
     }
   }
   render() {
@@ -46,7 +46,6 @@ export default class ImageUploaderComponent extends React.Component {
             <div className='grid-x grid-padding-x align-center'>
               <label htmlFor="fileUpload" className="button">Choose File</label>
               <input type='file' id='fileUpload' className='show-for-sr' onChange={this.fileUploadHandler.bind(this)} />
-              <button onClick={this.fileUploadSubmitHandler.bind(this)} className='button success'>Upload</button>
               {isUploaded && (
                 <div className='image-icon-confirm'>
                   <FontAwesomeIcon icon='check'></FontAwesomeIcon>

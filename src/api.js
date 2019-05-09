@@ -117,15 +117,16 @@ export const unenrollWorkshop = (id, callback) => {
     });
 };
 
-export const getUser = id => {
+export const getUser = (id, callback) => {
   return axios.request({
     url: `https://bettertogether.buildit.systems/api/users/${id}`,
     method: "get"
-  });
+  })
+
 };
 
-export const editUser = ({ firstName, lastName, username, password, roleId, locationId, imageUrl }, id) => {
-  const data = { firstName, lastName, username, password, roleId, locationId, imageUrl }
+export const editUser = ({ firstName, lastName, username, password, roleId, locationId, imageUrl, userInterests }, id, callback) => {
+  const data = { firstName, lastName, username, password, roleId, locationId, imageUrl, userInterests }
   return axios
     .request({
       url:
@@ -138,12 +139,11 @@ export const editUser = ({ firstName, lastName, username, password, roleId, loca
     })
     .then(function (response) {
       // handle success
-      console.log(response);
-      return response;
+      return callback(response);
     })
     .catch(function (error) {
       // handle error
-      console.log(error);
+      callback(error);
     });
 }
 // Make a request for a user with a given token
@@ -160,7 +160,6 @@ export const createWorkshop = data => {
     })
     .then(function (response) {
       // handle success
-      console.log(response);
       return response;
     })
     .catch(function (error) {
@@ -185,6 +184,20 @@ export function uploadImage(data, callback) {
       callback(error);
     });
 }
+
+export const getDisciplineList = (callback) => {
+  return axios.request({
+    url:
+      "https://bettertogether.buildit.systems/api/disciplines",
+    method: "get"
+  })
+    .then(response => {
+      callback(response)
+    })
+    .catch(error => {
+      callback(error)
+    });
+};
 
 export const getCategoryList = () => {
   return axios.request({
@@ -288,3 +301,4 @@ export const cancelWorkshop = (id, callback) => {
       callback(error);
     });
 };
+
