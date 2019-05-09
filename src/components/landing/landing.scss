@@ -9,13 +9,7 @@
     }
 }
 
-.cover-frame {
-  height: auto;
-  .copy {
-    background: rgba(0,0,0,0.4);
-    padding: 2em;
-  }
-}
+
 
 .carousel__dot-group {
   position: relative;
@@ -48,10 +42,6 @@
 }
 
 @media screen and (min-width: 40em) {
-
-  .cover-frame {
-    height: 460px;
-  }
 
   .card {
     margin-right: 10px;

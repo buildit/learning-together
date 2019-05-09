@@ -1,3 +1,5 @@
+@import '../../varibles';
+
 .landing-logo {
     width: 35vw;
 }
@@ -8,5 +10,30 @@
 
 .button.call-to-action {
     font-weight: 900;
-    background-color: green;
+    background-color: $bt-blue;
+    &:hover {
+        background-color: desaturate($bt-blue, 50%);
+    }
 }
+
+.button.call-to-action.browse {
+    background-color: $bt-pink;
+    &:hover {
+        background-color: desaturate($bt-pink, 50%);
+    }
+}
+
+.call-to-action-link:first-child {
+    margin-right: 1em;
+}
+
+.cover-frame {
+    height: 260px;
+    .copy {
+      h1 {
+        background: rgba(0,0,0,0.3);
+      }
+      padding: 1em;
+      text-align: center;
+    }
+  }

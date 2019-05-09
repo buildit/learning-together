@@ -6,6 +6,7 @@ import "./workshopPreview.scss";
 const WorkshopPreview = ({ workshop }) => {
   const start = workshop.start ? workshop.start : workshop.startDate;
   const wrkshopId = workshop.id ? workshop.id : workshop.workshopId;
+ 
   return (
     <Link
       to={`/workshop/${
@@ -13,28 +14,21 @@ const WorkshopPreview = ({ workshop }) => {
         }`}
       className="workshop-link grid-x grid-margin-x"
     >
-      <div className="cell small-12 cell">
-        <p className="from-now">
-          <Moment format="dddd">{start}</Moment>{" "}
-          <Moment format="LT">{start}</Moment> |{" "}
-          <Moment fromNow>{start}</Moment>
-        </p>
+
+      <div className="start small-3 medium-2 cell">
+      
+          <p>
+            <Moment format="LT">{start}</Moment>
+          </p>{" "}
+   
       </div>
-      <div className="start small-3 medium-1 cell">
-        <p className="calender">
-          <span>
-            <Moment format="MMM">{start}</Moment>
-          </span>{" "}
-          <span>
-            <Moment format="DD">{start}</Moment>
-          </span>
-        </p>
+      <div className="small-9 medium-8 cell">
+      <div className="workshop-data">
+        <h5 className="title">
+          {workshop.name}
+        </h5>
+        <p>Instructor: <b>{workshop.educator.firstName} {workshop.educator.lastName}</b></p>
       </div>
-      <div className="small-9 cell">
-        <h3 className="title">
-          <strong>{workshop.name}</strong>
-        </h3>
-        <p>{workshop.description}</p>
       </div>
     </Link>
   );

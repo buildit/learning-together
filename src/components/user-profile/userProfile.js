@@ -3,7 +3,9 @@ import "./user-profile.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavbarComponent } from "../navbar";
 import { WorkshopPreviewComponent } from "../workshopPreview";
-import { getUser } from "../../api";
+import { getUser, getWorkshopListDate } from "../../api";
+import moment from 'moment';
+import { groupBy, forEach } from 'lodash';
 import { UserContext } from "../../UserProvider";
 
 export default class UserProfileComponent extends React.Component {
@@ -12,41 +14,87 @@ export default class UserProfileComponent extends React.Component {
     this.state = {
       user: "",
       classes: [],
-      all: []
+      all: [],
+      attending: [],
+      teaching: []
     };
     this.getUserCallback = this.getUserCallback.bind(this);
+    this.filterByDay = this.filterByDay.bind(this)
   }
 
   componentDidMount() {
     //Merge attended and teaching array
-    getUser(this.props.computedMatch.params.id, this.getUserCallback)
+    getUser(this.props.computedMatch.params.id).then(data => {
+      this.getUserCallback(data);
+    });
   }
 
   componentDidUpdate(prevProps) {
     if (
       this.props.computedMatch.params.id !== prevProps.computedMatch.params.id
     ) {
-      getUser(this.props.computedMatch.params.id, this.getUserCallback)
+      getUser(this.props.computedMatch.params.id).then(data => {
+        this.getUserCallback(data);
+      });
     }
   }
 
+  filterByDay = (workshops) => {
+    let datesArray = []
+    const dates = groupBy(workshops, function (workshop) {
+      const start = workshop.start ? workshop.start : workshop.startDate;
+      return moment(start).format("dddd, MMMM Do")
+    })
+
+    forEach(dates, function (date, key) {
+      let day = {}
+      day[key] = date;
+
+      datesArray.push(day)
+    })
+
+    return datesArray
+  }
+
   getUserCallback(data) {
-    let attending = data.data.workshopsAttending.map(workshop => {
-      workshop.status = "attending";
-      return workshop;
-    });
 
-    let teaching = data.data.workshopsTeaching.map(workshop => {
-      workshop.status = "teaching";
-      return workshop;
-    });
+    getWorkshopListDate(moment().format())
+      .then(response => {
 
-    const all = attending.concat(teaching);
+        const attend = data.data.workshopsAttending.map(workshop => {
+          return (
+            response.data.filter(attending => {
+              return (
+                attending.id === workshop.workshopId
+              )
+            }
+
+            )
+          )
+        })
+
+        const teach = data.data.workshopsTeaching.map(workshop => {
+          return (
+            response.data.filter(teaching => {
+              return (
+                teaching.id === workshop.workshopId
+              )
+            }
+
+            )
+          )
+        })
+
+        this.setState({
+          all: response.data,
+          attending: this.filterByDay([].concat(...attend)),
+          teaching: this.filterByDay([].concat(...teach))
+        })
+      })
+      .catch(error => this.setState({ error: 'Please try again later' }))
 
     this.setState({
       user: data.data,
-      classes: all,
-      all: all
     });
   }
 
@@ -74,18 +122,13 @@ export default class UserProfileComponent extends React.Component {
     const { user } = this.state;
     const baseUrl = "https://bettertogether.buildit.systems/";
     const profile = user.imageUrl !== "" ? `${baseUrl}${user.imageUrl}` : "";
+
     return (
       <Fragment>
         <NavbarComponent isUser={isUser} />
-        <section className="user grid-container full first-container">
+        <section className="user grid-container">
           <div className="grid-x user-profile grid-margin-x">
-            <div className="cell small-6 medium-align-left">
-              <div className="profile-pic">
-                <div className="profile-frame">
-                  <img src={profile} alt="profile" />
-                </div>
-                <a href="/">Edit</a>
-              </div>
+            <div className="cell small-9">
               <div className="user-info">
                 <h2>
                   {user.firstName} {user.lastName}
@@ -108,34 +151,84 @@ export default class UserProfileComponent extends React.Component {
                   : "Professional Development, Social Activiites, Arts & Culture"} </h6>
               </div>
             </div>
+            <div className="profile-pic cell small-3">
+                <div className="profile-frame">
+                  <img src={profile} alt="profile" />
+                </div>
+                <a href="/">Edit</a>
+              </div>
           </div>
           <div className="courses">
             <hr />
             <div className="upcoming">
-              <div className="grid-container workshops-dropdown">
-                <h2>
+                  <header className="grid-container worskshop-header">
+                <h4>
                   <b>My Workshops</b>
-                </h2>
-                <select
-                  name="schedule-dropdown"
-                  className="schedule-dropdown"
-                  onChange={this.updateWorkshopList.bind(this)}
-                >
-                  <option value="date">All</option>
-                  <option value="teaching">Teaching</option>
-                  <option value="attending">Attending</option>
-                </select>
+                </h4>
+                </header>
               </div>
               <section className="workshops-list grid-container">
-                {this.state.classes.map((workshop, idx) => (
-                  <div className="cell medium-6" key={idx}>
-                    <WorkshopPreviewComponent workshop={workshop} />
-                  </div>
-                ))}
+                <div className="grid-x">
+                <header className="cell medium-2">
+                <b className="schedule-header">Attending</b>
+                </header>
+                <article className="cell medium-10">
+                  {this.state.attending.map((date, index) => {
+                    return (
+
+                      Object.keys(date).map((key) => {
+
+                        return (
+                          <Fragment>
+                            <b className="time-header">{key}</b>
+                            <article className="workshopsforday">
+                              {date[key].map((workshop, index) => {
+                                return (
+                                  <WorkshopPreviewComponent workshop={workshop} />
+                                )
+                              })}
+                            </article>
+                            </Fragment>
+                        )
+                      })
+                    )
+                  })}
+                </article>
+                </div>
+                </section>
+                <section className="workshops-list grid-container">
+                <div className="grid-x">
+                <header className="cell medium-2">
+                <b className="schedule-header">Teaching</b>
+                </header>
+                <article className="cell medium-10">
+                  {this.state.teaching.map((date, index) => {
+                    return (
+
+                      Object.keys(date).map((key) => {
+
+                        return (
+                          <Fragment>
+                            <b className="time-header">{key}</b>
+                            <article className="workshopsforday">
+                              {date[key].map((workshop, index) => {
+                                return (
+                                  <WorkshopPreviewComponent workshop={workshop} />
+                                )
+                              })}
+                            </article>
+                            </Fragment>
+                        )
+                      })
+
+
+                    )
+                  })}
+                </article>
+                </div>
               </section>
-            </div>
-          </div>
-        </section>
+       </div>
+       </section>
       </Fragment>
     );
   }

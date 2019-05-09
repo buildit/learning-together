@@ -4,32 +4,34 @@ import { Hero } from "../hero";
 import { PreviewComponent } from "../preview";
 import { CategoryListComponent } from "../categoryList";
 import { FooterComponent } from "../footer"
-import { getWorkshopList } from '../../api'
+import { getWorkshopList, getUser,getWorkshopListDate } from '../../api'
 import './landing.scss';
 import { NavbarComponent } from "../navbar";
-import { loadCategories } from '../../api';
-import { CarouselProvider, Slider, Slide, DotGroup, Dot } from 'pure-react-carousel';
-import 'pure-react-carousel/dist/react-carousel.es.css';
+import { loadCategories} from '../../api';
+import {groupBy,forEach} from 'lodash';
+import moment from 'moment';
 
-
+import {Onboarding} from "../onboarding";
+import {Schedule} from "../schedule";
 export default class Landing extends Component {
   constructor(props) {
     super(props);
     this.state = {
       workshops: [],
+      dates: [],
       noslides: 0,
+      user: null,
       error: null
     };
   }
 
   componentDidMount() {
-
-    getWorkshopList()
+    getWorkshopListDate(moment().format())
       .then(response => {
         let sorted = this.sortByDate(response.data)
-        let workshops = sorted.slice(0, 6)
+        let workshops = sorted
+       
         this.setState({ workshops })
-        this.setState({ noslides: this.getNumberofSlides() })
       })
       .catch(error => this.setState({ error: 'Please try again later' }))
 
@@ -40,8 +42,17 @@ export default class Landing extends Component {
           categories: data
         })
       })
-
+      if(this.props.isUser){
+        const userid = localStorage.getItem('userId');
+        getUser(userid)
+        .then((data) => {
+          this.setState({
+            user: data.data
+          })
+        })
+      }
   }
+
 
   sortByDate = (workshops) => {
     return workshops.sort(function (a, b) {
@@ -67,26 +78,10 @@ export default class Landing extends Component {
         <NavbarComponent isUser={isUser} location={location} />
         <Hero title="Better Together" isUser={isUser} />
         <div className="grid-container landing-preview">
-          <h2 className="section-title">Upcoming Workshops</h2>
-          <CarouselProvider
-            naturalSlideWidth={300}
-            naturalSlideHeight={350}
-            totalSlides={this.state.workshops.length}
-            visibleSlides={this.state.noslides}
-          > <DotGroup />
-            <Slider>
-              {this.state.workshops.map((workshop, index) => (
-                <React.Fragment>
-                  <Slide key={index} index={index}>
-                    <NavLink to={`/workshop/${workshop.id}`} className="preview-card" key={index}><PreviewComponent workshop={workshop} /></NavLink>
-                  </Slide>
-                </React.Fragment>
-              ))}
-
-            </Slider>
-
-
-          </CarouselProvider>
+          <Onboarding user={this.state.user} />
+        </div>
+        <div className="grid-container">
+          <Schedule workshops={this.state.workshops} user={this.state.user}/>
         </div>
         <div className="grid-container landing-preview">
           <h2 className="section-title">Categories</h2>
