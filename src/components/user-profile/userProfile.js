@@ -70,13 +70,12 @@ export default class UserProfileComponent extends React.Component {
   }
 
   render() {
-    const { isUser } = this.props;
     const { user } = this.state;
     const baseUrl = "https://bettertogether.buildit.systems/";
     const profile = user.imageUrl !== "" ? `${baseUrl}${user.imageUrl}` : "";
     return (
       <Fragment>
-        <NavbarComponent isUser={isUser} />
+        <NavbarComponent />
         <section className="user grid-container full first-container">
           <div className="grid-x user-profile grid-margin-x">
             <div className="cell small-6 medium-align-left">

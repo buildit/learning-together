@@ -203,7 +203,7 @@ export default class EditUserProfileComponent extends React.Component {
     const profile = profilePicture !== "" ? `${baseUrl}${profilePicture}` : "";
     return (
       <Fragment>
-        <NavbarComponent isUser={this.props.isUser} />
+        <NavbarComponent />
         <div className="grid-container first-container">
           <div className="grid-y medium-grid-frame">
             <div className="grid-x grid-padding-x align-middle">

@@ -64,7 +64,7 @@ export default class Landing extends Component {
     const { isUser, location } = this.props
     return (
       <div >
-        <NavbarComponent isUser={isUser} location={location} />
+        <NavbarComponent location={location} />
         <Hero title="Better Together" isUser={isUser} />
         <div className="grid-container landing-preview">
           <h2 className="section-title">Upcoming Workshops</h2>
@@ -92,7 +92,7 @@ export default class Landing extends Component {
           <h2 className="section-title">Categories</h2>
           <CategoryListComponent workshop={this.state.workshops} categories={this.state.categories} />
         </div>
-        <FooterComponent className='footer' isUser={isUser} userId={this.state.userId} />
+        <FooterComponent className='footer' userId={this.state.userId} />
       </div>
 
     );

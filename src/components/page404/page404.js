@@ -6,7 +6,7 @@ export default class Page404Component extends React.Component {
   render() {
     return (
       <Fragment>
-        <NavbarComponent isUser={this.props.isUser} />
+        <NavbarComponent />
         <h1>404 Page not found. </h1>
       </Fragment>
     )
