@@ -74,7 +74,6 @@ export default class UserProfileComponent extends React.Component {
     const { user } = this.state;
     const baseUrl = "https://bettertogether.buildit.systems/";
     const profile = user.imageUrl !== "" ? `${baseUrl}${user.imageUrl}` : "";
-    console.log('state', user)
     return (
       <Fragment>
         <NavbarComponent isUser={isUser} />
@@ -100,7 +99,13 @@ export default class UserProfileComponent extends React.Component {
                     ""
                   )}
                 <h5>{user.role ? user.role.name : ""} </h5>
-                <h6>{user.userInterests ? "Professional Development, Social Activiites, Arts & Culture" : "Professional Development, Social Activiites, Arts & Culture"} </h6>
+                <h6>{user.userInterests ? (
+                  user.userInterests.map((interest, idx) => {
+                    if (idx === 0) return interest.name
+                    else return ', ' + interest.name
+                  })
+                )
+                  : "Professional Development, Social Activiites, Arts & Culture"} </h6>
               </div>
             </div>
           </div>

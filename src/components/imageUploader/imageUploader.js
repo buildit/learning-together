@@ -28,7 +28,6 @@ export default class ImageUploaderComponent extends React.Component {
       this.props.setPicture(response.data)
     } else {
       this.setState({ isUploaded: false, uploadError: true })
-      console.log(response)
     }
   }
   render() {
