@@ -1,3 +1,4 @@
+
 body {
   background: #f7f7f7;
 }
@@ -29,35 +30,7 @@ body {
   background: #5e9bb1;
 }
 
-img:before { 
-  content: " ";
-  display: block;
-
-  position: absolute;
-  top: -10px;
-  left: 0;
-  height: calc(100% + 10px);
-  width: 100%;
-  background-color: rgb(230, 230, 230);
-  border: 2px dotted rgb(200, 200, 200);
-  border-radius: 5px;
-}
-
-img:after { 
-  content: "\f127" " Missing image of " attr(alt);
-  display: block;
-  font-size: 16px;
-  font-style: normal;
-  font-family: FontAwesome;
-  color: rgb(100, 100, 100);
-  
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  text-align: center;
-}
-
 a {
   color:black;
 }
+

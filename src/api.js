@@ -60,6 +60,15 @@ export const getWorkshopList = id => {
   });
 };
 
+export const getWorkshopListDate = start => {
+  const date = start ? `filter?startDate=${start}&endDate=2025-04-11T00:00:00` : "";
+  return axios.request({
+    url: `https://bettertogether.buildit.systems/api/workshops/${date}`,
+    method: "get"
+  });
+};
+
+
 export const getWorkshop = (id, callback) => {
   const url = `https://bettertogether.buildit.systems/api/workshops/${id}`;
   axios

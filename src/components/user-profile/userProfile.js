@@ -20,7 +20,6 @@ export default class UserProfileComponent extends React.Component {
   componentDidMount() {
     //Merge attended and teaching array
     getUser(this.props.computedMatch.params.id).then(data => {
-      console.log(data);
       this.getUserCallback(data);
     });
   }
@@ -30,7 +29,6 @@ export default class UserProfileComponent extends React.Component {
       this.props.computedMatch.params.id !== prevProps.computedMatch.params.id
     ) {
       getUser(this.props.computedMatch.params.id).then(data => {
-        console.log("this.data", data);
         this.getUserCallback(data);
       });
     }
@@ -80,7 +78,7 @@ export default class UserProfileComponent extends React.Component {
     const { user } = this.state;
     const baseUrl = "https://bettertogether.buildit.systems/";
     const profile = user.imageUrl !== "" ? `${baseUrl}${user.imageUrl}` : "";
-    console.log('state', user)
+  
     return (
       <Fragment>
         <NavbarComponent isUser={isUser} />
