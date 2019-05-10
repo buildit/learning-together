@@ -1,6 +1,5 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import { getToken } from '../utils'
 
 const UserRoute = ({ component: Component, ...props }) => {
   return (

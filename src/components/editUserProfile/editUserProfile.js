@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Link, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import Select from 'react-select'
 import { editUser, getUser, getLocationList, getRolesList, getDisciplineList } from '../../api'
 import { MessageComponent } from '../message'
@@ -55,9 +55,14 @@ export default class EditUserProfileComponent extends React.Component {
     }
   }
   getUserCallback(response) {
-    this.setState({
-      user: response.data, profilePicture: response.data.imageUrl
-    })
+    if (response.status === 200) {
+      this.setState({
+        user: response.data, profilePicture: response.data.imageUrl
+      })
+    }
+    else {
+      console.log(response)
+    }
   }
   getLocationCallback(response) {
     if (response.status === 200) {
