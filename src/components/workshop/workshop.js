@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { UserPreviewComponent } from "../userpreview";
 import Moment from "react-moment";
 import { NavbarComponent } from "../navbar";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, NavLink } from "react-router-dom";
 import { UserContext } from "../../UserProvider";
 import AddToCalendar from "react-add-to-calendar";
 import {
@@ -224,7 +224,9 @@ export default class Workshop extends Component {
               <p>
                 Hosted by{" "}
                 <strong>
+                <NavLink to={`/user/${this.state.educatorId}`} className="">
                   {instructor.firstName} {instructor.lastName}
+                  </NavLink>
                 </strong>
                 <br />
                 <a href="true" className="email">

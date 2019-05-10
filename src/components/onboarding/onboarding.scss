@@ -1,0 +1,21 @@
+@import '../../varibles';
+
+.complete-profile-callout {
+    padding: 2em;
+
+    .greeting {
+    font-weight: 700;
+     color: $bt-blue;
+    }
+}
+
+.button.call-to-action.complete-profile {
+    background-color: $bt-blue;
+    color: #ffffff;
+    font-size: 1.5em;
+    border-radius: 20px;
+    margin: 0 auto;
+    &:hover {
+        background-color: desaturate($bt-blue, 50%);
+    }
+}

@@ -3,15 +3,10 @@
     .schedule-dropdown {
         max-width: 370px;
     }
-.user-profile {
-    justify-content: center;
-    .cell {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
 
-    }
+
+.worskshop-header {
+    margin-bottom: 2em;
 }
 
 .date {
@@ -25,10 +20,9 @@
 }
 
 .profile-frame {
-    border-radius: 100px;
-    width: 118px;
+    border-radius: 50%;
+    width: 150px;
     overflow: hidden;
- 
 
     img {
         object-fit: cover;
@@ -36,10 +30,7 @@
 }
 
 
-.user-info {
-    text-align: center;
-    padding-left: 3em;
-}
+
 }
 
 .workshops-list {
@@ -81,6 +72,10 @@
     display: flex;
     flex-direction: column;
 
+}
+
+.schedule-header {
+    color: #666;
 }
 
 @media only screen and (min-width: 725px) {

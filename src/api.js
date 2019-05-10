@@ -60,6 +60,15 @@ export const getWorkshopList = id => {
   });
 };
 
+export const getWorkshopListDate = start => {
+  const date = start ? `filter?startDate=${start}&endDate=2025-04-11T00:00:00` : "";
+  return axios.request({
+    url: `https://bettertogether.buildit.systems/api/workshops/${date}`,
+    method: "get"
+  });
+};
+
+
 export const getWorkshop = (id, callback) => {
   const url = `https://bettertogether.buildit.systems/api/workshops/${id}`;
   axios
@@ -113,12 +122,7 @@ export const getUser = (id, callback) => {
     url: `https://bettertogether.buildit.systems/api/users/${id}`,
     method: "get"
   })
-    .then(response => {
-      callback(response)
-    })
-    .catch(error => {
-      callback(error)
-    })
+
 };
 
 export const editUser = ({ firstName, lastName, username, password, roleId, locationId, imageUrl, userInterests }, id, callback) => {
@@ -156,7 +160,6 @@ export const createWorkshop = data => {
     })
     .then(function (response) {
       // handle success
-      console.log(response);
       return response;
     })
     .catch(function (error) {
