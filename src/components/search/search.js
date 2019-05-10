@@ -1,8 +1,6 @@
 import React, { Fragment } from "react";
 import { getSearchResults } from "../../api";
 import { Link } from "react-router-dom";
-import { WorkshopPreviewComponent } from "../workshopPreview";
-import { UserPreviewComponent } from "../userpreview";
 import { MessageComponent } from "../message";
 import "./search.scss";
 

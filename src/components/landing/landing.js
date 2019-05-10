@@ -4,15 +4,15 @@ import { Hero } from "../hero";
 import { PreviewComponent } from "../preview";
 import { CategoryListComponent } from "../categoryList";
 import { FooterComponent } from "../footer"
-import { getWorkshopList, getUser,getWorkshopListDate } from '../../api'
+import { getWorkshopList, getUser, getWorkshopListDate } from '../../api'
 import './landing.scss';
 import { NavbarComponent } from "../navbar";
-import { loadCategories} from '../../api';
-import {groupBy,forEach} from 'lodash';
+import { loadCategories } from '../../api';
+import { groupBy, forEach } from 'lodash';
 import moment from 'moment';
 
-import {Onboarding} from "../onboarding";
-import {Schedule} from "../schedule";
+import { Onboarding } from "../onboarding";
+import { Schedule } from "../schedule";
 export default class Landing extends Component {
   constructor(props) {
     super(props);
@@ -30,7 +30,7 @@ export default class Landing extends Component {
       .then(response => {
         let sorted = this.sortByDate(response.data)
         let workshops = sorted
-       
+
         this.setState({ workshops })
       })
       .catch(error => this.setState({ error: 'Please try again later' }))
@@ -42,15 +42,13 @@ export default class Landing extends Component {
           categories: data
         })
       })
-      if(this.props.isUser){
-        const userid = localStorage.getItem('userId');
-        getUser(userid)
-        .then((data) => {
-          this.setState({
-            user: data.data
-          })
+    const userid = localStorage.getItem('userId');
+    getUser(userid)
+      .then((data) => {
+        this.setState({
+          user: data.data
         })
-      }
+      })
   }
 
 
@@ -72,22 +70,22 @@ export default class Landing extends Component {
 
   render() {
 
-    const { isUser, location } = this.props
+    const { location } = this.props
     return (
       <div >
-        <NavbarComponent isUser={isUser} location={location} />
-        <Hero title="Better Together" isUser={isUser} />
+        <NavbarComponent location={location} />
+        <Hero title="Better Together" />
         <div className="grid-container landing-preview">
           <Onboarding user={this.state.user} />
         </div>
         <div className="grid-container">
-          <Schedule workshops={this.state.workshops} user={this.state.user}/>
+          <Schedule workshops={this.state.workshops} user={this.state.user} />
         </div>
         <div className="grid-container landing-preview">
           <h2 className="section-title">Categories</h2>
           <CategoryListComponent workshop={this.state.workshops} categories={this.state.categories} />
         </div>
-        <FooterComponent className='footer' isUser={isUser} userId={this.state.userId} />
+        <FooterComponent className='footer' userId={this.state.userId} />
       </div>
 
     );

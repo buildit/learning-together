@@ -118,14 +118,13 @@ export default class UserProfileComponent extends React.Component {
   }
 
   render() {
-    const { isUser } = this.props;
     const { user } = this.state;
     const baseUrl = "https://bettertogether.buildit.systems/";
     const profile = user.imageUrl !== "" ? `${baseUrl}${user.imageUrl}` : "";
 
     return (
       <Fragment>
-        <NavbarComponent isUser={isUser} />
+        <NavbarComponent />
         <section className="user grid-container">
           <div className="grid-x user-profile grid-margin-x">
             <div className="cell small-9">
@@ -152,25 +151,25 @@ export default class UserProfileComponent extends React.Component {
               </div>
             </div>
             <div className="profile-pic cell small-3">
-                <div className="profile-frame">
-                  <img src={profile} alt="profile" />
-                </div>
-                <a href="/">Edit</a>
+              <div className="profile-frame">
+                <img src={profile} alt="profile" />
               </div>
+              <a href="/">Edit</a>
+            </div>
           </div>
           <div className="courses">
             <hr />
             <div className="upcoming">
-                  <header className="grid-container worskshop-header">
+              <header className="grid-container worskshop-header">
                 <h4>
                   <b>My Workshops</b>
                 </h4>
-                </header>
-              </div>
-              <section className="workshops-list grid-container">
-                <div className="grid-x">
+              </header>
+            </div>
+            <section className="workshops-list grid-container">
+              <div className="grid-x">
                 <header className="cell medium-2">
-                <b className="schedule-header">Attending</b>
+                  <b className="schedule-header">Attending</b>
                 </header>
                 <article className="cell medium-10">
                   {this.state.attending.map((date, index) => {
@@ -188,18 +187,18 @@ export default class UserProfileComponent extends React.Component {
                                 )
                               })}
                             </article>
-                            </Fragment>
+                          </Fragment>
                         )
                       })
                     )
                   })}
                 </article>
-                </div>
-                </section>
-                <section className="workshops-list grid-container">
-                <div className="grid-x">
+              </div>
+            </section>
+            <section className="workshops-list grid-container">
+              <div className="grid-x">
                 <header className="cell medium-2">
-                <b className="schedule-header">Teaching</b>
+                  <b className="schedule-header">Teaching</b>
                 </header>
                 <article className="cell medium-10">
                   {this.state.teaching.map((date, index) => {
@@ -217,7 +216,7 @@ export default class UserProfileComponent extends React.Component {
                                 )
                               })}
                             </article>
-                            </Fragment>
+                          </Fragment>
                         )
                       })
 
@@ -225,10 +224,10 @@ export default class UserProfileComponent extends React.Component {
                     )
                   })}
                 </article>
-                </div>
-              </section>
-       </div>
-       </section>
+              </div>
+            </section>
+          </div>
+        </section>
       </Fragment>
     );
   }

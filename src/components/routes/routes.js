@@ -1,6 +1,6 @@
 import React from "react";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
-import { UserRoute, UnauthenticatedUserRoute } from "../auth";
+import { UserRoute } from "../auth";
 import { EditUserProfileComponent } from "../editUserProfile";
 import { UserProfileComponent } from "../user-profile";
 import { Page404Component } from "../page404";

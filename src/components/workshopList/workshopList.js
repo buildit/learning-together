@@ -38,7 +38,6 @@ class WorkshopList extends Component {
     return (
       <Fragment>
         <NavbarComponent
-          isUser={this.props.isUser}
           location={this.props.location}
         />
         <section className="current-category first-container">
