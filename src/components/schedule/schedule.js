@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import Moment from "react-moment";
 import "./schedule.scss";
 import { groupBy, forEach } from 'lodash';
 import moment from 'moment';
@@ -137,15 +136,15 @@ export default class Schedule extends React.Component {
                         {dates.map((date, index) => {
                             return (
 
-                                Object.keys(date).map((key) => {
+                                Object.keys(date).map((key, idx) => {
 
                                     return (
-                                        <section>
+                                        <section key={idx}>
                                             <b className="time-header">{key}</b>
                                             <article className="workshopsforday">
                                                 {date[key].map((workshop, index) => {
                                                     return (
-                                                        <WorkshopPreviewComponent workshop={workshop} />
+                                                        <WorkshopPreviewComponent workshop={workshop} key={index} />
                                                     )
                                                 })}
                                             </article>
@@ -161,22 +160,22 @@ export default class Schedule extends React.Component {
                         <nav className="workshop-filter">
                             <ul>
                                 <li>
-                                    <button className={`filter-schedule ${(this.state.current == "all") ? "current arrow_box" : ""}`} onClick={this.filterByAll}>
+                                    <button className={`filter-schedule ${(this.state.current === "all") ? "current arrow_box" : ""}`} onClick={this.filterByAll}>
                                         All
                             </button>
                                 </li>
                                 <li>
-                                    <button className={`filter-schedule ${(this.state.current == "teaching") ? "current arrow_box" : ""}`} onClick={this.filterByTeaching}>
+                                    <button className={`filter-schedule ${(this.state.current === "teaching") ? "current arrow_box" : ""}`} onClick={this.filterByTeaching}>
                                         Teaching
                             </button>
                                 </li>
                                 <li>
-                                    <button className={`filter-schedule ${(this.state.current == "attending") ? "current  arrow_box" : ""}`} onClick={this.filterByAttending}>
+                                    <button className={`filter-schedule ${(this.state.current === "attending") ? "current  arrow_box" : ""}`} onClick={this.filterByAttending}>
                                         Attending
                             </button>
                                 </li>
                                 <li>
-                                    <button className={`filter-schedule ${(this.state.current == "recommended") ? "current arrow_box" : ""}`} onClick={this.filterByInterests}>
+                                    <button className={`filter-schedule ${(this.state.current === "recommended") ? "current arrow_box" : ""}`} onClick={this.filterByInterests}>
                                         Recommended
                             </button>
                                 </li>

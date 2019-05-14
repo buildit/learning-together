@@ -1,14 +1,11 @@
 import React, { Component } from "react";
-import { NavLink } from 'react-router-dom'
 import { Hero } from "../hero";
-import { PreviewComponent } from "../preview";
 import { CategoryListComponent } from "../categoryList";
 import { FooterComponent } from "../footer"
-import { getWorkshopList, getUser, getWorkshopListDate } from '../../api'
+import { getUser, getWorkshopListDate } from '../../api'
 import './landing.scss';
 import { NavbarComponent } from "../navbar";
 import { loadCategories } from '../../api';
-import { groupBy, forEach } from 'lodash';
 import moment from 'moment';
 
 import { Onboarding } from "../onboarding";
