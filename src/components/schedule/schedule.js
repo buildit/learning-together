@@ -136,15 +136,15 @@ export default class Schedule extends React.Component {
                         {dates.map((date, index) => {
                             return (
 
-                                Object.keys(date).map((key, idx) => {
+                                Object.keys(date).map((key, index) => {
 
                                     return (
-                                        <section key={idx}>
+                                        <section key={`date-section-${index}`}>
                                             <b className="time-header">{key}</b>
                                             <article className="workshopsforday">
                                                 {date[key].map((workshop, index) => {
                                                     return (
-                                                        <WorkshopPreviewComponent workshop={workshop} key={index} />
+                                                        <WorkshopPreviewComponent workshop={workshop} key={`workshop-preview-${index}`} />
                                                     )
                                                 })}
                                             </article>

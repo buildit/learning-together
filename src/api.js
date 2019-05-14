@@ -240,7 +240,7 @@ export const getRolesList = callback => {
 };
 
 export const getSearchResults = (input, callback) => {
-  const url = `https://bettertogether.buildit.systems//api/search?search=${input}&maxResults=5`;
+  const url = `https://bettertogether.buildit.systems/api/search?search=${input}&maxResults=5`;
   axios
     .get(url)
     .then(response => {

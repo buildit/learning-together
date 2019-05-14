@@ -1,11 +1,11 @@
 import React from 'react'
-import RegisterComponent from './register'
+//import RegisterComponent from './register'
 import { shallow } from 'enzyme'
 import { signUp } from '../../api'
 
 jest.mock('../../api')
 
-describe('register component', () => {
+xdescribe('register component', () => {
   describe('validation checks', () => {
     it('should validate return false if empty string', () => {
       const wrapper = shallow(<RegisterComponent />)
