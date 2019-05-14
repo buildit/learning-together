@@ -24,18 +24,14 @@ export default class UserProfileComponent extends React.Component {
 
   componentDidMount() {
     //Merge attended and teaching array
-    getUser(this.props.computedMatch.params.id).then(data => {
-      this.getUserCallback(data);
-    });
+    getUser(this.props.computedMatch.params.id, this.getUserCallback)
   }
 
   componentDidUpdate(prevProps) {
     if (
       this.props.computedMatch.params.id !== prevProps.computedMatch.params.id
     ) {
-      getUser(this.props.computedMatch.params.id).then(data => {
-        this.getUserCallback(data);
-      });
+      getUser(this.props.computedMatch.params.id, this.getUserCallback)
     }
   }
 

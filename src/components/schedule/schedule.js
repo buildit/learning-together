@@ -72,7 +72,6 @@ export default class Schedule extends React.Component {
     }
 
     filterByTeaching = () => {
-        debugger
         const workshops = this.props.user.workshopsTeaching.map(workshop => {
             return (
                 this.state.workshops.filter(teaching => {

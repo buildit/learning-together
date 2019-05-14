@@ -118,10 +118,17 @@ export const unenrollWorkshop = (id, callback) => {
 };
 
 export const getUser = (id, callback) => {
-  return axios.request({
-    url: `https://bettertogether.buildit.systems/api/users/${id}`,
-    method: "get"
-  })
+  const url = `https://bettertogether.buildit.systems/api/users/${id}`
+  return new Promise((resolve, reject) => {
+    axios
+      .get(url)
+      .then(response => {
+        callback(response);
+      })
+      .catch(error => {
+        callback(error);
+      });
+  });
 
 };
 
