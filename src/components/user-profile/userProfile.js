@@ -120,7 +120,6 @@ export default class UserProfileComponent extends React.Component {
   render() {
     const { user } = this.state;
     const baseUrl = "https://bettertogether.buildit.systems/";
-    const profile = user.imageUrl !== "" ? `${baseUrl}${user.imageUrl}` : "";
 
     return (
       <Fragment>
@@ -152,9 +151,9 @@ export default class UserProfileComponent extends React.Component {
             </div>
             <div className="profile-pic cell small-3">
               <div className="profile-frame">
-                <img src={profile} alt="profile" />
+                {Object.keys(user).length > 0 && <img src={baseUrl+user.imageUrl} alt="profile" />}
               </div>
-              <a href="/">Edit</a>
+              <a href={`/#/settings/${user.id}`}>Edit</a>
             </div>
           </div>
           <div className="courses">
@@ -175,15 +174,15 @@ export default class UserProfileComponent extends React.Component {
                   {this.state.attending.map((date, index) => {
                     return (
 
-                      Object.keys(date).map((key) => {
+                      Object.keys(date).map((key, index) => {
 
                         return (
-                          <Fragment>
+                          <Fragment key={`workshop-list-${index}`}>
                             <b className="time-header">{key}</b>
                             <article className="workshopsforday">
                               {date[key].map((workshop, index) => {
                                 return (
-                                  <WorkshopPreviewComponent workshop={workshop} />
+                                  <WorkshopPreviewComponent workshop={workshop} key={`workshop-preview-${index}`}/>
                                 )
                               })}
                             </article>
@@ -204,15 +203,15 @@ export default class UserProfileComponent extends React.Component {
                   {this.state.teaching.map((date, index) => {
                     return (
 
-                      Object.keys(date).map((key) => {
+                      Object.keys(date).map((key, index) => {
 
                         return (
-                          <Fragment>
+                          <Fragment key={`workshop-list-${index}`}>
                             <b className="time-header">{key}</b>
                             <article className="workshopsforday">
                               {date[key].map((workshop, index) => {
                                 return (
-                                  <WorkshopPreviewComponent workshop={workshop} />
+                                  <WorkshopPreviewComponent workshop={workshop} key={`workshop-preview-${index}`}/>
                                 )
                               })}
                             </article>
