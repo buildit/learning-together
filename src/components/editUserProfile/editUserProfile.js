@@ -128,7 +128,9 @@ export default class EditUserProfileComponent extends React.Component {
   toggleDisciplineError() {
     this.setState({ disciplineFetchError: !this.state.disciplineFetchError })
   }
-
+  toggleEditError() {
+    this.setState({ editProfileError: !this.state.editProfileError, })
+  }
   validateName(name) {
     if (name === '') {
       return false
@@ -296,7 +298,7 @@ export default class EditUserProfileComponent extends React.Component {
           </div>
         </div >
         {editProfileSuccess && (<MessageComponent message='Your profile was successfully changed.' callback={this.redirectCallback} />)}
-        {editProfileError && (<MessageComponent message='Your profile was unsuccesfully changed. Please Try again later.' callback={this.toggleError.bind(this)} />)}
+        {editProfileError && (<MessageComponent message='Your profile was unsuccesfully changed. Please Try again later.' callback={this.toggleEditError.bind(this)} />)}
         {locationFetchError && (<MessageComponent message='Locations service is down. Please try again later' callback={this.toggleLocationError.bind(this)} />)}
         {rolesFetchError && (<MessageComponent message='Roles service is down. Please try again later' callback={this.toggleRolesError.bind(this)} />)}
         {disciplineFetchError && (<MessageComponent message='Roles service is down. Please try again later' callback={this.toggleDisciplineError.bind(this)} />)}
