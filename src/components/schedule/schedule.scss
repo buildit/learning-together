@@ -1,0 +1,56 @@
+@import '../../varibles';
+
+.workshopsforday {
+   
+    overflow: hidden;
+    margin-bottom: 2em;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-bottom: none;
+
+    .workshop-data {
+        margin-left: 1em;
+    }
+
+    time {
+        white-space: nowrap;
+        font-weight: 600;
+    }
+
+    .workshop-link {
+        margin-bottom: 0;
+        padding-top:1em;
+        padding-bottom: 1em;
+        padding-left: .5em;
+    }
+}
+
+.workshop-filter {
+    li {
+        list-style: none;
+    }
+
+    .filter-schedule {
+        background: #fff;
+        display: inline-block;
+        padding: 1em;
+        width: 100%;
+        margin-bottom: 0;
+        border: 1px solid #ccc;
+        font-weight: 600;
+
+        &:hover {
+            background-color: lighten($bt-blue,30%);
+        }
+
+        &.current {
+            background-color: $bt-blue;
+            color: #fff;
+        }
+    }
+
+    button {
+        outline: none;
+        cursor: pointer;
+    }
+}

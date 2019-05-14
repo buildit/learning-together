@@ -5,6 +5,8 @@ import { Link, Redirect } from "react-router-dom";
 import { MessageComponent } from "../message";
 import { ImageUploaderComponent } from "../imageUploader";
 import { getCategoryList, getLocationList } from "../../api.js";
+import TimePicker from "rc-time-picker";
+import "rc-time-picker/assets/index.css";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import "./workshopForm.scss";
@@ -23,16 +25,8 @@ class WorkshopForm extends Component {
       calendarFocused: false,
       categoryList: [],
       categorySelected: props.data ? props.data.categoryId : 1,
-      startTime: props.data
-        ? moment(props.data.start)
-            .format("HH:mm:ss")
-            .slice(0, 5)
-        : "",
-      endTime: props.data
-        ? moment(props.data.end)
-            .format("HH:mm:ss")
-            .slice(0, 5)
-        : "",
+      startTime: props.data ? moment(props.data.start) : null,
+      endTime: props.data ? moment(props.data.end) : null,
       error: {},
       redirect: false,
       workshopPicture: props.data ? props.data.imageUrl : "",
@@ -80,9 +74,7 @@ class WorkshopForm extends Component {
 
       if (nextProps.data.start !== this.props.data.start) {
         this.setState({
-          startTime: moment(nextProps.data.start)
-            .format("HH:mm:ss")
-            .slice(0, 5),
+          startTime: moment(nextProps.data.start),
           startDate: moment(nextProps.data.start),
           endDate: moment(nextProps.data.end)
         });
@@ -91,8 +83,6 @@ class WorkshopForm extends Component {
       if (nextProps.data.end !== this.props.data.end) {
         this.setState({
           endTime: moment(nextProps.data.end)
-            .format("HH:mm:ss")
-            .slice(0, 5)
         });
       }
 
@@ -115,22 +105,19 @@ class WorkshopForm extends Component {
       }
     }
   }
-
   //If input is start time or date time modify moment object
-  handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-    if (e.target.name === "startTime" || e.target.name === "endTime") {
-      if (e.target.name === "startTime" && this.state.startDate) {
-        this.state.startDate.set({ h: e.target.value.slice(0, 2) });
-        this.state.startDate.set({ m: e.target.value.slice(3, 5) });
-      }
-
-      if (e.target.name === "endTime" && this.state.startDate) {
-        const endDate = this.state.startDate.clone();
-        endDate.set({ h: e.target.value.slice(0, 2) });
-        endDate.set({ m: e.target.value.slice(3, 5) });
-        this.setState({ endDate });
-      }
+  handleChange(e, name) {
+    if (name !== undefined && (name === "startTime" || name === "endTime")) {
+      const month = this.state.startDate.month();
+      const day = this.state.startDate.date();
+      const year = this.state.startDate.year();
+      const time = e
+        .year(year)
+        .month(month)
+        .date(day);
+      this.setState({ [name]: time });
+    } else {
+      this.setState({ [e.target.name]: e.target.value });
     }
   }
 
@@ -141,12 +128,31 @@ class WorkshopForm extends Component {
   }
 
   onDateChange(date) {
+    const month = date.month();
+    const day = date.date();
+    const year = date.year();
     this.setState({
       startDate: date,
-      endDate: date,
-      startTime: "",
-      endTime: ""
+      endDate: date
     });
+
+    if (this.state.startTime !== null) {
+      const startTime = this.state.startTime
+        .year(year)
+        .month(month)
+        .date(day);
+      this.setState({
+        startTime
+      });
+    }
+
+    if (this.state.endTime !== null) {
+      const endTime = this.state.endTime
+        .year(year)
+        .month(month)
+        .date(day);
+      this.setState({ endTime });
+    }
   }
 
   onFocusChange({ focused }) {
@@ -190,8 +196,8 @@ class WorkshopForm extends Component {
     } else {
       const data = {
         name: this.state.name,
-        start: this.state.startDate.format("YYYY-MM-DDTHH:mm:ss.SSS"),
-        end: this.state.endDate.format("YYYY-MM-DDTHH:mm:ss.SSS"),
+        start: this.state.startTime.format("YYYY-MM-DDTHH:mm:ss.SSS"),
+        end: this.state.endTime.format("YYYY-MM-DDTHH:mm:ss.SSS"),
         locationId: this.state.location,
         categoryId: parseInt(this.state.categorySelected),
         webex: this.state.link,
@@ -274,28 +280,40 @@ class WorkshopForm extends Component {
                 <span className="error">{this.state.error.date}</span>
               </div>
               <div className="medium-8 cell">
-                <label>
-                  Start Time
-                  <input
-                    type="time"
-                    name="startTime"
-                    value={this.state.startTime}
-                    required
-                    onChange={this.handleChange}
-                  />
-                  <span className="error">{this.state.error.time}</span>
-                </label>
-                <label>
-                  End Time
-                  <input
-                    type="time"
-                    name="endTime"
-                    value={this.state.endTime}
-                    required
-                    onChange={this.handleChange}
-                  />
-                  <span className="error">{this.state.error.time}</span>
-                </label>
+                <label>Start time</label>
+                <TimePicker
+                  className="custom-time-picker"
+                  name="startTime"
+                  defaultValue={null}
+                  showSecond={false}
+                  minuteStep={15}
+                  allowEmpty={false}
+                  use12Hours={true}
+                  focusOnOpen={true}
+                  onChange={(value, name = "startTime") =>
+                    this.handleChange(value, name)
+                  }
+                  value={this.state.startTime}
+                />
+                <span className="error">{this.state.error.time}</span>
+              </div>
+              <div className="medium-8 cell">
+                <label>End time</label>
+                <TimePicker
+                  className="custom-time-picker"
+                  name="endTime"
+                  defaultValue={null}
+                  showSecond={false}
+                  minuteStep={15}
+                  allowEmpty={false}
+                  use12Hours={true}
+                  focusOnOpen={true}
+                  onChange={(value, name = "endTime") =>
+                    this.handleChange(value, name)
+                  }
+                  value={this.state.endTime}
+                />
+                <span className="error">{this.state.error.time}</span>
               </div>
               <div className="medium-8 cell">
                 <label>

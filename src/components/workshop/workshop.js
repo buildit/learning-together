@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { UserPreviewComponent } from "../userpreview";
 import Moment from "react-moment";
 import { NavbarComponent } from "../navbar";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, NavLink } from "react-router-dom";
 import { UserContext } from "../../UserProvider";
 import AddToCalendar from "react-add-to-calendar";
 import {
@@ -139,8 +139,8 @@ export default class Workshop extends Component {
     const attendees =
       this.state.workshop.workshopAttendees.length > 0
         ? `There are ${
-            this.state.workshop.workshopAttendees.length
-          } attendee(s).`
+        this.state.workshop.workshopAttendees.length
+        } attendee(s).`
         : "";
     this.setState({
       confirmCancel: true,
@@ -177,7 +177,6 @@ export default class Workshop extends Component {
     const instructor = workshop.educator
       ? workshop.educator
       : { firstName: "", lastName: "" };
-    const { isUser } = this.props;
     const isEducator = userId === educatorId;
     const isAttending = workshop && filterAttendees(userId, workshop);
     const event = {
@@ -200,7 +199,7 @@ export default class Workshop extends Component {
           />
         )}
         {this.renderRedirect()}
-        <NavbarComponent isUser={isUser} location={this.props.location} />
+        <NavbarComponent location={this.props.location} />
         <section className="grid-container class-info">
           <article className="grid-x align-middle">
             <div className="small-12 medium-8 instructor-info">
@@ -218,14 +217,16 @@ export default class Workshop extends Component {
                     alt="Instructor"
                   />
                 ) : (
-                  <FontAwesomeIcon icon="user-circle" size="3x" />
-                )}
+                    <FontAwesomeIcon icon="user-circle" size="3x" />
+                  )}
               </div>
 
               <p>
                 Hosted by{" "}
                 <strong>
+                <NavLink to={`/user/${this.state.educatorId}`} className="">
                   {instructor.firstName} {instructor.lastName}
+                  </NavLink>
                 </strong>
                 <br />
                 <a href="true" className="email">
@@ -235,7 +236,7 @@ export default class Workshop extends Component {
             </div>
 
             <div className="cell small-12 medium-4 flex-container enroll-button">
-              {isUser ? (
+              {
                 isEducator ? (
                   [
                     <Link
@@ -263,24 +264,15 @@ export default class Workshop extends Component {
                     UNENROLL
                   </button>
                 ) : (
-                  <button
-                    type="button"
-                    className="button flex-child-auto large-flex-child-shrink"
-                    onClick={this.onClickEnroll.bind(this)}
-                  >
-                    ENROLL
+                      <button
+                        type="button"
+                        className="button flex-child-auto large-flex-child-shrink"
+                        onClick={this.onClickEnroll.bind(this)}
+                      >
+                        ENROLL
                   </button>
-                )
-              ) : (
-                <Link
-                  type="button"
-                  to="/login"
-                  className="button expanded button flex-child-auto large-flex-child-shrink"
-                  onClick={() => {}}
-                >
-                  LOGIN TO ENROLL
-                </Link>
-              )}
+                    )
+              }
             </div>
           </article>
         </section>
