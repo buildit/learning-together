@@ -5,7 +5,7 @@ warnings_are_errors: false
 env:
   global:
     - SERVER_IP_ADDRESS=ec2-18-224-56-34.us-east-2.compute.amazonaws.com
-    - NODE_ENV=production
+    - REACT_APP_URL=https://bettertogether.buildit.systems
 branches:
   only:
   - development
