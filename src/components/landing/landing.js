@@ -20,6 +20,7 @@ export default class Landing extends Component {
       user: null,
       error: null
     };
+    this.getUserCallback = this.getUserCallback.bind(this)
   }
 
   componentDidMount() {
@@ -40,12 +41,16 @@ export default class Landing extends Component {
         })
       })
     const userid = localStorage.getItem('userId');
-    getUser(userid)
-      .then((data) => {
-        this.setState({
-          user: data.data
-        })
+    getUser(userid, this.getUserCallback)
+  }
+  getUserCallback(response) {
+    if (response.status === 200) {
+      this.setState({
+        user: response.data
       })
+    } else {
+      console.log(response)
+    }
   }
 
 
