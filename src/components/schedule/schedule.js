@@ -144,7 +144,7 @@ export default class Schedule extends React.Component {
                                             <article className="workshopsforday">
                                                 {date[key].map((workshop, index) => {
                                                     return (
-                                                        <WorkshopPreviewComponent workshop={workshop} key={`workshop-preview-${index}`}/>
+                                                        <WorkshopPreviewComponent workshop={workshop} key={`workshop-preview-${index}`} />
                                                     )
                                                 })}
                                             </article>

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import "./hero.scss";
 
-const Hero = ({ image, title }) => {
+const Hero = ({ image }) => {
 
   const img = image ? image : `${process.env.PUBLIC_URL}/images/cover/default.jpg`
 
