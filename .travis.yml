@@ -4,7 +4,7 @@ node_js:
 warnings_are_errors: false
 env:
   global:
-    - SERVER_IP_ADDRESS=ec2-18-224-56-34.us-east-2.compute.amazonaws.com
+  - SERVER_IP_ADDRESS=ec2-18-224-56-34.us-east-2.compute.amazonaws.com
 branches:
   only:
   - development
@@ -42,4 +42,6 @@ stages:
   if: branch = development
 - name: deploy
   if: branch = master
-
+notifications:
+  slack:
+    secure: QNI+dFMvdrco0lebdnXkDf58HTV5IcCvqjZ5917fIRffvx8ciDYuRA4WGyzSOFhesVsLHVrcV1zb2Qhhrkd8d1McRL+smpokybHamuWu2mLKyNgzzxeKNc2/f+6uA6AYGr+ryCMZWt1mlMEVaYcWibMYzoR/GCjdaUoOqibiRCyrpWXCiY4VAwsf2dRkQ/t6bY5O2zufy9yps2ehBSZPaykqy8NZwS2wCxv4cgkFnLqqoQ4mXA0ZK6HeXgtPPtJSHaqbGUuejsJzlk/sXwtxL6X43sPV9Gt4vSkcHqm8ulzqmFPQ1pxpfa9868A28zgMr4SHBHe5OsZ0oeaxwlui/L2VpmzWEVn+KhF+4RpiqnMHYOYiHcSVJzgtDqGXcoDI4bS9hbliDbzo2ABPuaj69cVUy2UwtQK3JLPiMWNvss3qhW1qbpScCJxc/gCvAU7cgrsGkaF6P8uMVDsCYJThHIzJyGqkqs6bsHj0rR8ZpYZV7leCmkiR0PywtaIk9u1UmHN7QopRJ450o7kHoJxV6vQiJQGPDUN/dRk7c7WDhJSvsr9k3/9wIEfbHoC+cyE8BG1ZlkZg8Ov+VeggA0bXaVMpzID/hs20TeR9SGD26Sv/o4++fU/tHtWtiW4Ueyc9RUtjyOv/hhoP398U4ZNn95GmXs1W11zzmNySzVkzVaw=
