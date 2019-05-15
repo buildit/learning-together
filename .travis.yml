@@ -9,7 +9,7 @@ branches:
   only:
   - development
   - master
-after_failure:
+after_success:
 - npm run coverage
 before_deploy:
 - npm run build
