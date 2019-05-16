@@ -31,8 +31,7 @@
     "build": "REACT_APP_URL=https://bettertogether.buildit.systems react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "coverage": "react-scripts test --coverage --coverageReporters=text-lcov | coveralls",
-    "cover": "react-scripts test --coverage"
+    "coverage": "react-scripts test --coverage && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
   "eslintConfig": {
     "extends": "react-app"
