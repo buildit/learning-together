@@ -1,7 +1,7 @@
 language: node_js
 node_js:
 - 11.14.0
-warnings_are_errors: false
+warnings_are_errors: true
 env:
   global:
     - SERVER_IP_ADDRESS=ec2-18-224-56-34.us-east-2.compute.amazonaws.com
