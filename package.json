@@ -44,6 +44,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "coveralls": "^3.0.3",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1"
   }
