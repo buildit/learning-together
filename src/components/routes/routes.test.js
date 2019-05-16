@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { default as RoutesComponent } from './routes';
-jest.mock('../register');
-jest.mock('../login');
+//jest.mock('../register');
 jest.mock('../user-profile');
 jest.mock('../page404');
 jest.mock('../landing');

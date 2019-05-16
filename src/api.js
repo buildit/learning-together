@@ -59,6 +59,15 @@ export const getWorkshopList = id => {
   });
 };
 
+export const getWorkshopListDate = start => {
+  const date = start ? `filter?startDate=${start}&endDate=2025-04-11T00:00:00` : "";
+  return axios.request({
+    url: `https://bettertogether.buildit.systems/api/workshops/${date}`,
+    method: "get"
+  });
+};
+
+
 export const getWorkshop = (id, callback) => {
   const url = `https://bettertogether.buildit.systems/api/workshops/${id}`;
   axios
@@ -108,6 +117,7 @@ export const unenrollWorkshop = (id, callback) => {
 };
 
 export const getUser = (id, callback) => {
+<<<<<<< HEAD
   return axios
     .request({
       url: `https://bettertogether.buildit.systems/api/users/${id}`,
@@ -146,6 +156,24 @@ export const editUser = (
     imageUrl
   };
   console.log("data", data, "id", id);
+=======
+  const url = `https://bettertogether.buildit.systems/api/users/${id}`
+  return new Promise((resolve, reject) => {
+    axios
+      .get(url)
+      .then(response => {
+        callback(response);
+      })
+      .catch(error => {
+        callback(error);
+      });
+  });
+
+};
+
+export const editUser = ({ firstName, lastName, username, password, roleId, locationId, imageUrl, userInterests }, id, callback) => {
+  const data = { firstName, lastName, username, password, roleId, locationId, imageUrl, userInterests }
+>>>>>>> development
   return axios
     .request({
       url: `https://bettertogether.buildit.systems/api/users/${id}`,
@@ -157,12 +185,11 @@ export const editUser = (
     })
     .then(function(response) {
       // handle success
-      console.log(response);
       return callback(response);
     })
     .catch(function(error) {
       // handle error
-      console.log(error);
+      callback(error);
     });
 };
 // Make a request for a user with a given token
@@ -178,7 +205,6 @@ export const createWorkshop = data => {
     })
     .then(function(response) {
       // handle success
-      console.log(response);
       return response;
     })
     .catch(function(error) {
@@ -202,6 +228,20 @@ export function uploadImage(data, callback) {
       callback(error);
     });
 }
+
+export const getDisciplineList = (callback) => {
+  return axios.request({
+    url:
+      "https://bettertogether.buildit.systems/api/disciplines",
+    method: "get"
+  })
+    .then(response => {
+      callback(response)
+    })
+    .catch(error => {
+      callback(error)
+    });
+};
 
 export const getCategoryList = () => {
   return axios.request({
@@ -235,7 +275,7 @@ export const getRolesList = callback => {
 };
 
 export const getSearchResults = (input, callback) => {
-  const url = `https://bettertogether.buildit.systems//api/search?search=${input}&maxResults=5`;
+  const url = `https://bettertogether.buildit.systems/api/search?search=${input}&maxResults=5`;
   axios
     .get(url)
     .then(response => {

@@ -6,7 +6,8 @@ export const adalConfig = {
     api: 'https://login.microsoftonline.com/1a6dbb80-5290-4fd1-a938-0ad7795dfd7a/oauth2/v2.0/authorize'
   },
   postLogoutRedirectUri: window.location.origin,
-  redirectUri: process.env.REACT_APP_URL.toString(),
+  //redirectUri: process.env.REACT_APP_URL.toString(),
+  redirectUri: process.env.REACT_APP_URL,
   cacheLocation: 'sessionStorage'
 };
 export const authContext = new AuthenticationContext(adalConfig);

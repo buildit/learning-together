@@ -33,7 +33,7 @@ class Browse extends Component {
 
     return (
       <Fragment>
-        <NavbarComponent isUser={this.props.isUser} />
+        <NavbarComponent />
         <section
           id="browser-container"
           className="current-category first-container"

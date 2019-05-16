@@ -29,7 +29,7 @@ describe("workshop Form tests", () => {
     expect(wrapper.state("categorySelected")).toBe(2);
   });
 
-  it("Should handle start time input and update state", () => {
+  xit("Should handle start time input and update state", () => {
     const input = wrapper.find("input[name='startTime']");
 
     input.simulate("change", { target: { name: "startTime", value: "10:00" } });
@@ -38,7 +38,7 @@ describe("workshop Form tests", () => {
     expect(wrapper.state("startTime")).toBe("10:00");
   });
 
-  it("Should handle end time input and update state", () => {
+  xit("Should handle end time input and update state", () => {
     const input = wrapper.find("input[name='endTime']");
 
     input.simulate("change", { target: { name: "endTime", value: "13:00" } });

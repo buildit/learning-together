@@ -36,7 +36,6 @@ class Navbar extends Component {
   }
 
   render() {
-    const { isUser } = this.props
     const userId = localStorage.getItem('userId')
     const accountDropDown = (
       <nav className="account-dropdown">
@@ -72,8 +71,7 @@ class Navbar extends Component {
               <div className="desktop">
                 <Link
                   to={{
-                    pathname: "/workshops",
-                    state: { isUser }
+                    pathname: "/workshops"
                   }}
                   className="flex flex-column justify-center align-items-center"
                 >
@@ -81,17 +79,9 @@ class Navbar extends Component {
               </Link>
               </div>
               <div className="cell small-2 medium-1 text-center dropdown">
+                <FontAwesomeIcon icon="user-circle" size="2x" onClick={this.toggleShowAccount} />
                 {
-                  isUser ? (
-                    <Fragment>
-                      <FontAwesomeIcon icon="user-circle" size="2x" onClick={this.toggleShowAccount} />
-                      {
-                        this.state.showAccount && (accountDropDown)
-                      }
-                    </Fragment>
-                  )
-                    :
-                    <Link to="/login">Login</Link>
+                  this.state.showAccount && (accountDropDown)
                 }
               </div>
             </div>
