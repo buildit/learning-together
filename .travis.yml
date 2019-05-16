@@ -28,6 +28,7 @@ cache:
   - "$HOME/.npm"
 jobs:
   include:
+  - stage: test
   - stage: build
     script: npm run build
   - stage: deploy
