@@ -10,7 +10,7 @@ branches:
   - development
   - master
 after_success:
-- ./scripts/run-coveralls.sh
+- npm run coverage
 before_deploy:
 - npm run build
 - openssl aes-256-cbc -K $encrypted_2480938aff30_key -iv $encrypted_2480938aff30_iv
