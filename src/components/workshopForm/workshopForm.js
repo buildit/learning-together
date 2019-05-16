@@ -4,7 +4,14 @@ import { SingleDatePicker } from "react-dates";
 import { Link, Redirect } from "react-router-dom";
 import { MessageComponent } from "../message";
 import { ImageUploaderComponent } from "../imageUploader";
-import { getCategoryList, getLocationList } from "../../api.js";
+import {
+  getCategoryList,
+  getLocationList,
+  getAuth,
+  viewEvent,
+  bookRoom,
+  deleteEvent
+} from "../../api.js";
 import TimePicker from "rc-time-picker";
 import "rc-time-picker/assets/index.css";
 import "react-dates/initialize";
@@ -45,6 +52,8 @@ class WorkshopForm extends Component {
 
   //TODO Handle Error
   componentDidMount() {
+    //getAuth().then(response => console.log(response));
+
     getCategoryList()
       .then(response => this.setState({ categoryList: response.data }))
       .catch(error => {
@@ -233,6 +242,20 @@ class WorkshopForm extends Component {
         </option>
       );
     });
+
+    if (
+      this.state.location === 1 &&
+      this.state.startTime !== null &&
+      this.state.endTime !== null
+    ) {
+      console.log("location is 1");
+      /*getAuth(this.state.startTime, this.state.endTime).then(response =>
+        console.log(response)
+      );*/
+      //bookRoom().then(response => console.log(response))
+      //viewEvent("105604655").then(response => console.log(response));
+      //deleteEvent("105604655").then(response => console.log(response))
+    }
 
     return (
       <div className="workshop-form first-container">
