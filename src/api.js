@@ -1,7 +1,6 @@
 import axios from "axios";
 import { getToken } from './components/auth/utils'
 const token = getToken();
-
 export async function signIn(username, callback) {
   const url =
     "https://bettertogether.buildit.systems/api/users/authenticate";
