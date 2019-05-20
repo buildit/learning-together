@@ -7,7 +7,7 @@ import { BrowseComponent } from "../../navbarModule";
 import { WorkshopListComponent, WorkshopCreateComponent, WorkshopEditComponent, WorkshopComponent } from '../../workshopModule'
 import { ConfirmationComponent } from "../../messageModule";
 import UserProvider from '../../../UserProvider'
-import { UserRoute } from '../../auth'
+import { UserRoute } from '../../authModule'
 
 export default class RoutesComponent extends React.Component {
   editUserProfile({ component: Component, props }) {

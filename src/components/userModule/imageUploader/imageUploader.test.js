@@ -1,9 +1,9 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import { default as Component } from './imageUploader'
-import { uploadImage } from '../../api'
+import { uploadImage } from '../../../api'
 
-jest.mock('../../api')
+jest.mock('../../../api')
 
 describe('imageUploader Component', () => {
   describe('imageUploader submit handler', () => {

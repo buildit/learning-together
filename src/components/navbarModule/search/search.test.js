@@ -1,9 +1,9 @@
 import React from 'react'
 import { default as Component } from './search'
 import { shallow } from 'enzyme'
-import { getSearchResults } from '../../api'
+import { getSearchResults } from '../../../api'
 
-jest.mock('../../api')
+jest.mock('../../../api')
 describe('Search Component', () => {
   describe('search handler', () => {
     it('should call getSearchResults if input is not blank', () => {

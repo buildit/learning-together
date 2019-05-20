@@ -1,9 +1,9 @@
 import React from 'react'
 //import RegisterComponent from './register'
 import { shallow } from 'enzyme'
-import { signUp } from '../../api'
+import { signUp } from '../../../api'
 
-jest.mock('../../api')
+jest.mock('../../../api')
 
 xdescribe('register component', () => {
   describe('validation checks', () => {

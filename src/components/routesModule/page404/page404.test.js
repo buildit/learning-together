@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { default as Page404Component } from './page404'
 import { shallow } from 'enzyme'
-jest.mock('../navbar')
+jest.mock('../../navbarModule')
 
 describe('404 page component', () => {
   it('should render', () => {
