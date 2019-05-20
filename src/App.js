@@ -3,7 +3,7 @@ import { RoutesComponent } from "./components";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faMapMarker, faUserCircle, faPencilAlt, faSearch, faVideo, faBuilding, faClock, faSpinner, faCheck, faMinus } from "@fortawesome/free-solid-svg-icons";
 import { signIn } from './api'
-import { getUserInfo } from './components/auth/utils'
+import { getUserInfo } from './components/utils'
 import { MessageComponent } from './components'
 import './App.scss'
 
