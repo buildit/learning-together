@@ -5,7 +5,8 @@ import logo from './logo.png';
 import { LoadingComponent } from '../../messageModule'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SearchComponent } from '../search'
-import { logout } from '../../utils'
+// import { logout } from '../../utils'
+import AuthService from '../../../services/auth.service'
 
 class Navbar extends Component {
   constructor(props, context) {
@@ -18,6 +19,7 @@ class Navbar extends Component {
     }
     this.toggleShowSearch = this.toggleShowSearch.bind(this)
     this.toggleShowAccount = this.toggleShowAccount.bind(this)
+    this.fireLogout = this.fireLogout.bind(this)
   }
   componentDidUpdate(prevProps) {
     if (this.props.match.params.id !== prevProps.match.params.id) {
@@ -35,6 +37,12 @@ class Navbar extends Component {
     localStorage.removeItem('userId')
   }
 
+  fireLogout() {
+    // create and dispatch the event
+    var event = new CustomEvent("logout", {})
+    window.dispatchEvent(event);
+  }
+
   render() {
     const userId = localStorage.getItem('userId')
     const accountDropDown = (
@@ -50,7 +58,7 @@ class Navbar extends Component {
           </li>
           <li><Link to={`/user/${userId}`}>Profile</Link></li>
           <li><Link to={`/settings/${userId}`}>Settings</Link></li>
-          <li><Link to="/login" onClick={logout}>Logout</Link></li>
+          <li><Link to="/login" onClick={this.fireLogout}>Logout</Link></li>
         </ul>
       </nav>
     )
