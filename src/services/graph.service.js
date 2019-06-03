@@ -1,17 +1,26 @@
-export default class GraphService {
-  constructor() {
-    this.graphUrl = 'https://graph.microsoft.com/v1.0'
-  }
+export const graphConfig = {
+  graphMeEndpoint: "https://graph.microsoft.com/v1.0/me"
+}
 
-  getUserInfo = token => {
-    const headers = new Headers({ Authorization: `Bearer ${token}` })
-    const options = {
-      headers
-    }
-    return fetch(`${this.graphUrl}/me`, options)
-      .then(response => response.json())
-      .catch(response => {
-        throw new Error(response.text())
-      })
+export const graphAPICallback = (data) => {
+  console.log(data)
+}
+
+export const callMSGraph = (endpoint, accessToken, graphAPICallback) => {
+  console.log('got to MSGraph')
+  const headers = new Headers()
+  var bearer = "Bearer " + accessToken
+  headers.append("Authorization", bearer)
+  const options = {
+    method: "GET",
+    headers
   }
+  fetch(endpoint, options)
+    .then(response => {
+      console.log('graph response', response)
+      graphAPICallback(response)
+    })
+    .catch(err => {
+      console.log('err', err)
+    })
 }

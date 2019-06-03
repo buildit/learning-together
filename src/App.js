@@ -3,31 +3,17 @@ import { RoutesComponent } from "./components";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faMapMarker, faUserCircle, faPencilAlt, faSearch, faVideo, faBuilding, faClock, faSpinner, faCheck, faMinus } from "@fortawesome/free-solid-svg-icons";
 import { signIn } from './api'
-import { getUserInfo } from './components/utils'
 import { MessageComponent } from './components'
 import AuthService from './services/auth.service'
-import GraphService from './services/graph.service'
+// import GraphService from './services/graph.service'
 import './App.scss'
 
 library.add(faMapMarker, faUserCircle, faPencilAlt, faSearch, faVideo, faBuilding, faClock, faSpinner, faCheck, faMinus);
 class App extends Component {
-  //   constructor() {
-  //     super()
-  //     this.state = { isError: false }
-  //     this.getUserInfoCallback = this.getUserInfoCallback.bind(this)
-  //     this.signInCallback = this.signInCallback.bind(this)
-  //   }
-  //   componentDidMount() {
-  //     getUserInfo(this.getUserInfoCallback)
-  //   }
-  //   getUserInfoCallback(error, user) {
-  //     signIn(user.userName, this.signInCallback)
-  //   }
-
   constructor() {
     super()
     this.authService = new AuthService()
-    this.graphService = new GraphService()
+    // this.graphService = new GraphService()
     this.state = {
       userInfo: null,
       apiCallFailed: false,
@@ -37,35 +23,6 @@ class App extends Component {
     window.addEventListener('logout', this.logout)
   }
 
-
-  callAPI = () => {
-    this.setState({
-      apiCallFailed: false
-    })
-    this.authService.getToken().then(
-      token => {
-        this.graphService.getUserInfo(token).then(
-          data => {
-            this.setState({
-              userInfo: data
-            })
-          },
-          error => {
-            console.error(error)
-            this.setState({
-              apiCallFailed: true
-            })
-          }
-        )
-      },
-      error => {
-        console.error(error)
-        this.setState({
-          apiCallFailed: true
-        })
-      }
-    )
-  }
 
   componentDidMount() {
     this.login()
@@ -90,7 +47,7 @@ class App extends Component {
       this.setState({
         userInfo: acct
       })
-      // this.callAPI()
+      this.authService.getAccessToken()
     }
   }
 
