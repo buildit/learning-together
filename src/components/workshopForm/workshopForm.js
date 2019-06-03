@@ -7,10 +7,11 @@ import { ImageUploaderComponent } from "../imageUploader";
 import {
   getCategoryList,
   getLocationList,
-  getAuth,
   viewEvent,
   bookRoom,
-  deleteEvent
+  deleteEvent,
+  getEventsByRoom,
+  findRoom
 } from "../../api.js";
 import TimePicker from "rc-time-picker";
 import "rc-time-picker/assets/index.css";
@@ -37,7 +38,10 @@ class WorkshopForm extends Component {
       error: {},
       redirect: false,
       workshopPicture: props.data ? props.data.imageUrl : "",
-      room: props.data ? props.data.room : ""
+      room: props.data ? props.data.room : "",
+      roomAvailable: props.data ? true : [],
+      roomSelected: props.data ? true : "",
+      robynEventId: props.data ? true : null
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -52,8 +56,6 @@ class WorkshopForm extends Component {
 
   //TODO Handle Error
   componentDidMount() {
-    //getAuth().then(response => console.log(response));
-
     getCategoryList()
       .then(response => this.setState({ categoryList: response.data }))
       .catch(error => {
@@ -116,6 +118,13 @@ class WorkshopForm extends Component {
   }
   //If input is start time or date time modify moment object
   handleChange(e, name) {
+    if (name) {
+      console.log(name);
+    }
+    if (e.target) {
+      console.log(e.target.name);
+    }
+
     if (name !== undefined && (name === "startTime" || name === "endTime")) {
       const month = this.state.startDate.month();
       const day = this.state.startDate.date();
@@ -124,7 +133,11 @@ class WorkshopForm extends Component {
         .year(year)
         .month(month)
         .date(day);
-      this.setState({ [name]: time });
+      this.setState({ [name]: time, roomAvailable: [] });
+    } else if (e.target.name === "roomSelected") {
+      const { options, selectedIndex } = e.target;
+      this.setState({ [e.target.name]: e.target.value });
+      this.setState({ ["room"]: options[selectedIndex].innerText });
     } else {
       this.setState({ [e.target.name]: e.target.value });
     }
@@ -203,6 +216,7 @@ class WorkshopForm extends Component {
     if (error) {
       window.scrollTo(0, 0);
     } else {
+      console.log(" calling book room ");
       const data = {
         name: this.state.name,
         start: this.state.startTime.format("YYYY-MM-DDTHH:mm:ss.SSS"),
@@ -212,9 +226,19 @@ class WorkshopForm extends Component {
         webex: this.state.link,
         description: this.state.description,
         imageUrl: this.state.workshopPicture,
-        room: this.state.room
+        room: this.state.room,
+        RobinEventId: this.state.robynEventId
       };
-      this.props.handleSubmit(data);
+
+      if (this.state.location !== 1) {
+        this.props.handleSubmit(data);
+      } else {
+        this.reserveRoom().then(response => {
+          data["RobinEventId"] = response;
+
+          this.props.handleSubmit(data);
+        });
+      }
     }
   }
 
@@ -226,7 +250,28 @@ class WorkshopForm extends Component {
     this.setState({ workshopPicture: picturePath });
   }
 
+  //TO DO - handle error
+  reserveRoom() {
+    console.log("room selected", this.state.roomSelected);
+    return bookRoom(
+      this.state.startTime,
+      this.state.endTime,
+      this.state.name,
+      this.state.roomSelected
+    ).then(response => {
+      console.log("response", response);
+      if (response.status === 201) {
+        console.log("inside success");
+        console.log("robin id", response.data.data.id);
+        this.setState({ robynEventId: response.data.data.id });
+        return response.data.data.id;
+      }
+      return;
+    });
+  }
+
   render() {
+    console.log(this.props);
     const categories = this.state.categoryList.map(category => {
       return (
         <option key={category.id} value={category.id}>
@@ -243,18 +288,34 @@ class WorkshopForm extends Component {
       );
     });
 
+    const availableRooms = this.props.edit
+      ? null
+      : this.state.roomAvailable.map(room => {
+          console.log(room);
+          return (
+            <option key={room.id} value={room.id}>
+              {room.room}
+            </option>
+          );
+        });
     if (
       this.state.location === 1 &&
       this.state.startTime !== null &&
-      this.state.endTime !== null
+      this.state.endTime !== null &&
+      this.state.roomAvailable.length === 0
     ) {
-      console.log("location is 1");
-      /*getAuth(this.state.startTime, this.state.endTime).then(response =>
-        console.log(response)
-      );*/
-      //bookRoom().then(response => console.log(response))
-      //viewEvent("105604655").then(response => console.log(response));
-      //deleteEvent("105604655").then(response => console.log(response))
+      findRoom(this.state.startTime, this.state.endTime).then(response => {
+        console.log(response);
+        if (response.length === 0) {
+          console.log("No rooms available - Pick another time");
+        } else {
+          this.setState({
+            roomAvailable: response,
+            roomSelected: ""
+          });
+          console.log("found rooms");
+        }
+      });
     }
 
     return (
@@ -331,9 +392,10 @@ class WorkshopForm extends Component {
                   allowEmpty={false}
                   use12Hours={true}
                   focusOnOpen={true}
-                  onChange={(value, name = "endTime") =>
-                    this.handleChange(value, name)
-                  }
+                  onChange={(value, name = "endTime") => {
+                    console.log("clicked");
+                    this.handleChange(value, name);
+                  }}
                   value={this.state.endTime}
                 />
                 <span className="error">{this.state.error.time}</span>
@@ -350,18 +412,44 @@ class WorkshopForm extends Component {
                   </select>
                 </label>
               </div>
+              {this.state.location > 1 && (
+                <div className="medium-8 cell">
+                  <label>
+                    Room
+                    <input
+                      name="room"
+                      value={this.state.room}
+                      onChange={this.handleChange}
+                      type="text"
+                      placeholder="room"
+                    />
+                    <span className="error">{this.state.error.room}</span>
+                  </label>
+                </div>
+              )}
               <div className="medium-8 cell">
-                <label>
-                  Room
-                  <input
-                    name="room"
-                    value={this.state.room}
-                    onChange={this.handleChange}
-                    type="text"
-                    placeholder="room"
-                  />
-                  <span className="error">{this.state.error.room}</span>
-                </label>
+                {availableRooms.length > 0 && this.state.location === 1 ? (
+                  <label>
+                    Room Available
+                    <select
+                      name="roomSelected"
+                      value={this.state.roomSelected}
+                      onChange={this.handleChange}
+                    >
+                      {availableRooms}
+                    </select>
+                  </label>
+                ) : (
+                  ""
+                )}
+                {availableRooms.length === 0 &&
+                this.state.location === 1 &&
+                this.state.startTime !== null &&
+                this.state.endTime !== null ? (
+                  <p>All rooms are taken at this time. Pick another time.</p>
+                ) : (
+                  ""
+                )}
               </div>
               <div className="medium-8 cell">
                 <label>
@@ -389,6 +477,7 @@ class WorkshopForm extends Component {
                   />
                   <span className="error">{this.state.error.description}</span>
                 </label>
+                {this.state.room}
               </div>
             </div>
           </div>
@@ -401,7 +490,6 @@ class WorkshopForm extends Component {
             </Link>
           </div>
         </form>
-
         {this.props.success && (
           <MessageComponent
             message="Success"

@@ -20,7 +20,9 @@ class workshopCreate extends Component {
           this.setState({ success: true, workshopId: response.data });
         }
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   render() {

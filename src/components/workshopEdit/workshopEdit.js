@@ -19,6 +19,7 @@ class workshopEdit extends Component {
   }
 
   getWorkshopCallback(response) {
+    console.log(response);
     if (response.status === 200) {
       const data = {
         name: response.data.name,
@@ -29,7 +30,10 @@ class workshopEdit extends Component {
         webex: response.data.webex,
         description: response.data.description,
         imageUrl: response.data.imageUrl,
-        room: response.data.room
+        room: response.data.room,
+        robinEventId: response.data.robinEventId
+          ? response.data.robinEventId
+          : ""
       };
       this.setState({
         data

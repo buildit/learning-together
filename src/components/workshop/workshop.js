@@ -13,7 +13,8 @@ import {
   coverGenerator,
   enrollWorkshop,
   unenrollWorkshop,
-  cancelWorkshop
+  cancelWorkshop,
+  deleteEvent
 } from "../../api";
 import { MessageComponent } from "../message";
 import { MessageConfirmComponent } from "../messageConfirm";
@@ -139,8 +140,8 @@ export default class Workshop extends Component {
     const attendees =
       this.state.workshop.workshopAttendees.length > 0
         ? `There are ${
-        this.state.workshop.workshopAttendees.length
-        } attendee(s).`
+            this.state.workshop.workshopAttendees.length
+          } attendee(s).`
         : "";
     this.setState({
       confirmCancel: true,
@@ -149,7 +150,13 @@ export default class Workshop extends Component {
   }
 
   cancelWorkshopConfirmed() {
-    cancelWorkshop(this.state.workshop.id, this.cancelWorkshopCallback);
+    if (this.state.workshop.robinEventId === null) {
+      cancelWorkshop(this.state.workshop.id, this.cancelWorkshopCallback);
+    } else {
+      deleteEvent(this.state.workshop.robinEventId).then(response => {
+        cancelWorkshop(this.state.workshop.id, this.cancelWorkshopCallback);
+      });
+    }
   }
 
   cancelWorkshopNoConfirm() {
@@ -217,15 +224,15 @@ export default class Workshop extends Component {
                     alt="Instructor"
                   />
                 ) : (
-                    <FontAwesomeIcon icon="user-circle" size="3x" />
-                  )}
+                  <FontAwesomeIcon icon="user-circle" size="3x" />
+                )}
               </div>
 
               <p>
                 Hosted by{" "}
                 <strong>
-                <NavLink to={`/user/${this.state.educatorId}`} className="">
-                  {instructor.firstName} {instructor.lastName}
+                  <NavLink to={`/user/${this.state.educatorId}`} className="">
+                    {instructor.firstName} {instructor.lastName}
                   </NavLink>
                 </strong>
                 <br />
@@ -236,43 +243,41 @@ export default class Workshop extends Component {
             </div>
 
             <div className="cell small-12 medium-4 flex-container enroll-button">
-              {
-                isEducator ? (
-                  [
-                    <Link
-                      className=""
-                      to={`/edit/${this.props.computedMatch.params.id}`}
-                    >
-                      <button type="button" className="button flex-child-auto">
-                        EDIT
-                      </button>
-                    </Link>,
-                    <button
-                      type="button"
-                      className="button flex-child-auto large-flex-child-shrink unenroll"
-                      onClick={this.onClickCancel.bind(this)}
-                    >
-                      CANCEL WORKSHOP
+              {isEducator ? (
+                [
+                  <Link
+                    className=""
+                    to={`/edit/${this.props.computedMatch.params.id}`}
+                  >
+                    <button type="button" className="button flex-child-auto">
+                      EDIT
                     </button>
-                  ]
-                ) : isAttending ? (
+                  </Link>,
                   <button
                     type="button"
-                    className="button unenroll flex-child-auto large-flex-child-shrink"
-                    onClick={this.onClickUnenroll.bind(this)}
+                    className="button flex-child-auto large-flex-child-shrink unenroll"
+                    onClick={this.onClickCancel.bind(this)}
                   >
-                    UNENROLL
+                    CANCEL WORKSHOP
                   </button>
-                ) : (
-                      <button
-                        type="button"
-                        className="button flex-child-auto large-flex-child-shrink"
-                        onClick={this.onClickEnroll.bind(this)}
-                      >
-                        ENROLL
-                  </button>
-                    )
-              }
+                ]
+              ) : isAttending ? (
+                <button
+                  type="button"
+                  className="button unenroll flex-child-auto large-flex-child-shrink"
+                  onClick={this.onClickUnenroll.bind(this)}
+                >
+                  UNENROLL
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className="button flex-child-auto large-flex-child-shrink"
+                  onClick={this.onClickEnroll.bind(this)}
+                >
+                  ENROLL
+                </button>
+              )}
             </div>
           </article>
         </section>
