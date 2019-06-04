@@ -4,7 +4,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faMapMarker, faUserCircle, faPencilAlt, faSearch, faVideo, faBuilding, faClock, faSpinner, faCheck, faMinus } from "@fortawesome/free-solid-svg-icons";
 import { signIn } from './api'
 import { MessageComponent } from './components'
-import AuthService from './services/auth.service'
+import AuthService from './services/auth.service2'
 // import GraphService from './services/graph.service'
 import './App.scss'
 
@@ -23,11 +23,6 @@ class App extends Component {
     window.addEventListener('logout', this.logout)
   }
 
-
-  componentDidMount() {
-    this.login()
-  }
-
   logout = () => {
     this.authService.logout()
   }
@@ -42,23 +37,20 @@ class App extends Component {
       this.authService.login()
     }
     else {
-      console.log('user is logged in', acct)
       signIn(acct.userName, this.signInCallback)
       this.setState({
         userInfo: acct
       })
-      this.authService.getAccessToken()
+      //   this.authService.getAccessToken()
     }
   }
 
   signInCallback(response) {
-    console.log('RESPONSE', response)
     if (response.status === 200) {
       localStorage.setItem('userId', response.data.id)
       localStorage.setItem('username', response.data.username)
     }
     else {
-      console.log(response)
       // setState({ isError: true })
       // currently failing here, check backend call to
       // https://bettertogether.buildit.systems/api/users/authenticate
@@ -69,7 +61,6 @@ class App extends Component {
     this.setState({ isError: false })
   }
   render() {
-    console.log('state', this.state)
     if (this.state.isError) {
       return <MessageComponent message='There is an error with getting your credentials. Please try again later.' callback={this.messageCallback.bind(this)} />
     }
@@ -78,6 +69,8 @@ class App extends Component {
       return (
         <RoutesComponent />
       )
+    } else {
+      (this.login())
     }
     return (
       <div>logging in</div>
