@@ -22,27 +22,32 @@ class App extends Component {
     }
     window.addEventListener('logout', this.logout)
   }
+  componentDidMount() {
+    console.log('App.componentDidMount()')
+    const acct = this.authService.getAccount()
+    if (!acct) {
+      this.login()
+    }
+    else {
+      console.log('we have an account, doing BT signIn')
+      signIn(acct.userName, this.signInCallback)
+      this.setState({
+        userInfo: acct
+      })
+      this.authService.getAccessToken()
+    }
+  }
 
   logout = () => {
     this.authService.logout()
   }
 
   login = () => {
-    const acct = this.authService.getAccount()
     this.setState({
       userInfo: null
     })
-    if (!acct) {
-      // start redirect login flow
-      this.authService.login()
-    }
-    else {
-      signIn(acct.userName, this.signInCallback)
-      this.setState({
-        userInfo: acct
-      })
-      //   this.authService.getAccessToken()
-    }
+    // start redirect login flow
+    this.authService.login()
   }
 
   signInCallback(response) {
@@ -69,8 +74,6 @@ class App extends Component {
       return (
         <RoutesComponent />
       )
-    } else {
-      (this.login())
     }
     return (
       <div>logging in</div>

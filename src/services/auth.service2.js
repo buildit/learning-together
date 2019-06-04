@@ -54,7 +54,7 @@ export default class AuthService2 {
   }
 
   getAccessToken = () => {
-    console.log('got to getAccessToken')
+    console.log('got to getAccessToken', this.app)
     const tokenRequest = {
       scopes: ['user.read', 'calendars.read']
     }
@@ -64,18 +64,20 @@ export default class AuthService2 {
         callMSGraph(graphConfig.graphMeEndpoint, tokenResponse.accessToken, graphAPICallback)
       })
       .catch(err => {
-        if (err.name === "InteractionRequiredAuthError") {
-          return this.app.acquireTokenSilent(tokenRequest)
-            .then(response => {
-              //get access token from response
-              console.log('response.accessToken', response.accessToken)
-              callMSGraph(graphConfig.graphMeEndpoint, response.accessToken, graphAPICallback)
-            })
-            .catch(err => {
-              //handle error
-              console.log('err', err)
-            })
-        }
+        console.log('err', err)
+
+        // if (err.name === "InteractionRequiredAuthError") {
+        //   return this.app.acquireTokenSilent(tokenRequest)
+        //     .then(response => {
+        //       //get access token from response
+        //       console.log('response.accessToken', response.accessToken)
+        //       callMSGraph(graphConfig.graphMeEndpoint, response.accessToken, graphAPICallback)
+        //     })
+        //     .catch(err => {
+        //       //handle error
+        //       console.log('err', err)
+        //     })
+        // }
       })
   }
 }
