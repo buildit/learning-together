@@ -1,5 +1,6 @@
 import axios from "axios";
 const token = sessionStorage.getItem('msal.idtoken')
+console.log('TOKEN', token)
 export async function signIn(username, callback) {
   const url =
     "https://bettertogether.buildit.systems/api/users/authenticate";
