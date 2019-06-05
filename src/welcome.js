@@ -7,27 +7,31 @@ function WelcomeContent(props) {
     return (
       <div>
         <h4>Welcome {props.user.displayName}!</h4>
-        <p>Use the navigation bar at the top of the page to get started.</p>
       </div>
-    );
+    )
   }
 
+  if (props.loggingOut) {
+    return (
+      <div>
+        <h4>Logging out...</h4>
+      </div>
+    )
+  }
   // Not authenticated, present a sign in button
-  return <button color="primary" onClick={props.authButtonMethod}>Click here to sign in</button>;
+  return <button onClick={props.authButtonMethod} style={{ "border": "1px solid cornflowerblue", "padding": "8px" }}> Click here to sign in</ button>;
 }
 
 export default class Welcome extends React.Component {
   render() {
     return (
       <div>
-        <h1>React Graph Tutorial</h1>
-        <p className="lead">
-          This sample app shows how to use the Microsoft Graph API to access Outlook and OneDrive data from React
-        </p>
+        <h1>Better Together</h1>
         <WelcomeContent
           isAuthenticated={this.props.isAuthenticated}
           user={this.props.user}
-          authButtonMethod={this.props.authButtonMethod} />
+          authButtonMethod={this.props.authButtonMethod}
+          loggingOut={this.props.loggingOut} />
       </div>
     );
   }
