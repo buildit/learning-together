@@ -30,7 +30,8 @@
     "start": "react-scripts start",
     "build": "REACT_APP_URL=https://bettertogether.buildit.systems react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "coverage": "react-scripts test --coverage && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -42,6 +43,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "coveralls": "^3.0.3",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1"
   }

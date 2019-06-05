@@ -1,8 +1,8 @@
 import axios from "axios";
 import moment from "moment";
-import { getToken } from "./components/auth/utils";
-const token = getToken();
+import { getToken } from "./components/utils";
 
+const token = getToken();
 export async function signIn(username, callback) {
   const url = "https://bettertogether.buildit.systems/api/users/authenticate";
   return new Promise((resolve, reject) => {
