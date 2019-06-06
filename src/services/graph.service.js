@@ -28,6 +28,16 @@ export async function getEvents(accessToken) {
   return events
 }
 
+export async function createEvent(accessToken, event) {
+  const client = getAuthenticatedClient(accessToken)
+  const response = await client
+    .api('/me/events')
+    .post({
+      event
+    })
+
+  return response
+}
 
 
 

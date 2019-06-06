@@ -7,7 +7,8 @@ import Moment from "react-moment";
 import { NavbarComponent } from "../../navbarModule";
 import { Link, Redirect, NavLink } from "react-router-dom";
 import { UserContext } from "../../../UserProvider";
-import AddToCalendar from "react-add-to-calendar";
+import { AddToCal } from "../../outlookModule";
+
 import {
   getWorkshop,
   coverGenerator,
@@ -315,12 +316,13 @@ export default class Workshop extends Component {
                     <Moment format="LT">{workshop.end}</Moment>
                     <br />
                   </p>
-                  <AddToCalendar
+                  <AddToCal />
+                  {/* <AddToCalendar
                     event={event}
                     buttonClassOpen="button"
                     buttonClassClosed="button"
                     dropdownClass="ics-dropdown"
-                  />
+                  /> */}
                 </div>
               </article>
               <article className="detail">

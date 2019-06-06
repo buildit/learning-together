@@ -3,6 +3,6 @@ module.exports = {
   authority: 'https://login.microsoftonline.com/1a6dbb80-5290-4fd1-a938-0ad7795dfd7a',
   scopes: [
     "user.read",
-    "calendars.read"
+    "calendars.readWrite"
   ]
 }

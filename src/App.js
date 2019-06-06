@@ -7,8 +7,8 @@ import { MessageComponent } from './components'
 import { UserAgentApplication } from 'msal'
 import config from './services/config'
 import Welcome from './welcome'
+import { getUserDetails } from './services/graph.service'
 // import AuthService from './services/auth.service2'
-import { getUserDetails, getEvents } from './services/graph.service'
 import './App.scss'
 
 library.add(faMapMarker, faUserCircle, faPencilAlt, faSearch, faVideo, faBuilding, faClock, faSpinner, faCheck, faMinus);
@@ -18,8 +18,7 @@ class App extends Component {
     // this.authService = new AuthService()
     // this.userAgentApplication = new UserAgentApplication(config.appId, config.authority, null, { redirectUri: process.env.REACT_APP_URL })
     this.userAgentApplication = new UserAgentApplication(config.appId, null, null, { redirectUri: process.env.REACT_APP_URL })
-
-    var user = this.userAgentApplication.getUser()
+    const user = this.userAgentApplication.getUser()
     this.state = {
       isAuthenticated: (user !== null),
       user: {},
@@ -28,9 +27,8 @@ class App extends Component {
       events: null
     }
     if (user) {
-      // this.getUserProfile()
-      // console.log('user', user)
-      this.getCalEvents()
+      this.getUserProfile()
+      console.log('user', user)
       signIn(user.displayableId, this.signInCallback)
     }
     window.addEventListener('logout', this.logout)
@@ -39,8 +37,7 @@ class App extends Component {
   async login() {
     try {
       await this.userAgentApplication.loginPopup(config.scopes)
-      // await this.getUserProfile()
-      await this.getCalEvents
+      await this.getUserProfile()
     }
     catch (err) {
       const errParts = err.split('|')
@@ -58,10 +55,8 @@ class App extends Component {
   }
 
   render() {
-    console.log('Cal Events ', this.state.events)
-    let error = null;
     if (this.state.error) {
-      error = <MessageComponent message={this.state.error.message} callback={this.messageCallback.bind(this)} />
+      return <MessageComponent message={this.state.error.message} callback={this.messageCallback.bind(this)} />
     }
     if (this.state.isAuthenticated) {
       return <RoutesComponent />
@@ -77,23 +72,7 @@ class App extends Component {
 
   }
 
-  async getCalEvents() {
-    try {
-      const accessToken = await window.msal.acquireTokenSilent(config.scopes)
-      const events = await getEvents(accessToken)
-      this.setState({ events: events.value })
-    }
-    catch (err) {
-      console.log('error in getting Cal events ', err)
-      this.setState({
-        isAuthenticated: true
-      })
-    }
-  }
-
-
   async getUserProfile() {
-    console.log('user details???')
     try {
       const accessToken = await this.userAgentApplication.acquireTokenSilent(config.scopes)
       if (accessToken) {
@@ -111,7 +90,6 @@ class App extends Component {
       }
     }
     catch (err) {
-      console.log('err', err)
       var error = {}
       if (typeof (err) === 'string') {
         const errParts = err.split('|')
@@ -174,20 +152,6 @@ class App extends Component {
   messageCallback() {
     this.setState({ isError: false })
   }
-  // render() {
-  //   if (this.state.isError) {
-  //     return <MessageComponent message='There is an error with getting your credentials. Please try again later.' callback={this.messageCallback.bind(this)} />
-  //   }
-
-  //   if (this.state.userInfo) {
-  //     return (
-  //       <RoutesComponent />
-  //     )
-  //   }
-  //   return (
-  //     <div>logging in</div>
-  //   )
-  // }
 }
 
 export default App;
