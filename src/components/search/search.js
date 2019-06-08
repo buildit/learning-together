@@ -71,25 +71,27 @@ export default class SearchComponent extends React.Component {
       <Fragment>
         <div className="search-container">
           <input
+            className="search-box"
             type="search"
             name="search"
-            placeholder="Search"
+            placeholder="Search for workshops…"
             value={this.state.searchInput}
             onChange={this.searchHandler.bind(this)}
             autoFocus
           />
-          <div className="search-results-container">
+          {(userResults.length !== 0 || categoryResults.length !== 0 || workshopResults.length !== 0)  && (
+          <div className="search-resultsContainer">
             {userResults.length !== 0 && (
-              <div>
-                <h2>Users</h2>
+              <div className="search-resultsSection">
+                <h5>Users</h5>
                 {userResults.map((result, idx) => {
                   return (
-                    <div className='search-result-hover'>
+                    <div className='search-resultsLink'>
                       <Link
                         to={`/user/${result.id}`}
                         key={idx}
                       >
-                        <h5>{result.firstName} {result.lastName}</h5>
+                        {result.firstName} {result.lastName}
                       </Link>
                     </div>
                   )
@@ -97,16 +99,16 @@ export default class SearchComponent extends React.Component {
               </div>
             )}
             {categoryResults.length !== 0 && (
-              <div>
-                <h2>Categories</h2>
+              <div className="search-resultsSection">
+                <h5>Categories</h5>
                 {categoryResults.map((result, idx) => {
                   return (
-                    <div className='search-result-hover'>
+                    <div className='search-resultsLink'>
                       <Link
                         to={`/workshops/categories/${result.id}/${result.name}`}
                         key={idx}
                       >
-                        <h5>{result.name}</h5>
+                        {result.name}
                       </Link>
                     </div>
                   );
@@ -114,17 +116,17 @@ export default class SearchComponent extends React.Component {
               </div>
             )}
             {workshopResults.length !== 0 && (
-              <div>
-                <h2>Workshops</h2>
+              <div className="search-resultsSection">
+                <h5>Workshops</h5>
                 {workshopResults.map((result, idx) => {
                   return (
-                    <div className='search-result-hover'>
+                    <div className='search-resultsLink'>
                       <Link
                         to={`/workshop/${result.workshopId ? result.workshopId : result.id
                           }`}
                         key={idx}
                       >
-                        <h5>{result.name}</h5>
+                        {result.name}
                       </Link>
                     </div>
                   );
@@ -132,6 +134,7 @@ export default class SearchComponent extends React.Component {
               </div>
             )}
           </div>
+          )}
         </div>
         {isError && (
           <MessageComponent

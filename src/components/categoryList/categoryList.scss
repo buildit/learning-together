@@ -1,38 +1,19 @@
+@import '../../varibles';
 
-.custom-cards {
-  color: #000;
-  height: 15vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 0;
-  border-top: none;
-  border-right: none;
-  padding: .5em;
-  text-align: center;
-  background-color: rgba(94,155,177,1);
-  color: #fff;
-  h4 {
-    font-weight: 900;
+
+.categoryList {
+  &-card {
+    background-color: $bt-blue;
+    border-radius: $border-radius;
+    color: $bt-white;
+    display: block;
+    margin: 0 0 space(4);
+    padding: space(4) space(4);
+    text-align: center;
+
+    &:hover {
+      background-color: $bt-pink;
+      color: $bt-white;
+    }
   }
 }
-
-
-
-.category-container {
-  border-right: 1px solid #e6e6e6;
-  border-top: 1px solid #e6e6e6;
-
-  .cell .custom-cards {
-    background-color: rgba(94,155,177,1);
-    margin-bottom: 10px;
-  }
-
-  .cell:hover .custom-cards {
-    background-color: rgba(232,144,180,1);
-    color: #fff;
-  }
-}
-
-
-

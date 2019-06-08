@@ -1,56 +1,84 @@
 @import '../../varibles';
 
-.workshopsforday {
-   
-    overflow: hidden;
-    margin-bottom: 2em;
-    background: #fff;
-    border: 1px solid #ccc;
-    border-bottom: none;
+.schedule {
 
-    .workshop-data {
-        margin-left: 1em;
-    }
 
-    time {
-        white-space: nowrap;
-        font-weight: 600;
-    }
+  &-header {
+    margin-bottom: space(3);
+    width: 100%;
+  }
 
-    .workshop-link {
-        margin-bottom: 0;
-        padding-top:1em;
-        padding-bottom: 1em;
-        padding-left: .5em;
-    }
-}
+  &-sectionHeader {
+    margin-bottom: space(2);
+  }
 
-.workshop-filter {
-    li {
-        list-style: none;
-    }
-
-    .filter-schedule {
-        background: #fff;
-        display: inline-block;
-        padding: 1em;
-        width: 100%;
-        margin-bottom: 0;
-        border: 1px solid #ccc;
-        font-weight: 600;
-
-        &:hover {
-            background-color: lighten($bt-blue,30%);
-        }
-
-        &.current {
-            background-color: $bt-blue;
-            color: #fff;
-        }
-    }
+  &-button {
+    display: inline-block;
+    margin-left: space(2);
 
     button {
-        outline: none;
-        cursor: pointer;
+
     }
+
+  }
+
+}
+
+
+.workshop-filter {
+  position: sticky;
+  position: -webkit-sticky;
+  top: space(6);
+
+  ul {
+    padding: 0;
+
+    li {
+      list-style: none;
+
+      button {
+        background: $bt-white;
+        border: 0;
+        border-left: 0.125rem solid $bt-yellow;
+        border-right: 0.125rem solid $bt-yellow;
+        border-radius: 0;
+        box-shadow: 0;
+        display: inline-block;
+        padding: 1em;
+
+        margin-bottom: 0;
+        width: 100%;
+
+        &.current, &.current:hover {
+          background-color: $bt-yellow;
+
+        }
+
+        &:hover {
+          background-color: rgba($bt-yellow, 0.5);
+        }
+      }
+
+      &:first-child {
+        button {
+          border-radius: $border-radius $border-radius 0 0;
+          border-top: 0.125rem solid $bt-yellow;
+        }
+      }
+
+      &:last-child {
+        button {
+          border-bottom: 0.125rem solid $bt-yellow;
+          border-radius: 0 0 $border-radius $border-radius;
+        }
+      }
+    }
+
+  }
+
+
+  .filter-schedule {
+
+
+  }
 }

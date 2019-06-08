@@ -12,6 +12,7 @@ import { WorkshopEditComponent } from "../workshopEdit";
 import { WorkshopComponent } from "../workshop";
 import { ConfirmationComponent } from "../confirmation";
 import UserProvider from '../../UserProvider'
+import { NavbarComponent } from "../navbar";
 
 
 export default class RoutesComponent extends React.Component {
@@ -19,6 +20,7 @@ export default class RoutesComponent extends React.Component {
     return (
       <UserProvider>
         <Router>
+          <NavbarComponent  />
           <div className="main">
             <Switch>
               <UserRoute exact path="/" component={LandingComponent} />

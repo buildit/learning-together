@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./categoryList.scss";
-
+import { Container, Row, Col } from 'reactstrap';
 
 class CategoryList extends Component {
   render() {
     const WrkshpCategories = this.props.categories.map((category, index) => {
       return (
-        <div key={index} className="cell small-6 medium-4 large-3">
+        <Col key={index} sm="12" md="3" >
           <Link
             to={{
               pathname: `/workshops/categories/${category.id}/${category.name}`,
@@ -15,20 +15,20 @@ class CategoryList extends Component {
               state: this.props.workshop
             }}
 
-            className="card custom-cards"
+            className="categoryList-card"
           >
 
             <b>{category.name}</b>
 
           </Link>
-        </div>
+        </Col>
       );
     });
 
     return (
-      <div>
-        <div className="grid-x category-container">{WrkshpCategories}</div>
-      </div>
+      <Container>
+        <Row className="">{WrkshpCategories}</Row>
+      </Container>
     );
   }
 }

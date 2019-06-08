@@ -1,13 +1,14 @@
+@import 'varibles';
 
 body {
   background: #f7f7f7;
+  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 }
 
 .main {
   padding-bottom: 7rem;
-  background-color: #F7F7F7;
-  max-width: 1440px;
-  margin: 0 auto;
+  background-color: rgba($bt-yellow, 0.05);
+  margin: space(3) auto;
   border-left: 1px solid rgb(211, 211, 211);
   border-right: 1px solid rgb(211, 211, 211);
 }

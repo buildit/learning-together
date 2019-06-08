@@ -1,5 +1,6 @@
 import { runWithAdal } from 'react-adal';
 import { authContext } from './components/auth/utils';
+import 'bootstrap/dist/css/bootstrap.css';
 
 const DO_NOT_LOGIN = false;
 

@@ -1,17 +1,62 @@
-.search-container {
-  position: relative;
-  margin-top:1rem;
-  .button {
+@import '../../varibles';
+
+.search {
+  &-container {
+    position: relative;
+
+    .button {
       position: absolute;
       top: 1px;
       right: 0;
       background: transparent;
       color: #000;
+    }
   }
-}
-.search-result-hover{
-  padding:.5rem;
-  :hover{
-    color:primary;
+
+  &-box {
+    background-color: rgba($bt-pink, 0.25);
+    border: 0;
+    //border-right: 0.125rem solid $bt-pink;
+    border-radius: 0;
+    box-shadow: none;
+    font-size: 1.5rem;
+    padding: space(3) space(4);
+    width: 50vw;
   }
+
+  &-results {
+    &Container {
+      background-color: $bt-white;
+      border-radius: 0 0 $border-radius $border-radius;
+      box-shadow: $box-shadow;
+      padding: space(4) space(4) space(3);
+      position: absolute;
+      width: 100%;
+    }
+
+    &Section {
+      margin-bottom: space(3);
+    }
+
+
+    &Link {
+
+      a {
+        display: block;
+        padding: space(2) space(4);
+        text-decoration: underline;
+
+        &:hover {
+          background-color: rgba($bt-pink, 0.25);
+          color: $bt-black;
+          text-decoration: underline;
+        }
+      }
+
+
+    }
+
+  }
+
 }
+

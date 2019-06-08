@@ -3,33 +3,33 @@ import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import "./workshopPreview.scss";
 
-const WorkshopPreview = ({ workshop }) => {
+const WorkshopPreview = ({workshop}) => {
   const start = workshop.start ? workshop.start : workshop.startDate;
   const wrkshopId = workshop.id ? workshop.id : workshop.workshopId;
- 
+
   return (
     <Link
       to={`/workshop/${
         wrkshopId
         }`}
-      className="workshop-link grid-x grid-margin-x"
+      className="workshop-card d-flex align-items-start"
     >
 
-      <div className="start small-3 medium-2 cell">
-      
-          <p>
-            <Moment format="LT">{start}</Moment>
-          </p>{" "}
-   
+      <div className="workshop-cardTime">
+
+        <p>
+          <Moment format="LT">{start}</Moment>
+        </p>{" "}
+
       </div>
-      <div className="small-9 medium-8 cell">
-      <div className="workshop-data">
-        <h5 className="title">
-          {workshop.name}
-        </h5>
-        <p>Instructor: <b>{workshop.educator.firstName} {workshop.educator.lastName}</b></p>
-      </div>
-      </div>
+
+        <div className="workshop-cardMetadata">
+          <h3 className="title">
+            {workshop.name}
+          </h3>
+          <p>Instructor: <b>{workshop.educator.firstName} {workshop.educator.lastName}</b></p>
+        </div>
+
     </Link>
   );
 };

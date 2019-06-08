@@ -1,3 +1,8 @@
+@import '../../varibles';
+
+.landing-contentContainer {
+  margin-top: space(5);
+}
 .landing-preview {
   background: #F7F7F7;
     .card-scroll {
@@ -31,7 +36,7 @@
   &:hover {
     background-color: rgba(232,144,180,1);
   }
-  
+
   &.carousel__dot--selected {
     background-color: rgba(94,155,177,1);
   }

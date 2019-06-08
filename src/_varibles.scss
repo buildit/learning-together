@@ -1,4 +1,70 @@
+h3 {
+  font-size: 1.5rem;
+}
+h4 {
+  font-size: 1.25rem;
+}
+
+h5 {
+  font-size: 1rem;
+}
+
 $bt-pink: #DE95B4;
 $bt-yellow: #F0F465;
 $bt-blue: #6184D8;
 $bt-green: #9CEC5B;
+$bt-white: #fff;
+$bt-black: #888;
+
+
+@import '../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/mixins';
+
+$border-radius: 0.5rem;
+
+$box-shadow: 0.125rem 0.125rem 1rem 0 rgba(0,0,0,0.5);
+
+$spacer: 1rem !default;
+$spacers: () !default;
+$spacers: map-merge(
+                (
+                        6: ($spacer * 5),
+                        7: ($spacer * 7),
+                ),
+                $spacers
+);
+
+
+@function space($key: 0) {
+  @return map-get($spacers, $key);
+}
+
+button {
+  border-radius: $border-radius;
+  cursor: pointer;
+  padding: space(2) space(3);
+
+
+}
+
+.-primary {
+  background-color: $bt-pink;
+  border: 0.125rem solid $bt-pink;
+  color: $bt-white;
+
+  &:hover {
+    background-color: rgba($bt-pink, 0.8);
+  }
+}
+
+.-secondary {
+  background-color: $bt-white;
+  border: 0.125rem solid $bt-pink;
+  color: $bt-pink;
+
+  &:hover {
+    background-color: rgba($bt-pink, 0.125);
+  }
+}
+

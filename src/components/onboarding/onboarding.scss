@@ -1,21 +1,53 @@
 @import '../../varibles';
 
-.complete-profile-callout {
-    padding: 2em;
 
-    .greeting {
-    font-weight: 700;
-     color: $bt-blue;
-    }
-}
 
-.button.call-to-action.complete-profile {
-    background-color: $bt-blue;
-    color: #ffffff;
-    font-size: 1.5em;
-    border-radius: 20px;
-    margin: 0 auto;
-    &:hover {
-        background-color: desaturate($bt-blue, 50%);
+.onboarding {
+    &-container {
+        background-image:   linear-gradient(to right, rgba($bt-pink, 1), rgba($bt-yellow, 0)),
+        radial-gradient(ellipse at top , rgba($bt-yellow, 1) 0%,  rgba($bt-green, .5) 90%),
+        radial-gradient(ellipse at bottom right , rgba($bt-blue, 1) 0%,  rgba($bt-green, .5) 90%),;
+        background-repeat: no-repeat,
+        no-repeat,
+        no-repeat;
+        background-position: bottom right,
+        left,
+        right;
+        margin-bottom: space(6);
+        padding-bottom: space(5);
+        padding-top: space(7);
+
+
     }
+
+    &-newUserContainer {
+        background-color: #fff;
+        border-radius: $border-radius;
+        box-shadow: $box-shadow;
+        margin-top: space(3);
+        padding: space(4) space(5);
+        position: absolute;
+
+
+        h4 {
+
+            margin-bottom: space(4) ;
+        }
+    }
+
+    &-checklist {
+
+        list-style: none;
+        margin:  0;
+        padding: 0;
+
+        input {
+
+        }
+
+        label {
+            margin-left: space(2);
+        }
+    }
+
 }

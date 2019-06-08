@@ -1,15 +1,15 @@
 import React, { Component } from "react";
-import { Hero } from "../hero";
 import { CategoryListComponent } from "../categoryList";
 import { FooterComponent } from "../footer"
 import { getUser, getWorkshopListDate } from '../../api'
 import './landing.scss';
-import { NavbarComponent } from "../navbar";
 import { loadCategories } from '../../api';
 import moment from 'moment';
+import { Container, Row } from 'reactstrap';
 
 import { Onboarding } from "../onboarding";
 import { Schedule } from "../schedule";
+
 export default class Landing extends Component {
   constructor(props) {
     super(props);
@@ -29,9 +29,9 @@ export default class Landing extends Component {
         let sorted = this.sortByDate(response.data)
         let workshops = sorted
 
-        this.setState({ workshops })
+        this.setState({workshops})
       })
-      .catch(error => this.setState({ error: 'Please try again later' }))
+      .catch(error => this.setState({error: 'Please try again later'}))
 
     loadCategories()
       .then((data) => {
@@ -43,6 +43,7 @@ export default class Landing extends Component {
     const userid = localStorage.getItem('userId');
     getUser(userid, this.getUserCallback)
   }
+
   getUserCallback(response) {
     if (response.status === 200) {
       this.setState({
@@ -72,22 +73,24 @@ export default class Landing extends Component {
 
   render() {
 
-    const { location } = this.props
     return (
-      <div >
-        <NavbarComponent location={location} />
-        <Hero title="Better Together" />
-        <div className="grid-container landing-preview">
-          <Onboarding user={this.state.user} />
-        </div>
-        <div className="grid-container">
-          <Schedule workshops={this.state.workshops} user={this.state.user} />
-        </div>
-        <div className="grid-container landing-preview">
-          <h2 className="section-title">Categories</h2>
-          <CategoryListComponent workshop={this.state.workshops} categories={this.state.categories} />
-        </div>
-        <FooterComponent className='footer' userId={this.state.userId} />
+      <div>
+        <Onboarding user={this.state.user}/>
+
+        <Container className="landing-contentContainer">
+
+          <Row>
+            <Schedule workshops={this.state.workshops} user={this.state.user}/>
+          </Row>
+
+          <Row>
+            <CategoryListComponent workshop={this.state.workshops} categories={this.state.categories}/>
+          </Row>
+
+          <Row>
+            <FooterComponent className='footer' userId={this.state.userId}/>
+          </Row>
+        </Container>
       </div>
 
     );

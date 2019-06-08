@@ -7,6 +7,7 @@ import { getUserInfo } from './components/auth/utils'
 import { MessageComponent } from './components'
 import './App.scss'
 
+
 library.add(faMapMarker, faUserCircle, faPencilAlt, faSearch, faVideo, faBuilding, faClock, faSpinner, faCheck, faMinus);
 class App extends Component {
   constructor() {
