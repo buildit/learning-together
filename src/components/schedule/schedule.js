@@ -131,7 +131,7 @@ export default class Schedule extends React.Component {
         <Container>
           <Row className="">
             <Col sm="12">
-              <div className="schedule-header d-flex justify-content-between">
+              <div className="schedule-header d-flex justify-content-between align-items-end">
               <h3>Upcoming Workshops</h3>
               <div className="schedule-actions">
                 <Link
