@@ -14,7 +14,7 @@ const Onboarding = ({user}) => {
               <Container>
                 <Row>
                   <Col sm="12" md="8">
-                    <h3 className="greeting">Welcome {user.firstName}!</h3>
+                    <h1 className="greeting">Welcome {user.firstName}!</h1>
                     <p>
                       <b>Better Together </b>
                       is a platform built to help Buildit and Designit employees
@@ -27,9 +27,9 @@ const Onboarding = ({user}) => {
                     <div className="onboarding-newUserContainer">
                       <h4>New User Checklist</h4>
                       <ul className="onboarding-checklist">
-                        <li><input type="checkbox"/> <label htmlFor="">Complete Your Profile</label></li>
-                        <li><input type="checkbox"/> <label htmlFor="">Find workshops relevant to you</label></li>
-                        <li><input type="checkbox"/> <label htmlFor="">Create your own workshop</label></li>
+                        <li><input type="checkbox"/> Complete Your Profile</li>
+                        <li><input type="checkbox"/> Find workshops relevant to you</li>
+                        <li><input type="checkbox"/> Create your own workshop</li>
                       </ul>
                     </div>
                   </Col>

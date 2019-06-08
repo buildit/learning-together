@@ -14,7 +14,7 @@ $bt-yellow: #F0F465;
 $bt-blue: #6184D8;
 $bt-green: #9CEC5B;
 $bt-white: #fff;
-$bt-black: #888;
+$bt-black: #333022;
 
 
 @import '../node_modules/bootstrap/scss/functions';
@@ -40,31 +40,5 @@ $spacers: map-merge(
   @return map-get($spacers, $key);
 }
 
-button {
-  border-radius: $border-radius;
-  cursor: pointer;
-  padding: space(2) space(3);
 
-
-}
-
-.-primary {
-  background-color: $bt-pink;
-  border: 0.125rem solid $bt-pink;
-  color: $bt-white;
-
-  &:hover {
-    background-color: rgba($bt-pink, 0.8);
-  }
-}
-
-.-secondary {
-  background-color: $bt-white;
-  border: 0.125rem solid $bt-pink;
-  color: $bt-pink;
-
-  &:hover {
-    background-color: rgba($bt-pink, 0.125);
-  }
-}
 

@@ -4,7 +4,7 @@ import "./workshop.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { UserPreviewComponent } from "../userpreview";
 import Moment from "react-moment";
-import { NavbarComponent } from "../navbar";
+
 import { Link, Redirect, NavLink } from "react-router-dom";
 import { UserContext } from "../../UserProvider";
 import AddToCalendar from "react-add-to-calendar";
@@ -18,6 +18,7 @@ import {
 import { MessageComponent } from "../message";
 import { MessageConfirmComponent } from "../messageConfirm";
 import { filterAttendees } from "../../selectors";
+import { Container, Row, Col } from 'reactstrap';
 
 export default class Workshop extends Component {
   constructor(props) {
@@ -42,9 +43,10 @@ export default class Workshop extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
     const userId = localStorage.getItem("userId");
-    this.setState({ userId: Number(userId) });
+    this.setState({userId: Number(userId)});
     getWorkshop(this.props.computedMatch.params.id, this.getWorkshopCallback);
   }
+
   componentDidUpdate(prevProps) {
     if (
       this.props.computedMatch.params.id !== prevProps.computedMatch.params.id
@@ -52,8 +54,9 @@ export default class Workshop extends Component {
       getWorkshop(this.props.computedMatch.params.id, this.getWorkshopCallback);
     }
   }
+
   getWorkshopCallback(response) {
-    const { data } = response;
+    const {data} = response;
     if (response.status === 200) {
       this.setState({
         workshop: data,
@@ -64,6 +67,7 @@ export default class Workshop extends Component {
       console.log(response);
     }
   }
+
   enrollWorshopCallback(response) {
     if (response.status === 200) {
       this.setState({
@@ -79,6 +83,7 @@ export default class Workshop extends Component {
       });
     }
   }
+
   unenrollWorshopCallback(response) {
     if (response.status === 200) {
       this.setState({
@@ -94,6 +99,7 @@ export default class Workshop extends Component {
       });
     }
   }
+
   messageCallback() {
     this.setState({
       showMessage: false,
@@ -121,7 +127,7 @@ export default class Workshop extends Component {
 
   renderRedirect() {
     if (this.state.redirect) {
-      return <Redirect to={`/user/${this.state.userId}`} />;
+      return <Redirect to={`/user/${this.state.userId}`}/>;
     }
   }
 
@@ -129,6 +135,7 @@ export default class Workshop extends Component {
     e.preventDefault();
     enrollWorkshop(this.state.workshop.id, this.enrollWorshopCallback);
   }
+
   onClickUnenroll(e) {
     e.preventDefault();
     unenrollWorkshop(this.state.workshop.id, this.unenrollWorshopCallback);
@@ -139,8 +146,8 @@ export default class Workshop extends Component {
     const attendees =
       this.state.workshop.workshopAttendees.length > 0
         ? `There are ${
-        this.state.workshop.workshopAttendees.length
-        } attendee(s).`
+          this.state.workshop.workshopAttendees.length
+          } attendee(s).`
         : "";
     this.setState({
       confirmCancel: true,
@@ -158,6 +165,7 @@ export default class Workshop extends Component {
       message: ""
     });
   }
+
   updateImage(location) {
     const formatted = location.replace(/\s/g, "-");
     const imagePath = `${process.env.PUBLIC_URL}/images/cover/${formatted}.jpg`;
@@ -165,7 +173,7 @@ export default class Workshop extends Component {
   }
 
   render() {
-    const { workshop, userId, educatorId, showMessage, message } = this.state;
+    const {workshop, userId, educatorId, showMessage, message} = this.state;
     const attendees = workshop.workshopAttendees
       ? workshop.workshopAttendees
       : [];
@@ -176,7 +184,7 @@ export default class Workshop extends Component {
     const location = workshop.location ? workshop.location : "";
     const instructor = workshop.educator
       ? workshop.educator
-      : { firstName: "", lastName: "" };
+      : {firstName: "", lastName: ""};
     const isEducator = userId === educatorId;
     const isAttending = workshop && filterAttendees(userId, workshop);
     const event = {
@@ -189,7 +197,7 @@ export default class Workshop extends Component {
     return (
       <Fragment>
         {showMessage && (
-          <MessageComponent message={message} callback={this.messageCallback} />
+          <MessageComponent message={message} callback={this.messageCallback}/>
         )}
         {this.state.confirmCancel && (
           <MessageConfirmComponent
@@ -199,8 +207,11 @@ export default class Workshop extends Component {
           />
         )}
         {this.renderRedirect()}
-        <NavbarComponent location={this.props.location} />
-        <section className="grid-container class-info">
+
+        <Container className="">
+          <Row>
+            <Col>
+
           <article className="grid-x align-middle">
             <div className="small-12 medium-8 instructor-info">
               <span>
@@ -217,18 +228,18 @@ export default class Workshop extends Component {
                     alt="Instructor"
                   />
                 ) : (
-                    <FontAwesomeIcon icon="user-circle" size="3x" />
-                  )}
+                  <FontAwesomeIcon icon="user-circle" size="3x"/>
+                )}
               </div>
 
               <p>
                 Hosted by{" "}
                 <strong>
-                <NavLink to={`/user/${this.state.educatorId}`} className="">
-                  {instructor.firstName} {instructor.lastName}
+                  <NavLink to={`/user/${this.state.educatorId}`} className="">
+                    {instructor.firstName} {instructor.lastName}
                   </NavLink>
                 </strong>
-                <br />
+                <br/>
                 <a href="true" className="email">
                   Contact Instructor
                 </a>
@@ -264,22 +275,24 @@ export default class Workshop extends Component {
                     UNENROLL
                   </button>
                 ) : (
-                      <button
-                        type="button"
-                        className="button flex-child-auto large-flex-child-shrink"
-                        onClick={this.onClickEnroll.bind(this)}
-                      >
-                        ENROLL
+                  <button
+                    type="button"
+                    className="button flex-child-auto large-flex-child-shrink"
+                    onClick={this.onClickEnroll.bind(this)}
+                  >
+                    ENROLL
                   </button>
-                    )
+                )
               }
             </div>
           </article>
-        </section>
+            </Col>
+          </Row>
+        </Container>
         <section className="grid-container">
           <article className="grid-x grid-margin-x">
             <div className="cell small-12 medium-8 small-order-2 medium-order-1">
-              <JumbotronComponent image={cover} />
+              <JumbotronComponent image={cover}/>
               <h4>
                 <b>Details</b>
               </h4>
@@ -292,7 +305,7 @@ export default class Workshop extends Component {
                 <section className="grid-display attendee-grid">
                   {attendees.map((attendee, index) => {
                     return (
-                      <UserPreviewComponent key={index} attendee={attendee} />
+                      <UserPreviewComponent key={index} attendee={attendee}/>
                     );
                   })}
                 </section>
@@ -302,7 +315,7 @@ export default class Workshop extends Component {
             <div className="cell small-12 medium-4 small-order-1 medium-order-2">
               <article className="detail">
                 <div className="detail-icon">
-                  <FontAwesomeIcon icon="clock" size="2x" />
+                  <FontAwesomeIcon icon="clock" size="2x"/>
                 </div>
                 <div className="detail-copy">
                   <p>
@@ -310,10 +323,10 @@ export default class Workshop extends Component {
                       <Moment format="dddd">{workshop.start}</Moment>,{" "}
                       <Moment format="LL">{workshop.start}</Moment>
                     </span>
-                    <br />
+                    <br/>
                     <Moment format="LT">{workshop.start}</Moment> -{" "}
                     <Moment format="LT">{workshop.end}</Moment>
-                    <br />
+                    <br/>
                     <AddToCalendar
                       event={event}
                       buttonClassOpen="button"
@@ -325,13 +338,13 @@ export default class Workshop extends Component {
               </article>
               <article className="detail">
                 <div className="detail-icon">
-                  <FontAwesomeIcon icon="map-marker" size="2x" />
+                  <FontAwesomeIcon icon="map-marker" size="2x"/>
                 </div>
                 <div className="detail-copy">
                   <p>
                     {" "}
-                    {location.name} <br />
-                    {workshop.room} <br />
+                    {location.name} <br/>
+                    {workshop.room} <br/>
                     {workshop.webex === "" ? null : (
                       <a href={workshop.webex}>Webex</a>
                     )}

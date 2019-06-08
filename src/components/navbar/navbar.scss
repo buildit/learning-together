@@ -1,4 +1,4 @@
-@import '../../varibles';
+@import '../../variables';
 
 .logo {
     margin-right: space(4);
@@ -23,6 +23,7 @@
 }
 
 .navbar {
+    box-shadow: $box-shadow;
     position:fixed;
     background: #ffffff;
     padding: 0 space(4);

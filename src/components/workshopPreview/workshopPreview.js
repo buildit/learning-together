@@ -17,9 +17,9 @@ const WorkshopPreview = ({workshop}) => {
 
       <div className="workshop-cardTime">
 
-        <p>
+        <h5>
           <Moment format="LT">{start}</Moment>
-        </p>{" "}
+        </h5>{" "}
 
       </div>
 
@@ -27,7 +27,7 @@ const WorkshopPreview = ({workshop}) => {
           <h3 className="title">
             {workshop.name}
           </h3>
-          <p>Instructor: <b>{workshop.educator.firstName} {workshop.educator.lastName}</b></p>
+          <p>Instructor: {workshop.educator.firstName} {workshop.educator.lastName}</p>
         </div>
 
     </Link>

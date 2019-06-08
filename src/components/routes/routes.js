@@ -21,7 +21,7 @@ export default class RoutesComponent extends React.Component {
       <UserProvider>
         <Router>
           <NavbarComponent  />
-          <div className="main">
+          <div className="main-wrapper">
             <Switch>
               <UserRoute exact path="/" component={LandingComponent} />
               <UserRoute exact path="/user/:id" component={UserProfileComponent} />

@@ -1,53 +1,54 @@
-@import '../../varibles';
-
+@import '../../variables';
 
 
 .onboarding {
-    &-container {
-        background-image:   linear-gradient(to right, rgba($bt-pink, 1), rgba($bt-yellow, 0)),
-        radial-gradient(ellipse at top , rgba($bt-yellow, 1) 0%,  rgba($bt-green, .5) 90%),
-        radial-gradient(ellipse at bottom right , rgba($bt-blue, 1) 0%,  rgba($bt-green, .5) 90%),;
-        background-repeat: no-repeat,
-        no-repeat,
-        no-repeat;
-        background-position: bottom right,
-        left,
-        right;
-        margin-bottom: space(6);
-        padding-bottom: space(5);
-        padding-top: space(7);
+  &-container {
+    background-image: linear-gradient(to right, rgba($bt-pink, 1), rgba($bt-yellow, 0)),
+    radial-gradient(ellipse at top, rgba($bt-yellow, 1) 0%, rgba($bt-green, .5) 90%),
+    radial-gradient(ellipse at bottom right, rgba($bt-blue, 1) 0%, rgba($bt-green, .5) 90%),;
+    margin-bottom: space(6);
+    margin-top: space(3) * -1;
+    padding: space(5) 0;
+    position: relative;
+
+
+  }
+
+  &-newUserContainer {
+    background-color: #fff;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow;
+    margin-top: space(4);
+    padding: space(4) space(4);
+    position: absolute;
+
+    h4 {
+      margin-bottom: space(4);
+    }
+  }
+
+  &-checklist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      border-radius: $border-radius;
+      margin-bottom: space(2);
+      padding: space(1) space(2);
+
+      &:first-child {
+        background-color: rgba($bt-pink, 0.5);
+      }
+
+      input {
+        margin-right: space(1);
+      }
 
 
     }
 
-    &-newUserContainer {
-        background-color: #fff;
-        border-radius: $border-radius;
-        box-shadow: $box-shadow;
-        margin-top: space(3);
-        padding: space(4) space(5);
-        position: absolute;
 
-
-        h4 {
-
-            margin-bottom: space(4) ;
-        }
-    }
-
-    &-checklist {
-
-        list-style: none;
-        margin:  0;
-        padding: 0;
-
-        input {
-
-        }
-
-        label {
-            margin-left: space(2);
-        }
-    }
+  }
 
 }
