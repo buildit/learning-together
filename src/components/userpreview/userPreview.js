@@ -12,13 +12,13 @@ const UserPreviewComponent = ({ attendee }) => {
     }
     return (
         <div className="user-preview">
-            <NavLink to={`/user/${attendee.id}`} className="">
-                <div className="photo-frame">
+            <NavLink to={`/user/${attendee.id}`} className="d-flex align-items-center">
+                <div className="-profilePic -small ">
                     <img src={showPhoto()} alt="" />
                 </div>
-                <div>
-                    <p>{attendee.firstName}<br />{attendee.lastName}</p>
-                </div>
+
+                {attendee.firstName} {attendee.lastName}
+
             </NavLink>
         </div>
     )

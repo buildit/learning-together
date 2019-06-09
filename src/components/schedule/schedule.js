@@ -139,7 +139,7 @@ export default class Schedule extends React.Component {
                   to={`/workshops`}
                 >
                   <button type="button" className="-secondary">
-                    <b>Browse All</b>
+                    Browse All
                   </button>
                 </Link>
 
@@ -148,7 +148,7 @@ export default class Schedule extends React.Component {
                   to={`/create`}
                 >
                   <button type="button" className="-primary">
-                    <b>Create A Workshop</b>
+                    Create A Workshop
                   </button>
                 </Link>
 

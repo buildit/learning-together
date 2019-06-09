@@ -1,24 +1,5 @@
+@import '../../variables';
 
-.photo-frame {
-    border-radius: 50px;
-    width: 75px;
-    overflow: hidden;
-    margin: 0 auto;
-    margin-right: 1em;
-
-    img {
-        object-fit: cover;
-    }
-}
-
-.user-preview {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 15px;
-    text-align: center;
-
-    p {
-        font-size: 14px;
-    }
+.user-preview .-profilePic {
+    margin-right: space(3);
 }

@@ -19,6 +19,7 @@ import { MessageComponent } from "../message";
 import { MessageConfirmComponent } from "../messageConfirm";
 import { filterAttendees } from "../../selectors";
 import { Container, Row, Col } from 'reactstrap';
+import Select from "react-select";
 
 export default class Workshop extends Component {
   constructor(props) {
@@ -208,84 +209,136 @@ export default class Workshop extends Component {
         )}
         {this.renderRedirect()}
 
-        <Container className="">
+        <div className="workshop-header">
+
+
+          <Container className="">
+            <Row>
+              <Col sm="12" md="9" className="workshop-headerTitleArea d-flex align-items-end">
+                <h1 className="workshop-title">
+                  {workshop.name}
+                </h1>
+              </Col>
+              <Col sm="12" md="3" className="d-md-flex align-items-end">
+                <div className="workshop-metaData">
+                  <article className="detail">
+                    <div className="detail-icon">
+                      <FontAwesomeIcon icon="clock" size="2x"/>
+                    </div>
+                    <div className="detail-copy">
+                      <p>
+                    <span>
+                      <Moment format="dddd">{workshop.start}</Moment>,{" "}
+                      <Moment format="LL">{workshop.start}</Moment>
+                    </span>
+                        <br/>
+                        <Moment format="LT">{workshop.start}</Moment> -{" "}
+                        <Moment format="LT">{workshop.end}</Moment>
+                        <br/>
+                        <AddToCalendar
+                          event={event}
+                          buttonClassOpen="button"
+                          buttonClassClosed="button"
+                          dropdownClass="ics-dropdown"
+                        />
+                      </p>
+                    </div>
+                  </article>
+                  <article className="detail">
+                    <div className="detail-icon">
+                      <FontAwesomeIcon icon="map-marker" size="2x"/>
+                    </div>
+                    <div className="detail-copy">
+                      <p>
+                        {" "}
+
+                        {(location.name) ?  <span>{location.name} <br/></span> : ""}
+
+                        {(workshop.room) ?  <span>{workshop.room} <br/></span> : ""}
+
+                        {(workshop.webex) ?  <span><a href={workshop.webex}>Webex</a></span> : ""}
+
+                      </p>
+                    </div>
+                  </article>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        </div>
+
+        <Container className="workshop-body">
           <Row>
-            <Col>
+            <Col sm="12" md="12">
 
-          <article className="grid-x align-middle">
-            <div className="small-12 medium-8 instructor-info">
-              <span>
-                <Moment format="dddd">{workshop.start}</Moment>,{" "}
-                <Moment format="LL">{workshop.start}</Moment>
-              </span>
-              <h1 className="workshop-title">
-                <b>{workshop.name}</b>
-              </h1>
-              <div className="photo-frame">
-                {instructor.imageUrl ? (
-                  <img
-                    src={`${baseUrl}${instructor.imageUrl}`}
-                    alt="Instructor"
-                  />
-                ) : (
-                  <FontAwesomeIcon icon="user-circle" size="3x"/>
-                )}
-              </div>
+              <article className="d-md-flex justify-content-between align-items-center   workshop-actionBar">
+                <div className="d-flex  align-items-center workshop-instructor">
 
-              <p>
-                Hosted by{" "}
-                <strong>
-                  <NavLink to={`/user/${this.state.educatorId}`} className="">
-                    {instructor.firstName} {instructor.lastName}
-                  </NavLink>
-                </strong>
-                <br/>
-                <a href="true" className="email">
-                  Contact Instructor
-                </a>
-              </p>
-            </div>
+                  <div className="-profilePic">
+                    {instructor.imageUrl ? (
+                      <img
+                        src={`${baseUrl}${instructor.imageUrl}`}
+                        alt="Instructor"
+                      />
+                    ) : (
+                      ""
+                    )}
+                  </div>
 
-            <div className="cell small-12 medium-4 flex-container enroll-button">
-              {
-                isEducator ? (
-                  [
-                    <Link
-                      className=""
-                      to={`/edit/${this.props.computedMatch.params.id}`}
-                    >
-                      <button type="button" className="button flex-child-auto">
-                        EDIT
+                  <p>
+                    Hosted by{" "}
+                    <strong>
+                      <NavLink to={`/user/${this.state.educatorId}`} className="">
+                        {instructor.firstName} {instructor.lastName}
+                      </NavLink>
+                    </strong>
+                    <br/>
+                    <a href="true" className="email">
+                      Contact Instructor
+                    </a>
+                  </p>
+                </div>
+
+                <div className="d-flex align-items-center  workshop-actionButtonContainer">
+                  {
+                    isEducator ? (
+                      [
+                        <Link
+                          className=""
+                          to={`/edit/${this.props.computedMatch.params.id}`}
+                        >
+                          <button type="button" className="-secondary">
+                            EDIT
+                          </button>
+                        </Link>,
+                        <button
+                          type="button"
+                          className="-secondary"
+                          onClick={this.onClickCancel.bind(this)}
+                        >
+                          CANCEL WORKSHOP
+                        </button>
+                      ]
+                    ) : isAttending ? (
+                      <button
+                        type="button"
+                        className="-secondary"
+                        onClick={this.onClickUnenroll.bind(this)}
+                      >
+                        Unenroll
                       </button>
-                    </Link>,
-                    <button
-                      type="button"
-                      className="button flex-child-auto large-flex-child-shrink unenroll"
-                      onClick={this.onClickCancel.bind(this)}
-                    >
-                      CANCEL WORKSHOP
-                    </button>
-                  ]
-                ) : isAttending ? (
-                  <button
-                    type="button"
-                    className="button unenroll flex-child-auto large-flex-child-shrink"
-                    onClick={this.onClickUnenroll.bind(this)}
-                  >
-                    UNENROLL
-                  </button>
-                ) : (
-                  <button
-                    type="button"
-                    className="button flex-child-auto large-flex-child-shrink"
-                    onClick={this.onClickEnroll.bind(this)}
-                  >
-                    ENROLL
-                  </button>
-                )
-              }
-            </div>
-          </article>
+                    ) : (
+                      <button
+                        type="button"
+                        className="-primary"
+                        onClick={this.onClickEnroll.bind(this)}
+                      >
+                        Enroll
+                      </button>
+                    )
+                  }
+                </div>
+              </article>
             </Col>
           </Row>
 
@@ -300,63 +353,28 @@ export default class Workshop extends Component {
                     </h4>
                     <p className="description">{workshop.description}</p>
 
-                    <div className="attendees">
-                      <h4>
-                        <b>Attendees</b>
-                      </h4>
-                      <section className="grid-display attendee-grid">
-                        {attendees.map((attendee, index) => {
-                          return (
-                            <UserPreviewComponent key={index} attendee={attendee}/>
-                          );
-                        })}
-                      </section>
-                    </div>
+
                   </div>
 
-                  <div className="cell small-12 medium-4 small-order-1 medium-order-2">
-                    <article className="detail">
-                      <div className="detail-icon">
-                        <FontAwesomeIcon icon="clock" size="2x"/>
-                      </div>
-                      <div className="detail-copy">
-                        <p>
-                    <span>
-                      <Moment format="dddd">{workshop.start}</Moment>,{" "}
-                      <Moment format="LL">{workshop.start}</Moment>
-                    </span>
-                          <br/>
-                          <Moment format="LT">{workshop.start}</Moment> -{" "}
-                          <Moment format="LT">{workshop.end}</Moment>
-                          <br/>
-                          <AddToCalendar
-                            event={event}
-                            buttonClassOpen="button"
-                            buttonClassClosed="button"
-                            dropdownClass="ics-dropdown"
-                          />
-                        </p>
-                      </div>
-                    </article>
-                    <article className="detail">
-                      <div className="detail-icon">
-                        <FontAwesomeIcon icon="map-marker" size="2x"/>
-                      </div>
-                      <div className="detail-copy">
-                        <p>
-                          {" "}
-                          {location.name} <br/>
-                          {workshop.room} <br/>
-                          {workshop.webex === "" ? null : (
-                            <a href={workshop.webex}>Webex</a>
-                          )}
-                        </p>
-                      </div>
-                    </article>
-                  </div>
+
                 </article>
               </section>
             </Col>
+            <Col sm="12" md="3">
+              <div className="">
+                <h4>
+                 Attendees
+                </h4>
+                <section className="">
+                  {attendees.map((attendee, index) => {
+                    return (
+                      <UserPreviewComponent key={index} attendee={attendee}/>
+                    );
+                  })}
+                </section>
+              </div>
+            </Col>
+
           </Row>
         </Container>
 

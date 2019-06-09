@@ -16,10 +16,40 @@ $bt-green: #9CEC5B;
 $bt-white: #fff;
 $bt-black: #333022;
 
+$rainbowGradient: linear-gradient(to right, rgba($bt-pink, 1), rgba($bt-yellow, 0)),
+radial-gradient(ellipse at top, rgba($bt-yellow, 1) 0%, rgba($bt-green, .5) 90%),
+radial-gradient(ellipse at bottom right, rgba($bt-blue, 1) 0%, rgba($bt-green, .5) 90%);
 
 @import '../node_modules/bootstrap/scss/functions';
 @import '../node_modules/bootstrap/scss/variables';
 @import '../node_modules/bootstrap/scss/mixins';
+
+.-profilePic {
+  $profilePicSize: 4rem;
+
+  background-image: $rainbowGradient;
+  border-radius: $profilePicSize;
+  display: block;
+  height: $profilePicSize;
+  overflow: hidden;
+  width: $profilePicSize;
+  img {
+    height: $profilePicSize;
+    width: $profilePicSize;
+  }
+
+  &.-small {
+    border-radius: $profilePicSize * 0.75;
+
+    height: $profilePicSize * 0.75;
+
+    width: $profilePicSize * 0.75;
+    img {
+      height: $profilePicSize * 0.75;
+      width: $profilePicSize * 0.75;
+    }
+  }
+}
 
 $border-radius: 0.5rem;
 

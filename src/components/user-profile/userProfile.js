@@ -122,7 +122,7 @@ export default class UserProfileComponent extends React.Component {
           <Row>
             <Col>
               <div className="user-container d-flex user-card">
-                <div className="user-profilePic">
+                <div className="-profilePic">
 
                   {Object.keys(user).length > 0 && <img src={baseUrl + user.imageUrl} alt="profile"/>}
 
