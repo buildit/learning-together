@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { CategoryListComponent } from "../categoryList";
-import { FooterComponent } from "../footer"
 import { getUser, getWorkshopListDate } from '../../api'
 import './landing.scss';
 import { loadCategories } from '../../api';
 import moment from 'moment';
-import { Container, Row } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 
 import { Onboarding } from "../onboarding";
 import { Schedule } from "../schedule";
@@ -84,12 +83,13 @@ export default class Landing extends Component {
           </Row>
 
           <Row>
+            <Col>
+              <h3>Categories</h3>
+            </Col>
             <CategoryListComponent workshop={this.state.workshops} categories={this.state.categories}/>
           </Row>
 
-          <Row>
-            <FooterComponent className='footer' userId={this.state.userId}/>
-          </Row>
+
         </Container>
       </div>
 

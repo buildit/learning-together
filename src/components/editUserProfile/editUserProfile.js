@@ -4,7 +4,6 @@ import Select from 'react-select'
 import { editUser, getUser, getLocationList, getRolesList, getDisciplineList } from '../../api'
 import { MessageComponent } from '../message'
 import { ImageUploaderComponent } from '../imageUploader'
-import { NavbarComponent } from '../navbar'
 import './editUserProfile.scss'
 import { Container, Row, Col } from 'reactstrap';
 

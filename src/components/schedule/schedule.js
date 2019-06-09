@@ -131,7 +131,7 @@ export default class Schedule extends React.Component {
         <Container>
           <Row className="">
             <Col sm="12">
-              <div className="schedule-header d-flex justify-content-between align-items-end">
+              <div className="schedule-header d-md-flex justify-content-between align-items-end">
               <h3>Upcoming Workshops</h3>
               <div className="schedule-actions">
                 <Link
@@ -159,35 +159,6 @@ export default class Schedule extends React.Component {
           </Row>
 
           <Row>
-            <Col sm="12" md="9">
-              {(dates.length > 0)
-                ?
-                  dates.map((date, index) => {
-                    return (
-
-                      Object.keys(date).map((key, index) => {
-
-                        return (
-                          <section key={`date-section-${index}`}>
-                            <p className="schedule-sectionHeader">{key}</p>
-                            <article className="schedule-itemCard">
-                              {date[key].map((workshop, index) => {
-                                return (
-                                  <WorkshopPreviewComponent workshop={workshop} key={`workshop-preview-${index}`}/>
-                                )
-                              })}
-                            </article>
-                          </section>
-                        )
-                      })
-                    )
-                  })
-
-                :
-                <div>No matching results</div>
-              }
-
-            </Col>
             <Col sm="12" md="3">
               <nav className="workshop-filter">
                 <ul>
@@ -221,6 +192,36 @@ export default class Schedule extends React.Component {
                 </ul>
               </nav>
             </Col>
+            <Col sm="12" md="9">
+              {(dates.length > 0)
+                ?
+                  dates.map((date, index) => {
+                    return (
+
+                      Object.keys(date).map((key, index) => {
+
+                        return (
+                          <section key={`date-section-${index}`}>
+                            <p className="schedule-sectionHeader">{key}</p>
+                            <article className="schedule-itemCard">
+                              {date[key].map((workshop, index) => {
+                                return (
+                                  <WorkshopPreviewComponent workshop={workshop} key={`workshop-preview-${index}`}/>
+                                )
+                              })}
+                            </article>
+                          </section>
+                        )
+                      })
+                    )
+                  })
+
+                :
+                <div className="schedule-emptyCard">No matching results</div>
+              }
+
+            </Col>
+
           </Row>
 
 

@@ -8,6 +8,7 @@ class CategoryList extends Component {
     const WrkshpCategories = this.props.categories.map((category, index) => {
       return (
         <Col key={index} sm="12" md="3" >
+
           <Link
             to={{
               pathname: `/workshops/categories/${category.id}/${category.name}`,

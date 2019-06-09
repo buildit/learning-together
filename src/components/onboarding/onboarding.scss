@@ -19,7 +19,7 @@
     border-radius: $border-radius;
     box-shadow: $box-shadow;
     margin-top: space(4);
-    padding: space(4) space(4);
+    padding: space(4);
     position: absolute;
 
     h4 {
@@ -51,4 +51,19 @@
 
   }
 
+}
+
+@media (max-width: 768px) {
+  .onboarding {
+    &-newUserContainerWrapper {
+      text-align: center;
+    }
+
+    &-newUserContainer {
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      text-align: left;
+    }
+  }
 }

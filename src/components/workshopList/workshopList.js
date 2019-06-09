@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import { WorkshopPreviewComponent } from "../workshopPreview";
-import { NavbarComponent } from "../navbar";
 import { getWorkshopList } from "../../api";
 import "./workshoplist.scss";
 import { Container, Row, Col } from 'reactstrap';

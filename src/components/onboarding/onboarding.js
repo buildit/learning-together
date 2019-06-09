@@ -23,7 +23,7 @@ const Onboarding = ({user}) => {
                       you by adding your office location and subjects that interest you to your profile.
                     </p>
                   </Col>
-                  <Col sm="12" md="4">
+                  <Col sm="12" md="4" className="onboarding-newUserContainerWrapper">
                     <div className="onboarding-newUserContainer">
                       <h4>New User Checklist</h4>
                       <ul className="onboarding-checklist">
