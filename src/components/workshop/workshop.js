@@ -288,72 +288,78 @@ export default class Workshop extends Component {
           </article>
             </Col>
           </Row>
-        </Container>
-        <section className="grid-container">
-          <article className="grid-x grid-margin-x">
-            <div className="cell small-12 medium-8 small-order-2 medium-order-1">
-              <JumbotronComponent image={cover}/>
-              <h4>
-                <b>Details</b>
-              </h4>
-              <p className="description">{workshop.description}</p>
 
-              <div className="attendees">
-                <h4>
-                  <b>Attendees</b>
-                </h4>
-                <section className="grid-display attendee-grid">
-                  {attendees.map((attendee, index) => {
-                    return (
-                      <UserPreviewComponent key={index} attendee={attendee}/>
-                    );
-                  })}
-                </section>
-              </div>
-            </div>
+          <Row>
+            <Col>
+              <section className="grid-container">
+                <article className="grid-x grid-margin-x">
+                  <div className="cell small-12 medium-8 small-order-2 medium-order-1">
+                    <JumbotronComponent image={cover}/>
+                    <h4>
+                      <b>Details</b>
+                    </h4>
+                    <p className="description">{workshop.description}</p>
 
-            <div className="cell small-12 medium-4 small-order-1 medium-order-2">
-              <article className="detail">
-                <div className="detail-icon">
-                  <FontAwesomeIcon icon="clock" size="2x"/>
-                </div>
-                <div className="detail-copy">
-                  <p>
+                    <div className="attendees">
+                      <h4>
+                        <b>Attendees</b>
+                      </h4>
+                      <section className="grid-display attendee-grid">
+                        {attendees.map((attendee, index) => {
+                          return (
+                            <UserPreviewComponent key={index} attendee={attendee}/>
+                          );
+                        })}
+                      </section>
+                    </div>
+                  </div>
+
+                  <div className="cell small-12 medium-4 small-order-1 medium-order-2">
+                    <article className="detail">
+                      <div className="detail-icon">
+                        <FontAwesomeIcon icon="clock" size="2x"/>
+                      </div>
+                      <div className="detail-copy">
+                        <p>
                     <span>
                       <Moment format="dddd">{workshop.start}</Moment>,{" "}
                       <Moment format="LL">{workshop.start}</Moment>
                     </span>
-                    <br/>
-                    <Moment format="LT">{workshop.start}</Moment> -{" "}
-                    <Moment format="LT">{workshop.end}</Moment>
-                    <br/>
-                    <AddToCalendar
-                      event={event}
-                      buttonClassOpen="button"
-                      buttonClassClosed="button"
-                      dropdownClass="ics-dropdown"
-                    />
-                  </p>
-                </div>
-              </article>
-              <article className="detail">
-                <div className="detail-icon">
-                  <FontAwesomeIcon icon="map-marker" size="2x"/>
-                </div>
-                <div className="detail-copy">
-                  <p>
-                    {" "}
-                    {location.name} <br/>
-                    {workshop.room} <br/>
-                    {workshop.webex === "" ? null : (
-                      <a href={workshop.webex}>Webex</a>
-                    )}
-                  </p>
-                </div>
-              </article>
-            </div>
-          </article>
-        </section>
+                          <br/>
+                          <Moment format="LT">{workshop.start}</Moment> -{" "}
+                          <Moment format="LT">{workshop.end}</Moment>
+                          <br/>
+                          <AddToCalendar
+                            event={event}
+                            buttonClassOpen="button"
+                            buttonClassClosed="button"
+                            dropdownClass="ics-dropdown"
+                          />
+                        </p>
+                      </div>
+                    </article>
+                    <article className="detail">
+                      <div className="detail-icon">
+                        <FontAwesomeIcon icon="map-marker" size="2x"/>
+                      </div>
+                      <div className="detail-copy">
+                        <p>
+                          {" "}
+                          {location.name} <br/>
+                          {workshop.room} <br/>
+                          {workshop.webex === "" ? null : (
+                            <a href={workshop.webex}>Webex</a>
+                          )}
+                        </p>
+                      </div>
+                    </article>
+                  </div>
+                </article>
+              </section>
+            </Col>
+          </Row>
+        </Container>
+
       </Fragment>
     );
   }

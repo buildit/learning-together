@@ -45,6 +45,7 @@ export default class ImageUploaderComponent extends React.Component {
           <div className='row'>
             <div className='grid-x grid-padding-x align-center'>
               <label htmlFor="fileUpload" className="button">Choose File</label>
+              <br/>
               <input type='file' id='fileUpload' className='show-for-sr' onChange={this.fileUploadHandler.bind(this)} />
               {isUploaded && (
                 <div className='image-icon-confirm'>

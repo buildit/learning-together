@@ -6,6 +6,7 @@ import { MessageComponent } from '../message'
 import { ImageUploaderComponent } from '../imageUploader'
 import { NavbarComponent } from '../navbar'
 import './editUserProfile.scss'
+import { Container, Row, Col } from 'reactstrap';
 
 export default class EditUserProfileComponent extends React.Component {
 
@@ -210,38 +211,47 @@ export default class EditUserProfileComponent extends React.Component {
     const profile = profilePicture !== "" ? `${baseUrl}${profilePicture}` : "";
     return (
       <Fragment>
-        <NavbarComponent />
-        <div className="grid-container first-container">
-          <div className="grid-y medium-grid-frame">
-            <div className="grid-x grid-padding-x align-middle">
-              <form className='cell medium-12' onSubmit={this.submitHandler.bind(this)}>
-                <div className='row'>
-                  <div className="small-12 columns">
-                    <h2>Edit Profile Settings</h2>
+        <form className="" onSubmit={this.submitHandler.bind(this)}>
+        <Container>
+          <Row>
+            <Col>
+              <h1>Edit Profile Settings</h1>
+            </Col>
+
+          </Row>
+          <Row>
+            <Col sm="12" md="3">
+
+                <div className="">
+                  <div className="">
+
                     <label>Profile picture:</label>
                     <ImageUploaderComponent setPicture={this.setProfilePicture} imgUrl={profile} />
                   </div>
                 </div>
-                <div className='row'>
-                  <div className="small-12 columns">
+
+            </Col>
+            <Col sm="12" md="9">
+                <div className="">
+                  <div className="">
                     <label>First Name:</label>
                     <input type="text" placeholder="Please Enter Your First Name" name='firstName' autoComplete='first name' value={name} onChange={this.onChangeHandler.bind(this)} />
                     {firstNameError && (
-                      <span className='edit-error'>Please type in a valid name.</span>
+                      <span className="">Please type in a valid name.</span>
                     )}
                   </div>
                 </div>
-                <div className='row'>
-                  <div className="small-12 columns">
+                <div className="">
+                  <div className="">
                     <label>Last Name:</label>
                     <input type="text" placeholder="Please Enter Your Last Name" name='lastName' autoComplete='last name' value={name} onChange={this.onChangeHandler.bind(this)} />
                     {lastNameError && (
-                      <span className='edit-error'>Please type in a valid name.</span>
+                      <span className="">Please type in a valid name.</span>
                     )}
                   </div>
                 </div>
-                <div className='row'>
-                  <div className="small-12 columns">
+                <div className="">
+                  <div className="">
                     <label>Location:</label>
                     <Select
                       placeholder='Please select a location'
@@ -251,12 +261,12 @@ export default class EditUserProfileComponent extends React.Component {
                       name='locations'
                     />
                     {locationError && (
-                      <span className='edit-error'>Please select a location.</span>
+                      <span className="">Please select a location.</span>
                     )}
                   </div>
                 </div>
-                <div className='row'>
-                  <div className="small-12 columns">
+                <div className="">
+                  <div className="">
                     <label>Role:</label>
                     <Select
                       placeholder='Please select a role'
@@ -266,37 +276,38 @@ export default class EditUserProfileComponent extends React.Component {
                       name='roles'
                     />
                     {roleError && (
-                      <span className='edit-error'>Please select a role.</span>
+                      <span className="">Please select a role.</span>
                     )}
                   </div>
                 </div>
-                <div className='row'>
-                  <div className="small-12 columns">
+                <div className="">
+                  <div className="">
                     <label>What are your interests?</label>
                     <Select
                       defaultValue={[]}
                       isMulti
                       name="interests"
                       options={this.state.disciplines}
-                      className="basic-multi-select"
+                      className=""
                       classNamePrefix="select"
                       onChange={this.onClickDisciplinesHandler.bind(this)}
                       isSearchable={false}
                     />
                     {roleError && (
-                      <span className='edit-error'>Please select your interests.</span>
+                      <span className="">Please select your interests.</span>
                     )}
                   </div>
                 </div>
-                <div className='row'>
-                  <div className='grid-x grid-padding-x align-center'>
-                    <input type="submit" className="button success align-center cell medium-6 align-middle" value="Submit" />
+                <div className="">
+                  <div className="">
+                    <input type="submit" className="" value="Submit" />
                   </div>
                 </div>
-              </form>
-            </div>
-          </div>
-        </div >
+
+            </Col>
+          </Row>
+        </Container >
+      </form>
         {editProfileSuccess && (<MessageComponent message='Your profile was successfully changed.' callback={this.redirectCallback} />)}
         {editProfileError && (<MessageComponent message='Your profile was unsuccesfully changed. Please Try again later.' callback={this.toggleEditError.bind(this)} />)}
         {locationFetchError && (<MessageComponent message='Locations service is down. Please try again later' callback={this.toggleLocationError.bind(this)} />)}

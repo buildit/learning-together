@@ -1,12 +1,12 @@
 import React, { Fragment } from "react";
 import "./user-profile.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { NavbarComponent } from "../navbar";
 import { WorkshopPreviewComponent } from "../workshopPreview";
 import { getUser, getWorkshopListDate } from "../../api";
 import moment from 'moment';
 import { groupBy, forEach } from 'lodash';
 import { UserContext } from "../../UserProvider";
+import { Container, Row, Col } from 'reactstrap';
 
 export default class UserProfileComponent extends React.Component {
   constructor(props) {
@@ -60,11 +60,10 @@ export default class UserProfileComponent extends React.Component {
         const attend = data.data.workshopsAttending.map(workshop => {
           return (
             response.data.filter(attending => {
-              return (
-                attending.id === workshop.workshopId
-              )
-            }
-
+                return (
+                  attending.id === workshop.workshopId
+                )
+              }
             )
           )
         })
@@ -72,11 +71,10 @@ export default class UserProfileComponent extends React.Component {
         const teach = data.data.workshopsTeaching.map(workshop => {
           return (
             response.data.filter(teaching => {
-              return (
-                teaching.id === workshop.workshopId
-              )
-            }
-
+                return (
+                  teaching.id === workshop.workshopId
+                )
+              }
             )
           )
         })
@@ -87,7 +85,7 @@ export default class UserProfileComponent extends React.Component {
           teaching: this.filterByDay([].concat(...teach))
         })
       })
-      .catch(error => this.setState({ error: 'Please try again later' }))
+      .catch(error => this.setState({error: 'Please try again later'}))
 
     this.setState({
       user: data.data,
@@ -114,115 +112,162 @@ export default class UserProfileComponent extends React.Component {
   }
 
   render() {
-    const { user } = this.state;
+    const {user} = this.state;
     const baseUrl = "https://bettertogether.buildit.systems/";
 
     return (
       <Fragment>
-        <NavbarComponent />
-        <section className="user grid-container">
-          <div className="grid-x user-profile grid-margin-x">
-            <div className="cell small-9">
-              <div className="user-info">
-                <h2>
-                  {user.firstName} {user.lastName}
-                </h2>
-                {user.location ? (
-                  <h3>
-                    <FontAwesomeIcon icon="map-marker" />{" "}
-                    <strong>{user.location.name}</strong>
-                  </h3>
-                ) : (
+
+        <Container>
+          <Row>
+            <Col>
+              <div className="user-container d-flex user-card">
+                <div className="user-profilePic">
+
+                  {Object.keys(user).length > 0 && <img src={baseUrl + user.imageUrl} alt="profile"/>}
+
+                  <p>
+                    <a href={`/#/settings/${user.id}`}>Edit</a>
+                  </p>
+                </div>
+
+                <div className="user-info">
+                  <h2>
+                    {user.firstName} {user.lastName}
+                  </h2>
+
+
+                  {user.location ? (
+                    <p>
+                      <FontAwesomeIcon icon="map-marker"/>{" "}
+                      <span>{user.location.name}</span>
+                    </p>
+                  ) : (
                     ""
                   )}
-                <h5>{user.role ? user.role.name : ""} </h5>
-                <h6>{user.userInterests ? (
-                  user.userInterests.map((interest, idx) => {
-                    if (idx === 0) return interest.name
-                    else return ', ' + interest.name
-                  })
-                )
-                  : "Professional Development, Social Activiites, Arts & Culture"} </h6>
+
+                  <p>{user.role ? user.role.name : ""} </p>
+                  <p>{user.userInterests ? (
+                      user.userInterests.map((interest, idx) => {
+                        if (idx === 0) return interest.name
+                        else return ', ' + interest.name
+                      })
+                    )
+                    : "Professional Development, Social Activiites, Arts & Culture"} </p>
+
+                </div>
               </div>
-            </div>
-            <div className="profile-pic cell small-3">
-              <div className="profile-frame">
-                {Object.keys(user).length > 0 && <img src={baseUrl+user.imageUrl} alt="profile" />}
-              </div>
-              <a href={`/#/settings/${user.id}`}>Edit</a>
-            </div>
-          </div>
-          <div className="courses">
-            <hr />
-            <div className="upcoming">
-              <header className="grid-container worskshop-header">
-                <h4>
-                  <b>My Workshops</b>
-                </h4>
+
+            </Col>
+          </Row>
+
+          <Row className="user-workshopContainer">
+            <Col>
+
+              <header className="user-workshopHeader">
+                <h3>
+                  My Workshops
+                </h3>
               </header>
-            </div>
-            <section className="workshops-list grid-container">
-              <div className="grid-x">
-                <header className="cell medium-2">
-                  <b className="schedule-header">Attending</b>
-                </header>
-                <article className="cell medium-10">
-                  {this.state.attending.map((date, index) => {
-                    return (
 
-                      Object.keys(date).map((key, index) => {
+            </Col>
+          </Row>
+          <Row>
+            <Col sm="12" md="6">
 
+
+              <section className="">
+                <div className="">
+                  <header className="user-workshopHeader">
+                    <h4 className="schedule-header">Teaching</h4>
+                  </header>
+                  {(this.state.teaching.length > 0)
+                    ?
+                    <article className="">
+
+                      {this.state.teaching.map((date, index) => {
                         return (
-                          <Fragment key={`workshop-list-${index}`}>
-                            <b className="time-header">{key}</b>
-                            <article className="workshopsforday">
-                              {date[key].map((workshop, index) => {
-                                return (
-                                  <WorkshopPreviewComponent workshop={workshop} key={`workshop-preview-${index}`}/>
-                                )
-                              })}
-                            </article>
-                          </Fragment>
+
+                          Object.keys(date).map((key, index) => {
+
+                            return (
+                              <Fragment key={`workshop-list-${index}`}>
+                                <b className="time-header">{key}</b>
+                                <article className="workshopsforday">
+                                  {date[key].map((workshop, index) => {
+                                    return (
+                                      <WorkshopPreviewComponent workshop={workshop}
+                                                                key={`workshop-preview-${index}`}/>
+                                    )
+                                  })}
+                                </article>
+                              </Fragment>
+                            )
+                          })
+
+
                         )
-                      })
-                    )
-                  })}
-                </article>
-              </div>
-            </section>
-            <section className="workshops-list grid-container">
-              <div className="grid-x">
-                <header className="cell medium-2">
-                  <b className="schedule-header">Teaching</b>
-                </header>
-                <article className="cell medium-10">
-                  {this.state.teaching.map((date, index) => {
-                    return (
+                      })}
 
-                      Object.keys(date).map((key, index) => {
+                    </article>
+                    :
+                    <section className="user-workshopList -empty user-card">
+                      Not currently teaching any workshops.
+                    </section>
+                  }
+                </div>
+              </section>
 
+
+            </Col>
+            <Col sm="12" md="6">
+
+              <section className="user-workshopList">
+                <div className="">
+                  <header className="user-workshopHeader">
+                    <h4 className="">Attending</h4>
+                  </header>
+                  {(this.state.attending.length > 0)
+                    ?
+                    <article className="cell medium-10">
+                      {this.state.attending.map((date, index) => {
                         return (
-                          <Fragment key={`workshop-list-${index}`}>
-                            <b className="time-header">{key}</b>
-                            <article className="workshopsforday">
-                              {date[key].map((workshop, index) => {
-                                return (
-                                  <WorkshopPreviewComponent workshop={workshop} key={`workshop-preview-${index}`}/>
-                                )
-                              })}
-                            </article>
-                          </Fragment>
+
+                          Object.keys(date).map((key, index) => {
+
+                            return (
+                              <Fragment key={`workshop-list-${index}`}>
+                                <b className="time-header">{key}</b>
+                                <article className="workshopsforday">
+                                  {date[key].map((workshop, index) => {
+                                    return (
+                                      <WorkshopPreviewComponent workshop={workshop}
+                                                                key={`workshop-preview-${index}`}/>
+                                    )
+                                  })}
+                                </article>
+                              </Fragment>
+                            )
+                          })
                         )
-                      })
+                      })}
+                    </article>
+                    :
+
+                    <section className="user-workshopList -empty user-card">
+                      Not currently attending any workshops.
+                    </section>
+                  }
+                </div>
+              </section>
 
 
-                    )
-                  })}
-                </article>
-              </div>
-            </section>
-          </div>
-        </section>
+            </Col>
+
+          </Row>
+
+        </Container>
+
       </Fragment>
     );
   }

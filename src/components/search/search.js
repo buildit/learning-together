@@ -60,6 +60,8 @@ export default class SearchComponent extends React.Component {
       this.setState({ workshopResults });
     }
   }
+
+
   render() {
     const {
       workshopResults,

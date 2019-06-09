@@ -10,6 +10,7 @@ import "rc-time-picker/assets/index.css";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import "./workshopForm.scss";
+import { Container, Row, Col } from 'reactstrap';
 
 class WorkshopForm extends Component {
   constructor(props) {
@@ -237,9 +238,10 @@ class WorkshopForm extends Component {
     return (
       <div className="workshop-form first-container">
         <form onSubmit={this.handleSubmit}>
-          <div className="grid-container">
-            <div className="grid-x grid-padding-x align-center">
-              <div className="medium-8 cell">
+          <Container className="">
+            <Row>
+              <Col>
+                <h1>{this.props.edit ? "Update" : "Create"} Workshop</h1>
                 <label>
                   Workshop Name
                   <input
@@ -251,7 +253,7 @@ class WorkshopForm extends Component {
                   />
                   <span className="error">{this.state.error.name}</span>
                 </label>
-              </div>
+
               <div className="medium-8 cell">
                 <label>
                   Category
@@ -353,7 +355,7 @@ class WorkshopForm extends Component {
                   <span className="error">{this.state.error.link}</span>
                 </label>
               </div>
-              <div className="medium-8 cell">
+
                 <label>
                   Description
                   <textarea
@@ -366,17 +368,19 @@ class WorkshopForm extends Component {
                   />
                   <span className="error">{this.state.error.description}</span>
                 </label>
-              </div>
-            </div>
-          </div>
-          <div className="grid-x align-center">
-            <button className="button custom-button submit" type="submit">
-              {this.props.edit ? "Update" : "Create"}
-            </button>
-            <Link to="/" className="hollow button secondary custom-button">
-              Cancel{" "}
-            </Link>
-          </div>
+
+                <div className="grid-x align-center">
+                  <button className="button custom-button submit" type="submit">
+                    {this.props.edit ? "Update" : "Create"}
+                  </button>
+                  <Link to="/" className="hollow button secondary custom-button">
+                    Cancel{" "}
+                  </Link>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+
         </form>
 
         {this.props.success && (

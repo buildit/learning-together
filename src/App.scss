@@ -7,12 +7,17 @@ body {
 }
 
 b {
-  
+
 }
 
 h1, h2, h3, h4, h5 {
   color: $bt-black;
   font-weight: 500;
+}
+
+a {
+  color: $bt-black;
+  text-decoration: underline;
 }
 
 button {

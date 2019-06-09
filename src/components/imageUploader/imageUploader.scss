@@ -11,9 +11,6 @@
 .upload-error{
   color:red;
 }
-.photo-frame-uploader{
-  border-radius: 50px;
-  width: 75px;
-  overflow: hidden;
-  margin-right: 1em;
+img {
+  max-width: 6rem;
 }
