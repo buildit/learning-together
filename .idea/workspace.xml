@@ -2,14 +2,136 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3f42d23-04fd-48c8-bbea-093d51a9c17a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/_variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/onboarding/onboarding.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/onboarding/onboarding.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/schedule/schedule.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/schedule/schedule.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/user-profile/userProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user-profile/userProfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/userpreview/userPreview.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/userpreview/userPreview.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/userpreview/userpreview.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/userpreview/userpreview.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/workshop/workshop.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workshop/workshop.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/workshop/workshop.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workshop/workshop.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/authModule/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/categoryModule/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/landingModule/hero/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/landingModule/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/landingModule/onboarding/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/messageModule/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/navbarModule/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/outlookModule/addToCal.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/routesModule/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/userModule/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/userModule/schedule/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/workshopModule/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/auth.service.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/auth.service2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/graph.service.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/welcome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/auth/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/auth/userRoute/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/auth/userRoute/userRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/authModule/userRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/auth/utils.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/browse/browse.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navbarModule/browse/browse.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/browse/browse.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navbarModule/browse/browse.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/browse/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navbarModule/browse/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/categoryList/categoryList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/categoryModule/categoryList/categoryList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/categoryList/categoryList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/categoryModule/categoryList/categoryList.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/categoryList/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/categoryModule/categoryList/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/confirmation/confirmation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/messageModule/confirmation/confirmation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/confirmation/confirmation.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/messageModule/confirmation/confirmation.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/confirmation/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/messageModule/confirmation/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/editUserProfile/editUserProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/userModule/editUserProfile/editUserProfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/editUserProfile/editUserProfile.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/userModule/editUserProfile/editUserProfile.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/editUserProfile/editUserProfile.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/userModule/editUserProfile/editUserProfile.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/editUserProfile/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/userModule/editUserProfile/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/footer/footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navbarModule/footer/footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/footer/footer.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navbarModule/footer/footer.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/footer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navbarModule/footer/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/hero/hero.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/landingModule/hero/hero.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/hero/hero.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/landingModule/hero/hero.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/hero/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/hero/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/landingModule/hero/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/imageUploader/imageUploader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/userModule/imageUploader/imageUploader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/imageUploader/imageUploader.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/userModule/imageUploader/imageUploader.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/imageUploader/imageUploader.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/userModule/imageUploader/imageUploader.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/imageUploader/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/userModule/imageUploader/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/jumbotron/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/landingModule/jumbotron/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/jumbotron/jumbotron.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/landingModule/jumbotron/jumbotron.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/jumbotron/jumbotron.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/landingModule/jumbotron/jumbotron.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/landing/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/landingModule/landing/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/landing/landing.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/landingModule/landing/landing.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/landing/landing.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/landingModule/landing/landing.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/landing/mock-workshops.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/landingModule/landing/mock-workshops.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/loading/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/messageModule/loading/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/loading/loading.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/messageModule/loading/loading.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/loading/loading.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/messageModule/loading/loading.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/message/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/messageModule/message/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/message/message.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/messageModule/message/message.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/message/message.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/messageModule/message/message.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/messageConfirm/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/messageModule/messageConfirm/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/messageConfirm/messageConfirm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/messageModule/messageConfirm/messageConfirm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navbar/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navbarModule/navbar/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navbar/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navbarModule/navbar/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navbar/navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navbarModule/navbar/navbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navbar/navbar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navbarModule/navbar/navbar.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/onboarding/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/onboarding/onboarding.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/landingModule/onboarding/onboarding.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/onboarding/onboarding.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/landingModule/onboarding/onboarding.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/page404/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/routesModule/page404/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/page404/page404.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/routesModule/page404/page404.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/page404/page404.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/routesModule/page404/page404.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/preview/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workshopModule/preview/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/preview/preview.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workshopModule/preview/preview.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/preview/preview.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workshopModule/preview/preview.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/routesModule/routes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/routes/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/routesModule/routes/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/routes/routes.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/routesModule/routes/routes.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/schedule/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/schedule/schedule.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/userModule/schedule/schedule.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/schedule/schedule.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/userModule/schedule/schedule.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/search/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navbarModule/search/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/search/search.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navbarModule/search/search.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/search/search.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navbarModule/search/search.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/search/search.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navbarModule/search/search.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/sort/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workshopModule/sort/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/sort/sort.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workshopModule/sort/sort.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user-profile/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/userModule/user-profile/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user-profile/mock-data.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/userModule/user-profile/mock-data.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user-profile/pics/2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/userModule/user-profile/pics/2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user-profile/pics/25.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/userModule/user-profile/pics/25.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user-profile/pics/33.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/userModule/user-profile/pics/33.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user-profile/pics/40.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/userModule/user-profile/pics/40.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user-profile/pics/85.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/userModule/user-profile/pics/85.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user-profile/pics/86.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/userModule/user-profile/pics/86.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user-profile/pics/87.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/userModule/user-profile/pics/87.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user-profile/user-profile.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/userModule/user-profile/user-profile.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user-profile/userProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/userModule/user-profile/userProfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/userpreview/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/userModule/userpreview/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/userpreview/userPreview.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/userModule/userpreview/userPreview.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/userpreview/userpreview.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/userModule/userpreview/userpreview.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/workshop/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workshopModule/workshop/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/workshop/mock-attendes.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workshopModule/workshop/mock-attendes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/workshop/mock-workshops.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workshopModule/workshop/mock-workshops.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/workshop/pics/BrooklynOffice.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workshopModule/workshop/pics/BrooklynOffice.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/workshop/workshop.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workshopModule/workshop/workshop.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/workshop/workshop.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workshopModule/workshop/workshop.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/workshopCreate/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workshopModule/workshopCreate/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/workshopCreate/workshopCreate.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workshopModule/workshopCreate/workshopCreate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/workshopEdit/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workshopModule/workshopEdit/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/workshopEdit/workshopEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workshopModule/workshopEdit/workshopEdit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/workshopForm/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workshopModule/workshopForm/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/workshopForm/workshopForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workshopModule/workshopForm/workshopForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/workshopForm/workshopForm.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workshopModule/workshopForm/workshopForm.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/workshopForm/workshopForm.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workshopModule/workshopForm/workshopForm.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/workshopList/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workshopModule/workshopList/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/workshopList/mock-workshops.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workshopModule/workshopList/mock-workshops.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/workshopList/workshopList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workshopModule/workshopList/workshopList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/workshopList/workshoplist.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workshopModule/workshopList/workshoplist.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/workshopPreview/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workshopModule/workshopPreview/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/workshopPreview/workshopPreview.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workshopModule/workshopPreview/workshopPreview.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/workshopPreview/workshopPreview.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workshopModule/workshopPreview/workshopPreview.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/indexApp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/indexApp.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -23,76 +145,94 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/routes/routes.js">
+        <entry file="file://$PROJECT_DIR$/src/components/categoryModule/categoryList/categoryList.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="29" column="67" lean-forward="true" selection-start-line="29" selection-start-column="67" selection-end-line="29" selection-end-column="67" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
+            <state>
+              <caret selection-end-column="29" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/workshop/workshop.js">
+        <entry file="file://$PROJECT_DIR$/src/components/landingModule/hero/hero.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="269" column="43" selection-start-line="269" selection-start-column="43" selection-end-line="269" selection-end-column="43" />
-              <folding>
-                <element signature="e#0#51#0" expanded="true" />
-              </folding>
+            <state>
+              <caret column="29" selection-start-column="29" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/landingModule/landing/landing.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="495">
+              <caret line="33" column="21" lean-forward="true" selection-start-line="33" selection-start-column="21" selection-end-line="33" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/navbarModule/search/search.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="29" selection-start-column="29" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/userModule/schedule/schedule.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="29" selection-start-column="29" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/userModule/user-profile/user-profile.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="29" selection-start-column="29" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/userModule/userpreview/userpreview.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="29" selection-start-column="29" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/workshopModule/workshop/workshop.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="29" selection-start-column="29" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/workshopModule/workshopPreview/workshopPreview.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="29" selection-start-column="29" selection-end-column="29" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/workshop/workshop.scss">
+        <entry file="file://$PROJECT_DIR$/src/components/routesModule/routes/routes.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="582">
-              <caret line="54" column="28" selection-start-line="54" selection-start-column="28" selection-end-line="54" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/schedule/schedule.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
-              <caret line="139" column="17" lean-forward="true" selection-start-line="139" selection-start-column="17" selection-end-line="139" selection-end-column="17" />
+            <state relative-caret-position="309">
+              <caret line="21" column="11" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
               <folding>
-                <element signature="e#0#40#0" expanded="true" />
+                <element signature="e#0#26#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/editUserProfile/editUserProfile.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="256" column="44" selection-start-line="256" selection-start-column="44" selection-end-line="256" selection-end-column="44" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/onboarding/onboarding.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="372">
-              <caret line="53" selection-start-line="53" selection-end-line="53" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/_variables.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="48" column="28" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -101,9 +241,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>rgba($bt-pink, 0.8)</find>
-      <find>#666</find>
-      <find>&lt;Moment format=&quot;LT&quot;&gt;{start}&lt;/Moment&gt;</find>
       <find>moment</find>
       <find>workshop-cardTime</find>
       <find>&lt;/label&gt;</find>
@@ -131,6 +268,9 @@
       <find>$profilePicSize</find>
       <find>6rem</find>
       <find>attend</find>
+      <find>cal</find>
+      <find>addtoc</find>
+      <find>&lt;Link</find>
     </findStrings>
     <replaceStrings>
       <replace>$bt-hoverColor</replace>
@@ -145,12 +285,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/App.js" />
-        <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/src/index.js" />
-        <option value="$PROJECT_DIR$/public/index.html" />
-        <option value="$PROJECT_DIR$/src/components/landing/landing.scss" />
-        <option value="$PROJECT_DIR$/src/components/search/search.scss" />
         <option value="$PROJECT_DIR$/src/components/categoryList/categoryList.scss" />
         <option value="$PROJECT_DIR$/src/_varibles.scss" />
         <option value="$PROJECT_DIR$/src/components/navbar/navbar.js" />
@@ -183,6 +317,25 @@
         <option value="$PROJECT_DIR$/src/components/userpreview/userpreview.scss" />
         <option value="$PROJECT_DIR$/src/components/workshop/workshop.js" />
         <option value="$PROJECT_DIR$/src/components/workshop/workshop.scss" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/src/components/navbarModule/browse/browse.js" />
+        <option value="$PROJECT_DIR$/src/index.js" />
+        <option value="$PROJECT_DIR$/src/components/landingModule/landing/landing.js" />
+        <option value="$PROJECT_DIR$/src/components/userModule/user-profile/userProfile.js" />
+        <option value="$PROJECT_DIR$/src/components/workshopModule/workshop/workshop.js" />
+        <option value="$PROJECT_DIR$/src/components/userModule/schedule/schedule.js" />
+        <option value="$PROJECT_DIR$/src/components/categoryModule/categoryList/categoryList.scss" />
+        <option value="$PROJECT_DIR$/src/components/landingModule/hero/hero.scss" />
+        <option value="$PROJECT_DIR$/src/components/landingModule/landing/landing.scss" />
+        <option value="$PROJECT_DIR$/src/components/landingModule/onboarding/onboarding.scss" />
+        <option value="$PROJECT_DIR$/src/components/navbarModule/navbar/navbar.scss" />
+        <option value="$PROJECT_DIR$/src/components/navbarModule/search/search.scss" />
+        <option value="$PROJECT_DIR$/src/components/userModule/schedule/schedule.scss" />
+        <option value="$PROJECT_DIR$/src/components/userModule/user-profile/user-profile.scss" />
+        <option value="$PROJECT_DIR$/src/components/userModule/userpreview/userpreview.scss" />
+        <option value="$PROJECT_DIR$/src/components/workshopModule/workshop/workshop.scss" />
+        <option value="$PROJECT_DIR$/src/components/workshopModule/workshopPreview/workshopPreview.scss" />
+        <option value="$PROJECT_DIR$/src/components/routesModule/routes/routes.js" />
       </list>
     </option>
   </component>
@@ -208,6 +361,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -218,6 +372,11 @@
             <path>
               <item name="2019-06-05 - Better Together" type="b2602c69:ProjectViewProjectNode" />
               <item name="2019-06-05 - Better Together" type="462c0819:PsiDirectoryNode" />
+              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="2019-06-05 - Better Together" type="b2602c69:ProjectViewProjectNode" />
+              <item name="2019-06-05 - Better Together" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -231,20 +390,35 @@
               <item name="2019-06-05 - Better Together" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
+              <item name="outlookModule" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="2019-06-05 - Better Together" type="b2602c69:ProjectViewProjectNode" />
               <item name="2019-06-05 - Better Together" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="user-profile" type="462c0819:PsiDirectoryNode" />
+              <item name="workshopModule" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="2019-06-05 - Better Together" type="b2602c69:ProjectViewProjectNode" />
+              <item name="2019-06-05 - Better Together" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="workshopModule" type="462c0819:PsiDirectoryNode" />
+              <item name="workshop" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="2019-06-05 - Better Together" type="b2602c69:ProjectViewProjectNode" />
+              <item name="2019-06-05 - Better Together" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="workshopModule" type="462c0819:PsiDirectoryNode" />
+              <item name="workshopPreview" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -290,7 +464,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29911000" />
+    <option name="totallyTimeSpent" value="31170000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="23" width="1572" height="1177" extended-state="0" />
@@ -321,218 +495,19 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/hero/hero.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="36" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/index.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/landing/landing.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="22" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/@fortawesome/free-solid-svg-icons/index.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="429" column="22" selection-start-line="429" selection-start-column="22" selection-end-line="429" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="19" lean-forward="true" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="3" column="126" lean-forward="true" selection-start-line="3" selection-start-column="126" selection-end-line="3" selection-end-column="158" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/indexApp.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="4" lean-forward="true" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/@fortawesome/fontawesome-svg-core/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/@fortawesome/react-fontawesome/index.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="16" lean-forward="true" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/platform-impl.jar!/resources/html5-schema/html5/sectional.rnc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="46" column="16" selection-start-line="46" selection-start-column="16" selection-end-line="46" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/categoryList/categoryList.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="21" lean-forward="true" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/search/search.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="37" column="26" selection-start-line="37" selection-start-column="26" selection-end-line="37" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/navbar/navbar.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="56" selection-start-line="56" selection-end-line="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/navbar/navbar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="62" column="26" selection-start-line="62" selection-start-column="26" selection-end-line="62" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/search/search.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="62" selection-start-line="62" selection-end-line="62" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/editUserProfile/editUserProfile.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="3" lean-forward="true" selection-start-line="3" selection-start-column="3" selection-end-line="3" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/imageUploader/imageUploader.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/imageUploader/imageUploader.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="47" column="19" selection-start-line="47" selection-start-column="19" selection-end-line="47" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/workshopList/workshoplist.scss">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/workshopCreate/workshopCreate.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="19" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/workshopList/workshopList.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="7" column="38" lean-forward="true" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/page404/page404.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/navbar/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="20" selection-start-column="20" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/browse/browse.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="43" column="31" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/workshopForm/workshopForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="241" column="17" lean-forward="true" selection-start-line="241" selection-start-column="17" selection-end-line="241" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/workshopEdit/workshopEdit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="50" column="26" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/navbar/navbar.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/search/search.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/editUserProfile/editUserProfile.scss" />
+    <entry file="file://$PROJECT_DIR$/src/components/imageUploader/imageUploader.scss" />
+    <entry file="file://$PROJECT_DIR$/src/components/imageUploader/imageUploader.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/workshopList/workshoplist.scss" />
+    <entry file="file://$PROJECT_DIR$/src/components/workshopCreate/workshopCreate.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/workshopList/workshopList.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/page404/page404.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/navbar/index.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/browse/browse.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/workshopForm/workshopForm.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/workshopEdit/workshopEdit.js" />
     <entry file="file://$PROJECT_DIR$/coverage/lcov-report/src/components/landing/landing.js.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -561,117 +536,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/footer/footer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/workshopPreview/workshopPreview.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="33" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/workshopPreview/workshopPreview.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="23" column="21" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/schedule/schedule.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="142" column="25" selection-start-line="142" selection-start-column="25" selection-end-line="142" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/categoryList/categoryList.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/user-profile/user-profile.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="507">
-          <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="36" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/routes/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="67" lean-forward="true" selection-start-line="29" selection-start-column="67" selection-end-line="29" selection-end-column="67" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/user-profile/index.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/user-profile/userProfile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="124" column="43" selection-start-line="124" selection-start-column="43" selection-end-line="124" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/onboarding/onboarding.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="12" column="41" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/landing/landing.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="81" column="17" lean-forward="true" selection-start-line="81" selection-start-column="17" selection-end-line="81" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/schedule/schedule.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="139" column="17" lean-forward="true" selection-start-line="139" selection-start-column="17" selection-end-line="139" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/editUserProfile/editUserProfile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="256" column="44" selection-start-line="256" selection-start-column="44" selection-end-line="256" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/footer/footer.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/workshopPreview/workshopPreview.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/workshopPreview/workshopPreview.scss" />
+    <entry file="file://$PROJECT_DIR$/src/components/schedule/schedule.scss" />
+    <entry file="file://$PROJECT_DIR$/src/components/categoryList/categoryList.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/user-profile/user-profile.scss" />
+    <entry file="file://$PROJECT_DIR$/src/components/routes/routes.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/user-profile/index.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/user-profile/userProfile.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/onboarding/onboarding.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/landing/landing.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/schedule/schedule.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/editUserProfile/editUserProfile.js" />
     <entry file="file://$PROJECT_DIR$/node_modules/react-add-to-calendar/dist/react-add-to-calendar.min.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -682,44 +559,122 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/userpreview/userpreview.scss">
+    <entry file="file://$PROJECT_DIR$/src/components/userpreview/userpreview.scss" />
+    <entry file="file://$PROJECT_DIR$/src/components/userpreview/userPreview.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/onboarding/onboarding.scss" />
+    <entry file="file://$PROJECT_DIR$/src/components/workshop/workshop.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/workshop/workshop.scss" />
+    <entry file="file://$PROJECT_DIR$/src/components/workshopModule/workshop/workshop.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/userpreview/userPreview.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="36" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/onboarding/onboarding.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="53" selection-start-line="53" selection-end-line="53" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/workshop/workshop.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="269" column="43" selection-start-line="269" selection-start-column="43" selection-end-line="269" selection-end-column="43" />
+        <state relative-caret-position="487">
+          <caret line="46" column="20" selection-start-line="46" selection-start-column="20" selection-end-line="46" selection-end-column="20" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/workshop/workshop.scss">
+    <entry file="file://$PROJECT_DIR$/src/components/workshopModule/workshopPreview/workshopPreview.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="582">
-          <caret line="54" column="28" selection-start-line="54" selection-start-column="28" selection-end-line="54" selection-end-column="28" />
+        <state relative-caret-position="15">
+          <caret line="1" selection-start-line="1" selection-end-line="1" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/userModule/schedule/schedule.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/categoryModule/categoryList/categoryList.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/landingModule/hero/hero.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/landingModule/onboarding/onboarding.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="18" selection-start-column="18" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/navbarModule/navbar/navbar.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/landingModule/landing/landing.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" column="21" lean-forward="true" selection-start-line="33" selection-start-column="21" selection-end-line="33" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/navbarModule/search/search.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/userModule/schedule/schedule.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/userModule/user-profile/user-profile.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/userModule/userpreview/userpreview.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/workshopModule/workshop/workshop.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/workshopModule/workshopPreview/workshopPreview.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/routesModule/routes/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="21" column="11" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

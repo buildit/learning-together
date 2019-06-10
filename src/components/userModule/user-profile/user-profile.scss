@@ -1,0 +1,40 @@
+@import '../../../variables';
+.user {
+  &-container {
+
+  }
+
+  &-card {
+    background-color: $bt-white;
+    padding: space(4);
+  }
+
+  &-profilePic {
+    text-align: center;
+
+    img {
+      max-width: 6rem;
+    }
+  }
+  &-info {
+    margin-left: space(4);
+  }
+
+  &-workshopContainer {
+    margin-top: space(5);
+  }
+
+  &-workshopHeader {
+    text-align: center;
+
+  }
+
+  &-workshopList {
+
+
+    &.-empty {
+      padding: space(7) 0;
+      text-align: center;
+    }
+  }
+}

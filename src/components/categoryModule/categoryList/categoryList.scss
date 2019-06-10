@@ -1,0 +1,19 @@
+@import '../../../variables';
+
+
+.categoryList {
+  &-card {
+    background-color: $bt-blue;
+    border-radius: $border-radius;
+    color: $bt-white;
+    display: block;
+    margin: 0 0 space(4);
+    padding: space(4) space(4);
+    text-align: center;
+
+    &:hover {
+      background-color: $bt-pink;
+      color: $bt-white;
+    }
+  }
+}

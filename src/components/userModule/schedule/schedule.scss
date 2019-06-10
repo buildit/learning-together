@@ -1,0 +1,159 @@
+@import '../../../variables';
+
+.schedule {
+
+
+  &-header {
+    margin-bottom: space(3);
+    width: 100%;
+  }
+
+  &-sectionHeader {
+    margin-bottom: space(2);
+  }
+
+  &-button {
+    display: inline-block;
+    margin-left: space(2);
+
+
+
+  }
+
+  &-emptyCard {
+    background-color: $bt-white;
+    margin-bottom: space(6);
+    padding: space(7) 0;
+    text-align: center;
+  }
+
+}
+
+
+.workshop-filter {
+  position: sticky;
+  position: -webkit-sticky;
+  top: space(7);
+
+  ul {
+    padding: 0;
+
+    li {
+      list-style: none;
+
+      button {
+        background: $bt-white;
+        border: 0;
+        border-left: 0.125rem solid $bt-yellow;
+        border-right: 0.125rem solid $bt-yellow;
+        border-radius: 0;
+        box-shadow: 0;
+        display: inline-block;
+        padding: 1em;
+
+        margin-bottom: 0;
+        width: 100%;
+
+        &.current, &.current:hover {
+          background-color: $bt-yellow;
+
+        }
+
+        &:hover {
+          background-color: rgba($bt-yellow, 0.5);
+        }
+      }
+
+      &:first-child {
+        button {
+          border-radius: $border-radius $border-radius 0 0;
+          border-top: 0.125rem solid $bt-yellow;
+        }
+      }
+
+      &:last-child {
+        button {
+          border-bottom: 0.125rem solid $bt-yellow;
+          border-radius: 0 0 $border-radius $border-radius;
+        }
+      }
+    }
+
+  }
+
+
+}
+
+@media (max-width: 768px) {
+  .schedule {
+
+
+    &-button {
+
+      margin-left: 0;
+      margin-right: space(2);
+
+    }
+  }
+
+  .workshop-filter {
+    position: relative;
+    top: 0;
+
+    ul {
+      li {
+        display: inline-block;
+        width: 50%;
+
+        button {
+
+          border: 0;
+
+
+
+          &.current, &.current:hover {
+            background-color: $bt-yellow;
+
+          }
+
+          &:hover {
+            background-color: rgba($bt-yellow, 0.5);
+          }
+        }
+
+        &:first-child {
+          button {
+            border-radius: $border-radius 0 0 0;
+            border-top: 0.125rem solid $bt-yellow;
+            border-left: 0.125rem solid $bt-yellow;
+          }
+        }
+
+        &:nth-child(2) {
+          button {
+            border-radius:  0 $border-radius 0 0;
+            border-top: 0.125rem solid $bt-yellow;
+            border-right: 0.125rem solid $bt-yellow;
+          }
+        }
+
+        &:nth-child(3) {
+          button {
+            border-radius:  0 0  0 $border-radius ;
+            border-bottom: 0.125rem solid $bt-yellow;
+            border-left: 0.125rem solid $bt-yellow;
+          }
+        }
+
+        &:last-child {
+          button {
+            border-bottom: 0.125rem solid $bt-yellow;
+            border-radius: 0 0  $border-radius 0 ;
+            border-right: 0.125rem solid $bt-yellow;
+          }
+        }
+      }
+
+    }
+  }
+}
