@@ -1,37 +1,41 @@
-import React, { Component } from "react"
-import { getUserDetails, getEvents } from '../../services/graph.service'
+import jstz from 'jstz'
+import { addEvent } from '../../services/graph.service'
 import config from '../../services/config'
 
-export default class AddToCal extends Component {
-  constructor() {
-    super()
-    this.state = {
-      events: '',
-      isError: false
-    }
-  }
-  // move to add to cal section
-  async getCalEvents() {
-    console.log('config', config)
-    try {
-      const accessToken = await window.msal.acquireTokenSilent(config.scopes)
-      const events = await getEvents(accessToken)
-      this.setState({ events: events.value })
-    }
-    catch (err) {
-      console.log('err', err)
-      this.setState({
-        isError: true
-      })
-    }
-  }
+function getTimezoneName() {
+  return jstz.determine().name()
+}
 
-
-  render() {
-    console.log('events', this.state.events)
-    return (
-      <button onClick={this.getCalEvents.bind(this)}>Add To Calendar</button>
-    )
+export async function addCalEvent(event) {
+  console.log('event', event)
+  try {
+    const accessToken = await window.msal.acquireTokenSilent(config.scopes)
+    const body = {
+      subject: event.title,
+      body: {
+        contentType: "HTML",
+        content: event.description
+        //need to add webex info - currently has to be passed in via workshop component
+      },
+      start: {
+        dateTime: event.startTime,
+        timeZone: getTimezoneName()
+      },
+      end: {
+        dateTime: event.endTime,
+        timeZone: getTimezoneName()
+      },
+      location: {
+        displayName: event.location
+      }
+    }
+    const response = await addEvent(accessToken, body)
+    console.log('cal response', response)
+  }
+  catch (err) {
+    console.log('err', err)
   }
 }
+
+
 

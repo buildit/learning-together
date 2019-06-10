@@ -10,6 +10,7 @@
     "@microsoft/microsoft-graph-client": "^1.5.2",
     "axios": "^0.18.0",
     "i": "^0.3.6",
+    "jstz": "^2.1.1",
     "moment": "^2.24.0",
     "msal": "^0.2.4",
     "node-sass": "^4.11.0",

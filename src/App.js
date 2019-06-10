@@ -15,8 +15,6 @@ library.add(faMapMarker, faUserCircle, faPencilAlt, faSearch, faVideo, faBuildin
 class App extends Component {
   constructor() {
     super()
-    // this.authService = new AuthService()
-    // this.userAgentApplication = new UserAgentApplication(config.appId, config.authority, null, { redirectUri: process.env.REACT_APP_URL })
     this.userAgentApplication = new UserAgentApplication(config.appId, null, null, { redirectUri: process.env.REACT_APP_URL })
     const user = this.userAgentApplication.getUser()
     this.state = {
@@ -28,7 +26,6 @@ class App extends Component {
     }
     if (user) {
       this.getUserProfile()
-      console.log('user', user)
       signIn(user.displayableId, this.signInCallback)
     }
     window.addEventListener('logout', this.logout)
@@ -77,7 +74,6 @@ class App extends Component {
       const accessToken = await this.userAgentApplication.acquireTokenSilent(config.scopes)
       if (accessToken) {
         const user = await getUserDetails(accessToken)
-        console.log('USER DETAILES', user)
         this.setState({
           isAuthenticated: true,
           user: {
@@ -109,33 +105,6 @@ class App extends Component {
       }
     }
   }
-  // componentDidMount() {
-  //   console.log('App.componentDidMount()')
-  //   const acct = this.authService.getAccount()
-  //   if (!acct) {
-  //     this.login()
-  //   }
-  //   else {
-  //     console.log('we have an account, doing BT signIn')
-  //     signIn(acct.userName, this.signInCallback)
-  //     this.setState({
-  //       userInfo: acct
-  //     })
-  //     this.authService.getAccessToken()
-  //   }
-  // }
-
-  // logout = () => {
-  //   this.authService.logout()
-  // }
-
-  // login = () => {
-  //   this.setState({
-  //     userInfo: null
-  //   })
-  //   // start redirect login flow
-  //   this.authService.login()
-  // }
 
   signInCallback(response) {
     if (response.status === 200) {
