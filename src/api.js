@@ -1,10 +1,20 @@
 import axios from "axios";
 import moment from "moment";
-import { getToken } from "./components/utils";
 
-const token = getToken();
+const apiBase = "https://bettertogether.buildit.systems";
+// const apiBase = "http://localhost:5000";
+// const apiBase = "https://bettertogether.dev.buildit.systems"
+
+let getHeader = function() {
+  let token = sessionStorage.getItem("msal.idtoken");
+  return {
+    Authorization: `Bearer ${token}`,
+    "Content-Type": "application/json"
+  };
+};
+
 export async function signIn(username, callback) {
-  const url = "https://bettertogether.buildit.systems/api/users/authenticate";
+  const url = `${apiBase}/api/users/authenticate`;
   return new Promise((resolve, reject) => {
     const data = { Username: username };
     axios
@@ -12,9 +22,7 @@ export async function signIn(username, callback) {
         url,
         method: "post",
         data,
-        headers: {
-          Authorization: "Bearer " + token
-        }
+        headers: getHeader()
       })
       .then(response => {
         callback(response);
@@ -26,7 +34,7 @@ export async function signIn(username, callback) {
 }
 
 export function signUp(data, callback) {
-  const url = "https://bettertogether.buildit.systems/api/users/register";
+  const url = `${apiBase}/api/users/register`;
   return new Promise((resolve, reject) => {
     axios
       .post(url, data)
@@ -40,10 +48,9 @@ export function signUp(data, callback) {
 }
 
 export async function loadCategories() {
-  const url =
-    "https://bettertogether.buildit.systems/api/disciplines/categories";
+  const url = `${apiBase}/api/disciplines/categories`;
   return axios
-    .get(url)
+    .get(url, { headers: getHeader() })
     .then(response => {
       return response.data;
     })
@@ -51,11 +58,13 @@ export async function loadCategories() {
       return error;
     });
 }
+
 export const getWorkshopList = id => {
   const category = id ? `filter?categoryId=${id}` : "";
   return axios.request({
-    url: `https://bettertogether.buildit.systems/api/workshops/${category}`,
-    method: "get"
+    url: `${apiBase}/api/workshops/${category}`,
+    method: "get",
+    headers: getHeader()
   });
 };
 
@@ -64,15 +73,16 @@ export const getWorkshopListDate = start => {
     ? `filter?startDate=${start}&endDate=2025-04-11T00:00:00`
     : "";
   return axios.request({
-    url: `https://bettertogether.buildit.systems/api/workshops/${date}`,
-    method: "get"
+    url: `${apiBase}/api/workshops/${date}`,
+    method: "get",
+    headers: getHeader()
   });
 };
 
 export const getWorkshop = (id, callback) => {
-  const url = `https://bettertogether.buildit.systems/api/workshops/${id}`;
+  const url = `${apiBase}/api/workshops/${id}`;
   axios
-    .get(url)
+    .get(url, { headers: getHeader() })
     .then(response => {
       callback(response);
     })
@@ -82,14 +92,12 @@ export const getWorkshop = (id, callback) => {
 };
 
 export const enrollWorkshop = (id, callback) => {
-  const url = `https://bettertogether.buildit.systems/api/workshops/${id}/enroll`;
+  const url = `${apiBase}/api/workshops/${id}/enroll`;
   axios
     .request({
       url,
       method: "put",
-      headers: {
-        Authorization: "Bearer " + token
-      }
+      headers: getHeader()
     })
     .then(response => {
       callback(response);
@@ -100,14 +108,12 @@ export const enrollWorkshop = (id, callback) => {
 };
 
 export const unenrollWorkshop = (id, callback) => {
-  const url = `https://bettertogether.buildit.systems/api/workshops/${id}/enroll`;
+  const url = `${apiBase}/api/workshops/${id}/enroll`;
   axios
     .request({
       url,
       method: "delete",
-      headers: {
-        Authorization: "Bearer " + token
-      }
+      headers: getHeader()
     })
     .then(response => {
       callback(response);
@@ -118,10 +124,10 @@ export const unenrollWorkshop = (id, callback) => {
 };
 
 export const getUser = (id, callback) => {
-  const url = `https://bettertogether.buildit.systems/api/users/${id}`;
+  const url = `${apiBase}/api/users/${id}`;
   return new Promise((resolve, reject) => {
     axios
-      .get(url)
+      .get(url, { headers: getHeader() })
       .then(response => {
         callback(response);
       })
@@ -157,12 +163,10 @@ export const editUser = (
   };
   return axios
     .request({
-      url: `https://bettertogether.buildit.systems/api/users/${id}`,
+      url: `${apiBase}/api/users/${id}`,
       method: "put",
       data,
-      headers: {
-        Authorization: "Bearer " + token
-      }
+      headers: getHeader()
     })
     .then(function(response) {
       // handle success
@@ -177,12 +181,10 @@ export const editUser = (
 export const createWorkshop = data => {
   return axios
     .request({
-      url: "https://bettertogether.buildit.systems/api/workshops/create",
+      url: `${apiBase}/api/workshops/create`,
       method: "post",
       data,
-      headers: {
-        Authorization: "Bearer " + token
-      }
+      headers: getHeader()
     })
     .then(function(response) {
       // handle success
@@ -199,9 +201,9 @@ export const coverGenerator = id => {
 };
 
 export function uploadImage(data, callback) {
-  const url = "https://bettertogether.buildit.systems/api/upload/image";
+  const url = `${apiBase}/api/upload/image`;
   axios
-    .post(url, data)
+    .post(url, data, { headers: getHeader() })
     .then(response => {
       callback(response);
     })
@@ -213,8 +215,9 @@ export function uploadImage(data, callback) {
 export const getDisciplineList = callback => {
   return axios
     .request({
-      url: "https://bettertogether.buildit.systems/api/disciplines",
-      method: "get"
+      url: `${apiBase}/api/disciplines`,
+      method: "get",
+      headers: getHeader()
     })
     .then(response => {
       callback(response);
@@ -226,15 +229,16 @@ export const getDisciplineList = callback => {
 
 export const getCategoryList = () => {
   return axios.request({
-    url: "https://bettertogether.buildit.systems/api/disciplines/categories",
-    method: "get"
+    url: `${apiBase}/api/disciplines/categories`,
+    method: "get",
+    headers: getHeader()
   });
 };
 
 export const getLocationList = callback => {
-  const url = `https://bettertogether.buildit.systems/api/locations`;
+  const url = `${apiBase}/api/locations`;
   axios
-    .get(url)
+    .get(url, { headers: getHeader() })
     .then(response => {
       callback(response);
     })
@@ -244,9 +248,9 @@ export const getLocationList = callback => {
 };
 
 export const getRolesList = callback => {
-  const url = "https://bettertogether.buildit.systems/api/roles";
+  const url = `${apiBase}/api/roles`;
   axios
-    .get(url)
+    .get(url, { headers: getHeader() })
     .then(response => {
       callback(response);
     })
@@ -256,9 +260,9 @@ export const getRolesList = callback => {
 };
 
 export const getSearchResults = (input, callback) => {
-  const url = `https://bettertogether.buildit.systems/api/search?search=${input}&maxResults=5`;
+  const url = `${apiBase}/api/search?search=${input}&maxResults=5`;
   axios
-    .get(url)
+    .get(url, { headers: getHeader() })
     .then(response => {
       callback(response);
     })
@@ -270,12 +274,10 @@ export const getSearchResults = (input, callback) => {
 export const updateWorkshop = (id, data) => {
   return axios
     .request({
-      url: `https://bettertogether.buildit.systems/api/workshops/${id}`,
+      url: `${apiBase}/api/workshops/${id}`,
       method: "put",
       data,
-      headers: {
-        Authorization: "Bearer " + token
-      }
+      headers: getHeader()
     })
     .then(function(response) {
       // handle success
@@ -290,8 +292,9 @@ export const updateWorkshop = (id, data) => {
 export const fetchWorkshops = () => {
   return axios
     .request({
-      url: "https://bettertogether.buildit.systems/api/workshops",
-      method: "get"
+      url: `${apiBase}/api/workshops`,
+      method: "get",
+      headers: getHeader()
     })
     .then(function(response) {
       // handle success
@@ -308,11 +311,9 @@ export const fetchWorkshops = () => {
 export const cancelWorkshop = (id, callback) => {
   return axios
     .request({
-      url: `https://bettertogether.buildit.systems/api/workshops/${id}`,
+      url: `${apiBase}/api/workshops/${id}`,
       method: "delete",
-      headers: {
-        Authorization: "Bearer " + token
-      }
+      headers: getHeader()
     })
     .then(function(response) {
       callback(response);
