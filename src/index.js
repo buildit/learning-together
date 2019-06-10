@@ -1,11 +1,21 @@
-import { runWithAdal } from 'react-adal';
-import { authContext } from './components/auth/utils';
+// import { runWithAdal } from 'react-adal';
+// import { authContext } from './components/utils';
 
-const DO_NOT_LOGIN = false;
+// const DO_NOT_LOGIN = false;
 
-runWithAdal(authContext, () => {
+// runWithAdal(authContext, () => {
 
-  // eslint-disable-next-line
-  require('./indexApp.js');
+//   // eslint-disable-next-line
+//   require('./indexApp.js');
 
-}, DO_NOT_LOGIN);
+// }, DO_NOT_LOGIN);
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import * as serviceWorker from './serviceWorker';
+
+ReactDOM.render(
+  <App />, document.getElementById('root'));
+
+serviceWorker.unregister();

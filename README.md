@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/buildit/learning-together.svg?branch=master)](https://travis-ci.org/buildit/learning-together) [![Coverage Status](https://coveralls.io/repos/github/buildit/learning-together/badge.svg?branch=master)](https://coveralls.io/github/buildit/learning-together?branch=master)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
