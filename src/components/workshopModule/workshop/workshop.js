@@ -7,7 +7,8 @@ import Moment from "react-moment";
 import { NavbarComponent } from "../../navbarModule";
 import { Link, Redirect, NavLink } from "react-router-dom";
 import { UserContext } from "../../../UserProvider";
-import AddToCalendar from "react-add-to-calendar";
+import { addCalEvent } from "../../outlookModule/addToCal";
+
 import {
   getWorkshop,
   coverGenerator,
@@ -29,7 +30,9 @@ export default class Workshop extends Component {
       showMessage: false,
       message: "",
       confirmCancel: false,
-      redirect: false
+      redirect: false,
+      addedToCal: false,
+      eventToCal: {}
     };
     this.getWorkshopCallback = this.getWorkshopCallback.bind(this);
     this.enrollWorshopCallback = this.enrollWorshopCallback.bind(this);
@@ -41,7 +44,9 @@ export default class Workshop extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
     const userId = localStorage.getItem("userId");
-    this.setState({ userId: Number(userId) });
+    this.setState({
+      userId: Number(userId)
+    });
     getWorkshop(this.props.computedMatch.params.id, this.getWorkshopCallback);
   }
   componentDidUpdate(prevProps) {
@@ -56,7 +61,14 @@ export default class Workshop extends Component {
     if (response.status === 200) {
       this.setState({
         workshop: data,
-        educatorId: data.educator.id
+        educatorId: data.educator.id,
+        event: {
+          title: data.name ? data.name : "",
+          description: data.description ? data.description : "",
+          location: data.location ? data.location.name : "",
+          startTime: data.start ? data.start : "",
+          endTime: data.end ? data.end : ""
+        }
       });
     } else {
       //show error message
@@ -64,10 +76,13 @@ export default class Workshop extends Component {
     }
   }
   enrollWorshopCallback(response) {
+    const { event } = this.state
     if (response.status === 200) {
+      addCalEvent(event)
       this.setState({
         showMessage: true,
-        message: "You have successfully enrolled!"
+        message: `You have successfully enrolled in ${event.title}!`,
+        addCalEvent: true
       });
       getWorkshop(this.props.computedMatch.params.id, this.getWorkshopCallback);
     } else {
@@ -82,7 +97,7 @@ export default class Workshop extends Component {
     if (response.status === 200) {
       this.setState({
         showMessage: true,
-        message: "You have succesfully unenrolled!"
+        message: "You have succesfully unenrolled."
       });
       getWorkshop(this.props.computedMatch.params.id, this.getWorkshopCallback);
     } else {
@@ -163,8 +178,15 @@ export default class Workshop extends Component {
     return imagePath;
   }
 
+  addCalEvent(event) {
+    this.setState({
+      addedToCal: true
+    })
+    addCalEvent(event)
+  }
+
   render() {
-    const { workshop, userId, educatorId, showMessage, message } = this.state;
+    const { workshop, userId, educatorId, showMessage, message, addedToCal, event } = this.state;
     const attendees = workshop.workshopAttendees
       ? workshop.workshopAttendees
       : [];
@@ -178,13 +200,6 @@ export default class Workshop extends Component {
       : { firstName: "", lastName: "" };
     const isEducator = userId === educatorId;
     const isAttending = workshop && filterAttendees(userId, workshop);
-    const event = {
-      title: workshop.name ? workshop.name : "",
-      description: workshop.description ? workshop.description : "",
-      location: workshop.location ? workshop.location.name : "",
-      startTime: workshop.start ? workshop.start : "",
-      endTime: workshop.end ? workshop.end : ""
-    };
     return (
       <Fragment>
         {showMessage && (
@@ -315,12 +330,11 @@ export default class Workshop extends Component {
                     <Moment format="LT">{workshop.end}</Moment>
                     <br />
                   </p>
-                  <AddToCalendar
-                    event={event}
-                    buttonClassOpen="button"
-                    buttonClassClosed="button"
-                    dropdownClass="ics-dropdown"
-                  />
+                  {
+                    addedToCal
+                      ? <div><em>Added to Calendar!</em></div>
+                      : <button onClick={this.addCalEvent.bind(this, event)}>Add to Calendar</button>
+                  }
                 </div>
               </article>
               <article className="detail">
