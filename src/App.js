@@ -8,7 +8,6 @@ import { UserAgentApplication } from 'msal'
 import config from './services/config'
 import Welcome from './welcome'
 import { getUserDetails } from './services/graph.service'
-// import AuthService from './services/auth.service2'
 import './App.scss'
 
 library.add(faMapMarker, faUserCircle, faPencilAlt, faSearch, faVideo, faBuilding, faClock, faSpinner, faCheck, faMinus);
@@ -25,7 +24,7 @@ class App extends Component {
       events: null
     }
     if (user) {
-      this.getUserProfile()
+      // this.getUserProfile()
       signIn(user.displayableId, this.signInCallback)
     }
     window.addEventListener('logout', this.logout)
@@ -34,7 +33,7 @@ class App extends Component {
   async login() {
     try {
       await this.userAgentApplication.loginPopup(config.scopes)
-      await this.getUserProfile()
+      // await this.getUserProfile()
     }
     catch (err) {
       const errParts = err.split('|')
@@ -69,42 +68,42 @@ class App extends Component {
 
   }
 
-  async getUserProfile() {
-    try {
-      const accessToken = await this.userAgentApplication.acquireTokenSilent(config.scopes)
-      if (accessToken) {
-        const user = await getUserDetails(accessToken)
-        this.setState({
-          isAuthenticated: true,
-          user: {
-            displayName: user.displayName,
-            email: user.email || user.userPrincipalName
-          },
-          error: null,
-          loggingOut: false
-        })
-      }
-    }
-    catch (err) {
-      var error = {}
-      if (typeof (err) === 'string') {
-        const errParts = err.split('|')
-        error = errParts.length > 1
-          ? { message: errParts[1], debug: errParts[0] }
-          : { message: err }
-      } else {
-        error = {
-          message: err.message,
-          debug: JSON.stringify(err)
-        }
-        this.setState({
-          isAuthenticated: false,
-          user: {},
-          error
-        })
-      }
-    }
-  }
+  // async getUserProfile() {
+  //   try {
+  //     const accessToken = await this.userAgentApplication.acquireTokenSilent(config.scopes)
+  //     if (accessToken) {
+  //       const user = await getUserDetails(accessToken)
+  //       this.setState({
+  //         isAuthenticated: true,
+  //         user: {
+  //           displayName: user.displayName,
+  //           email: user.email || user.userPrincipalName
+  //         },
+  //         error: null,
+  //         loggingOut: false
+  //       })
+  //     }
+  //   }
+  //   catch (err) {
+  //     var error = {}
+  //     if (typeof (err) === 'string') {
+  //       const errParts = err.split('|')
+  //       error = errParts.length > 1
+  //         ? { message: errParts[1], debug: errParts[0] }
+  //         : { message: err }
+  //     } else {
+  //       error = {
+  //         message: err.message,
+  //         debug: JSON.stringify(err)
+  //       }
+  //       this.setState({
+  //         isAuthenticated: false,
+  //         user: {},
+  //         error
+  //       })
+  //     }
+  //   }
+  // }
 
   signInCallback(response) {
     if (response.status === 200) {
@@ -112,9 +111,7 @@ class App extends Component {
       localStorage.setItem('username', response.data.username)
     }
     else {
-      // setState({ isError: true })
-      // currently failing here, check backend call to
-      // https://bettertogether.buildit.systems/api/users/authenticate
+      this.setState({ isError: true })
     }
   }
 

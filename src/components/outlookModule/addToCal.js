@@ -7,9 +7,9 @@ function getTimezoneName() {
 }
 
 export async function addCalEvent(event) {
-  console.log('event', event)
   try {
     const accessToken = await window.msal.acquireTokenSilent(config.scopes)
+    console.log('accessToken', accessToken)
     const body = {
       subject: event.title,
       body: {
