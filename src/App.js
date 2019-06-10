@@ -7,7 +7,7 @@ import { MessageComponent } from './components'
 import { UserAgentApplication } from 'msal'
 import config from './services/config'
 import Welcome from './welcome'
-import { getUserDetails } from './services/graph.service'
+// import { getUserDetails } from './services/graph.service'
 import './App.scss'
 
 library.add(faMapMarker, faUserCircle, faPencilAlt, faSearch, faVideo, faBuilding, faClock, faSpinner, faCheck, faMinus);
