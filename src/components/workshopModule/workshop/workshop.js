@@ -253,16 +253,14 @@ export default class Workshop extends Component {
                       EDIT
                     </button>
                   </Link>,
-                  <Link>
-                    <button
-                      type="button"
-                      className="button flex-child-auto large-flex-child-shrink unenroll"
-                      onClick={this.onClickCancel.bind(this)}
-                      key={2}
-                    >
-                      CANCEL WORKSHOP
-                    </button>
-                  </Link>
+                  <button
+                    type="button"
+                    className="button flex-child-auto large-flex-child-shrink unenroll"
+                    onClick={this.onClickCancel.bind(this)}
+                    key={2}
+                  >
+                    CANCEL WORKSHOP
+                  </button>
                 ]
               ) : isAttending ? (
                 <button

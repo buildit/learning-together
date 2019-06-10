@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { WorkshopFormComponent } from "../workshopForm";
-import { createWorkshop } from "../../../api.js";
+import { createWorkshop, bookRoom } from "../../../api.js";
 
 class workshopCreate extends Component {
   constructor(props) {
@@ -13,16 +13,51 @@ class workshopCreate extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  reserveRoom(data) {
+    const { start, end, name, roomSelected } = data;
+    console.log(data);
+    //console.log("room selected", this.state.roomSelected);
+    return bookRoom(start, end, name, roomSelected).then(response => {
+      console.log("response", response);
+      if (response.status === 201) {
+        console.log("inside success");
+        console.log("robin id", response.data.data.id);
+        //this.setState({ robynEventId: response.data.data.id });
+        return response.data.data.id;
+      }
+      return;
+    });
+  }
+
   handleSubmit(data) {
-    createWorkshop(data)
-      .then(response => {
-        if (response.status === 200) {
-          this.setState({ success: true, workshopId: response.data });
-        }
-      })
-      .catch(error => {
-        console.log(error);
+    if (data.locationId === 1) {
+      this.reserveRoom(data).then(response => {
+        console.log("setting robin", response);
+        data.robinEventId = response;
+
+        createWorkshop(data)
+          .then(response => {
+            if (response.status === 200) {
+              this.setState({ success: true, workshopId: response.data });
+            }
+          })
+          .catch(error => {
+            console.log(error);
+          });
       });
+    } else {
+      createWorkshop(data)
+        .then(response => {
+          if (response.status === 200) {
+            this.setState({ success: true, workshopId: response.data });
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+    console.log("data", data);
+    //this.props.handleSubmit(data);
   }
 
   render() {

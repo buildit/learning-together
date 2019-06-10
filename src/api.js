@@ -347,7 +347,8 @@ export const getEventsByRoom = start => {
       .split(".")[0] + "Z";
 
   return axios.request({
-    url: `https://api.robinpowered.com/v1.0/spaces/28020/events?before=${dayAfter}&after=${newStart}`,
+    //url: `https://api.robinpowered.com/v1.0/spaces/28020/events?before=${dayAfter}&after=${newStart}`,
+    url: `https://api.robinpowered.com/v1.0/spaces/28015/events?before=${dayAfter}&after=${newStart}`,
     method: "GET",
     headers: {
       Authorization: `Access-Token ${process.env.REACT_APP_ROBIN_TOKEN}`
@@ -367,7 +368,11 @@ export const deleteEvent = id => {
 
 export const bookRoom = (start, end, title, room) => {
   console.log("room selected is", room);
-  const utcStartTime =
+
+  const IsoStartTime = moment(start).format();
+  const IsoEndTime = moment(end).format();
+
+  /* const utcStartTime =
     moment
       .utc(start)
       .set({ second: 0, millisecond: 0 })
@@ -378,7 +383,7 @@ export const bookRoom = (start, end, title, room) => {
       .utc(end)
       .set({ second: 0, millisecond: 0 })
       .format("YYYY-MM-DDTHH:mm:ss.SSS")
-      .split(".")[0] + "Z";
+      .split(".")[0] + "Z";*/
 
   return axios.request({
     url: `https://api.robinpowered.com/v1.0/spaces/${room}/events`,
@@ -386,11 +391,13 @@ export const bookRoom = (start, end, title, room) => {
     data: {
       title: `${title}`,
       start: {
-        date_time: `${utcStartTime}`,
+        //date_time: `${utcStartTime}`,
+        date_time: `${IsoStartTime}`,
         time_zone: "America/New_York"
       },
       end: {
-        date_time: `${utcEndTime}`,
+        //date_time: `${utcEndTime}`,
+        date_time: `${IsoEndTime}`,
         time_zone: "America/New_York"
       }
     },

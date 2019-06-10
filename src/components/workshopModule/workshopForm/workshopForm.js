@@ -41,7 +41,7 @@ class WorkshopForm extends Component {
       room: props.data ? props.data.room : "",
       roomAvailable: props.data ? true : [],
       roomSelected: props.data ? true : "",
-      robynEventId: props.data ? true : null
+      robinEventId: props.data ? props.data.robinEventId : null
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -52,6 +52,9 @@ class WorkshopForm extends Component {
     this.redirectCallback = this.redirectCallback.bind(this);
     this.setWorkshopPicture = this.setWorkshopPicture.bind(this);
     this.getLocationCallBack = this.getLocationCallBack.bind(this);
+    //REMOVE WHEN DONE
+    this.handleEvents = this.handleEvents.bind(this);
+    this.handleDeletes = this.handleDeletes.bind(this);
   }
 
   //TODO Handle Error
@@ -114,6 +117,10 @@ class WorkshopForm extends Component {
       if (nextProps.data.description !== this.props.data.description) {
         this.setState({ description: nextProps.data.description });
       }
+
+      if (nextProps.data.robinEventId !== this.props.data.robinEventId) {
+        this.setState({ robinEventId: nextProps.data.robinEventId });
+      }
     }
   }
   //If input is start time or date time modify moment object
@@ -147,6 +154,24 @@ class WorkshopForm extends Component {
     if (response.status === 200) {
       this.setState({ locationList: response.data });
     }
+  }
+
+  //REMOVE WHEN DONE
+  handleEvents(e) {
+    e.preventDefault();
+    console.log("handling events");
+
+    getEventsByRoom("2019-06-05T01:01:01.379").then(response =>
+      console.log(response)
+    );
+  }
+
+  //REMOVE WHEN DONE
+  handleDeletes(e) {
+    e.preventDefault();
+    console.log("deleting events");
+
+    deleteEvent(108744209).then(response => console.log(response));
   }
 
   onDateChange(date) {
@@ -227,17 +252,19 @@ class WorkshopForm extends Component {
         description: this.state.description,
         imageUrl: this.state.workshopPicture,
         room: this.state.room,
-        RobinEventId: this.state.robynEventId
+        robinEventId: this.state.robinEventId,
+        roomSelected: this.state.roomSelected
       };
 
       if (this.state.location !== 1) {
         this.props.handleSubmit(data);
       } else {
-        this.reserveRoom().then(response => {
+        /*this.reserveRoom().then(response => {
           data["RobinEventId"] = response;
 
           this.props.handleSubmit(data);
-        });
+        });*/
+        this.props.handleSubmit(data);
       }
     }
   }
@@ -251,7 +278,7 @@ class WorkshopForm extends Component {
   }
 
   //TO DO - handle error
-  reserveRoom() {
+  /*reserveRoom() {
     console.log("room selected", this.state.roomSelected);
     return bookRoom(
       this.state.startTime,
@@ -268,7 +295,7 @@ class WorkshopForm extends Component {
       }
       return;
     });
-  }
+  }*/
 
   render() {
     console.log(this.props);
@@ -379,6 +406,13 @@ class WorkshopForm extends Component {
                   }
                   value={this.state.startTime}
                 />
+                {this.props.edit && (
+                  <p>
+                    {moment(this.state.startTime).format(
+                      "MMMM Do YYYY, h:mm a"
+                    )}
+                  </p>
+                )}
                 <span className="error">{this.state.error.time}</span>
               </div>
               <div className="medium-8 cell">
@@ -398,7 +432,13 @@ class WorkshopForm extends Component {
                   }}
                   value={this.state.endTime}
                 />
+
                 <span className="error">{this.state.error.time}</span>
+                {this.props.edit && (
+                  <p>
+                    {moment(this.state.endTime).format("MMMM Do YYYY, h:mm a")}
+                  </p>
+                )}
               </div>
               <div className="medium-8 cell">
                 <label>
@@ -428,7 +468,21 @@ class WorkshopForm extends Component {
                 </div>
               )}
               <div className="medium-8 cell">
-                {availableRooms.length > 0 && this.state.location === 1 ? (
+                {this.props.edit && this.props.data.robinEventId && (
+                  <p>Robin Room Booked: {this.state.room}</p>
+                )}
+              </div>
+              <div className="medium-8">
+                {this.props.edit && this.props.data.robinEventId && (
+                  <button className="button">
+                    Edit Robin Room reservation
+                  </button>
+                )}
+              </div>
+              <div className="medium-8 cell">
+                {!this.props.edit &&
+                availableRooms.length > 0 &&
+                this.state.location === 1 ? (
                   <label>
                     Room Available
                     <select
@@ -442,14 +496,14 @@ class WorkshopForm extends Component {
                 ) : (
                   ""
                 )}
-                {availableRooms.length === 0 &&
+                {/*availableRooms.length === 0 &&
                 this.state.location === 1 &&
                 this.state.startTime !== null &&
                 this.state.endTime !== null ? (
                   <p>All rooms are taken at this time. Pick another time.</p>
                 ) : (
                   ""
-                )}
+                )*/}
               </div>
               <div className="medium-8 cell">
                 <label>
@@ -478,6 +532,7 @@ class WorkshopForm extends Component {
                   <span className="error">{this.state.error.description}</span>
                 </label>
                 {this.state.room}
+                {this.state.robinEventId}
               </div>
             </div>
           </div>
