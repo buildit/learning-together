@@ -16,13 +16,12 @@ class workshopCreate extends Component {
   reserveRoom(data) {
     const { start, end, name, roomSelected } = data;
     console.log(data);
-    //console.log("room selected", this.state.roomSelected);
+
     return bookRoom(start, end, name, roomSelected).then(response => {
       console.log("response", response);
       if (response.status === 201) {
         console.log("inside success");
         console.log("robin id", response.data.data.id);
-        //this.setState({ robynEventId: response.data.data.id });
         return response.data.data.id;
       }
       return;
@@ -30,7 +29,8 @@ class workshopCreate extends Component {
   }
 
   handleSubmit(data) {
-    if (data.locationId === 1) {
+    console.log(data);
+    if (data.locationId === 1 && data.roomSelected) {
       this.reserveRoom(data).then(response => {
         console.log("setting robin", response);
         data.robinEventId = response;

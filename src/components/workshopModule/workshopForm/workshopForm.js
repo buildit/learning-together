@@ -39,7 +39,7 @@ class WorkshopForm extends Component {
       redirect: false,
       workshopPicture: props.data ? props.data.imageUrl : "",
       room: props.data ? props.data.room : "",
-      roomAvailable: props.data ? true : [],
+      roomAvailable: props.data ? [] : [],
       roomSelected: props.data ? true : "",
       robinEventId: props.data ? props.data.robinEventId : null
     };
@@ -175,6 +175,10 @@ class WorkshopForm extends Component {
   }
 
   onDateChange(date) {
+    if (this.props.edit && this.props.data.robinEventId) {
+      console.log("editing robin");
+    }
+
     const month = date.month();
     const day = date.date();
     const year = date.year();
@@ -256,16 +260,7 @@ class WorkshopForm extends Component {
         roomSelected: this.state.roomSelected
       };
 
-      if (this.state.location !== 1) {
-        this.props.handleSubmit(data);
-      } else {
-        /*this.reserveRoom().then(response => {
-          data["RobinEventId"] = response;
-
-          this.props.handleSubmit(data);
-        });*/
-        this.props.handleSubmit(data);
-      }
+      this.props.handleSubmit(data);
     }
   }
 
@@ -276,26 +271,6 @@ class WorkshopForm extends Component {
   setWorkshopPicture(picturePath) {
     this.setState({ workshopPicture: picturePath });
   }
-
-  //TO DO - handle error
-  /*reserveRoom() {
-    console.log("room selected", this.state.roomSelected);
-    return bookRoom(
-      this.state.startTime,
-      this.state.endTime,
-      this.state.name,
-      this.state.roomSelected
-    ).then(response => {
-      console.log("response", response);
-      if (response.status === 201) {
-        console.log("inside success");
-        console.log("robin id", response.data.data.id);
-        this.setState({ robynEventId: response.data.data.id });
-        return response.data.data.id;
-      }
-      return;
-    });
-  }*/
 
   render() {
     console.log(this.props);
@@ -315,16 +290,15 @@ class WorkshopForm extends Component {
       );
     });
 
-    const availableRooms = this.props.edit
-      ? null
-      : this.state.roomAvailable.map(room => {
-          console.log(room);
-          return (
-            <option key={room.id} value={room.id}>
-              {room.room}
-            </option>
-          );
-        });
+    const availableRooms = this.state.roomAvailable.map(room => {
+      console.log(room);
+      return (
+        <option key={room.id} value={room.id}>
+          {room.room}
+        </option>
+      );
+    });
+
     if (
       this.state.location === 1 &&
       this.state.startTime !== null &&
@@ -392,27 +366,23 @@ class WorkshopForm extends Component {
               </div>
               <div className="medium-8 cell">
                 <label>Start time</label>
-                <TimePicker
-                  className="custom-time-picker"
-                  name="startTime"
-                  defaultValue={null}
-                  showSecond={false}
-                  minuteStep={15}
-                  allowEmpty={false}
-                  use12Hours={true}
-                  focusOnOpen={true}
-                  onChange={(value, name = "startTime") =>
-                    this.handleChange(value, name)
-                  }
-                  value={this.state.startTime}
-                />
-                {this.props.edit && (
-                  <p>
-                    {moment(this.state.startTime).format(
-                      "MMMM Do YYYY, h:mm a"
-                    )}
-                  </p>
-                )}
+                {
+                  <TimePicker
+                    className="custom-time-picker"
+                    name="startTime"
+                    defaultValue={null}
+                    showSecond={false}
+                    minuteStep={15}
+                    allowEmpty={false}
+                    use12Hours={true}
+                    focusOnOpen={true}
+                    onChange={(value, name = "startTime") =>
+                      this.handleChange(value, name)
+                    }
+                    value={this.state.startTime}
+                  />
+                }
+
                 <span className="error">{this.state.error.time}</span>
               </div>
               <div className="medium-8 cell">
@@ -432,13 +402,7 @@ class WorkshopForm extends Component {
                   }}
                   value={this.state.endTime}
                 />
-
                 <span className="error">{this.state.error.time}</span>
-                {this.props.edit && (
-                  <p>
-                    {moment(this.state.endTime).format("MMMM Do YYYY, h:mm a")}
-                  </p>
-                )}
               </div>
               <div className="medium-8 cell">
                 <label>
@@ -452,11 +416,14 @@ class WorkshopForm extends Component {
                   </select>
                 </label>
               </div>
-              {this.state.location > 1 && (
+              {this.props.edit && (
                 <div className="medium-8 cell">
                   <label>
-                    Room
+                    {this.props.edit && this.props.data.robinEventId
+                      ? "Reserved Room"
+                      : "Room"}
                     <input
+                      readOnly={this.props.edit && this.props.data.robinEventId}
                       name="room"
                       value={this.state.room}
                       onChange={this.handleChange}
@@ -468,21 +435,7 @@ class WorkshopForm extends Component {
                 </div>
               )}
               <div className="medium-8 cell">
-                {this.props.edit && this.props.data.robinEventId && (
-                  <p>Robin Room Booked: {this.state.room}</p>
-                )}
-              </div>
-              <div className="medium-8">
-                {this.props.edit && this.props.data.robinEventId && (
-                  <button className="button">
-                    Edit Robin Room reservation
-                  </button>
-                )}
-              </div>
-              <div className="medium-8 cell">
-                {!this.props.edit &&
-                availableRooms.length > 0 &&
-                this.state.location === 1 ? (
+                {availableRooms.length > 0 && this.state.location === 1 ? (
                   <label>
                     Room Available
                     <select
@@ -490,20 +443,21 @@ class WorkshopForm extends Component {
                       value={this.state.roomSelected}
                       onChange={this.handleChange}
                     >
+                      <option>Select a room</option>
                       {availableRooms}
                     </select>
                   </label>
                 ) : (
                   ""
                 )}
-                {/*availableRooms.length === 0 &&
+                {availableRooms.length === 0 &&
                 this.state.location === 1 &&
                 this.state.startTime !== null &&
                 this.state.endTime !== null ? (
                   <p>All rooms are taken at this time. Pick another time.</p>
                 ) : (
                   ""
-                )*/}
+                )}
               </div>
               <div className="medium-8 cell">
                 <label>
@@ -551,6 +505,7 @@ class WorkshopForm extends Component {
             callback={this.redirectCallback}
           />
         )}
+
         {this.state.redirect && <Redirect to={`/workshop/${this.props.id}`} />}
       </div>
     );
