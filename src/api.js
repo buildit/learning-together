@@ -1,7 +1,5 @@
 import axios from "axios";
 
-// const apiBase = "https://bettertogether.buildit.systems";
-// const apiBase = "http://localhost:5000";
 const apiBase = "https://bettertogether.buildit.systems"
 
 let getHeader = function () {
