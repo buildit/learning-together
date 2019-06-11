@@ -1,12 +1,47 @@
-import { sendEmail } from '../../services/graph.service'
-import config from '../../services/config'
+import jstz from 'jstz'
+import { addEvent, sendEmail } from './graph.service'
+import config from './config'
+
+function getTimezoneName() {
+  return jstz.determine().name()
+}
+
+export async function addCalEvent(event) {
+  console.log('event', event)
+  try {
+    const accessToken = await window.msal.acquireTokenSilent(config.scopes)
+    const body = {
+      subject: event.title,
+      body: {
+        contentType: "HTML",
+        content: event.description
+        //need to add webex info - currently has to be passed in via workshop component
+      },
+      start: {
+        dateTime: event.startTime,
+        timeZone: getTimezoneName()
+      },
+      end: {
+        dateTime: event.endTime,
+        timeZone: getTimezoneName()
+      },
+      location: {
+        displayName: event.location
+      }
+    }
+    const response = await addEvent(accessToken, body)
+    console.log('cal response', response)
+  }
+  catch (err) {
+    console.log('err', err)
+  }
+}
 
 export async function createAndSendEmail({ subject, content, recipients }) {
   try {
     const message = { Message: {} }
     const recipientsArray = []
     const accessToken = await window.msal.acquireTokenSilent(config.scopes)
-    console.log(content)
     message.Message.Subject = subject
     message.Message.Body = {
       "ContentType": "Text",
