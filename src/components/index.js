@@ -1,6 +1,6 @@
 export { CategoryListComponent } from './categoryModule'
 export { HeroComponent, JumbotronComponent, LandingComponent, OnboardingComponent } from './landingModule'
-export { ConfirmationComponent, LoadingComponent, MessageComponent, MessageConfirmComponent } from './messageModule'
+export { LoadingComponent, MessageComponent, MessageConfirmComponent } from './messageModule'
 export { NavbarComponent, BrowseComponent, FooterComponent, SearchComponent } from './navbarModule'
 export { RoutesComponent, Page404Component } from './routesModule'
 export { EditUserProfileComponent, ImageUploaderComponent, ScheduleComponent, UserProfileComponent, UserPreviewComponent } from './userModule'
