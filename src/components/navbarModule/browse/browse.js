@@ -1,19 +1,23 @@
 import React, { Component, Fragment } from "react";
-import { fetchWorkshops } from "../../../api";
-import { WorkshopPreviewComponent, SortComponent } from "../../workshopModule";
+import {loadCategories } from "../../../api";
 import { NavbarComponent } from "../navbar";
+import { CategoryListComponent } from "../../categoryModule";
 import "./browse.scss";
 
 class Browse extends Component {
   state = {
-    workshops: [],
+    categories: [],
     sortBy: "date"
   };
 
   componentDidMount() {
-    fetchWorkshops().then(workshops => {
-      this.setState({ workshops });
-    });
+    loadCategories()
+      .then((data) => {
+
+        this.setState({
+          categories: data
+        })
+      })
   }
 
   handleSort(sort) {
@@ -21,15 +25,6 @@ class Browse extends Component {
   }
 
   render() {
-    const sortedWorkshops = this.state.workshops.sort((a, b) => {
-      if (this.state.sortBy === "date") {
-        return a.start > b.start ? 1 : -1;
-      } else if (this.state.sortBy === "name") {
-        return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1;
-      }
-      return 0;
-    });
-
     return (
       <Fragment>
         <NavbarComponent />
@@ -37,16 +32,16 @@ class Browse extends Component {
           id="browser-container"
           className="current-category first-container"
         >
-          <h1 className="section-title">
-            <b>All Workshops</b>
-          </h1>
         </section>
-        <SortComponent handleSort={this.handleSort.bind(this)} />
-        {sortedWorkshops.map(workshop => {
-          return (
-            <WorkshopPreviewComponent key={workshop.id} workshop={workshop} />
-          );
-        })}
+       <header className="grid-container">
+         <h3>Course Categories</h3>
+         <hr />
+       </header>
+        <div className="grid-container">
+          
+          <CategoryListComponent workshop={this.state.workshops} categories={this.state.categories} />
+        </div>
+ 
       </Fragment>
     );
   }
