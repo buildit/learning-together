@@ -7,7 +7,6 @@ import { MessageComponent } from './components'
 import { UserAgentApplication } from 'msal'
 import config from './services/config'
 import Welcome from './welcome'
-// import { getUserDetails } from './services/graph.service'
 import './App.scss'
 
 library.add(faMapMarker, faUserCircle, faPencilAlt, faSearch, faVideo, faBuilding, faClock, faSpinner, faCheck, faMinus);
@@ -15,25 +14,28 @@ class App extends Component {
   constructor() {
     super()
     this.userAgentApplication = new UserAgentApplication(config.appId, null, null, { redirectUri: process.env.REACT_APP_URL })
-    const user = this.userAgentApplication.getUser()
     this.state = {
-      isAuthenticated: (user !== null),
+      isAuthenticated: false,
       user: {},
       error: null,
       loggingOut: false,
       events: null
     }
-    if (user) {
-      // this.getUserProfile()
-      signIn(user.displayableId, this.signInCallback)
-    }
     window.addEventListener('logout', this.logout)
+  }
+
+  componentDidMount() {
+    console.log('mounted')
   }
 
   async login() {
     try {
       await this.userAgentApplication.loginPopup(config.scopes)
+      this.setState({
+        isAuthenticated: true
+      })
       // await this.getUserProfile()
+      await this.btSignIn()
     }
     catch (err) {
       const errParts = err.split('|')
@@ -50,6 +52,28 @@ class App extends Component {
     this.userAgentApplication.logout()
   }
 
+  btSignIn() {
+    const user = this.userAgentApplication.getUser()
+    if (user) {
+      signIn(user.displayableId, this.signInCallback)
+    }
+  }
+
+  setHeader() {
+    const user = this.userAgentApplication.getUser()
+    let token;
+    if (user) {
+      token = sessionStorage.getItem('msal.idtoken');
+      return {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    } else {
+      token = window.msal.acquireTokenSilent(config.appId)
+      console.log('token', token)
+    }
+  }
+
   render() {
     if (this.state.error) {
       return <MessageComponent message={this.state.error.message} callback={this.messageCallback.bind(this)} />
@@ -61,49 +85,11 @@ class App extends Component {
     return (
       <Welcome
         isAuthenticated={this.state.isAuthenticated}
-        user={this.state.user}
         authButtonMethod={this.login.bind(this)}
         loggingOut={this.state.loggingOut} />
     )
 
   }
-
-  // async getUserProfile() {
-  //   try {
-  //     const accessToken = await this.userAgentApplication.acquireTokenSilent(config.scopes)
-  //     if (accessToken) {
-  //       const user = await getUserDetails(accessToken)
-  //       this.setState({
-  //         isAuthenticated: true,
-  //         user: {
-  //           displayName: user.displayName,
-  //           email: user.email || user.userPrincipalName
-  //         },
-  //         error: null,
-  //         loggingOut: false
-  //       })
-  //     }
-  //   }
-  //   catch (err) {
-  //     var error = {}
-  //     if (typeof (err) === 'string') {
-  //       const errParts = err.split('|')
-  //       error = errParts.length > 1
-  //         ? { message: errParts[1], debug: errParts[0] }
-  //         : { message: err }
-  //     } else {
-  //       error = {
-  //         message: err.message,
-  //         debug: JSON.stringify(err)
-  //       }
-  //       this.setState({
-  //         isAuthenticated: false,
-  //         user: {},
-  //         error
-  //       })
-  //     }
-  //   }
-  // }
 
   signInCallback(response) {
     if (response.status === 200) {

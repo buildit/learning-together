@@ -4,6 +4,7 @@ const apiBase = "https://bettertogether.buildit.systems";
 // const apiBase = "http://localhost:5000";
 // const apiBase = "https://bettertogether.dev.buildit.systems"
 
+
 let getHeader = function () {
   let token = sessionStorage.getItem('msal.idtoken');
   return {

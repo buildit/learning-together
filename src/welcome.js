@@ -2,14 +2,6 @@ import React from 'react';
 
 
 function WelcomeContent(props) {
-  // If authenticated, greet the user
-  if (props.isAuthenticated) {
-    return (
-      <div>
-        <h4>Welcome {props.user.displayName}!</h4>
-      </div>
-    )
-  }
 
   if (props.loggingOut) {
     return (
@@ -29,7 +21,6 @@ export default class Welcome extends React.Component {
         <h1>Better Together</h1>
         <WelcomeContent
           isAuthenticated={this.props.isAuthenticated}
-          user={this.props.user}
           authButtonMethod={this.props.authButtonMethod}
           loggingOut={this.props.loggingOut} />
       </div>
