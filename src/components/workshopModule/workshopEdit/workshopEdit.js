@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { WorkshopFormComponent } from "../workshopForm";
-import { getWorkshop, updateWorkshop } from "../../../api.js";
+import {
+  getWorkshop,
+  updateWorkshop,
+  deleteEvent,
+  bookRoom
+} from "../../../api.js";
 
 class workshopEdit extends Component {
   constructor(props) {
@@ -42,11 +47,47 @@ class workshopEdit extends Component {
   }
 
   handleSubmit(data) {
-    updateWorkshop(this.props.computedMatch.params.id, data).then(response => {
-      if (response.status === 200) {
-        this.setState({ success: true });
-      }
-    });
+    console.log("data", data);
+
+    const {
+      robinEventId,
+      start,
+      end,
+      name,
+      roomSelected,
+      updateRobinReservation
+    } = data;
+
+    if (updateRobinReservation && robinEventId) {
+      deleteEvent(robinEventId).then(
+        bookRoom(start, end, name, roomSelected)
+          .then(response => {
+            console.log("response", response);
+            if (response.status === 201) {
+              console.log("inside success");
+              console.log("robin id", response.data.data.id);
+              data.robinEventId = response.data.data.id;
+            }
+          })
+          .then(() =>
+            updateWorkshop(this.props.computedMatch.params.id, data).then(
+              response => {
+                if (response.status === 200) {
+                  this.setState({ success: true });
+                }
+              }
+            )
+          )
+      );
+    } else {
+      updateWorkshop(this.props.computedMatch.params.id, data).then(
+        response => {
+          if (response.status === 200) {
+            this.setState({ success: true });
+          }
+        }
+      );
+    }
   }
 
   render() {

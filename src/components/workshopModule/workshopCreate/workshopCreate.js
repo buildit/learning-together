@@ -56,8 +56,6 @@ class workshopCreate extends Component {
           console.log(error);
         });
     }
-    console.log("data", data);
-    //this.props.handleSubmit(data);
   }
 
   render() {
