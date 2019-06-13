@@ -1,4 +1,5 @@
 import axios from "axios";
+import moment from "moment";
 
 const apiBase = "https://bettertogether.buildit.systems"
 
@@ -78,6 +79,15 @@ export const getWorkshopListDate = start => {
   });
 };
 
+export const getWorkshopListPast = category => {
+  const start = moment().format();
+  const date = `filter?categoryId=${category}&startDate=2018-01-01T00:00:00&endDate=${start}`;
+  return axios.request({
+    url: `${apiBase}/api/workshops/${date}`,
+    method: "get",
+    headers: getHeader()
+  });
+};
 
 export const getWorkshop = (id, callback) => {
   const url = `${apiBase}/api/workshops/${id}`;

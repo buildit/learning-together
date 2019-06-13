@@ -1,8 +1,10 @@
 import React, { Component, Fragment } from "react";
 import { WorkshopPreviewComponent } from "../workshopPreview";
 import { NavbarComponent } from "../../navbarModule";
-import { getWorkshopList } from "../../../api";
+import { getWorkshopList,getWorkshopListPast } from "../../../api";
 import { groupBy, forEach } from 'lodash';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import "react-tabs/style/react-tabs.css";
 import moment from 'moment';
 import "./workshoplist.scss";
 
@@ -23,6 +25,11 @@ class WorkshopList extends Component {
         title: this.props.computedMatch.params.title
       });
     });
+    getWorkshopListPast(this.props.computedMatch.params.id).then(data => {
+      this.setState({
+        workshops: data.data
+      })
+    })
   }
   componentDidUpdate(prevProps) {
     if (
@@ -34,6 +41,11 @@ class WorkshopList extends Component {
           title: this.props.computedMatch.params.title
         });
       });
+      getWorkshopListPast(this.props.computedMatch.params.id).then(data => {
+        this.setState({
+          workshops: data.data
+        })
+      })
     }
   }
 
@@ -57,6 +69,7 @@ class WorkshopList extends Component {
 
   render() {
     const dates = this.state.dates;
+    const workshops = this.state.workshops;
     return (
       <Fragment>
         <NavbarComponent
@@ -72,13 +85,21 @@ class WorkshopList extends Component {
         </section>
         <section className="workshop-list grid-container">
         
+          <Tabs defaultIndex={0}>
+            <TabList className="workshop-selector">
+              <Tab>Upcoming</Tab>
+              <Tab>Video</Tab>
+            </TabList>
+          
+        
+        <TabPanel>
           {dates.map((date, index) => {
                         return (
 
                             Object.keys(date).map((key, index) => {
 
                                 return (
-                                    <section key={`date-section-${index}`}>
+                                    <section className="course" key={`date-section-${index}`}>
                                         <b className="time-header">{key}</b>
                                         <article className="workshopsforday">
                                             {date[key].map((workshop, index) => {
@@ -94,7 +115,17 @@ class WorkshopList extends Component {
 
                         )
                     })}
-        
+        </TabPanel>
+        <TabPanel>
+          {workshops.map((workshop, index) => {
+              return (
+                <article className="workshopsforday" key={`workshop-video-${index}`}>
+                <WorkshopPreviewComponent workshop={workshop} />
+                </article>
+            )
+          })}
+        </TabPanel>
+        </Tabs>
         </section>
       </Fragment>
     );
