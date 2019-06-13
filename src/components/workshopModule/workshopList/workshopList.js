@@ -25,8 +25,10 @@ class WorkshopList extends Component {
         title: this.props.computedMatch.params.title
       });
     });
-    getWorkshopListPast().then(data => {
-      console.log(data)
+    getWorkshopListPast(this.props.computedMatch.params.id).then(data => {
+      this.setState({
+        workshops: data.data
+      })
     })
   }
   componentDidUpdate(prevProps) {
@@ -39,6 +41,11 @@ class WorkshopList extends Component {
           title: this.props.computedMatch.params.title
         });
       });
+      getWorkshopListPast(this.props.computedMatch.params.id).then(data => {
+        this.setState({
+          workshops: data.data
+        })
+      })
     }
   }
 
@@ -62,6 +69,7 @@ class WorkshopList extends Component {
 
   render() {
     const dates = this.state.dates;
+    const workshops = this.state.workshops;
     return (
       <Fragment>
         <NavbarComponent
@@ -109,7 +117,13 @@ class WorkshopList extends Component {
                     })}
         </TabPanel>
         <TabPanel>
-          <h3>Video</h3>
+          {workshops.map((workshop, index) => {
+              return (
+                <article className="workshopsforday" key={`workshop-video-${index}`}>
+                <WorkshopPreviewComponent workshop={workshop} />
+                </article>
+            )
+          })}
         </TabPanel>
         </Tabs>
         </section>
