@@ -7,7 +7,7 @@ import Moment from "react-moment";
 import { NavbarComponent } from "../../navbarModule";
 import { Link, Redirect, NavLink } from "react-router-dom";
 import { UserContext } from "../../../UserProvider";
-import { addCalEvent } from "../../outlookModule/addToCal";
+import { createAndSendEmail, addCalEvent } from '../../../services/utils';
 import ReactPlayer from 'react-player';
 
 import {
@@ -79,6 +79,10 @@ export default class Workshop extends Component {
   enrollWorshopCallback(response) {
     const { event } = this.state
     if (response.status === 200) {
+      const subject = `You have enrolled for ${event.title}!`
+      const content = `You have enrolled for the class ${event.title}! Hope your experience is engaging and fun!`
+      const recipients = [{ username: localStorage.getItem('username') }]
+      createAndSendEmail({ subject, content, recipients })
       addCalEvent(event)
       this.setState({
         showMessage: true,
@@ -124,6 +128,10 @@ export default class Workshop extends Component {
         showMessage: true,
         message: "You have cancelled your workshop"
       });
+      const { name, instructor, workshopAttendees } = this.state
+      const subject = `${this.state.workshop.name} is cancelled`
+      const content = `Your class ${name} has been cancelled. Please contact the instructor ${instructor}`
+      createAndSendEmail({ subject, content, recipients: workshopAttendees })
     } else {
       //show error message
       this.setState({

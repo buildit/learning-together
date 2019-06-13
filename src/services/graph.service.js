@@ -1,3 +1,4 @@
+
 var graph = require('@microsoft/microsoft-graph-client')
 
 function getAuthenticatedClient(accessToken) {
@@ -34,5 +35,13 @@ export async function addEvent(accessToken, body) {
     .api('/me/events')
     .post(body)
 
+  return response
+}
+
+export async function sendEmail({ accessToken, message, saveToSentItems }) {
+  const client = getAuthenticatedClient(accessToken)
+  const response = await client
+    .api('/me/sendmail')
+    .post(message, saveToSentItems)
   return response
 }
