@@ -8,6 +8,7 @@ import { NavbarComponent } from "../../navbarModule";
 import { Link, Redirect, NavLink } from "react-router-dom";
 import { UserContext } from "../../../UserProvider";
 import { addCalEvent } from "../../outlookModule/addToCal";
+import ReactPlayer from 'react-player';
 
 import {
   getWorkshop,
@@ -295,6 +296,7 @@ export default class Workshop extends Component {
           <article className="grid-x grid-margin-x">
             <div className="cell small-12 medium-8 small-order-2 medium-order-1">
               <JumbotronComponent image={cover} />
+              <ReactPlayer url='https://youtu.be/iKhsC1Q4LDs'> </ReactPlayer>
               <h4>
                 <b>Details</b>
               </h4>
