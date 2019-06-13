@@ -1,3 +1,28 @@
 #browser-container {
 	margin-bottom: 0px;
 }
+
+.workshopsforday {
+   
+    overflow: hidden;
+    margin-bottom: 2em;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-bottom: none;
+
+    .workshop-data {
+        margin-left: 1em;
+    }
+
+    time {
+        white-space: nowrap;
+        font-weight: 600;
+    }
+
+    .workshop-link {
+        margin-bottom: 0;
+        padding-top:1em;
+        padding-bottom: 1em;
+        padding-left: .5em;
+    }
+}

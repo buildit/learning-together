@@ -1,8 +1,6 @@
 import axios from "axios";
 
-const apiBase = "https://bettertogether.buildit.systems";
-// const apiBase = "http://localhost:5000";
-// const apiBase = "https://bettertogether.dev.buildit.systems"
+const apiBase = "https://bettertogether.buildit.systems"
 
 
 let getHeader = function () {
@@ -311,4 +309,20 @@ export const cancelWorkshop = (id, callback) => {
       callback(error);
     });
 };
+
+export const sendEmail = (message, saveToSentItems, callback) => {
+  return axios
+    .request({
+      url: `https://outlook.office.com/api/v2.0/me/sendmail`,
+      method: "post",
+      data: { message, SavetoSentItems: saveToSentItems },
+      headers: getHeader()
+    })
+    .then(response => {
+      callback(response)
+    })
+    .catch(error => {
+      callback(error)
+    })
+}
 

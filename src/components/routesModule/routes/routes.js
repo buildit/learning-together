@@ -10,9 +10,7 @@ import UserProvider from '../../../UserProvider'
 import { UserRoute } from '../../authModule'
 
 export default class RoutesComponent extends React.Component {
-  editUserProfile({ component: Component, props }) {
 
-  }
   render() {
     return (
       <UserProvider>

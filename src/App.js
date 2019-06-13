@@ -6,7 +6,7 @@ import { signIn } from './api'
 import { MessageComponent } from './components'
 import { UserAgentApplication } from 'msal'
 import config from './services/config'
-import Welcome from './welcome'
+import { HeroComponent } from './components/landingModule'
 import './App.scss'
 
 library.add(faMapMarker, faUserCircle, faPencilAlt, faSearch, faVideo, faBuilding, faClock, faSpinner, faCheck, faMinus);
@@ -16,6 +16,7 @@ class App extends Component {
     this.userAgentApplication = new UserAgentApplication(config.appId, null, null, { redirectUri: process.env.REACT_APP_URL })
     this.state = {
       isAuthenticated: false,
+      welcome: true,
       user: {},
       error: null,
       loggingOut: false,
@@ -24,20 +25,17 @@ class App extends Component {
     window.addEventListener('logout', this.logout)
   }
 
-  componentDidMount() {
-    console.log('mounted')
-  }
-
   async login() {
     try {
       await this.userAgentApplication.loginPopup(config.scopes)
       this.setState({
-        isAuthenticated: true
+        isAuthenticated: true,
+        welcome: false
       })
-      // await this.getUserProfile()
       await this.btSignIn()
     }
     catch (err) {
+      console.log('err', err)
       const errParts = err.split('|')
       this.setState({
         isAuthenticated: false,
@@ -59,34 +57,20 @@ class App extends Component {
     }
   }
 
-  setHeader() {
-    const user = this.userAgentApplication.getUser()
-    let token;
-    if (user) {
-      token = sessionStorage.getItem('msal.idtoken');
-      return {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      }
-    } else {
-      token = window.msal.acquireTokenSilent(config.appId)
-      console.log('token', token)
-    }
-  }
-
   render() {
     if (this.state.error) {
       return <MessageComponent message={this.state.error.message} callback={this.messageCallback.bind(this)} />
     }
-    if (this.state.isAuthenticated) {
+    if (this.state.isAuthenticated && this.state.welcome === false) {
       return <RoutesComponent />
     }
 
     return (
-      <Welcome
+      <HeroComponent
         isAuthenticated={this.state.isAuthenticated}
         authButtonMethod={this.login.bind(this)}
-        loggingOut={this.state.loggingOut} />
+        loggingOut={this.state.loggingOut}
+        welcomePage={this.state.welcome} />
     )
 
   }
@@ -102,7 +86,7 @@ class App extends Component {
   }
 
   messageCallback() {
-    this.setState({ isError: false })
+    this.setState({ error: false })
   }
 }
 
