@@ -2,6 +2,7 @@ import axios from "axios";
 
 const apiBase = "https://bettertogether.buildit.systems"
 
+
 let getHeader = function () {
   let token = sessionStorage.getItem('msal.idtoken');
   return {
