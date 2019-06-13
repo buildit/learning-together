@@ -7,7 +7,7 @@ import Moment from "react-moment";
 import { NavbarComponent } from "../../navbarModule";
 import { Link, Redirect, NavLink } from "react-router-dom";
 import { UserContext } from "../../../UserProvider";
-import { createAndSendEmail, addCalEvent } from '../../../services/utils';
+import { createAndSendEmail, addCalEvent } from '../../../services/outlookUtils';
 import {
   getWorkshop,
   coverGenerator,

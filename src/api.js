@@ -1,26 +1,40 @@
 import axios from "axios";
-
+import config from './services/config'
 const apiBase = "https://bettertogether.buildit.systems"
 
 let getHeader = function () {
-  let token = sessionStorage.getItem('msal.idtoken');
   return {
-    'Authorization': `Bearer ${token}`,
+    'Authorization': `Bearer ${sessionStorage.getItem('msal.idtoken')}`,
     'Content-Type': 'application/json'
   }
+  // window.msal.acquireTokenSilent(config.scopes)
+  //   .then(response => {
+  //     console.log(response)
+  //     return {
+  //       'Authorization': `Bearer ${response.accessToken}`,
+  //       'Content-Type': 'application/json'
+  //     }
+  //   })
+  //   .catch(err => {
+  //     // could also check if err instance of InteractionRequiredAuthError if you can import the class.
+  //     if (err.name === "InteractionRequiredAuthError") {
+  //       //redirect
+  //     }
+  //   });
 }
 
-export async function signIn(username, callback) {
+export function signIn(username, callback) {
   const url =
     `${apiBase}/api/users/authenticate`;
   return new Promise((resolve, reject) => {
     const data = { Username: username }
+    const headers = getHeader()
     axios
       .request({
         url,
         method: "post",
         data,
-        headers: getHeader()
+        headers
       })
       .then(response => {
         callback(response);
@@ -70,10 +84,11 @@ export const getWorkshopList = id => {
 
 export const getWorkshopListDate = start => {
   const date = start ? `filter?startDate=${start}&endDate=2025-04-11T00:00:00` : "";
+  const headers = getHeader()
   return axios.request({
     url: `${apiBase}/api/workshops/${date}`,
     method: "get",
-    headers: getHeader()
+    headers
   });
 };
 
@@ -126,7 +141,11 @@ export const getUser = (id, callback) => {
   const url = `${apiBase}/api/users/${id}`
   return new Promise((resolve, reject) => {
     axios
-      .get(url, { headers: getHeader() })
+      .request({
+        url,
+        method: "get",
+        headers: getHeader()
+      })
       .then(response => {
         callback(response);
       })

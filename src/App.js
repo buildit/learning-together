@@ -5,6 +5,7 @@ import { faMapMarker, faUserCircle, faPencilAlt, faSearch, faVideo, faBuilding, 
 import { signIn } from './api'
 import { MessageComponent } from './components'
 import { UserAgentApplication } from 'msal'
+import { login } from './services/msalUtils'
 import config from './services/config'
 import Welcome from './welcome'
 // import { getUserDetails } from './services/graph.service'
@@ -14,98 +15,41 @@ library.add(faMapMarker, faUserCircle, faPencilAlt, faSearch, faVideo, faBuildin
 class App extends Component {
   constructor() {
     super()
-    this.userAgentApplication = new UserAgentApplication(config.appId, null, null, { redirectUri: process.env.REACT_APP_URL })
-    const user = this.userAgentApplication.getUser()
     this.state = {
-      isAuthenticated: (user !== null),
+      isAuthenticated: false,
       user: {},
       error: null,
       loggingOut: false,
-      events: null
+      events: null,
+      userAgentApplication: {}
     }
-    if (user) {
-      // this.getUserProfile()
-      signIn(user.displayableId, this.signInCallback)
-    }
-    window.addEventListener('logout', this.logout)
-  }
-
-  async login() {
-    try {
-      await this.userAgentApplication.loginPopup(config.scopes)
-      // await this.getUserProfile()
-    }
-    catch (err) {
-      const errParts = err.split('|')
-      this.setState({
-        isAuthenticated: false,
-        user: {},
-        error: { message: errParts[1], debug: errParts[0] }
-      })
-    }
-  }
-
-  logout = () => {
-    this.setState({ isAuthenticated: false, loggingOut: true })
-    this.userAgentApplication.logout()
-  }
-
-  render() {
-    if (this.state.error) {
-      return <MessageComponent message={this.state.error.message} callback={this.messageCallback.bind(this)} />
-    }
-    if (this.state.isAuthenticated) {
-      return <RoutesComponent />
-    }
-
-    return (
-      <Welcome
-        isAuthenticated={this.state.isAuthenticated}
-        user={this.state.user}
-        authButtonMethod={this.login.bind(this)}
-        loggingOut={this.state.loggingOut} />
-    )
+    this.signInCallback = this.signInCallback.bind(this)
+    this.loginCallback = this.loginCallback.bind(this)
 
   }
 
-  // async getUserProfile() {
-  //   try {
-  //     const accessToken = await this.userAgentApplication.acquireTokenSilent(config.scopes)
-  //     if (accessToken) {
-  //       const user = await getUserDetails(accessToken)
-  //       this.setState({
-  //         isAuthenticated: true,
-  //         user: {
-  //           displayName: user.displayName,
-  //           email: user.email || user.userPrincipalName
-  //         },
-  //         error: null,
-  //         loggingOut: false
-  //       })
-  //     }
-  //   }
-  //   catch (err) {
-  //     var error = {}
-  //     if (typeof (err) === 'string') {
-  //       const errParts = err.split('|')
-  //       error = errParts.length > 1
-  //         ? { message: errParts[1], debug: errParts[0] }
-  //         : { message: err }
-  //     } else {
-  //       error = {
-  //         message: err.message,
-  //         debug: JSON.stringify(err)
-  //       }
-  //       this.setState({
-  //         isAuthenticated: false,
-  //         user: {},
-  //         error
-  //       })
-  //     }
-  //   }
-  // }
+  componentDidMount() {
+    const userAgentApplication = new UserAgentApplication(config.appId, null, null, { redirectUri: process.env.REACT_APP_URL })
+    this.setState({ userAgentApplication })
+    if (sessionStorage.getItem('msal.idtoken')) {
+      signIn(localStorage.getItem('username'), this.signInCallback)
+    }
+    else {
+      sessionStorage.clear()
+      login.call(this, userAgentApplication, this.loginCallback)
+    }
+    // if (this.userAgentApplication.getUser()) {
+    //   this.setState({ user: this.userAgentApplication.getUser() })
+    //   signIn(localStorage.getItem('username'), this.signInCallback)
+    // }
+    // else {
+    //   login.call(this, this.userAgentApplication, this.loginCallback)
+    // }
+  }
+
 
   signInCallback(response) {
+    console.log('sup')
     if (response.status === 200) {
       localStorage.setItem('userId', response.data.id)
       localStorage.setItem('username', response.data.username)
@@ -115,8 +59,22 @@ class App extends Component {
     }
   }
 
+  loginCallback(response) {
+    if (response.status === 200) {
+
+    }
+  }
+
   messageCallback() {
     this.setState({ isError: false })
+  }
+
+  render() {
+    if (this.state.error) {
+      return <MessageComponent message={this.state.error.message} callback={this.messageCallback.bind(this)} />
+    }
+    return <RoutesComponent />
+
   }
 }
 
