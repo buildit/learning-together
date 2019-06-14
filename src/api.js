@@ -2,8 +2,6 @@ import axios from "axios";
 import moment from "moment";
 
 const apiBase = "https://bettertogether.buildit.systems";
-// const apiBase = "http://localhost:5000";
-// const apiBase = "https://bettertogether.dev.buildit.systems"
 
 let getHeader = function() {
   let token = sessionStorage.getItem("msal.idtoken");
@@ -72,6 +70,16 @@ export const getWorkshopListDate = start => {
   const date = start
     ? `filter?startDate=${start}&endDate=2025-04-11T00:00:00`
     : "";
+  return axios.request({
+    url: `${apiBase}/api/workshops/${date}`,
+    method: "get",
+    headers: getHeader()
+  });
+};
+
+export const getWorkshopListPast = category => {
+  const start = moment().format();
+  const date = `filter?categoryId=${category}&startDate=2018-01-01T00:00:00&endDate=${start}`;
   return axios.request({
     url: `${apiBase}/api/workshops/${date}`,
     method: "get",
@@ -494,5 +502,21 @@ export const findRoom = (start, end) => {
       });
 
       return availableRooms;
+    });
+};
+
+export const sendEmail = (message, saveToSentItems, callback) => {
+  return axios
+    .request({
+      url: `https://outlook.office.com/api/v2.0/me/sendmail`,
+      method: "post",
+      data: { message, SavetoSentItems: saveToSentItems },
+      headers: getHeader()
+    })
+    .then(response => {
+      callback(response);
+    })
+    .catch(error => {
+      callback(error);
     });
 };

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { CategoryListComponent } from "../../categoryModule";
-import { FooterComponent, NavbarComponent } from "../../navbarModule"
+import { NavbarComponent } from "../../navbarModule"
 import { OnboardingComponent, HeroComponent } from "../../landingModule";
 import { ScheduleComponent } from "../../userModule";
 import { getUser, getWorkshopListDate, loadCategories } from '../../../api'
@@ -79,11 +78,6 @@ export default class Landing extends Component {
         <div className="grid-container">
           <ScheduleComponent workshops={this.state.workshops} user={this.state.user} />
         </div>
-        <div className="grid-container landing-preview">
-          <h2 className="section-title">Categories</h2>
-          <CategoryListComponent workshop={this.state.workshops} categories={this.state.categories} />
-        </div>
-        <FooterComponent className='footer' userId={this.state.userId} />
       </div>
 
     );
