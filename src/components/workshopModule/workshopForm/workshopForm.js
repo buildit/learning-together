@@ -2,15 +2,7 @@ import React, { Component } from "react";
 import moment from "moment";
 import { SingleDatePicker } from "react-dates";
 import { Link, Redirect } from "react-router-dom";
-import {
-  getCategoryList,
-  getLocationList,
-  viewEvent,
-  bookRoom,
-  deleteEvent,
-  getEventsByRoom,
-  findRoom
-} from "../../../api.js";
+import { getCategoryList, getLocationList, findRoom } from "../../../api.js";
 import { MessageComponent } from "../../messageModule";
 import { ImageUploaderComponent } from "../../userModule";
 import TimePicker from "rc-time-picker";
@@ -54,9 +46,6 @@ class WorkshopForm extends Component {
     this.redirectCallback = this.redirectCallback.bind(this);
     this.setWorkshopPicture = this.setWorkshopPicture.bind(this);
     this.getLocationCallBack = this.getLocationCallBack.bind(this);
-    //REMOVE WHEN DONE
-    this.handleEvents = this.handleEvents.bind(this);
-    this.handleDeletes = this.handleDeletes.bind(this);
     this.handleRobinUpdate = this.handleRobinUpdate.bind(this);
   }
 
@@ -128,13 +117,6 @@ class WorkshopForm extends Component {
   }
   //If input is start time or date time modify moment object
   handleChange(e, name) {
-    if (name) {
-      console.log(name);
-    }
-    if (e.target) {
-      console.log(e.target.name);
-    }
-
     if (name !== undefined && (name === "startTime" || name === "endTime")) {
       const month = this.state.startDate.month();
       const day = this.state.startDate.date();
@@ -147,7 +129,7 @@ class WorkshopForm extends Component {
     } else if (e.target.name === "roomSelected") {
       const { options, selectedIndex } = e.target;
       this.setState({ [e.target.name]: e.target.value });
-      this.setState({ ["room"]: options[selectedIndex].innerText });
+      this.setState({ room: options[selectedIndex].innerText });
     } else {
       this.setState({ [e.target.name]: e.target.value });
     }
@@ -159,29 +141,7 @@ class WorkshopForm extends Component {
     }
   }
 
-  //REMOVE WHEN DONE
-  handleEvents(e) {
-    e.preventDefault();
-    console.log("handling events");
-
-    getEventsByRoom("2019-06-05T01:01:01.379").then(response =>
-      console.log(response)
-    );
-  }
-
-  //REMOVE WHEN DONE
-  handleDeletes(e) {
-    e.preventDefault();
-    console.log("deleting events");
-
-    deleteEvent(108744209).then(response => console.log(response));
-  }
-
   onDateChange(date) {
-    if (this.props.edit && this.props.data.robinEventId) {
-      console.log("editing robin");
-    }
-
     const month = date.month();
     const day = date.date();
     const year = date.year();
@@ -257,7 +217,6 @@ class WorkshopForm extends Component {
     if (error) {
       window.scrollTo(0, 0);
     } else {
-      console.log(" calling book room ");
       const data = {
         name: this.state.name,
         start: this.state.startTime.format("YYYY-MM-DDTHH:mm:ss.SSS"),
@@ -272,7 +231,6 @@ class WorkshopForm extends Component {
         roomSelected: this.state.roomSelected,
         updateRobinReservation: this.state.updateRobinReservation
       };
-      console.log(data);
       this.props.handleSubmit(data);
     }
   }
@@ -286,7 +244,6 @@ class WorkshopForm extends Component {
   }
 
   render() {
-    console.log(this.props);
     const categories = this.state.categoryList.map(category => {
       return (
         <option key={category.id} value={category.id}>
@@ -304,7 +261,6 @@ class WorkshopForm extends Component {
     });
 
     const availableRooms = this.state.roomAvailable.map(room => {
-      console.log(room);
       return (
         <option
           key={room.id}
@@ -323,7 +279,6 @@ class WorkshopForm extends Component {
       this.state.roomAvailable.length === 0
     ) {
       findRoom(this.state.startTime, this.state.endTime).then(response => {
-        console.log(response);
         if (response.length === 0) {
           console.log("No rooms available - Pick another time");
         } else {
@@ -331,7 +286,6 @@ class WorkshopForm extends Component {
             roomAvailable: response,
             roomSelected: ""
           });
-          console.log("found rooms");
         }
       });
     }
@@ -414,7 +368,6 @@ class WorkshopForm extends Component {
                   use12Hours={true}
                   focusOnOpen={true}
                   onChange={(value, name = "endTime") => {
-                    console.log("clicked");
                     this.handleChange(value, name);
                   }}
                   value={this.state.endTime}
@@ -462,7 +415,7 @@ class WorkshopForm extends Component {
                       value={this.state.roomSelected}
                       onChange={this.handleChange}
                     >
-                      <option>Select a room</option>
+                      <option value="">Select a room</option>
                       {availableRooms}
                     </select>
                   </label>
@@ -514,9 +467,6 @@ class WorkshopForm extends Component {
                   />
                   <span className="error">{this.state.error.description}</span>
                 </label>
-                {this.state.room}
-                {this.state.roomSelected}
-                {this.state.robinEventId}
               </div>
             </div>
           </div>

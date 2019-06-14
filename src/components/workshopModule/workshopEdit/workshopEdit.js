@@ -24,7 +24,6 @@ class workshopEdit extends Component {
   }
 
   getWorkshopCallback(response) {
-    console.log(response);
     if (response.status === 200) {
       const data = {
         name: response.data.name,
@@ -47,8 +46,6 @@ class workshopEdit extends Component {
   }
 
   handleSubmit(data) {
-    console.log("data", data);
-
     const {
       robinEventId,
       start,
@@ -62,10 +59,7 @@ class workshopEdit extends Component {
       deleteEvent(robinEventId).then(
         bookRoom(start, end, name, roomSelected)
           .then(response => {
-            console.log("response", response);
             if (response.status === 201) {
-              console.log("inside success");
-              console.log("robin id", response.data.data.id);
               data.robinEventId = response.data.data.id;
             }
           })
