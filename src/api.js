@@ -309,13 +309,19 @@ export const getDisciplineList = (callback) => {
     });
 };
 
-export const getCategoryList = () => {
+export const getCategoryList = (callback) => {
   tokenCheck()
   return axios.request({
     url: `${apiBase}/api/disciplines/categories`,
     method: "get",
     headers: getHeader()
-  });
+  })
+    .then(response => {
+      callback(response)
+    })
+    .catch(err => {
+      callback(err)
+    });
 };
 
 export const getLocationList = callback => {

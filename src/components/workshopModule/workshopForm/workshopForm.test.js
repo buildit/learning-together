@@ -2,6 +2,7 @@ import React from "react";
 import WorkshopFormComponent from "./workshopForm";
 import { shallow } from "enzyme";
 
+jest.mock('../../../api')
 describe("workshop Form tests", () => {
   const wrapper = shallow(<WorkshopFormComponent />);
 
