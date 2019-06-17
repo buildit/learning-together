@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { WorkshopPreviewComponent } from "../workshopPreview";
 import { NavbarComponent } from "../../navbarModule";
-import { MessageComponent } from '../../messageModule'
 import { getWorkshopList, getWorkshopListPast } from "../../../api";
 import { groupBy, forEach } from 'lodash';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
