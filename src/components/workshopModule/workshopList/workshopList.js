@@ -1,9 +1,11 @@
 import React, { Component, Fragment } from "react";
 import { WorkshopPreviewComponent } from "../workshopPreview";
 import { NavbarComponent } from "../../navbarModule";
-import { getWorkshopList } from "../../../api";
 import { MessageComponent } from '../../messageModule'
+import { getWorkshopList, getWorkshopListPast } from "../../../api";
 import { groupBy, forEach } from 'lodash';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import "react-tabs/style/react-tabs.css";
 import moment from 'moment';
 import "./workshoplist.scss";
 
@@ -17,10 +19,16 @@ class WorkshopList extends Component {
       isError: false
     };
     this.getWorkshopListCallback = this.getWorkshopListCallback.bind(this)
+    this.getWorkshopListPastCallback = this.getWorkshopListPastCallback.bind(this)
   }
 
   componentDidMount() {
     getWorkshopList(this.props.computedMatch.params.id, this.getWorkshopListCallback)
+    getWorkshopListPast(this.props.computedMatch.params.id).then(data => {
+      this.setState({
+        workshops: data.data
+      })
+    })
   }
   componentDidUpdate(prevProps) {
     if (
@@ -36,13 +44,23 @@ class WorkshopList extends Component {
         dates: this.filterByDay(response.data),
         title: this.props.computedMatch.params.title
       });
+      getWorkshopListPast(this.props.computedMatch.params.id, this.getWorkshopListPastCallback)
     }
     else {
       this.setState({ isError: true })
     }
   }
 
+  getWorkshopListPastCallback(response) {
+    if (response.status === 200) {
+      this.setState({
+        workshops: response.data
+      })
+    } else {
+      //error message
+    }
 
+  }
   filterByDay = (workshops) => {
     let datesArray = []
     const dates = groupBy(workshops, function (workshop) {
@@ -62,6 +80,7 @@ class WorkshopList extends Component {
 
   render() {
     const dates = this.state.dates;
+    const workshops = this.state.workshops;
     return (
       <Fragment>
         <NavbarComponent
@@ -77,30 +96,48 @@ class WorkshopList extends Component {
         </section>
         <section className="workshop-list grid-container">
 
-          {dates.map((date, index) => {
-            return (
+          <Tabs defaultIndex={0}>
+            <TabList className="workshop-selector">
+              <Tab>Upcoming</Tab>
+              <Tab>Video</Tab>
+            </TabList>
 
-              Object.keys(date).map((key, index) => {
 
+            <TabPanel>
+              {dates.map((date, index) => {
                 return (
-                  <section key={`date-section-${index}`}>
-                    <b className="time-header">{key}</b>
-                    <article className="workshopsforday">
-                      {date[key].map((workshop, index) => {
-                        return (
-                          <WorkshopPreviewComponent workshop={workshop} key={`workshop-preview-${index}`} />
-                        )
-                      })}
-                    </article>
-                  </section>
+
+                  Object.keys(date).map((key, index) => {
+
+                    return (
+                      <section className="course" key={`date-section-${index}`}>
+                        <b className="time-header">{key}</b>
+                        <article className="workshopsforday">
+                          {date[key].map((workshop, index) => {
+                            return (
+                              <WorkshopPreviewComponent workshop={workshop} key={`workshop-preview-${index}`} />
+                            )
+                          })}
+                        </article>
+                      </section>
+                    )
+                  })
+
+
                 )
-              })
-            )
-          })}
+              })}
+            </TabPanel>
+            <TabPanel>
+              {workshops.map((workshop, index) => {
+                return (
+                  <article className="workshopsforday" key={`workshop-video-${index}`}>
+                    <WorkshopPreviewComponent workshop={workshop} />
+                  </article>
+                )
+              })}
+            </TabPanel>
+          </Tabs>
         </section>
-        {
-          this.state.isError && (<MessageComponent message={'Could not retrieve the workshops at this time. Please try again later.'} />)
-        }
       </Fragment>
     );
   }

@@ -8,12 +8,15 @@ import { NavbarComponent } from "../../navbarModule";
 import { Link, Redirect, NavLink } from "react-router-dom";
 import { UserContext } from "../../../UserProvider";
 import { createAndSendEmail, addCalEvent } from '../../../services/outlookUtils';
+import ReactPlayer from 'react-player';
+
 import {
   getWorkshop,
   coverGenerator,
   enrollWorkshop,
   unenrollWorkshop,
-  cancelWorkshop
+  cancelWorkshop,
+  deleteEvent
 } from "../../../api";
 import { MessageComponent, MessageConfirmComponent } from "../../messageModule";
 import { filterAttendees } from "../../../selectors";
@@ -170,7 +173,13 @@ export default class Workshop extends Component {
   }
 
   cancelWorkshopConfirmed() {
-    cancelWorkshop(this.state.workshop.id, this.cancelWorkshopCallback);
+    if (this.state.workshop.robinEventId === null) {
+      cancelWorkshop(this.state.workshop.id, this.cancelWorkshopCallback);
+    } else {
+      deleteEvent(this.state.workshop.robinEventId).then(response => {
+        cancelWorkshop(this.state.workshop.id, this.cancelWorkshopCallback);
+      });
+    }
   }
 
   cancelWorkshopNoConfirm() {
@@ -257,44 +266,43 @@ export default class Workshop extends Component {
             </div>
 
             <div className="cell small-12 medium-4 flex-container enroll-button">
-              {
-                isEducator ? (
-                  [
-                    <Link
-                      className=""
-                      to={`/edit/${this.props.computedMatch.params.id}`} key={1}
-                    >
-                      <button type="button" className="button flex-child-auto">
-                        EDIT
-                      </button>
-                    </Link>,
-                    <button
-                      type="button"
-                      className="button flex-child-auto large-flex-child-shrink unenroll"
-                      onClick={this.onClickCancel.bind(this)}
-                      key={2}
-                    >
-                      CANCEL WORKSHOP
+              {isEducator ? (
+                [
+                  <Link
+                    className=""
+                    to={`/edit/${this.props.computedMatch.params.id}`}
+                    key={1}
+                  >
+                    <button type="button" className="button flex-child-auto">
+                      EDIT
                     </button>
-                  ]
-                ) : isAttending ? (
+                  </Link>,
                   <button
                     type="button"
-                    className="button unenroll flex-child-auto large-flex-child-shrink"
-                    onClick={this.onClickUnenroll.bind(this)}
+                    className="button flex-child-auto large-flex-child-shrink unenroll"
+                    onClick={this.onClickCancel.bind(this)}
+                    key={2}
                   >
-                    UNENROLL
+                    CANCEL WORKSHOP
                   </button>
-                ) : (
-                      <button
-                        type="button"
-                        className="button flex-child-auto large-flex-child-shrink"
-                        onClick={this.onClickEnroll.bind(this)}
-                      >
-                        ENROLL
-                  </button>
-                    )
-              }
+                ]
+              ) : isAttending ? (
+                <button
+                  type="button"
+                  className="button unenroll flex-child-auto large-flex-child-shrink"
+                  onClick={this.onClickUnenroll.bind(this)}
+                >
+                  UNENROLL
+                </button>
+              ) : (
+                    <button
+                      type="button"
+                      className="button flex-child-auto large-flex-child-shrink"
+                      onClick={this.onClickEnroll.bind(this)}
+                    >
+                      ENROLL
+                </button>
+                  )}
             </div>
           </article>
         </section>
@@ -302,6 +310,7 @@ export default class Workshop extends Component {
           <article className="grid-x grid-margin-x">
             <div className="cell small-12 medium-8 small-order-2 medium-order-1">
               <JumbotronComponent image={cover} />
+              <ReactPlayer url='https://youtu.be/iKhsC1Q4LDs'> </ReactPlayer>
               <h4>
                 <b>Details</b>
               </h4>

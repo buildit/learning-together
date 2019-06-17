@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./categoryList.scss";
 
-
 class CategoryList extends Component {
   render() {
     const WrkshpCategories = this.props.categories.map((category, index) => {
@@ -14,12 +13,9 @@ class CategoryList extends Component {
               category,
               state: this.props.workshop
             }}
-
             className="card custom-cards"
           >
-
             <b>{category.name}</b>
-
           </Link>
         </div>
       );
@@ -37,4 +33,4 @@ export default CategoryList;
 
 CategoryList.defaultProps = {
   categories: []
-}
+};

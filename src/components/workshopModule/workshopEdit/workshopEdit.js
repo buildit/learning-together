@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { WorkshopFormComponent } from "../workshopForm";
-import { getWorkshop, updateWorkshop } from "../../../api.js";
+import {
+  getWorkshop,
+  updateWorkshop,
+  deleteEvent,
+  bookRoom
+} from "../../../api.js";
 
 class workshopEdit extends Component {
   constructor(props) {
@@ -29,7 +34,10 @@ class workshopEdit extends Component {
         webex: response.data.webex,
         description: response.data.description,
         imageUrl: response.data.imageUrl,
-        room: response.data.room
+        room: response.data.room,
+        robinEventId: response.data.robinEventId
+          ? response.data.robinEventId
+          : ""
       };
       this.setState({
         data
@@ -38,11 +46,42 @@ class workshopEdit extends Component {
   }
 
   handleSubmit(data) {
-    updateWorkshop(this.props.computedMatch.params.id, data).then(response => {
-      if (response.status === 200) {
-        this.setState({ success: true });
-      }
-    });
+    const {
+      robinEventId,
+      start,
+      end,
+      name,
+      roomSelected,
+      updateRobinReservation
+    } = data;
+
+    if (updateRobinReservation && robinEventId) {
+      deleteEvent(robinEventId).then(
+        bookRoom(start, end, name, roomSelected)
+          .then(response => {
+            if (response.status === 201) {
+              data.robinEventId = response.data.data.id;
+            }
+          })
+          .then(() =>
+            updateWorkshop(this.props.computedMatch.params.id, data).then(
+              response => {
+                if (response.status === 200) {
+                  this.setState({ success: true });
+                }
+              }
+            )
+          )
+      );
+    } else {
+      updateWorkshop(this.props.computedMatch.params.id, data).then(
+        response => {
+          if (response.status === 200) {
+            this.setState({ success: true });
+          }
+        }
+      );
+    }
   }
 
   render() {
