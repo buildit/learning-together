@@ -3,17 +3,12 @@ import { Link } from 'react-router-dom';
 import "./hero.scss";
 
 const Hero = ({ image }) => {
-
   const img = image ? image : `${process.env.PUBLIC_URL}/images/cover/default.jpg`
-
   const style = {
     backgroundImage: `url(${img})`
   }
-
   return (
     <section className="cover-frame" style={style}>
-
-
       <div className="copy">
         <h1>Better Together</h1>
         <div className="calls-to-action">
@@ -38,7 +33,8 @@ const Hero = ({ image }) => {
 
       </div>
     </section>
-  );
-};
+  )
+}
+
 
 export default Hero;

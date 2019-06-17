@@ -1,5 +1,7 @@
 import axios from "axios";
 import config from './services/config'
+import { login } from './services/msalUtils'
+import jwtDecode from 'jwt-decode'
 const apiBase = "https://bettertogether.buildit.systems"
 
 let getHeader = function () {
@@ -7,21 +9,20 @@ let getHeader = function () {
     'Authorization': `Bearer ${sessionStorage.getItem('msal.idtoken')}`,
     'Content-Type': 'application/json'
   }
-  // window.msal.acquireTokenSilent(config.scopes)
-  //   .then(response => {
-  //     console.log(response)
-  //     return {
-  //       'Authorization': `Bearer ${response.accessToken}`,
-  //       'Content-Type': 'application/json'
-  //     }
-  //   })
-  //   .catch(err => {
-  //     // could also check if err instance of InteractionRequiredAuthError if you can import the class.
-  //     if (err.name === "InteractionRequiredAuthError") {
-  //       //redirect
-  //     }
-  //   });
 }
+export function tokenCheck() {
+  window.msal.acquireTokenSilent(config.scopes, config.authority)
+    .then(response => {
+      if (jwtDecode(response).exp < Date.now()) {
+        return response
+      }
+    })
+    .catch(err => {
+      console.log(err)
+      login()
+    })
+}
+
 
 export function signIn(username, callback) {
   const url =
@@ -46,6 +47,7 @@ export function signIn(username, callback) {
 }
 
 export function signUp(data, callback) {
+  tokenCheck()
   const url =
     `${apiBase}/api/users/register`;
   return new Promise((resolve, reject) => {
@@ -60,40 +62,66 @@ export function signUp(data, callback) {
   });
 }
 
-export async function loadCategories() {
+export async function loadCategories(callback) {
+  tokenCheck()
   const url =
     `${apiBase}/api/disciplines/categories`;
   return axios
     .get(url, { headers: getHeader() })
     .then(response => {
-      return response.data;
+      callback(response.data)
     })
     .catch(error => {
+      debugger
+      if (error.response.status === 401) {
+        localStorage.clear()
+        sessionStorage.clear()
+        window.location.refresh()
+      }
       return error;
     });
 }
 
-export const getWorkshopList = id => {
+export const getWorkshopList = (id, callback) => {
+  tokenCheck()
   const category = id ? `filter?categoryId=${id}` : "";
   return axios.request({
     url: `${apiBase}/api/workshops/${category}`,
     method: "get",
     headers: getHeader()
-  });
+  })
+    .then(response => {
+      callback(response)
+    })
+    .catch(error => {
+      callback(error)
+    });
 };
 
-export const getWorkshopListDate = start => {
+export const getWorkshopListDate = (start, callback) => {
+  tokenCheck()
   const date = start ? `filter?startDate=${start}&endDate=2025-04-11T00:00:00` : "";
   const headers = getHeader()
   return axios.request({
     url: `${apiBase}/api/workshops/${date}`,
     method: "get",
     headers
-  });
+  })
+    .then(response => {
+      callback(response)
+    })
+    .catch(error => {
+      if (error.response.status === 401) {
+        localStorage.clear()
+        sessionStorage.clear()
+        window.location.refresh()
+      }
+    });
 };
 
 
 export const getWorkshop = (id, callback) => {
+  tokenCheck()
   const url = `${apiBase}/api/workshops/${id}`;
   axios
     .get(url, { headers: getHeader() })
@@ -101,11 +129,17 @@ export const getWorkshop = (id, callback) => {
       callback(response);
     })
     .catch(error => {
+      if (error.response.status === 401) {
+        localStorage.clear()
+        sessionStorage.clear()
+        window.location.refresh()
+      }
       callback(error);
     });
 };
 
 export const enrollWorkshop = (id, callback) => {
+  tokenCheck()
   const url = `${apiBase}/api/workshops/${id}/enroll`;
   axios
     .request({
@@ -117,11 +151,17 @@ export const enrollWorkshop = (id, callback) => {
       callback(response);
     })
     .catch(error => {
+      if (error.response.status === 401) {
+        localStorage.clear()
+        sessionStorage.clear()
+        window.location.refresh()
+      }
       callback(error);
     });
 };
 
 export const unenrollWorkshop = (id, callback) => {
+  tokenCheck()
   const url = `${apiBase}/api/workshops/${id}/enroll`;
   axios
     .request({
@@ -133,11 +173,17 @@ export const unenrollWorkshop = (id, callback) => {
       callback(response);
     })
     .catch(error => {
+      if (error.response.status === 401) {
+        localStorage.clear()
+        sessionStorage.clear()
+        window.location.refresh()
+      }
       callback(error);
     });
 };
 
 export const getUser = (id, callback) => {
+  tokenCheck()
   const url = `${apiBase}/api/users/${id}`
   return new Promise((resolve, reject) => {
     axios
@@ -150,6 +196,11 @@ export const getUser = (id, callback) => {
         callback(response);
       })
       .catch(error => {
+        if (error.response.status === 401) {
+          localStorage.clear()
+          sessionStorage.clear()
+          window.location.refresh()
+        }
         callback(error);
       });
   });
@@ -157,6 +208,7 @@ export const getUser = (id, callback) => {
 };
 
 export const editUser = ({ firstName, lastName, username, password, roleId, locationId, imageUrl, userInterests }, id, callback) => {
+  tokenCheck()
   const data = { firstName, lastName, username, password, roleId, locationId, imageUrl, userInterests }
   return axios
     .request({
@@ -172,11 +224,17 @@ export const editUser = ({ firstName, lastName, username, password, roleId, loca
     })
     .catch(function (error) {
       // handle error
+      if (error.response.status === 401) {
+        localStorage.clear()
+        sessionStorage.clear()
+        window.location.refresh()
+      }
       callback(error);
     });
 }
 // Make a request for a user with a given token
 export const createWorkshop = data => {
+  tokenCheck()
   return axios
     .request({
       url:
@@ -191,6 +249,11 @@ export const createWorkshop = data => {
     })
     .catch(function (error) {
       // handle error
+      if (error.response.status === 401) {
+        localStorage.clear()
+        sessionStorage.clear()
+        window.location.refresh()
+      }
       console.log(error);
     });
 };
@@ -200,6 +263,7 @@ export const coverGenerator = id => {
 };
 
 export function uploadImage(data, callback) {
+  tokenCheck()
   const url =
     `${apiBase}/api/upload/image`;
   axios
@@ -208,11 +272,17 @@ export function uploadImage(data, callback) {
       callback(response);
     })
     .catch(error => {
+      if (error.response.status === 401) {
+        localStorage.clear()
+        sessionStorage.clear()
+        window.location.refresh()
+      }
       callback(error);
     });
 }
 
 export const getDisciplineList = (callback) => {
+  tokenCheck()
   return axios.request({
     url:
       `${apiBase}/api/disciplines`,
@@ -223,11 +293,17 @@ export const getDisciplineList = (callback) => {
       callback(response)
     })
     .catch(error => {
+      if (error.response.status === 401) {
+        localStorage.clear()
+        sessionStorage.clear()
+        window.location.refresh()
+      }
       callback(error)
     });
 };
 
 export const getCategoryList = () => {
+  tokenCheck()
   return axios.request({
     url:
       `${apiBase}/api/disciplines/categories`,
@@ -237,6 +313,7 @@ export const getCategoryList = () => {
 };
 
 export const getLocationList = callback => {
+  tokenCheck()
   const url = `${apiBase}/api/locations`;
   axios
     .get(url, { headers: getHeader() })
@@ -244,11 +321,17 @@ export const getLocationList = callback => {
       callback(response);
     })
     .catch(error => {
+      if (error.response.status === 401) {
+        localStorage.clear()
+        sessionStorage.clear()
+        window.location.refresh()
+      }
       callback(error);
     });
 };
 
 export const getRolesList = callback => {
+  tokenCheck()
   const url =
     `${apiBase}/api/roles`;
   axios
@@ -257,11 +340,17 @@ export const getRolesList = callback => {
       callback(response);
     })
     .catch(error => {
+      if (error.response.status === 401) {
+        localStorage.clear()
+        sessionStorage.clear()
+        window.location.refresh()
+      }
       callback(error);
     });
 };
 
 export const getSearchResults = (input, callback) => {
+  tokenCheck()
   const url = `${apiBase}/api/search?search=${input}&maxResults=5`;
   axios
     .get(url, { headers: getHeader() })
@@ -269,11 +358,17 @@ export const getSearchResults = (input, callback) => {
       callback(response);
     })
     .catch(error => {
+      if (error.response.status === 401) {
+        localStorage.clear()
+        sessionStorage.clear()
+        window.location.refresh()
+      }
       callback(error);
     });
 };
 
 export const updateWorkshop = (id, data) => {
+  tokenCheck()
   return axios
     .request({
       url: `${apiBase}/api/workshops/${id}`,
@@ -287,11 +382,17 @@ export const updateWorkshop = (id, data) => {
     })
     .catch(function (error) {
       // handle error
+      if (error.response.status === 401) {
+        localStorage.clear()
+        sessionStorage.clear()
+        window.location.refresh()
+      }
       console.log(error);
     });
 };
 
 export const fetchWorkshops = () => {
+  tokenCheck()
   return axios
     .request({
       url:
@@ -308,11 +409,17 @@ export const fetchWorkshops = () => {
     })
     .catch(function (error) {
       // handle error
+      if (error.response.status === 401) {
+        localStorage.clear()
+        sessionStorage.clear()
+        window.location.refresh()
+      }
       console.log(error);
     });
 };
 
 export const cancelWorkshop = (id, callback) => {
+  tokenCheck()
   return axios
     .request({
       url:
@@ -324,11 +431,17 @@ export const cancelWorkshop = (id, callback) => {
       callback(response);
     })
     .catch(function (error) {
+      if (error.response.status === 401) {
+        localStorage.clear()
+        sessionStorage.clear()
+        window.location.refresh()
+      }
       callback(error);
     });
 };
 
 export const sendEmail = (message, saveToSentItems, callback) => {
+  tokenCheck()
   return axios
     .request({
       url: `https://outlook.office.com/api/v2.0/me/sendmail`,
@@ -340,6 +453,11 @@ export const sendEmail = (message, saveToSentItems, callback) => {
       callback(response)
     })
     .catch(error => {
+      if (error.response.status === 401) {
+        localStorage.clear()
+        sessionStorage.clear()
+        window.location.refresh()
+      }
       callback(error)
     })
 }
