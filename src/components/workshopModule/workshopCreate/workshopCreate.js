@@ -13,6 +13,19 @@ class workshopCreate extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+
+  /*
+    async reserveRoom(data) {
+      
+      const { start, end, name, roomSelected } = data;
+
+      const response = await bookRoom (start, end, name, roomSelected)
+    }
+
+
+  */
+
+
   reserveRoom(data) {
     const { start, end, name, roomSelected } = data;
 
