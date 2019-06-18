@@ -185,23 +185,19 @@ export const editUser = (
       callback(error);
     });
 };
-// Make a request for a user with a given token
-export const createWorkshop = data => {
-  return axios
-    .request({
+
+export const createWorkshop = async data => {
+  try {
+    return await axios.request({
       url: `${apiBase}/api/workshops/create`,
       method: "post",
       data,
       headers: getHeader()
-    })
-    .then(function(response) {
-      // handle success
-      return response;
-    })
-    .catch(function(error) {
-      // handle error
-      console.log(error);
     });
+  } catch (error) {
+    //HANDLE ERROR
+    console.log(error);
+  }
 };
 
 export const coverGenerator = id => {
@@ -398,6 +394,39 @@ export const bookRoom = (start, end, title, room) => {
     }
   });
 };
+
+/*
+export const bookRoom = async (start, end, title, room) => {
+  try {
+    const IsoStartTime = moment(start).format();
+    const IsoEndTime = moment(end).format();
+
+    return await axios.request({
+      url: `https://api.robinpowered.com/v1.0/spaces/${room}/events`,
+      method: "POST",
+      data: {
+        title: `${title}`,
+        start: {
+          date_time: `${IsoStartTime}`,
+          time_zone: "America/New_York"
+        },
+        end: {
+          date_time: `${IsoEndTime}`,
+          time_zone: "America/New_York"
+        }
+      },
+
+      headers: {
+        Authorization: `Access-Token ${process.env.REACT_APP_ROBIN_TOKEN}`
+      }
+    });
+  } catch (error) {
+    console.log(error)
+    //HANDLE ERROR
+  }
+};
+
+*/
 
 export const findRoom = (start, end) => {
   const startTime =

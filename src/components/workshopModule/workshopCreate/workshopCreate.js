@@ -11,57 +11,48 @@ class workshopCreate extends Component {
       workshopId: null
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.bookWorkshop = this.bookWorkshop.bind(this);
   }
 
-
-  /*
-    async reserveRoom(data) {
-      
-      const { start, end, name, roomSelected } = data;
-
-      const response = await bookRoom (start, end, name, roomSelected)
-    }
-
-
-  */
-
-
-  reserveRoom(data) {
+  async reserveRoom(data) {
     const { start, end, name, roomSelected } = data;
-
-    return bookRoom(start, end, name, roomSelected).then(response => {
-      if (response.status === 201) {
-        return response.data.data.id;
-      }
-      return;
-    });
+    const response = await bookRoom(start, end, name, roomSelected);
+    if (response.status === 201) {
+      return response.data.data.id;
+    } else {
+      //HANDLE ERROR
+    }
   }
 
-  handleSubmit(data) {
-    if (data.locationId === 1 && data.roomSelected) {
-      this.reserveRoom(data).then(response => {
-        data.robinEventId = response;
-
-        createWorkshop(data)
-          .then(response => {
-            if (response.status === 200) {
-              this.setState({ success: true, workshopId: response.data });
-            }
-          })
-          .catch(error => {
-            console.log(error);
-          });
-      });
+  async bookWorkshop(data) {
+    const response = await createWorkshop(data);
+    if (response.status === 200) {
+      this.setState({ success: true });
+      return response.data;
     } else {
-      createWorkshop(data)
-        .then(response => {
-          if (response.status === 200) {
-            this.setState({ success: true, workshopId: response.data });
-          }
-        })
-        .catch(error => {
-          console.log(error);
-        });
+      //HANDLE ERROR
+    }
+  }
+
+  async handleSubmit(data) {
+    if (data.locationId === 1 && data.roomSelected) {
+      try {
+        let response = await this.reserveRoom(data);
+        data.robinEventId = response;
+        let workshopId = await this.bookWorkshop(data);
+        this.setState({ success: true, workshopId });
+      } catch (error) {
+        console.log(error);
+        //HANDLE ERROR
+      }
+    } else {
+      try {
+        let workshopId = await this.bookWorkshop(data);
+        this.setState({ success: true, workshopId });
+      } catch (error) {
+        console.log(error);
+        //HANDLE ERROR
+      }
     }
   }
 
