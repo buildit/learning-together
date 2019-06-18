@@ -81,7 +81,7 @@ class App extends Component {
       localStorage.setItem('username', response.data.username)
     }
     else {
-      this.setState({ isError: true })
+      this.setState({ error: true })
     }
   }
 
