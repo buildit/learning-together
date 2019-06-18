@@ -77,7 +77,7 @@ export async function loadCategories(callback) {
       if (error.response.status === 401) {
         localStorage.clear()
         sessionStorage.clear()
-        window.location.refresh()
+        window.location.reload()
       }
       return error;
     });
@@ -115,7 +115,7 @@ export const getWorkshopListDate = (start, callback) => {
       if (error.response.status === 401) {
         localStorage.clear()
         sessionStorage.clear()
-        window.location.refresh()
+        window.location.reload()
       }
     });
 };
@@ -142,7 +142,7 @@ export const getWorkshop = (id, callback) => {
       if (error.response.status === 401) {
         localStorage.clear()
         sessionStorage.clear()
-        window.location.refresh()
+        window.location.reload()
       }
       callback(error);
     });
@@ -164,7 +164,7 @@ export const enrollWorkshop = (id, callback) => {
       if (error.response.status === 401) {
         localStorage.clear()
         sessionStorage.clear()
-        window.location.refresh()
+        window.location.reload()
       }
       callback(error);
     });
@@ -186,7 +186,7 @@ export const unenrollWorkshop = (id, callback) => {
       if (error.response.status === 401) {
         localStorage.clear()
         sessionStorage.clear()
-        window.location.refresh()
+        window.location.reload()
       }
       callback(error);
     });
@@ -209,7 +209,7 @@ export const getUser = (id, callback) => {
         if (error.response.status === 401) {
           localStorage.clear()
           sessionStorage.clear()
-          window.location.refresh()
+          window.location.reload()
         }
         callback(error);
       });
@@ -235,7 +235,7 @@ export const editUser = ({ firstName, lastName, username, password, roleId, loca
       if (error.response.status === 401) {
         localStorage.clear()
         sessionStorage.clear()
-        window.location.refresh()
+        window.location.reload()
       }
       callback(error);
     });
@@ -259,7 +259,7 @@ export const createWorkshop = data => {
       if (error.response.status === 401) {
         localStorage.clear()
         sessionStorage.clear()
-        window.location.refresh()
+        window.location.reload()
       }
       console.log(error);
     });
@@ -282,7 +282,7 @@ export function uploadImage(data, callback) {
       if (error.response.status === 401) {
         localStorage.clear()
         sessionStorage.clear()
-        window.location.refresh()
+        window.location.reload()
       }
       callback(error);
     });
@@ -303,7 +303,7 @@ export const getDisciplineList = (callback) => {
       if (error.response.status === 401) {
         localStorage.clear()
         sessionStorage.clear()
-        window.location.refresh()
+        window.location.reload()
       }
       callback(error)
     });
@@ -336,7 +336,7 @@ export const getLocationList = callback => {
       if (error.response.status === 401) {
         localStorage.clear()
         sessionStorage.clear()
-        window.location.refresh()
+        window.location.reload()
       }
       callback(error);
     });
@@ -355,7 +355,7 @@ export const getRolesList = callback => {
       if (error.response.status === 401) {
         localStorage.clear()
         sessionStorage.clear()
-        window.location.refresh()
+        window.location.reload()
       }
       callback(error);
     });
@@ -373,7 +373,7 @@ export const getSearchResults = (input, callback) => {
       if (error.response.status === 401) {
         localStorage.clear()
         sessionStorage.clear()
-        window.location.refresh()
+        window.location.reload()
       }
       callback(error);
     });
@@ -397,7 +397,7 @@ export const updateWorkshop = (id, data) => {
       if (error.response.status === 401) {
         localStorage.clear()
         sessionStorage.clear()
-        window.location.refresh()
+        window.location.reload()
       }
       console.log(error);
     });
@@ -422,7 +422,7 @@ export const fetchWorkshops = () => {
       if (error.response.status === 401) {
         localStorage.clear()
         sessionStorage.clear()
-        window.location.refresh()
+        window.location.reload()
       }
       console.log(error);
     });
@@ -443,7 +443,7 @@ export const cancelWorkshop = (id, callback) => {
       if (error.response.status === 401) {
         localStorage.clear()
         sessionStorage.clear()
-        window.location.refresh()
+        window.location.reload()
       }
       callback(error);
     });

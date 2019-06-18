@@ -23,11 +23,7 @@ class WorkshopList extends Component {
 
   componentDidMount() {
     getWorkshopList(this.props.computedMatch.params.id, this.getWorkshopListCallback)
-    getWorkshopListPast(this.props.computedMatch.params.id).then(data => {
-      this.setState({
-        workshops: data.data
-      })
-    })
+    getWorkshopListPast(this.props.computedMatch.params.id, this.getWorkshopListPastCallback)
   }
   componentDidUpdate(prevProps) {
     if (
