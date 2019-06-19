@@ -41,6 +41,7 @@ export default class Workshop extends Component {
     this.unenrollWorshopCallback = this.unenrollWorshopCallback.bind(this);
     this.messageCallback = this.messageCallback.bind(this);
     this.cancelWorkshopCallback = this.cancelWorkshopCallback.bind(this);
+  
   }
 
   componentDidMount() {
@@ -50,6 +51,7 @@ export default class Workshop extends Component {
       userId: Number(userId)
     });
     getWorkshop(this.props.computedMatch.params.id, this.getWorkshopCallback);
+    
   }
   componentDidUpdate(prevProps) {
     if (
@@ -202,7 +204,7 @@ export default class Workshop extends Component {
   }
 
   render() {
-    const { workshop, userId, educatorId, showMessage, message, addedToCal, event } = this.state;
+    const { workshop, userId, educatorId, showMessage, message, addedToCal, event} = this.state;
     const attendees = workshop.workshopAttendees
       ? workshop.workshopAttendees
       : [];
@@ -216,6 +218,8 @@ export default class Workshop extends Component {
       : { firstName: "", lastName: "" };
     const isEducator = userId === educatorId;
     const isAttending = workshop && filterAttendees(userId, workshop);
+    const isVideo = this.state.workshop.archiveLink ? true : false ;
+    
     return (
       <Fragment>
         {showMessage && (
@@ -309,8 +313,7 @@ export default class Workshop extends Component {
         <section className="grid-container">
           <article className="grid-x grid-margin-x">
             <div className="cell small-12 medium-8 small-order-2 medium-order-1">
-              <JumbotronComponent image={cover} />
-              <ReactPlayer url='https://youtu.be/iKhsC1Q4LDs'> </ReactPlayer>
+              {isVideo ? <ReactPlayer url='https://youtu.be/iKhsC1Q4LDs'> </ReactPlayer> : <JumbotronComponent image={cover} />}
               <h4>
                 <b>Details</b>
               </h4>

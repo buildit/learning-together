@@ -100,46 +100,41 @@ class WorkshopList extends Component {
               <Tab>Upcoming</Tab>
               <Tab>Video</Tab>
             </TabList>
-            <TabPanel>
-              {dates.map((date, index) => {
-                return (
+          
+        
+        <TabPanel>
+          {dates.map((date, index) => {
+                        return (
 
-                  Object.keys(date).map((key, index) => {
+                            Object.keys(date).map((key, index) => {
 
-                    return (
-                      <section className="course" key={`date-section-${index}`}>
-                        <b className="time-header">{key}</b>
-                        <article className="workshopsforday">
-                          {date[key].map((workshop, index) => {
-                            return (
-                              <WorkshopPreviewComponent workshop={workshop} key={`workshop-preview-${index}`} />
-                            )
-                          })}
-                        </article>
-                      </section>
-                    )
-                  })
+                                return (
+                                    <section className="course" key={`date-section-${index}`}>
+                                        <b className="time-header">{key}</b>
+                                        <article className="workshopsforday">
+                                            {date[key].map((workshop, index) => {
+                                                return (
+                                                    <WorkshopPreviewComponent workshop={workshop} key={`workshop-preview-${index}`} />
+                                                )
+                                            })}
+                                        </article>
+                                    </section>
+                                )
+                            })
 
 
-                )
-              })}
-              {
-                isWorkshopListLoading && (<LoadingComponent />)
-              }
-            </TabPanel>
-            <TabPanel>
-              {workshops.map((workshop, index) => {
-                return (
-                  <article className="workshopsforday" key={`workshop-video-${index}`}>
-                    <WorkshopPreviewComponent workshop={workshop} />
-                  </article>
-                )
-              })}
-              {
-                isWorkshopListPastLoading && (<LoadingComponent />)
-              }
-            </TabPanel>
-          </Tabs>
+                        )
+                    })}
+        </TabPanel>
+        <TabPanel>
+          {workshops.map((workshop, index) => {
+            const isVideo = workshop.archiveLink ? <article className="workshopsforday" key={`workshop-video-${index}`}><WorkshopPreviewComponent workshop={workshop} /></article>  : "" ;
+              return (
+                  isVideo 
+            )
+          })}
+        </TabPanel>
+        </Tabs>
         </section>
       </Fragment>
     );

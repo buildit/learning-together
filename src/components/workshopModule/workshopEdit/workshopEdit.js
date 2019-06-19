@@ -35,6 +35,7 @@ class workshopEdit extends Component {
         description: response.data.description,
         imageUrl: response.data.imageUrl,
         room: response.data.room,
+        archiveLink: response.data.archiveLink,
         robinEventId: response.data.robinEventId
           ? response.data.robinEventId
           : ""
