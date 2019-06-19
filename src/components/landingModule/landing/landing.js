@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { NavbarComponent } from "../../navbarModule"
 import { OnboardingComponent, HeroComponent } from "../../landingModule";
 import { ScheduleComponent } from "../../userModule";
-import { getUser, getWorkshopListDate, loadCategories } from '../../../api'
+import { MessageComponent, LoadingComponent } from '../../messageModule'
+import { getUser, getWorkshopListDate } from '../../../api'
 import './landing.scss';
 import moment from 'moment';
 export default class Landing extends Component {
@@ -13,49 +14,48 @@ export default class Landing extends Component {
       dates: [],
       noslides: 0,
       user: null,
-      error: null
+      error: null,
+      isUserLoading: false,
+      isWorkshopListDateLoading: false
     };
     this.getUserCallback = this.getUserCallback.bind(this)
     this.getWorkshopListDateCallback = this.getWorkshopListDateCallback.bind(this)
-    this.loadCategoriesCallback = this.loadCategoriesCallback.bind(this)
   }
 
   componentDidMount() {
+    this.setState({ isUserLoading: true, isCategoriesLoading: true, isWorkshopListDateLoading: true })
     getWorkshopListDate(moment().format(), this.getWorkshopListDateCallback)
     const userid = localStorage.getItem('userId');
     getUser(userid, this.getUserCallback)
   }
+
   getUserCallback(response) {
+    this.setState({ isUserLoading: false })
     if (response.status === 200) {
       this.setState({
         user: response.data
       })
     } else {
-      console.log(response)
+      this.setState({ error: 'Could not retrieve user information. Please try again later.' })
     }
   }
+
   getWorkshopListDateCallback(response) {
+    this.setState({ isWorkshopListDateLoading: false })
     if (response.status === 200) {
       let sorted = this.sortByDate(response.data)
       let workshops = sorted
-
       this.setState({ workshops })
-      loadCategories(this.loadCategoriesCallback)
     }
     else {
-      this.setState({ error: 'Please try again later' })
+      this.setState({ error: 'Could not retrieve workshops. Please try again later.' })
     }
   }
 
-  loadCategoriesCallback(response) {
-    if (response.status === 200) {
-      this.setState({
-        categories: response
-      })
-    } else {
-      //error
-    }
+  messageCallback() {
+    this.setState({ error: null })
   }
+
   sortByDate = (workshops) => {
     return workshops.sort(function (a, b) {
       return new Date(a.start) - new Date(b.start);
@@ -63,7 +63,6 @@ export default class Landing extends Component {
   }
 
   getNumberofSlides() {
-
     if (window.matchMedia('(min-width: 40em) and (max-width: 63.9375em)').matches) {
       return 2
     } else if (window.matchMedia('(min-width: 64em)').matches) {
@@ -75,6 +74,7 @@ export default class Landing extends Component {
   render() {
 
     const { location } = this.props
+    const { isUserLoading, isWorkshopListDateLoading, error } = this.state
     return (
       <div >
         <NavbarComponent location={location} />
@@ -84,9 +84,10 @@ export default class Landing extends Component {
         </div>
         <div className="grid-container">
           <ScheduleComponent workshops={this.state.workshops} user={this.state.user} />
+          {(isWorkshopListDateLoading || isUserLoading) && (<LoadingComponent />)}
         </div>
+        {error && (<MessageComponent message={error} callback={this.messageCallback.call(this)} />)}
       </div>
-
     );
   }
 }
