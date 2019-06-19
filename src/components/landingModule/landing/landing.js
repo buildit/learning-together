@@ -84,8 +84,8 @@ export default class Landing extends Component {
           <OnboardingComponent user={this.state.user} />
         </div>
         <div className="grid-container">
-          {(isWorkshopListDateLoading || isUserLoading) && (<LoadingComponent />)}
           <ScheduleComponent workshops={this.state.workshops} user={this.state.user} isLoading={isLoading} />
+          {(isWorkshopListDateLoading || isUserLoading) && (<LoadingComponent />)}
         </div>
         {error && (<MessageComponent message={error} callback={this.messageCallback.call(this)} />)}
       </div>
