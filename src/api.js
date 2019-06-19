@@ -73,7 +73,6 @@ export async function loadCategories(callback) {
       callback(response.data)
     })
     .catch(error => {
-      debugger
       if (error.response.status === 401) {
         localStorage.clear()
         sessionStorage.clear()
@@ -120,14 +119,20 @@ export const getWorkshopListDate = (start, callback) => {
     });
 };
 
-export const getWorkshopListPast = category => {
+export const getWorkshopListPast = (category, callback) => {
   const start = moment().format();
   const date = `filter?categoryId=${category}&startDate=2018-01-01T00:00:00&endDate=${start}`;
   return axios.request({
     url: `${apiBase}/api/workshops/${date}`,
     method: "get",
     headers: getHeader()
-  });
+  })
+    .then(response => {
+      callback(response)
+    })
+    .catch(error => {
+      callback(error)
+    });
 };
 
 export const getWorkshop = (id, callback) => {

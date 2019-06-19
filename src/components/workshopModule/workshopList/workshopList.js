@@ -7,6 +7,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import "react-tabs/style/react-tabs.css";
 import moment from 'moment';
 import "./workshoplist.scss";
+import { LoadingComponent } from "../../messageModule";
 
 class WorkshopList extends Component {
   constructor(props) {
@@ -15,44 +16,48 @@ class WorkshopList extends Component {
       title: "",
       dates: [],
       workshops: [],
-      isError: false
+      error: null,
+      isWorkshopListLoading: false,
+      isWorkshopListPastLoading: false
     };
     this.getWorkshopListCallback = this.getWorkshopListCallback.bind(this)
     this.getWorkshopListPastCallback = this.getWorkshopListPastCallback.bind(this)
   }
 
   componentDidMount() {
+    this.setState({ isWorkshopListLoading: true, isWorkshopListPastLoading: true })
     getWorkshopList(this.props.computedMatch.params.id, this.getWorkshopListCallback)
     getWorkshopListPast(this.props.computedMatch.params.id, this.getWorkshopListPastCallback)
   }
   componentDidUpdate(prevProps) {
-    if (
-      this.props.computedMatch.params.id !== prevProps.computedMatch.params.id
-    ) {
+    if (this.props.computedMatch.params.id !== prevProps.computedMatch.params.id) {
+      this.setState({ isWorkshopListLoading: true })
       getWorkshopList(this.props.computedMatch.params.id, this.getWorkshopListCallback)
+      getWorkshopListPast(this.props.computedMatch.params.id, this.getWorkshopListPastCallback)
     }
   }
 
   getWorkshopListCallback(response) {
+    this.setState({ isWorkshopListLoading: false })
     if (response.status === 200) {
       this.setState({
         dates: this.filterByDay(response.data),
         title: this.props.computedMatch.params.title
       });
-      getWorkshopListPast(this.props.computedMatch.params.id, this.getWorkshopListPastCallback)
     }
     else {
-      this.setState({ isError: true })
+      this.setState({ error: 'Could not retrieve workshop list at this time. Please try again later.' })
     }
   }
 
   getWorkshopListPastCallback(response) {
+    this.setState({ isWorkshopListPastLoading: false })
     if (response.status === 200) {
       this.setState({
         workshops: response.data
       })
     } else {
-      //error message
+      this.setState({ error: 'Could not retrieve previous workshops at this time. Please try again later' })
     }
 
   }
@@ -74,8 +79,7 @@ class WorkshopList extends Component {
   }
 
   render() {
-    const dates = this.state.dates;
-    const workshops = this.state.workshops;
+    const { dates, workshops, isWorkshopListLoading, isWorkshopListPastLoading } = this.state
     return (
       <Fragment>
         <NavbarComponent
@@ -96,8 +100,6 @@ class WorkshopList extends Component {
               <Tab>Upcoming</Tab>
               <Tab>Video</Tab>
             </TabList>
-
-
             <TabPanel>
               {dates.map((date, index) => {
                 return (
@@ -121,6 +123,9 @@ class WorkshopList extends Component {
 
                 )
               })}
+              {
+                isWorkshopListLoading && (<LoadingComponent />)
+              }
             </TabPanel>
             <TabPanel>
               {workshops.map((workshop, index) => {
@@ -130,6 +135,9 @@ class WorkshopList extends Component {
                   </article>
                 )
               })}
+              {
+                isWorkshopListPastLoading && (<LoadingComponent />)
+              }
             </TabPanel>
           </Tabs>
         </section>
