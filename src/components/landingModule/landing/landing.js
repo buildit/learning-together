@@ -75,6 +75,7 @@ export default class Landing extends Component {
 
     const { location } = this.props
     const { isUserLoading, isWorkshopListDateLoading, error } = this.state
+    const isLoading = isUserLoading || isWorkshopListDateLoading
     return (
       <div >
         <NavbarComponent location={location} />
@@ -83,8 +84,8 @@ export default class Landing extends Component {
           <OnboardingComponent user={this.state.user} />
         </div>
         <div className="grid-container">
-          <ScheduleComponent workshops={this.state.workshops} user={this.state.user} />
           {(isWorkshopListDateLoading || isUserLoading) && (<LoadingComponent />)}
+          <ScheduleComponent workshops={this.state.workshops} user={this.state.user} isLoading={isLoading} />
         </div>
         {error && (<MessageComponent message={error} callback={this.messageCallback.call(this)} />)}
       </div>
