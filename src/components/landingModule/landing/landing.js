@@ -75,6 +75,7 @@ export default class Landing extends Component {
   render() {
 
     const { location } = this.props
+    const isLoading = this.state.workshops.length === 0
     return (
       <div >
         <NavbarComponent location={location} />
@@ -83,7 +84,7 @@ export default class Landing extends Component {
           <OnboardingComponent user={this.state.user} />
         </div>
         <div className="grid-container">
-          <ScheduleComponent workshops={this.state.workshops} user={this.state.user} />
+          <ScheduleComponent workshops={this.state.workshops} user={this.state.user} isLoading={isLoading} />
         </div>
       </div>
 
