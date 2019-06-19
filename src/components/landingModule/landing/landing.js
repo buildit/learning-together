@@ -16,25 +16,12 @@ export default class Landing extends Component {
       error: null
     };
     this.getUserCallback = this.getUserCallback.bind(this)
+    this.getWorkshopListDateCallback = this.getWorkshopListDateCallback.bind(this)
+    this.loadCategoriesCallback = this.loadCategoriesCallback.bind(this)
   }
 
   componentDidMount() {
-    getWorkshopListDate(moment().format())
-      .then(response => {
-        let sorted = this.sortByDate(response.data)
-        let workshops = sorted
-
-        this.setState({ workshops })
-      })
-      .catch(error => this.setState({ error: 'Please try again later' }))
-
-    loadCategories()
-      .then((data) => {
-
-        this.setState({
-          categories: data
-        })
-      })
+    getWorkshopListDate(moment().format(), this.getWorkshopListDateCallback)
     const userid = localStorage.getItem('userId');
     getUser(userid, this.getUserCallback)
   }
@@ -47,8 +34,28 @@ export default class Landing extends Component {
       console.log(response)
     }
   }
+  getWorkshopListDateCallback(response) {
+    if (response.status === 200) {
+      let sorted = this.sortByDate(response.data)
+      let workshops = sorted
 
+      this.setState({ workshops })
+      loadCategories(this.loadCategoriesCallback)
+    }
+    else {
+      this.setState({ error: 'Please try again later' })
+    }
+  }
 
+  loadCategoriesCallback(response) {
+    if (response.status === 200) {
+      this.setState({
+        categories: response
+      })
+    } else {
+      //error
+    }
+  }
   sortByDate = (workshops) => {
     return workshops.sort(function (a, b) {
       return new Date(a.start) - new Date(b.start);

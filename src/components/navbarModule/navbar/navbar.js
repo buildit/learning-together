@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Link, withRouter } from 'react-router-dom';
 import './navbar.scss';
 import logo from './logo.png';
+import { logout } from '../../../services/msalUtils'
 import { LoadingComponent } from '../../messageModule'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SearchComponent } from '../search'
@@ -37,8 +38,7 @@ class Navbar extends Component {
 
   fireLogout() {
     // create and dispatch the event
-    var event = new CustomEvent("logout", {})
-    window.dispatchEvent(event);
+    logout(window.msal)
   }
 
   render() {
@@ -56,7 +56,7 @@ class Navbar extends Component {
           </li>
           <li><Link to={`/user/${userId}`}>Profile</Link></li>
           <li><Link to={`/settings/${userId}`}>Settings</Link></li>
-          <li><Link to="/login" onClick={this.fireLogout}>Logout</Link></li>
+          <li><Link to="/" onClick={this.fireLogout}>Logout</Link></li>
         </ul>
       </nav>
     )
@@ -69,7 +69,6 @@ class Navbar extends Component {
                 <nav className='logo'>
                   <Link to="/"><img src={logo} alt="logo"></img></Link>
                 </nav>
-                {/* <Link to="/"><h5>Better Together</h5></Link> */}
               </div>
               <div className="cell small-2 medium-1 text-center search">
                 <FontAwesomeIcon icon="search" onClick={this.toggleShowSearch} size="2x" />

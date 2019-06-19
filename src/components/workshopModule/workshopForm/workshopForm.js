@@ -46,17 +46,13 @@ class WorkshopForm extends Component {
     this.redirectCallback = this.redirectCallback.bind(this);
     this.setWorkshopPicture = this.setWorkshopPicture.bind(this);
     this.getLocationCallBack = this.getLocationCallBack.bind(this);
+    this.getCategoryListCallback = this.getCategoryListCallback.bind(this)
     this.handleRobinUpdate = this.handleRobinUpdate.bind(this);
   }
 
   //TODO Handle Error
   componentDidMount() {
-    getCategoryList()
-      .then(response => this.setState({ categoryList: response.data }))
-      .catch(error => {
-        console.log(error);
-      });
-
+    getCategoryList(this.getCategoryListCallback)
     getLocationList(this.getLocationCallBack);
   }
 
@@ -138,6 +134,13 @@ class WorkshopForm extends Component {
   getLocationCallBack(response) {
     if (response.status === 200) {
       this.setState({ locationList: response.data });
+    }
+  }
+  getCategoryListCallback(response) {
+    if (response.status === 200) {
+      this.setState({ categoryList: response.data })
+    } else {
+      console.log(response);
     }
   }
 
@@ -406,30 +409,30 @@ class WorkshopForm extends Component {
               )}
               <div className="medium-8 cell">
                 {availableRooms.length > 0 &&
-                this.state.location === 1 &&
-                (!this.props.edit || !this.state.disableRoomSelection) ? (
-                  <label>
-                    Room Available
+                  this.state.location === 1 &&
+                  (!this.props.edit || !this.state.disableRoomSelection) ? (
+                    <label>
+                      Room Available
                     <select
-                      name="roomSelected"
-                      value={this.state.roomSelected}
-                      onChange={this.handleChange}
-                    >
-                      <option value="">Select a room</option>
-                      {availableRooms}
-                    </select>
-                  </label>
-                ) : (
-                  ""
-                )}
+                        name="roomSelected"
+                        value={this.state.roomSelected}
+                        onChange={this.handleChange}
+                      >
+                        <option value="">Select a room</option>
+                        {availableRooms}
+                      </select>
+                    </label>
+                  ) : (
+                    ""
+                  )}
                 {availableRooms.length === 0 &&
-                this.state.location === 1 &&
-                this.state.startTime !== null &&
-                this.state.endTime !== null ? (
-                  <p>All rooms are taken at this time. Pick another time.</p>
-                ) : (
-                  ""
-                )}
+                  this.state.location === 1 &&
+                  this.state.startTime !== null &&
+                  this.state.endTime !== null ? (
+                    <p>All rooms are taken at this time. Pick another time.</p>
+                  ) : (
+                    ""
+                  )}
               </div>
               {this.props.edit && this.props.data.robinEventId && (
                 <div className="medium-8 cell ">
