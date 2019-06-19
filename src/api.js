@@ -275,22 +275,26 @@ export const getSearchResults = (input, callback) => {
     });
 };
 
-export const updateWorkshop = (id, data) => {
-  return axios
-    .request({
-      url: `${apiBase}/api/workshops/${id}`,
-      method: "put",
-      data,
-      headers: getHeader()
-    })
-    .then(function(response) {
-      // handle success
-      return response;
-    })
-    .catch(function(error) {
-      // handle error
-      console.log(error);
-    });
+export const updateWorkshop = async (id, data) => {
+  try {
+    return axios
+      .request({
+        url: `${apiBase}/api/workshops/${id}`,
+        method: "put",
+        data,
+        headers: getHeader()
+      })
+      .then(function(response) {
+        // handle success
+        return response;
+      })
+      .catch(function(error) {
+        // handle error
+        console.log(error);
+      });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const fetchWorkshops = () => {
@@ -360,17 +364,21 @@ export const getEventsByRoom = (start, roomId) => {
   });
 };
 
-export const deleteEvent = id => {
-  return axios.request({
-    url: `https://api.robinpowered.com/v1.0/events/${id}`,
-    method: "DELETE",
-    headers: {
-      Authorization: `Access-Token ${process.env.REACT_APP_ROBIN_TOKEN}`
-    }
-  });
+export const deleteEvent = async id => {
+  try {
+    return axios.request({
+      url: `https://api.robinpowered.com/v1.0/events/${id}`,
+      method: "DELETE",
+      headers: {
+        Authorization: `Access-Token ${process.env.REACT_APP_ROBIN_TOKEN}`
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-export const bookRoom = (start, end, title, room) => {
+/*export const bookRoom = (start, end, title, room) => {
   const IsoStartTime = moment(start).format();
   const IsoEndTime = moment(end).format();
 
@@ -393,9 +401,8 @@ export const bookRoom = (start, end, title, room) => {
       Authorization: `Access-Token ${process.env.REACT_APP_ROBIN_TOKEN}`
     }
   });
-};
+};*/
 
-/*
 export const bookRoom = async (start, end, title, room) => {
   try {
     const IsoStartTime = moment(start).format();
@@ -421,12 +428,10 @@ export const bookRoom = async (start, end, title, room) => {
       }
     });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     //HANDLE ERROR
   }
 };
-
-*/
 
 export const findRoom = (start, end) => {
   const startTime =

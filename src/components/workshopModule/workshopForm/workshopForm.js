@@ -33,11 +33,8 @@ class WorkshopForm extends Component {
       room: props.data ? props.data.room : "",
       roomAvailable: props.data ? [] : [],
       roomSelected: props.data ? true : "",
-      robinEventId: props.data ? props.data.robinEventId : null,
-      updateRobinReservation: false,
-      disableRoomSelection: true
+      robinEventId: props.data ? props.data.robinEventId : null
     };
-
     this.handleChange = this.handleChange.bind(this);
     this.onDateChange = this.onDateChange.bind(this);
     this.onFocusChange = this.onFocusChange.bind(this);
@@ -46,7 +43,6 @@ class WorkshopForm extends Component {
     this.redirectCallback = this.redirectCallback.bind(this);
     this.setWorkshopPicture = this.setWorkshopPicture.bind(this);
     this.getLocationCallBack = this.getLocationCallBack.bind(this);
-    this.handleRobinUpdate = this.handleRobinUpdate.bind(this);
   }
 
   //TODO Handle Error
@@ -173,15 +169,6 @@ class WorkshopForm extends Component {
     this.setState({ calendarFocused: focused });
   }
 
-  handleRobinUpdate(e) {
-    e.preventDefault();
-
-    this.setState({
-      disableRoomSelection: false,
-      updateRobinReservation: true
-    });
-  }
-
   validateForm() {
     let invalid = false;
     let errors = {};
@@ -228,8 +215,7 @@ class WorkshopForm extends Component {
         imageUrl: this.state.workshopPicture,
         room: this.state.room,
         robinEventId: this.state.robinEventId,
-        roomSelected: this.state.roomSelected,
-        updateRobinReservation: this.state.updateRobinReservation
+        roomSelected: this.state.roomSelected
       };
       this.props.handleSubmit(data);
     }
@@ -265,7 +251,7 @@ class WorkshopForm extends Component {
         <option
           key={room.id}
           value={room.id}
-          disabled={this.props.edit && this.state.disableRoomSelection}
+          disabled={this.props.edit && this.props.disableRoomSelection}
         >
           {room.room}
         </option>
@@ -407,7 +393,7 @@ class WorkshopForm extends Component {
               <div className="medium-8 cell">
                 {availableRooms.length > 0 &&
                 this.state.location === 1 &&
-                (!this.props.edit || !this.state.disableRoomSelection) ? (
+                (!this.props.edit || !this.props.disableRoomSelection) ? (
                   <label>
                     Room Available
                     <select
@@ -434,7 +420,7 @@ class WorkshopForm extends Component {
               {this.props.edit && this.props.data.robinEventId && (
                 <div className="medium-8 cell ">
                   <button
-                    onClick={this.handleRobinUpdate}
+                    onClick={this.props.handleRobinUpdate}
                     className="button custom-button"
                   >
                     Update Robin reservation

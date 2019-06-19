@@ -1,6 +1,8 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { WorkshopFormComponent } from "../workshopForm";
 import { createWorkshop, bookRoom } from "../../../api.js";
+import { MessageComponent } from "../../messageModule";
+import { Redirect } from "react-router-dom";
 
 class workshopCreate extends Component {
   constructor(props) {
@@ -8,10 +10,18 @@ class workshopCreate extends Component {
 
     this.state = {
       success: false,
-      workshopId: null
+      workshopId: null,
+      error: false,
+      redirect: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.bookWorkshop = this.bookWorkshop.bind(this);
+    this.reserveRoom = this.reserveRoom.bind(this);
+    this.redirectCallback = this.redirectCallback.bind(this);
+  }
+
+  redirectCallback() {
+    this.setState({ redirect: true });
   }
 
   async reserveRoom(data) {
@@ -21,6 +31,7 @@ class workshopCreate extends Component {
       return response.data.data.id;
     } else {
       //HANDLE ERROR
+      this.setState({ error: true });
     }
   }
 
@@ -31,6 +42,7 @@ class workshopCreate extends Component {
       return response.data;
     } else {
       //HANDLE ERROR
+      this.setState({ error: true });
     }
   }
 
@@ -42,27 +54,36 @@ class workshopCreate extends Component {
         let workshopId = await this.bookWorkshop(data);
         this.setState({ success: true, workshopId });
       } catch (error) {
-        console.log(error);
         //HANDLE ERROR
+        this.setState({ error: true });
       }
     } else {
       try {
         let workshopId = await this.bookWorkshop(data);
         this.setState({ success: true, workshopId });
       } catch (error) {
-        console.log(error);
         //HANDLE ERROR
+        this.setState({ error: true });
       }
     }
   }
 
   render() {
     return (
-      <WorkshopFormComponent
-        handleSubmit={this.handleSubmit}
-        success={this.state.success}
-        id={this.state.workshopId}
-      />
+      <Fragment>
+        <WorkshopFormComponent
+          handleSubmit={this.handleSubmit}
+          success={this.state.success}
+          id={this.state.workshopId}
+        />
+        {this.state.error && (
+          <MessageComponent
+            message="There was an error. Try again later."
+            callback={this.redirectCallback}
+          />
+        )}
+        {this.state.redirect && <Redirect to={`/`} />}
+      </Fragment>
     );
   }
 }
