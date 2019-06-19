@@ -18,7 +18,7 @@ describe('>>> WorkshopList Component', () => {
       const response = { status: 400, data: [] }
       const wrapper = shallow(<Component {...props} />)
       wrapper.instance().getWorkshopListCallback(response)
-      expect(wrapper.state('isError')).toEqual(true)
+      expect(wrapper.state('error')).toBeTruthy()
     })
   })
   describe('Workshop List Past Callback', () => {
