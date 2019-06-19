@@ -1,26 +1,42 @@
 import axios from "axios";
-import moment from "moment";
+import config from './services/config'
+import { login } from './services/msalUtils'
+import jwtDecode from 'jwt-decode'
+import moment from 'moment'
+const apiBase = "https://bettertogether.buildit.systems"
 
-const apiBase = "https://bettertogether.buildit.systems";
-
-let getHeader = function() {
-  let token = sessionStorage.getItem("msal.idtoken");
+let getHeader = function () {
   return {
-    Authorization: `Bearer ${token}`,
-    "Content-Type": "application/json"
-  };
-};
+    'Authorization': `Bearer ${sessionStorage.getItem('msal.idtoken')}`,
+    'Content-Type': 'application/json'
+  }
+}
+export function tokenCheck() {
+  window.msal.acquireTokenSilent(config.scopes, config.authority)
+    .then(response => {
+      if (jwtDecode(response).exp < Date.now()) {
+        return response
+      }
+    })
+    .catch(err => {
+      console.log(err)
+      login()
+    })
+}
 
-export async function signIn(username, callback) {
-  const url = `${apiBase}/api/users/authenticate`;
+
+export function signIn(username, callback) {
+  const url =
+    `${apiBase}/api/users/authenticate`;
   return new Promise((resolve, reject) => {
-    const data = { Username: username };
+    const data = { Username: username }
+    const headers = getHeader()
     axios
       .request({
         url,
         method: "post",
         data,
-        headers: getHeader()
+        headers
       })
       .then(response => {
         callback(response);
@@ -32,7 +48,9 @@ export async function signIn(username, callback) {
 }
 
 export function signUp(data, callback) {
-  const url = `${apiBase}/api/users/register`;
+  tokenCheck()
+  const url =
+    `${apiBase}/api/users/register`;
   return new Promise((resolve, reject) => {
     axios
       .post(url, data)
@@ -45,36 +63,61 @@ export function signUp(data, callback) {
   });
 }
 
-export async function loadCategories() {
-  const url = `${apiBase}/api/disciplines/categories`;
+export async function loadCategories(callback) {
+  tokenCheck()
+  const url =
+    `${apiBase}/api/disciplines/categories`;
   return axios
     .get(url, { headers: getHeader() })
     .then(response => {
-      return response.data;
+      callback(response.data)
     })
     .catch(error => {
+      debugger
+      if (error.response.status === 401) {
+        localStorage.clear()
+        sessionStorage.clear()
+        window.location.reload()
+      }
       return error;
     });
 }
 
-export const getWorkshopList = id => {
+export const getWorkshopList = (id, callback) => {
+  tokenCheck()
   const category = id ? `filter?categoryId=${id}` : "";
   return axios.request({
     url: `${apiBase}/api/workshops/${category}`,
     method: "get",
     headers: getHeader()
-  });
+  })
+    .then(response => {
+      callback(response)
+    })
+    .catch(error => {
+      callback(error)
+    });
 };
 
-export const getWorkshopListDate = start => {
-  const date = start
-    ? `filter?startDate=${start}&endDate=2025-04-11T00:00:00`
-    : "";
+export const getWorkshopListDate = (start, callback) => {
+  tokenCheck()
+  const date = start ? `filter?startDate=${start}&endDate=2025-04-11T00:00:00` : "";
+  const headers = getHeader()
   return axios.request({
     url: `${apiBase}/api/workshops/${date}`,
     method: "get",
-    headers: getHeader()
-  });
+    headers
+  })
+    .then(response => {
+      callback(response)
+    })
+    .catch(error => {
+      if (error.response.status === 401) {
+        localStorage.clear()
+        sessionStorage.clear()
+        window.location.reload()
+      }
+    });
 };
 
 export const getWorkshopListPast = category => {
@@ -88,6 +131,7 @@ export const getWorkshopListPast = category => {
 };
 
 export const getWorkshop = (id, callback) => {
+  tokenCheck()
   const url = `${apiBase}/api/workshops/${id}`;
   axios
     .get(url, { headers: getHeader() })
@@ -95,11 +139,17 @@ export const getWorkshop = (id, callback) => {
       callback(response);
     })
     .catch(error => {
+      if (error.response.status === 401) {
+        localStorage.clear()
+        sessionStorage.clear()
+        window.location.reload()
+      }
       callback(error);
     });
 };
 
 export const enrollWorkshop = (id, callback) => {
+  tokenCheck()
   const url = `${apiBase}/api/workshops/${id}/enroll`;
   axios
     .request({
@@ -111,11 +161,17 @@ export const enrollWorkshop = (id, callback) => {
       callback(response);
     })
     .catch(error => {
+      if (error.response.status === 401) {
+        localStorage.clear()
+        sessionStorage.clear()
+        window.location.reload()
+      }
       callback(error);
     });
 };
 
 export const unenrollWorkshop = (id, callback) => {
+  tokenCheck()
   const url = `${apiBase}/api/workshops/${id}/enroll`;
   axios
     .request({
@@ -127,48 +183,42 @@ export const unenrollWorkshop = (id, callback) => {
       callback(response);
     })
     .catch(error => {
+      if (error.response.status === 401) {
+        localStorage.clear()
+        sessionStorage.clear()
+        window.location.reload()
+      }
       callback(error);
     });
 };
 
 export const getUser = (id, callback) => {
-  const url = `${apiBase}/api/users/${id}`;
+  tokenCheck()
+  const url = `${apiBase}/api/users/${id}`
   return new Promise((resolve, reject) => {
     axios
-      .get(url, { headers: getHeader() })
+      .request({
+        url,
+        method: "get",
+        headers: getHeader()
+      })
       .then(response => {
         callback(response);
       })
       .catch(error => {
+        if (error.response.status === 401) {
+          localStorage.clear()
+          sessionStorage.clear()
+          window.location.reload()
+        }
         callback(error);
       });
   });
 };
 
-export const editUser = (
-  {
-    firstName,
-    lastName,
-    username,
-    password,
-    roleId,
-    locationId,
-    imageUrl,
-    userInterests
-  },
-  id,
-  callback
-) => {
-  const data = {
-    firstName,
-    lastName,
-    username,
-    password,
-    roleId,
-    locationId,
-    imageUrl,
-    userInterests
-  };
+export const editUser = ({ firstName, lastName, username, password, roleId, locationId, imageUrl, userInterests }, id, callback) => {
+  tokenCheck()
+  const data = { firstName, lastName, username, password, roleId, locationId, imageUrl, userInterests }
   return axios
     .request({
       url: `${apiBase}/api/users/${id}`,
@@ -176,17 +226,23 @@ export const editUser = (
       data,
       headers: getHeader()
     })
-    .then(function(response) {
+    .then(function (response) {
       // handle success
       return callback(response);
     })
-    .catch(function(error) {
+    .catch(function (error) {
       // handle error
+      if (error.response.status === 401) {
+        localStorage.clear()
+        sessionStorage.clear()
+        window.location.reload()
+      }
       callback(error);
     });
 };
 // Make a request for a user with a given token
 export const createWorkshop = data => {
+  tokenCheck()
   return axios
     .request({
       url: `${apiBase}/api/workshops/create`,
@@ -194,12 +250,17 @@ export const createWorkshop = data => {
       data,
       headers: getHeader()
     })
-    .then(function(response) {
+    .then(function (response) {
       // handle success
       return response;
     })
-    .catch(function(error) {
+    .catch(function (error) {
       // handle error
+      if (error.response.status === 401) {
+        localStorage.clear()
+        sessionStorage.clear()
+        window.location.reload()
+      }
       console.log(error);
     });
 };
@@ -209,41 +270,62 @@ export const coverGenerator = id => {
 };
 
 export function uploadImage(data, callback) {
-  const url = `${apiBase}/api/upload/image`;
+  tokenCheck()
+  const url =
+    `${apiBase}/api/upload/image`;
   axios
     .post(url, data, { headers: getHeader() })
     .then(response => {
       callback(response);
     })
     .catch(error => {
+      if (error.response.status === 401) {
+        localStorage.clear()
+        sessionStorage.clear()
+        window.location.reload()
+      }
       callback(error);
     });
 }
 
-export const getDisciplineList = callback => {
-  return axios
-    .request({
-      url: `${apiBase}/api/disciplines`,
-      method: "get",
-      headers: getHeader()
-    })
+export const getDisciplineList = (callback) => {
+  tokenCheck()
+  return axios.request({
+    url:
+      `${apiBase}/api/disciplines`,
+    method: "get",
+    headers: getHeader()
+  })
     .then(response => {
       callback(response);
     })
     .catch(error => {
-      callback(error);
+      if (error.response.status === 401) {
+        localStorage.clear()
+        sessionStorage.clear()
+        window.location.reload()
+      }
+      callback(error)
     });
 };
 
-export const getCategoryList = () => {
+export const getCategoryList = (callback) => {
+  tokenCheck()
   return axios.request({
     url: `${apiBase}/api/disciplines/categories`,
     method: "get",
     headers: getHeader()
-  });
+  })
+    .then(response => {
+      callback(response)
+    })
+    .catch(err => {
+      callback(err)
+    });
 };
 
 export const getLocationList = callback => {
+  tokenCheck()
   const url = `${apiBase}/api/locations`;
   axios
     .get(url, { headers: getHeader() })
@@ -251,23 +333,36 @@ export const getLocationList = callback => {
       callback(response);
     })
     .catch(error => {
+      if (error.response.status === 401) {
+        localStorage.clear()
+        sessionStorage.clear()
+        window.location.reload()
+      }
       callback(error);
     });
 };
 
 export const getRolesList = callback => {
-  const url = `${apiBase}/api/roles`;
+  tokenCheck()
+  const url =
+    `${apiBase}/api/roles`;
   axios
     .get(url, { headers: getHeader() })
     .then(response => {
       callback(response);
     })
     .catch(error => {
+      if (error.response.status === 401) {
+        localStorage.clear()
+        sessionStorage.clear()
+        window.location.reload()
+      }
       callback(error);
     });
 };
 
 export const getSearchResults = (input, callback) => {
+  tokenCheck()
   const url = `${apiBase}/api/search?search=${input}&maxResults=5`;
   axios
     .get(url, { headers: getHeader() })
@@ -275,11 +370,17 @@ export const getSearchResults = (input, callback) => {
       callback(response);
     })
     .catch(error => {
+      if (error.response.status === 401) {
+        localStorage.clear()
+        sessionStorage.clear()
+        window.location.reload()
+      }
       callback(error);
     });
 };
 
 export const updateWorkshop = (id, data) => {
+  tokenCheck()
   return axios
     .request({
       url: `${apiBase}/api/workshops/${id}`,
@@ -287,46 +388,63 @@ export const updateWorkshop = (id, data) => {
       data,
       headers: getHeader()
     })
-    .then(function(response) {
+    .then(function (response) {
       // handle success
       return response;
     })
-    .catch(function(error) {
+    .catch(function (error) {
       // handle error
+      if (error.response.status === 401) {
+        localStorage.clear()
+        sessionStorage.clear()
+        window.location.reload()
+      }
       console.log(error);
     });
 };
 
 export const fetchWorkshops = () => {
+  tokenCheck()
   return axios
     .request({
       url: `${apiBase}/api/workshops`,
       method: "get",
       headers: getHeader()
     })
-    .then(function(response) {
+    .then(function (response) {
       // handle success
       if (response.data && response.status === 200) {
         return response.data;
       }
     })
-    .catch(function(error) {
+    .catch(function (error) {
       // handle error
+      if (error.response.status === 401) {
+        localStorage.clear()
+        sessionStorage.clear()
+        window.location.reload()
+      }
       console.log(error);
     });
 };
 
 export const cancelWorkshop = (id, callback) => {
+  tokenCheck()
   return axios
     .request({
       url: `${apiBase}/api/workshops/${id}`,
       method: "delete",
       headers: getHeader()
     })
-    .then(function(response) {
+    .then(function (response) {
       callback(response);
     })
-    .catch(function(error) {
+    .catch(function (error) {
+      if (error.response.status === 401) {
+        localStorage.clear()
+        sessionStorage.clear()
+        window.location.reload()
+      }
       callback(error);
     });
 };
@@ -446,7 +564,7 @@ export const findRoom = (start, end) => {
         Authorization: `Access-Token ${process.env.REACT_APP_ROBIN_TOKEN}`
       }
     })
-    .then(function(response) {
+    .then(function (response) {
       const availableRooms = [];
 
       response.data.data.forEach(room => {
@@ -506,6 +624,7 @@ export const findRoom = (start, end) => {
 };
 
 export const sendEmail = (message, saveToSentItems, callback) => {
+  tokenCheck()
   return axios
     .request({
       url: `https://outlook.office.com/api/v2.0/me/sendmail`,
@@ -517,6 +636,12 @@ export const sendEmail = (message, saveToSentItems, callback) => {
       callback(response);
     })
     .catch(error => {
-      callback(error);
-    });
-};
+      if (error.response.status === 401) {
+        localStorage.clear()
+        sessionStorage.clear()
+        window.location.refresh()
+      }
+      callback(error)
+    })
+}
+

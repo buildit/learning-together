@@ -7,7 +7,7 @@ import Moment from "react-moment";
 import { NavbarComponent } from "../../navbarModule";
 import { Link, Redirect, NavLink } from "react-router-dom";
 import { UserContext } from "../../../UserProvider";
-import { createAndSendEmail, addCalEvent } from '../../../services/utils';
+import { createAndSendEmail, addCalEvent } from '../../../services/outlookUtils';
 import ReactPlayer from 'react-player';
 
 import {
@@ -163,8 +163,8 @@ export default class Workshop extends Component {
     const attendees =
       this.state.workshop.workshopAttendees.length > 0
         ? `There are ${
-            this.state.workshop.workshopAttendees.length
-          } attendee(s).`
+        this.state.workshop.workshopAttendees.length
+        } attendee(s).`
         : "";
     this.setState({
       confirmCancel: true,
@@ -247,8 +247,8 @@ export default class Workshop extends Component {
                     alt="Instructor"
                   />
                 ) : (
-                  <FontAwesomeIcon icon="user-circle" size="3x" />
-                )}
+                    <FontAwesomeIcon icon="user-circle" size="3x" />
+                  )}
               </div>
 
               <p>
@@ -295,14 +295,14 @@ export default class Workshop extends Component {
                   UNENROLL
                 </button>
               ) : (
-                <button
-                  type="button"
-                  className="button flex-child-auto large-flex-child-shrink"
-                  onClick={this.onClickEnroll.bind(this)}
-                >
-                  ENROLL
+                    <button
+                      type="button"
+                      className="button flex-child-auto large-flex-child-shrink"
+                      onClick={this.onClickEnroll.bind(this)}
+                    >
+                      ENROLL
                 </button>
-              )}
+                  )}
             </div>
           </article>
         </section>

@@ -1,23 +1,27 @@
 import React, { Component, Fragment } from "react";
-import {loadCategories } from "../../../api";
+import { loadCategories } from "../../../api";
 import { NavbarComponent } from "../navbar";
 import { CategoryListComponent } from "../../categoryModule";
 import "./browse.scss";
 
 class Browse extends Component {
-  state = {
-    categories: [],
-    sortBy: "date"
-  };
+  constructor() {
+    super()
+    this.state = {
+      categories: [],
+      sortBy: "date"
+    }
+    this.loadCategoriesCallback = this.loadCategoriesCallback.bind(this)
+  }
 
   componentDidMount() {
-    loadCategories()
-      .then((data) => {
+    loadCategories(this.loadCategoriesCallback)
+  }
 
-        this.setState({
-          categories: data
-        })
-      })
+  loadCategoriesCallback(response) {
+    this.setState({
+      categories: response
+    })
   }
 
   handleSort(sort) {
@@ -33,15 +37,15 @@ class Browse extends Component {
           className="current-category first-container"
         >
         </section>
-       <header className="grid-container">
-         <h3>Course Categories</h3>
-         <hr />
-       </header>
+        <header className="grid-container">
+          <h3>Course Categories</h3>
+          <hr />
+        </header>
         <div className="grid-container">
-          
+
           <CategoryListComponent workshop={this.state.workshops} categories={this.state.categories} />
         </div>
- 
+
       </Fragment>
     );
   }
