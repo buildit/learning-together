@@ -118,10 +118,9 @@ class WorkshopList extends Component {
         </TabPanel>
         <TabPanel>
           {workshops.map((workshop, index) => {
+            const isVideo = workshop.archiveLink ? <article className="workshopsforday" key={`workshop-video-${index}`}><WorkshopPreviewComponent workshop={workshop} /></article>  : "" ;
               return (
-                <article className="workshopsforday" key={`workshop-video-${index}`}>
-                <WorkshopPreviewComponent workshop={workshop} />
-                </article>
+                  isVideo 
             )
           })}
         </TabPanel>

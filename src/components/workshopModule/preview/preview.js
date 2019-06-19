@@ -13,6 +13,8 @@ const Preview = ({ workshop }) => {
     : coverGenerator(workshop.id);
   const { name, start } = workshop;
   const { firstName, lastName } = workshop.educator;
+  const isVideo = workshop.archiveLink ? true : false ;
+
   return (
 
     <div className="preview card" >
@@ -21,10 +23,9 @@ const Preview = ({ workshop }) => {
           : ""
       }
 
-
-
       <div className="card-section">
-        <Moment format="LLLL">{start}</Moment>
+        {isVideo ?  "" : <Moment format="LLLL">{start}</Moment>}
+        
         <h4 className="workshop-preview-title">{name}</h4>
         <p>
           Instructor:{" "}

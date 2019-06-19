@@ -29,7 +29,8 @@ class workshopEdit extends Component {
         webex: response.data.webex,
         description: response.data.description,
         imageUrl: response.data.imageUrl,
-        room: response.data.room
+        room: response.data.room,
+        archiveLink: response.data.archiveLink,
       };
       this.setState({
         data
