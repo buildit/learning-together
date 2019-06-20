@@ -7,7 +7,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import "react-tabs/style/react-tabs.css";
 import moment from 'moment';
 import "./workshoplist.scss";
-import { LoadingComponent } from "../../messageModule";
+
 
 class WorkshopList extends Component {
   constructor(props) {
@@ -79,7 +79,7 @@ class WorkshopList extends Component {
   }
 
   render() {
-    const { dates, workshops, isWorkshopListLoading, isWorkshopListPastLoading } = this.state
+    const { dates, workshops} = this.state
     return (
       <Fragment>
         <NavbarComponent
