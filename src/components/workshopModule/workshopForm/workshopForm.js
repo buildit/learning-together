@@ -230,7 +230,16 @@ class WorkshopForm extends Component {
   }
 
   render() {
-    const categories = this.state.categoryList.map(category => {
+    const {
+      categoryList,
+      locationList,
+      roomAvailable,
+      location,
+      startTime,
+      endTime
+    } = this.state;
+
+    const categories = categoryList.map(category => {
       return (
         <option key={category.id} value={category.id}>
           {category.name}
@@ -238,7 +247,7 @@ class WorkshopForm extends Component {
       );
     });
 
-    const locations = this.state.locationList.map(location => {
+    const locations = locationList.map(location => {
       return (
         <option key={location.id} value={location.id}>
           {location.name}
@@ -246,7 +255,7 @@ class WorkshopForm extends Component {
       );
     });
 
-    const availableRooms = this.state.roomAvailable.map(room => {
+    const availableRooms = roomAvailable.map(room => {
       return (
         <option
           key={room.id}
@@ -259,19 +268,16 @@ class WorkshopForm extends Component {
     });
 
     if (
-      this.state.location === 1 &&
-      this.state.startTime !== null &&
-      this.state.endTime !== null &&
-      this.state.roomAvailable.length === 0
+      location === 1 &&
+      startTime !== null &&
+      endTime !== null &&
+      roomAvailable.length === 0
     ) {
-      findRoom(this.state.startTime, this.state.endTime).then(response => {
+      findRoom(startTime, endTime).then(response => {
         if (response.length === 0) {
-          console.log("No rooms available - Pick another time");
+          return;
         } else {
-          this.setState({
-            roomAvailable: response,
-            roomSelected: ""
-          });
+          this.setState({ roomAvailable: response, roomSelected: "" });
         }
       });
     }

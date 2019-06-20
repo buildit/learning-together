@@ -197,6 +197,7 @@ export const createWorkshop = async data => {
   } catch (error) {
     //HANDLE ERROR
     console.log(error);
+    return error;
   }
 };
 
@@ -378,31 +379,6 @@ export const deleteEvent = async id => {
   }
 };
 
-/*export const bookRoom = (start, end, title, room) => {
-  const IsoStartTime = moment(start).format();
-  const IsoEndTime = moment(end).format();
-
-  return axios.request({
-    url: `https://api.robinpowered.com/v1.0/spaces/${room}/events`,
-    method: "POST",
-    data: {
-      title: `${title}`,
-      start: {
-        date_time: `${IsoStartTime}`,
-        time_zone: "America/New_York"
-      },
-      end: {
-        date_time: `${IsoEndTime}`,
-        time_zone: "America/New_York"
-      }
-    },
-
-    headers: {
-      Authorization: `Access-Token ${process.env.REACT_APP_ROBIN_TOKEN}`
-    }
-  });
-};*/
-
 export const bookRoom = async (start, end, title, room) => {
   try {
     const IsoStartTime = moment(start).format();
@@ -429,29 +405,16 @@ export const bookRoom = async (start, end, title, room) => {
     });
   } catch (error) {
     console.log(error);
+    return error;
     //HANDLE ERROR
   }
 };
 
-export const findRoom = (start, end) => {
-  const startTime =
-    moment(start)
-      .set({ second: 1, millisecond: 0 })
-      .local()
-      .format("YYYY-MM-DDTHH:mm:ss.SSS")
-      .split(".")[0] + "Z";
-
+export const getRooms = async start => {
   const dayAfter =
     moment(start)
       .add(1, "day")
       .toISOString()
-      .split(".")[0] + "Z";
-
-  const endTime =
-    moment(end)
-      .set({ second: 0, millisecond: 0 })
-      .local()
-      .format("YYYY-MM-DDTHH:mm:ss.SSS")
       .split(".")[0] + "Z";
 
   const newStart =
@@ -460,8 +423,8 @@ export const findRoom = (start, end) => {
       .toISOString()
       .split(".")[0] + "Z";
 
-  return axios
-    .request({
+  try {
+    return axios.request({
       url: `https://api.robinpowered.com/v1.0/free-busy/spaces`,
       method: "POST",
       data: {
@@ -479,64 +442,96 @@ export const findRoom = (start, end) => {
       headers: {
         Authorization: `Access-Token ${process.env.REACT_APP_ROBIN_TOKEN}`
       }
-    })
-    .then(function(response) {
-      const availableRooms = [];
-
-      response.data.data.forEach(room => {
-        if (room.busy.length === 0) {
-          return availableRooms.push({
-            room: room.space.name,
-            id: room.space.id
-          });
-        } else {
-          let conflict = false;
-
-          room.busy.forEach(event => {
-            const eventStart =
-              moment(event.from)
-                .local()
-                .format("YYYY-MM-DDTHH:mm:ss.SSS")
-                .split(".")[0] + "Z";
-
-            const eventEnd =
-              moment(event.to)
-                .set({ second: 0, millisecond: 0 })
-                .local()
-                .format("YYYY-MM-DDTHH:mm:ss.SSS")
-                .split(".")[0] + "Z";
-
-            if (
-              moment(startTime).isAfter(moment(eventStart)) &&
-              moment(startTime).isBefore(moment(eventEnd))
-            ) {
-              conflict = true;
-              return;
-            } else if (
-              moment(endTime).isAfter(eventStart) &&
-              moment(endTime).isBefore(eventEnd)
-            ) {
-              conflict = true;
-              return;
-            } else if (
-              moment(startTime).isSameOrBefore(moment(eventStart)) &&
-              moment(endTime).isSameOrAfter(moment(eventEnd))
-            ) {
-              conflict = true;
-              return;
-            }
-            return;
-          });
-
-          if (conflict === false) {
-            availableRooms.push({ room: room.space.name, id: room.space.id });
-          }
-        } //closing else
-        return;
-      });
-
-      return availableRooms;
     });
+  } catch (error) {
+    console.log("error", error);
+    return error;
+  }
+};
+
+export const listAvailableRooms = async (response, start, end) => {
+  const startTime =
+    moment(start)
+      .set({ second: 1, millisecond: 0 })
+      .local()
+      .format("YYYY-MM-DDTHH:mm:ss.SSS")
+      .split(".")[0] + "Z";
+
+  const endTime =
+    moment(end)
+      .set({ second: 0, millisecond: 0 })
+      .local()
+      .format("YYYY-MM-DDTHH:mm:ss.SSS")
+      .split(".")[0] + "Z";
+  try {
+    const availableRooms = [];
+
+    response.data.data.forEach(room => {
+      if (room.busy.length === 0) {
+        return availableRooms.push({
+          room: room.space.name,
+          id: room.space.id
+        });
+      } else {
+        let conflict = false;
+
+        room.busy.forEach(event => {
+          const eventStart =
+            moment(event.from)
+              .local()
+              .format("YYYY-MM-DDTHH:mm:ss.SSS")
+              .split(".")[0] + "Z";
+
+          const eventEnd =
+            moment(event.to)
+              .set({ second: 0, millisecond: 0 })
+              .local()
+              .format("YYYY-MM-DDTHH:mm:ss.SSS")
+              .split(".")[0] + "Z";
+
+          if (
+            moment(startTime).isAfter(moment(eventStart)) &&
+            moment(startTime).isBefore(moment(eventEnd))
+          ) {
+            conflict = true;
+            return;
+          } else if (
+            moment(endTime).isAfter(eventStart) &&
+            moment(endTime).isBefore(eventEnd)
+          ) {
+            conflict = true;
+            return;
+          } else if (
+            moment(startTime).isSameOrBefore(moment(eventStart)) &&
+            moment(endTime).isSameOrAfter(moment(eventEnd))
+          ) {
+            conflict = true;
+            return;
+          }
+          return;
+        });
+        if (conflict === false) {
+          availableRooms.push({ room: room.space.name, id: room.space.id });
+        }
+      } //Closing else
+      return;
+    });
+    return availableRooms;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+
+export const findRoom = async (start, end) => {
+  try {
+    const response = await getRooms(start);
+    const availableRooms = await listAvailableRooms(response, start, end);
+    return availableRooms;
+  } catch (error) {
+    console.log("error", error);
+    return error;
+  }
 };
 
 export const sendEmail = (message, saveToSentItems, callback) => {

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { WorkshopFormComponent } from "../workshopForm";
 import {
   getWorkshop,
@@ -6,6 +6,8 @@ import {
   deleteEvent,
   bookRoom
 } from "../../../api.js";
+import { MessageComponent } from "../../messageModule";
+import { Redirect } from "react-router-dom";
 
 class workshopEdit extends Component {
   constructor(props) {
@@ -16,13 +18,15 @@ class workshopEdit extends Component {
       data: {},
       disableRoomSelection: true,
       updateRobinReservation: false,
-      error: false
+      error: false,
+      redirect: false
     };
     this.getWorkshopCallback = this.getWorkshopCallback.bind(this);
     this.handleRobinUpdate = this.handleRobinUpdate.bind(this);
     this.removeEvent = this.removeEvent.bind(this);
     this.reserveRoom = this.reserveRoom.bind(this);
     this.handleUpdateWorkshop = this.handleUpdateWorkshop.bind(this);
+    this.redirectCallback = this.redirectCallback.bind(this);
   }
 
   componentDidMount() {
@@ -72,47 +76,19 @@ class workshopEdit extends Component {
     });
   }
 
-  /*
-  handleSubmit(data) {
-    const { robinEventId, start, end, name, roomSelected } = data;
-
-    if (this.state.updateRobinReservation && robinEventId) {
-      deleteEvent(robinEventId).then(
-        bookRoom(start, end, name, roomSelected)
-          .then(response => {
-            if (response.status === 201) {
-              data.robinEventId = response.data.data.id;
-            }
-          })
-          .then(() =>
-            updateWorkshop(this.props.computedMatch.params.id, data).then(
-              response => {
-                if (response.status === 200) {
-                  this.setState({ success: true });
-                }
-              }
-            )
-          )
-      );
-    } else {
-      updateWorkshop(this.props.computedMatch.params.id, data).then(
-        response => {
-          if (response.status === 200) {
-            this.setState({ success: true });
-          }
-        }
-      );
-    }
-  }*/
+  redirectCallback() {
+    this.setState({ redirect: true });
+  }
 
   async removeEvent(robinEventId) {
     const response = await deleteEvent(robinEventId);
     console.log("response", response);
-    if (response.status === 201) {
+    if (response.status === 200) {
       return response.data;
     } else {
       //HANDLE ERROR
       console.log("error");
+      this.setState({ error: true });
     }
 
     return response;
@@ -139,6 +115,7 @@ class workshopEdit extends Component {
     } else {
       //HANDLE ERROR
       console.log("error");
+      this.setState({ error: true });
     }
   }
 
@@ -146,22 +123,24 @@ class workshopEdit extends Component {
     const { robinEventId } = data;
     if (this.state.updateRobinReservation && robinEventId) {
       try {
-        let response = await this.removeEvent(robinEventId);
+        await this.removeEvent(robinEventId);
         let newRobinEventId = await this.reserveRoom(data);
         data.robinEventId = newRobinEventId;
-        let sucess = await this.handleUpdateWorkshop(
+        await this.handleUpdateWorkshop(
           this.props.computedMatch.params.id,
           data
         );
       } catch (error) {
         //HANDLE ERROR
         console.log(error);
+        this.setState({ error: true });
       }
     } else {
       try {
       } catch (error) {
         //HANDLE ERROR
         console.log(error);
+        this.setState({ error: true });
       }
     }
   }
@@ -169,15 +148,24 @@ class workshopEdit extends Component {
   render() {
     const { data } = this.state;
     return (
-      <WorkshopFormComponent
-        data={data}
-        handleSubmit={this.handleSubmit.bind(this)}
-        success={this.state.success}
-        id={this.props.computedMatch.params.id}
-        edit={true}
-        handleRobinUpdate={this.handleRobinUpdate}
-        disableRoomSelection={this.state.disableRoomSelection}
-      />
+      <Fragment>
+        <WorkshopFormComponent
+          data={data}
+          handleSubmit={this.handleSubmit.bind(this)}
+          success={this.state.success}
+          id={this.props.computedMatch.params.id}
+          edit={true}
+          handleRobinUpdate={this.handleRobinUpdate}
+          disableRoomSelection={this.state.disableRoomSelection}
+        />
+        {this.state.error && (
+          <MessageComponent
+            message="There was an error. Try again later."
+            callback={this.redirectCallback}
+          />
+        )}
+        {this.state.redirect && <Redirect to={`/`} />}
+      </Fragment>
     );
   }
 }
