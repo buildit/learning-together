@@ -84,7 +84,6 @@ class workshopEdit extends Component {
 
   async removeEvent(robinEventId) {
     const response = await deleteEvent(robinEventId);
-    console.log("response", response);
     if (response.status === 200) {
       return response.data;
     } else {
@@ -110,7 +109,6 @@ class workshopEdit extends Component {
 
   async handleUpdateWorkshop(workshopId, data) {
     const response = await updateWorkshop(workshopId, data);
-    console.log("response", response);
     if (response.status === 200) {
       this.setState({ success: true });
       return response;
@@ -123,7 +121,9 @@ class workshopEdit extends Component {
 
   async handleSubmit(data) {
     const { robinEventId } = data;
-    if (this.state.updateRobinReservation && robinEventId) {
+    const { updateRobinReservation } = this.state;
+
+    if (updateRobinReservation && robinEventId) {
       try {
         await this.removeEvent(robinEventId);
         let newRobinEventId = await this.reserveRoom(data);
