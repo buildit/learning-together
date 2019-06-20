@@ -20,6 +20,7 @@ export default class UserProfileComponent extends React.Component {
     };
     this.getUserCallback = this.getUserCallback.bind(this);
     this.filterByDay = this.filterByDay.bind(this)
+    this.getWorkshopListDateCallback = this.getWorkshopListDateCallback.bind(this)
   }
 
   componentDidMount() {
@@ -53,45 +54,43 @@ export default class UserProfileComponent extends React.Component {
   }
 
   getUserCallback(data) {
-
-    getWorkshopListDate(moment().format())
-      .then(response => {
-
-        const attend = data.data.workshopsAttending.map(workshop => {
-          return (
-            response.data.filter(attending => {
-              return (
-                attending.id === workshop.workshopId
-              )
-            }
-
-            )
-          )
-        })
-
-        const teach = data.data.workshopsTeaching.map(workshop => {
-          return (
-            response.data.filter(teaching => {
-              return (
-                teaching.id === workshop.workshopId
-              )
-            }
-
-            )
-          )
-        })
-
-        this.setState({
-          all: response.data,
-          attending: this.filterByDay([].concat(...attend)),
-          teaching: this.filterByDay([].concat(...teach))
-        })
-      })
-      .catch(error => this.setState({ error: 'Please try again later' }))
-
     this.setState({
       user: data.data,
     });
+    getWorkshopListDate(moment().format(), this.getWorkshopListDateCallback)
+  }
+
+  getWorkshopListDateCallback(response) {
+    if (response.status === 200) {
+      const { user } = this.state
+      const attend = user.workshopsAttending.map(workshop => {
+        return (
+          response.data.filter(attending => {
+            return (
+              attending.id === workshop.workshopId
+            )
+          })
+        )
+      })
+
+      const teach = user.workshopsTeaching.map(workshop => {
+        return (
+          response.data.filter(teaching => {
+            return (
+              teaching.id === workshop.workshopId
+            )
+          })
+        )
+      })
+
+      this.setState({
+        all: response.data,
+        attending: this.filterByDay([].concat(...attend)),
+        teaching: this.filterByDay([].concat(...teach))
+      })
+    } else {
+      this.setState({ error: 'Please try again later' })
+    }
   }
 
   updateWorkshopList(event) {

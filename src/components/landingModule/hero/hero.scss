@@ -8,6 +8,14 @@
     height: 100%;
 }
 
+.welcome {
+    display: flex;
+    flex-direction: column;
+    padding-top: 20vh;
+    margin: auto;
+    width: 75vw;
+}
+
 .button.call-to-action {
     font-weight: 900;
     background-color: $bt-blue;

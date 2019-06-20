@@ -124,6 +124,7 @@ export default class Schedule extends React.Component {
 
     render() {
         const dates = this.state.dates;
+        const { isLoading } = this.props
         return (
             <Fragment>
                 <header>
@@ -160,22 +161,22 @@ export default class Schedule extends React.Component {
                         <nav className="workshop-filter">
                             <ul>
                                 <li>
-                                    <button className={`filter-schedule ${(this.state.current === "all") ? "current arrow_box" : ""}`} onClick={this.filterByAll}>
+                                    <button className={`filter-schedule ${(this.state.current === "all") ? "current arrow_box" : ""}`} onClick={this.filterByAll} disabled={isLoading}>
                                         All
                             </button>
                                 </li>
                                 <li>
-                                    <button className={`filter-schedule ${(this.state.current === "teaching") ? "current arrow_box" : ""}`} onClick={this.filterByTeaching}>
+                                    <button className={`filter-schedule ${(this.state.current === "teaching") ? "current arrow_box" : ""}`} onClick={this.filterByTeaching} disabled={isLoading}>
                                         Teaching
                             </button>
                                 </li>
                                 <li>
-                                    <button className={`filter-schedule ${(this.state.current === "attending") ? "current  arrow_box" : ""}`} onClick={this.filterByAttending}>
+                                    <button className={`filter-schedule ${(this.state.current === "attending") ? "current  arrow_box" : ""}`} onClick={this.filterByAttending} disabled={isLoading}>
                                         Attending
                             </button>
                                 </li>
                                 <li>
-                                    <button className={`filter-schedule ${(this.state.current === "recommended") ? "current arrow_box" : ""}`} onClick={this.filterByInterests}>
+                                    <button className={`filter-schedule ${(this.state.current === "recommended") ? "current arrow_box" : ""}`} onClick={this.filterByInterests} disabled={isLoading}>
                                         Recommended
                             </button>
                                 </li>
