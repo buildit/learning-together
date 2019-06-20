@@ -28,8 +28,7 @@ export async function addCalEvent(event) {
         displayName: event.location
       }
     }
-    const response = await addEvent(accessToken, body)
-    console.log('cal response', response)
+    await addEvent(accessToken, body)
   }
   catch (err) {
     console.log('err', err)
@@ -50,7 +49,6 @@ export async function createAndSendEmail({ subject, content, recipients }) {
       const emailObj = { 'EmailAddress': { 'Address': recipient.username } }
       recipientsArray.push(emailObj)
     })
-    console.log(recipientsArray)
     message.Message.ToRecipients = recipientsArray
     message.Message.Attachments = [
       {

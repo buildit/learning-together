@@ -43,7 +43,8 @@ class workshopEdit extends Component {
       webex,
       description,
       imageUrl,
-      room
+      room,
+      archiveLink
     } = response.data;
 
     if (response.status === 200) {
@@ -57,6 +58,7 @@ class workshopEdit extends Component {
         description,
         imageUrl,
         room,
+        archiveLink,
         robinEventId: response.data.robinEventId
           ? response.data.robinEventId
           : ""

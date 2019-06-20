@@ -6,7 +6,7 @@ import { LandingComponent } from "../../landingModule";
 import { BrowseComponent } from "../../navbarModule";
 import { WorkshopListComponent, WorkshopCreateComponent, WorkshopEditComponent, WorkshopComponent } from '../../workshopModule'
 import UserProvider from '../../../UserProvider'
-import { UserRoute } from '../../authModule'
+import { UserRoute, LoginComponent, UnauthenticatedUserRoute } from '../../authModule'
 
 export default class RoutesComponent extends React.Component {
 
@@ -24,6 +24,7 @@ export default class RoutesComponent extends React.Component {
               <UserRoute exact path="/workshops" component={BrowseComponent} />
               <UserRoute exact path="/create" component={WorkshopCreateComponent} />
               <UserRoute exact path="/edit/:id" component={WorkshopEditComponent} />
+              <UnauthenticatedUserRoute exact path="/login" component={LoginComponent} />
               <Route component={Page404Component} />
             </Switch>
           </div>

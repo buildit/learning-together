@@ -19,6 +19,7 @@ class WorkshopForm extends Component {
       location: props.data ? props.data.locationId : 1,
       locationList: [],
       link: props.data ? props.data.webex : "",
+      archiveLink: props.data ? props.data.archiveLink : "",
       description: props.data ? props.data.description : "",
       startDate: props.data ? moment(props.data.start) : moment(),
       endDate: props.data ? moment(props.data.end) : null,
@@ -47,12 +48,7 @@ class WorkshopForm extends Component {
 
   //TODO Handle Error
   componentDidMount() {
-    getCategoryList()
-      .then(response => this.setState({ categoryList: response.data }))
-      .catch(error => {
-        console.log(error);
-      });
-
+    getCategoryList(this.getCategoryListCallback);
     getLocationList(this.getLocationCallBack);
   }
 
@@ -98,6 +94,10 @@ class WorkshopForm extends Component {
         this.setState({ link: nextProps.data.webex });
       }
 
+      if (nextProps.data.archiveLink !== this.props.data.archiveLink) {
+        this.setState({ archiveLink: nextProps.data.archiveLink });
+      }
+
       if (nextProps.data.room !== this.props.data.room) {
         this.setState({ room: nextProps.data.room });
       }
@@ -134,6 +134,13 @@ class WorkshopForm extends Component {
   getLocationCallBack(response) {
     if (response.status === 200) {
       this.setState({ locationList: response.data });
+    }
+  }
+  getCategoryListCallback(response) {
+    if (response.status === 200) {
+      this.setState({ categoryList: response.data });
+    } else {
+      console.log(response);
     }
   }
 
@@ -211,6 +218,7 @@ class WorkshopForm extends Component {
         locationId: this.state.location,
         categoryId: parseInt(this.state.categorySelected),
         webex: this.state.link,
+        archiveLink: this.state.archiveLink,
         description: this.state.description,
         imageUrl: this.state.workshopPicture,
         room: this.state.room,
@@ -458,6 +466,19 @@ class WorkshopForm extends Component {
                     style={{ height: "100px" }}
                   />
                   <span className="error">{this.state.error.description}</span>
+                </label>
+              </div>
+              <div className="medium-8 cell">
+                <label>
+                  Archive
+                  <input
+                    name="archiveLink"
+                    value={this.state.archiveLink}
+                    onChange={this.handleChange}
+                    type="url"
+                    placeholder="archive link"
+                  />
+                  <span className="error">{this.state.error.archiveLink}</span>
                 </label>
               </div>
             </div>

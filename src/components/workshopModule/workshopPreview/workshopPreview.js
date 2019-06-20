@@ -6,6 +6,7 @@ import "./workshopPreview.scss";
 const WorkshopPreview = ({ workshop }) => {
   const start = workshop.start ? workshop.start : workshop.startDate;
   const wrkshopId = workshop.id ? workshop.id : workshop.workshopId;
+  const isVideo = workshop.archiveLink ? true : false ;
  
   return (
     <Link
@@ -18,7 +19,7 @@ const WorkshopPreview = ({ workshop }) => {
       <div className="start small-3 medium-2 cell">
       
           <p>
-            <Moment format="LT">{start}</Moment>
+          {isVideo ?  "" : <Moment format="LT">{start}</Moment>}
           </p>{" "}
    
       </div>

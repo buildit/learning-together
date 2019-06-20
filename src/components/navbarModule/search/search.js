@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { getSearchResults } from "../../../api";
 import { Link } from "react-router-dom";
-import { MessageComponent } from "../../messageModule";
+import { MessageComponent, LoadingComponent } from "../../messageModule";
 import "./search.scss";
 
 export default class SearchComponent extends React.Component {
@@ -13,7 +13,8 @@ export default class SearchComponent extends React.Component {
       locationResults: [],
       userResults: [],
       workshopResults: [],
-      isError: false
+      isError: false,
+      isLoading: false
     };
     this.searchCallback = this.searchCallback.bind(this);
   }
@@ -28,12 +29,17 @@ export default class SearchComponent extends React.Component {
       categoryResults: [],
       locationResults: [],
       userResults: [],
-      workshopResults: []
+      workshopResults: [],
+      isLoading: true
     });
-    if (e.target.value === "") return;
+    if (e.target.value === "") {
+      this.setState({ isLoading: false })
+      return
+    }
     getSearchResults(e.target.value, this.searchCallback);
   }
   searchCallback(response) {
+    this.setState({ isLoading: false })
     if (response.status === 200) {
       this.sortResultsData(response.data);
     } else {
@@ -65,7 +71,8 @@ export default class SearchComponent extends React.Component {
       workshopResults,
       categoryResults,
       userResults,
-      isError
+      isError,
+      isLoading
     } = this.state;
     return (
       <Fragment>
@@ -131,6 +138,7 @@ export default class SearchComponent extends React.Component {
                 })}
               </div>
             )}
+            {isLoading && (<div className='search-result-hover'><LoadingComponent /></div>)}
           </div>
         </div>
         {isError && (
