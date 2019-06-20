@@ -44,6 +44,7 @@ class WorkshopForm extends Component {
     this.redirectCallback = this.redirectCallback.bind(this);
     this.setWorkshopPicture = this.setWorkshopPicture.bind(this);
     this.getLocationCallBack = this.getLocationCallBack.bind(this);
+    this.getCategoryListCallback = this.getCategoryListCallback.bind(this);
   }
 
   //TODO Handle Error
