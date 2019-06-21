@@ -34,11 +34,8 @@ class WorkshopForm extends Component {
       room: props.data ? props.data.room : "",
       roomAvailable: props.data ? [] : [],
       roomSelected: props.data ? true : "",
-      robinEventId: props.data ? props.data.robinEventId : null,
-      updateRobinReservation: false,
-      disableRoomSelection: true
+      robinEventId: props.data ? props.data.robinEventId : null
     };
-
     this.handleChange = this.handleChange.bind(this);
     this.onDateChange = this.onDateChange.bind(this);
     this.onFocusChange = this.onFocusChange.bind(this);
@@ -47,13 +44,12 @@ class WorkshopForm extends Component {
     this.redirectCallback = this.redirectCallback.bind(this);
     this.setWorkshopPicture = this.setWorkshopPicture.bind(this);
     this.getLocationCallBack = this.getLocationCallBack.bind(this);
-    this.getCategoryListCallback = this.getCategoryListCallback.bind(this)
-    this.handleRobinUpdate = this.handleRobinUpdate.bind(this);
+    this.getCategoryListCallback = this.getCategoryListCallback.bind(this);
   }
 
   //TODO Handle Error
   componentDidMount() {
-    getCategoryList(this.getCategoryListCallback)
+    getCategoryList(this.getCategoryListCallback);
     getLocationList(this.getLocationCallBack);
   }
 
@@ -100,7 +96,7 @@ class WorkshopForm extends Component {
       }
 
       if (nextProps.data.archiveLink !== this.props.data.archiveLink) {
-        this.setState({ archiveLink: nextProps.data.archiveLink});
+        this.setState({ archiveLink: nextProps.data.archiveLink });
       }
 
       if (nextProps.data.room !== this.props.data.room) {
@@ -143,7 +139,7 @@ class WorkshopForm extends Component {
   }
   getCategoryListCallback(response) {
     if (response.status === 200) {
-      this.setState({ categoryList: response.data })
+      this.setState({ categoryList: response.data });
     } else {
       console.log(response);
     }
@@ -179,15 +175,6 @@ class WorkshopForm extends Component {
 
   onFocusChange({ focused }) {
     this.setState({ calendarFocused: focused });
-  }
-
-  handleRobinUpdate(e) {
-    e.preventDefault();
-
-    this.setState({
-      disableRoomSelection: false,
-      updateRobinReservation: true
-    });
   }
 
   validateForm() {
@@ -237,8 +224,7 @@ class WorkshopForm extends Component {
         imageUrl: this.state.workshopPicture,
         room: this.state.room,
         robinEventId: this.state.robinEventId,
-        roomSelected: this.state.roomSelected,
-        updateRobinReservation: this.state.updateRobinReservation
+        roomSelected: this.state.roomSelected
       };
       this.props.handleSubmit(data);
     }
@@ -253,7 +239,16 @@ class WorkshopForm extends Component {
   }
 
   render() {
-    const categories = this.state.categoryList.map(category => {
+    const {
+      categoryList,
+      locationList,
+      roomAvailable,
+      location,
+      startTime,
+      endTime
+    } = this.state;
+
+    const categories = categoryList.map(category => {
       return (
         <option key={category.id} value={category.id}>
           {category.name}
@@ -261,7 +256,7 @@ class WorkshopForm extends Component {
       );
     });
 
-    const locations = this.state.locationList.map(location => {
+    const locations = locationList.map(location => {
       return (
         <option key={location.id} value={location.id}>
           {location.name}
@@ -269,12 +264,12 @@ class WorkshopForm extends Component {
       );
     });
 
-    const availableRooms = this.state.roomAvailable.map(room => {
+    const availableRooms = roomAvailable.map(room => {
       return (
         <option
           key={room.id}
           value={room.id}
-          disabled={this.props.edit && this.state.disableRoomSelection}
+          disabled={this.props.edit && this.props.disableRoomSelection}
         >
           {room.room}
         </option>
@@ -282,19 +277,16 @@ class WorkshopForm extends Component {
     });
 
     if (
-      this.state.location === 1 &&
-      this.state.startTime !== null &&
-      this.state.endTime !== null &&
-      this.state.roomAvailable.length === 0
+      location === 1 &&
+      startTime !== null &&
+      endTime !== null &&
+      roomAvailable.length === 0
     ) {
-      findRoom(this.state.startTime, this.state.endTime).then(response => {
+      findRoom(startTime, endTime).then(response => {
         if (response.length === 0) {
-          console.log("No rooms available - Pick another time");
+          return;
         } else {
-          this.setState({
-            roomAvailable: response,
-            roomSelected: ""
-          });
+          this.setState({ roomAvailable: response, roomSelected: "" });
         }
       });
     }
@@ -415,35 +407,35 @@ class WorkshopForm extends Component {
               )}
               <div className="medium-8 cell">
                 {availableRooms.length > 0 &&
-                  this.state.location === 1 &&
-                  (!this.props.edit || !this.state.disableRoomSelection) ? (
-                    <label>
-                      Room Available
+                this.state.location === 1 &&
+                (!this.props.edit || !this.props.disableRoomSelection) ? (
+                  <label>
+                    Room Available
                     <select
-                        name="roomSelected"
-                        value={this.state.roomSelected}
-                        onChange={this.handleChange}
-                      >
-                        <option value="">Select a room</option>
-                        {availableRooms}
-                      </select>
-                    </label>
-                  ) : (
-                    ""
-                  )}
+                      name="roomSelected"
+                      value={this.state.roomSelected}
+                      onChange={this.handleChange}
+                    >
+                      <option value="">Select a room</option>
+                      {availableRooms}
+                    </select>
+                  </label>
+                ) : (
+                  ""
+                )}
                 {availableRooms.length === 0 &&
-                  this.state.location === 1 &&
-                  this.state.startTime !== null &&
-                  this.state.endTime !== null ? (
-                    <p>All rooms are taken at this time. Pick another time.</p>
-                  ) : (
-                    ""
-                  )}
+                this.state.location === 1 &&
+                this.state.startTime !== null &&
+                this.state.endTime !== null ? (
+                  <p>All rooms are taken at this time. Pick another time.</p>
+                ) : (
+                  ""
+                )}
               </div>
               {this.props.edit && this.props.data.robinEventId && (
                 <div className="medium-8 cell ">
                   <button
-                    onClick={this.handleRobinUpdate}
+                    onClick={this.props.handleRobinUpdate}
                     className="button custom-button"
                   >
                     Update Robin reservation
