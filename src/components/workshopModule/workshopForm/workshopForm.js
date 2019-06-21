@@ -298,7 +298,7 @@ class WorkshopForm extends Component {
             <div className="grid-x grid-padding-x align-center">
               <div className="medium-8 cell">
                 <label>
-                  Workshop Name
+                  Workshop Name - Required
                   <input
                     type="text"
                     name="name"
@@ -311,7 +311,7 @@ class WorkshopForm extends Component {
               </div>
               <div className="medium-8 cell">
                 <label>
-                  Category
+                  Category - Required
                   <select
                     name="categorySelected"
                     value={this.state.categorySelected}
@@ -326,7 +326,7 @@ class WorkshopForm extends Component {
                 <ImageUploaderComponent setPicture={this.setWorkshopPicture} />
               </div>
               <div className="medium-8 cell">
-                <label>Date</label>
+                <label>Date - Required </label>
                 <SingleDatePicker
                   date={this.state.startDate}
                   onDateChange={this.onDateChange}
@@ -337,7 +337,7 @@ class WorkshopForm extends Component {
                 <span className="error">{this.state.error.date}</span>
               </div>
               <div className="medium-8 cell">
-                <label>Start time</label>
+                <label>Start time - Required</label>
                 {
                   <TimePicker
                     className="custom-time-picker"
@@ -358,7 +358,7 @@ class WorkshopForm extends Component {
                 <span className="error">{this.state.error.time}</span>
               </div>
               <div className="medium-8 cell">
-                <label>End time</label>
+                <label>End time - Required</label>
                 <TimePicker
                   className="custom-time-picker"
                   name="endTime"
@@ -377,7 +377,7 @@ class WorkshopForm extends Component {
               </div>
               <div className="medium-8 cell">
                 <label>
-                  Location
+                  Location - Required
                   <select
                     name="location"
                     value={this.state.location}

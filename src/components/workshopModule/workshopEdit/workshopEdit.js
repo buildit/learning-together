@@ -6,7 +6,7 @@ import {
   deleteEvent,
   bookRoom
 } from "../../../api.js";
-import { MessageComponent } from "../../messageModule";
+import { MessageComponent, LoadingComponent  } from "../../messageModule";
 import { Redirect } from "react-router-dom";
 
 class workshopEdit extends Component {
@@ -19,7 +19,8 @@ class workshopEdit extends Component {
       disableRoomSelection: true,
       updateRobinReservation: false,
       error: false,
-      redirect: false
+      redirect: false,
+      isEditing: false
     };
     this.getWorkshopCallback = this.getWorkshopCallback.bind(this);
     this.handleRobinUpdate = this.handleRobinUpdate.bind(this);
@@ -107,10 +108,10 @@ class workshopEdit extends Component {
     }
   }
 
-  async handleUpdateWorkshop(workshopId, data) {
+  async handleUpdateWorkshop(workshopId, data) {  
     const response = await updateWorkshop(workshopId, data);
     if (response.status === 200) {
-      this.setState({ success: true });
+      this.setState({ isEditing: false ,success: true });
       return response;
     } else {
       //HANDLE ERROR
@@ -120,6 +121,7 @@ class workshopEdit extends Component {
   }
 
   async handleSubmit(data) {
+    this.setState({ isEditing: true });
     const { robinEventId } = data;
     const { updateRobinReservation } = this.state;
 
@@ -138,6 +140,10 @@ class workshopEdit extends Component {
         this.setState({ error: true });
       }
     } else {
+       await this.handleUpdateWorkshop(
+          this.props.computedMatch.params.id,
+          data
+        );
       try {
       } catch (error) {
         //HANDLE ERROR
@@ -166,6 +172,7 @@ class workshopEdit extends Component {
             callback={this.redirectCallback}
           />
         )}
+        {this.state.isEditing  && (<LoadingComponent />)}
         {this.state.redirect && <Redirect to={`/`} />}
       </Fragment>
     );
