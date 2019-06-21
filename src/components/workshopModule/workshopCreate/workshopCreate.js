@@ -1,6 +1,8 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { WorkshopFormComponent } from "../workshopForm";
 import { createWorkshop, bookRoom } from "../../../api.js";
+import { MessageComponent } from "../../messageModule";
+import { Redirect } from "react-router-dom";
 
 class workshopCreate extends Component {
   constructor(props) {
@@ -8,57 +10,80 @@ class workshopCreate extends Component {
 
     this.state = {
       success: false,
-      workshopId: null
+      workshopId: null,
+      error: false,
+      redirect: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.bookWorkshop = this.bookWorkshop.bind(this);
+    this.reserveRoom = this.reserveRoom.bind(this);
+    this.redirectCallback = this.redirectCallback.bind(this);
   }
 
-  reserveRoom(data) {
+  redirectCallback() {
+    this.setState({ redirect: true });
+  }
+
+  async reserveRoom(data) {
     const { start, end, name, roomSelected } = data;
-
-    return bookRoom(start, end, name, roomSelected).then(response => {
-      if (response.status === 201) {
-        return response.data.data.id;
-      }
-      return;
-    });
+    const response = await bookRoom(start, end, name, roomSelected);
+    if (response.status === 201) {
+      return response.data.data.id;
+    } else {
+      //HANDLE ERROR
+      this.setState({ error: true });
+    }
   }
 
-  handleSubmit(data) {
-    if (data.locationId === 1 && data.roomSelected) {
-      this.reserveRoom(data).then(response => {
-        data.robinEventId = response;
-
-        createWorkshop(data)
-          .then(response => {
-            if (response.status === 200) {
-              this.setState({ success: true, workshopId: response.data });
-            }
-          })
-          .catch(error => {
-            console.log(error);
-          });
-      });
+  async bookWorkshop(data) {
+    const response = await createWorkshop(data);
+    if (response.status === 200) {
+      this.setState({ success: true });
+      return response.data;
     } else {
-      createWorkshop(data)
-        .then(response => {
-          if (response.status === 200) {
-            this.setState({ success: true, workshopId: response.data });
-          }
-        })
-        .catch(error => {
-          console.log(error);
-        });
+      //HANDLE ERROR
+      this.setState({ error: true });
+    }
+  }
+
+  async handleSubmit(data) {
+    if (data.locationId === 1 && data.roomSelected) {
+      try {
+        let response = await this.reserveRoom(data);
+        data.robinEventId = response;
+        let workshopId = await this.bookWorkshop(data);
+        this.setState({ success: true, workshopId });
+      } catch (error) {
+        //HANDLE ERROR
+        this.setState({ error: true });
+      }
+    } else {
+      try {
+        let workshopId = await this.bookWorkshop(data);
+        this.setState({ success: true, workshopId });
+      } catch (error) {
+        //HANDLE ERROR
+        this.setState({ error: true });
+      }
     }
   }
 
   render() {
     return (
-      <WorkshopFormComponent
-        handleSubmit={this.handleSubmit}
-        success={this.state.success}
-        id={this.state.workshopId}
-      />
+      <Fragment>
+        <WorkshopFormComponent
+          handleSubmit={this.handleSubmit}
+          success={this.state.success}
+          id={this.state.workshopId}
+        />
+        {this.state.error && (
+          <MessageComponent
+            message="There was an error. Try again later."
+            callback={this.redirectCallback}
+          />
+        )}
+        {this.state.redirect && <Redirect to={`/`} />}
+      </Fragment>
     );
   }
 }

@@ -419,7 +419,7 @@ class WorkshopForm extends Component {
                 <div className="medium-8 cell">
                   {availableRooms.length > 0 &&
                     this.state.location === 1 &&
-                    (!this.props.edit || !this.state.disableRoomSelection) ? (
+                    (!this.props.edit || !this.props.disableRoomSelection) ? (
                       <label>
                         Room Available
                     <select
@@ -446,7 +446,7 @@ class WorkshopForm extends Component {
                 {this.props.edit && this.props.data.robinEventId && (
                   <div className="medium-8 cell ">
                     <button
-                      onClick={this.handleRobinUpdate}
+                      onClick={this.props.handleRobinUpdate}
                       className="button custom-button"
                     >
                       Update Robin reservation
