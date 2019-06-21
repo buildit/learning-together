@@ -19,7 +19,7 @@ class LoginComponent extends Component {
   }
   onClickLoginHandler(e) {
     this.setState({ isLoading: true })
-    login(this.loginCallback)
+    login()
   }
 
 
