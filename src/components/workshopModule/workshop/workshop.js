@@ -7,8 +7,11 @@ import Moment from "react-moment";
 import { NavbarComponent } from "../../navbarModule";
 import { Link, Redirect, NavLink } from "react-router-dom";
 import { UserContext } from "../../../UserProvider";
-import { createAndSendEmail, addCalEvent } from '../../../services/outlookUtils';
-import ReactPlayer from 'react-player';
+import {
+  createAndSendEmail,
+  addCalEvent
+} from "../../../services/outlookUtils";
+import ReactPlayer from "react-player";
 
 import {
   getWorkshop,
@@ -41,7 +44,6 @@ export default class Workshop extends Component {
     this.unenrollWorshopCallback = this.unenrollWorshopCallback.bind(this);
     this.messageCallback = this.messageCallback.bind(this);
     this.cancelWorkshopCallback = this.cancelWorkshopCallback.bind(this);
-  
   }
 
   componentDidMount() {
@@ -51,7 +53,6 @@ export default class Workshop extends Component {
       userId: Number(userId)
     });
     getWorkshop(this.props.computedMatch.params.id, this.getWorkshopCallback);
-    
   }
   componentDidUpdate(prevProps) {
     if (
@@ -80,13 +81,15 @@ export default class Workshop extends Component {
     }
   }
   enrollWorshopCallback(response) {
-    const { event } = this.state
+    const { event } = this.state;
     if (response.status === 200) {
-      const subject = `You have enrolled for ${event.title}!`
-      const content = `You have enrolled for the class ${event.title}! Hope your experience is engaging and fun!`
-      const recipients = [{ username: localStorage.getItem('username') }]
-      createAndSendEmail({ subject, content, recipients })
-      addCalEvent(event)
+      const subject = `You have enrolled for ${event.title}!`;
+      const content = `You have enrolled for the class ${
+        event.title
+      }! Hope your experience is engaging and fun!`;
+      const recipients = [{ username: localStorage.getItem("username") }];
+      createAndSendEmail({ subject, content, recipients });
+      addCalEvent(event);
       this.setState({
         showMessage: true,
         message: `You have successfully enrolled in ${event.title}!`,
@@ -131,10 +134,10 @@ export default class Workshop extends Component {
         showMessage: true,
         message: "You have cancelled your workshop"
       });
-      const { name, instructor, workshopAttendees } = this.state
-      const subject = `${this.state.workshop.name} is cancelled`
-      const content = `Your class ${name} has been cancelled. Please contact the instructor ${instructor}`
-      createAndSendEmail({ subject, content, recipients: workshopAttendees })
+      const { name, instructor, workshopAttendees } = this.state;
+      const subject = `${this.state.workshop.name} is cancelled`;
+      const content = `Your class ${name} has been cancelled. Please contact the instructor ${instructor}`;
+      createAndSendEmail({ subject, content, recipients: workshopAttendees });
     } else {
       //show error message
       this.setState({
@@ -165,8 +168,8 @@ export default class Workshop extends Component {
     const attendees =
       this.state.workshop.workshopAttendees.length > 0
         ? `There are ${
-        this.state.workshop.workshopAttendees.length
-        } attendee(s).`
+            this.state.workshop.workshopAttendees.length
+          } attendee(s).`
         : "";
     this.setState({
       confirmCancel: true,
@@ -199,12 +202,20 @@ export default class Workshop extends Component {
   addCalEvent(event) {
     this.setState({
       addedToCal: true
-    })
-    addCalEvent(event)
+    });
+    addCalEvent(event);
   }
 
   render() {
-    const { workshop, userId, educatorId, showMessage, message, addedToCal, event} = this.state;
+    const {
+      workshop,
+      userId,
+      educatorId,
+      showMessage,
+      message,
+      addedToCal,
+      event
+    } = this.state;
     const attendees = workshop.workshopAttendees
       ? workshop.workshopAttendees
       : [];
@@ -218,8 +229,8 @@ export default class Workshop extends Component {
       : { firstName: "", lastName: "" };
     const isEducator = userId === educatorId;
     const isAttending = workshop && filterAttendees(userId, workshop);
-    const isVideo = this.state.workshop.archiveLink ? true : false ;
-    
+    const isVideo = this.state.workshop.archiveLink ? true : false;
+
     return (
       <Fragment>
         {showMessage && (
@@ -251,8 +262,8 @@ export default class Workshop extends Component {
                     alt="Instructor"
                   />
                 ) : (
-                    <FontAwesomeIcon icon="user-circle" size="3x" />
-                  )}
+                  <FontAwesomeIcon icon="user-circle" size="3x" />
+                )}
               </div>
 
               <p>
@@ -262,10 +273,6 @@ export default class Workshop extends Component {
                     {instructor.firstName} {instructor.lastName}
                   </NavLink>
                 </strong>
-                <br />
-                <a href="true" className="email">
-                  Contact Instructor
-                </a>
               </p>
             </div>
 
@@ -299,21 +306,25 @@ export default class Workshop extends Component {
                   UNENROLL
                 </button>
               ) : (
-                    <button
-                      type="button"
-                      className="button flex-child-auto large-flex-child-shrink"
-                      onClick={this.onClickEnroll.bind(this)}
-                    >
-                      ENROLL
+                <button
+                  type="button"
+                  className="button flex-child-auto large-flex-child-shrink"
+                  onClick={this.onClickEnroll.bind(this)}
+                >
+                  ENROLL
                 </button>
-                  )}
+              )}
             </div>
           </article>
         </section>
         <section className="grid-container">
           <article className="grid-x grid-margin-x">
             <div className="cell small-12 medium-8 small-order-2 medium-order-1">
-              {isVideo ? <ReactPlayer url='https://youtu.be/iKhsC1Q4LDs'> </ReactPlayer> : <JumbotronComponent image={cover} />}
+              {isVideo ? (
+                <ReactPlayer url="https://youtu.be/iKhsC1Q4LDs"> </ReactPlayer>
+              ) : (
+                <JumbotronComponent image={cover} />
+              )}
               <h4>
                 <b>Details</b>
               </h4>
@@ -349,11 +360,15 @@ export default class Workshop extends Component {
                     <Moment format="LT">{workshop.end}</Moment>
                     <br />
                   </p>
-                  {
-                    addedToCal
-                      ? <div><em>Added to Calendar!</em></div>
-                      : <button onClick={this.addCalEvent.bind(this, event)}>Add to Calendar</button>
-                  }
+                  {addedToCal ? (
+                    <div>
+                      <em>Added to Calendar!</em>
+                    </div>
+                  ) : (
+                    <button onClick={this.addCalEvent.bind(this, event)}>
+                      Add to Calendar
+                    </button>
+                  )}
                 </div>
               </article>
               <article className="detail">
