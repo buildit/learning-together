@@ -65,8 +65,8 @@ export default class EditUserProfileComponent extends React.Component {
         profilePicture: response.data.imageUrl,
         firstName,
         lastName,
-        selectedLocation: location,
-        selectedRole: role
+        selectedLocation: { value: location.id, name: location.name },
+        selectedRole: { value: role.id, name: role.name }
       })
     }
     else {
@@ -253,7 +253,7 @@ export default class EditUserProfileComponent extends React.Component {
                   <div className="small-12 columns">
                     <label>Location:</label>
                     <Select
-                      placeholder={selectedLocation.name}
+                      placeholder={selectedLocation.name ? selectedLocation.name : ''}
                       onChange={this.onClickLocationHandler.bind(this)}
                       options={this.state.locations}
                       isSearchable={false}
@@ -268,7 +268,7 @@ export default class EditUserProfileComponent extends React.Component {
                   <div className="small-12 columns">
                     <label>Role:</label>
                     <Select
-                      placeholder={selectedRole.name}
+                      placeholder={selectedRole.name ? selectedRole.name : ''}
                       onChange={this.onClickRoleHandler.bind(this)}
                       options={this.state.roles}
                       isSearchable={false}
