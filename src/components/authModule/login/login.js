@@ -35,7 +35,6 @@ class LoginComponent extends Component {
       backgroundImage: `url(${img})`
     }
     const { error, isLoading } = this.state
-    console.log(error)
     return (
       <div className="welcome">
         <section className="cover-frame" style={style}>
