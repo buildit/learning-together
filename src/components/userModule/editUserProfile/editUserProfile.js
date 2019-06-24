@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { Redirect } from 'react-router-dom'
 import Select from 'react-select'
-import { editUser, getUser, getLocationList, getRolesList, getDisciplineList } from '../../../api'
+import { editUser, getUser, getLocationList, getRolesList, getInterestsList } from '../../../api'
 import { MessageComponent } from '../../messageModule'
 import { ImageUploaderComponent } from '../../userModule'
 import { NavbarComponent } from '../../navbarModule'
@@ -16,9 +16,12 @@ export default class EditUserProfileComponent extends React.Component {
       lastName: '',
       selectedLocation: {},
       selectedRole: {},
-      selectedDisciplines: {},
-      disciplines: [],
+      selectedInterests: {},
+      interests: [],
       profilePicture: 'images/cover/profile-placeholder.png',
+      firstNameError: false,
+      lastNameError: false,
+      interestsError: false,
       locationError: false,
       roleError: false,
       editProfileSuccess: false,
@@ -28,7 +31,7 @@ export default class EditUserProfileComponent extends React.Component {
       roles: [],
       rolesFetchError: false,
       locationFetchError: false,
-      disciplineFetchError: false,
+      interestsFetchError: false,
       user: ''
     }
     this.messageCallback = this.messageCallback.bind(this)
@@ -37,13 +40,13 @@ export default class EditUserProfileComponent extends React.Component {
     this.getLocationCallback = this.getLocationCallback.bind(this)
     this.getRolesCallback = this.getRolesCallback.bind(this)
     this.getUserCallback = this.getUserCallback.bind(this)
-    this.getDisciplineCallback = this.getDisciplineCallback.bind(this)
+    this.getInterestsCallback = this.getInterestsCallback.bind(this)
   }
 
   componentDidMount() {
     getLocationList(this.getLocationCallback)
     getRolesList(this.getRolesCallback)
-    getDisciplineList(this.getDisciplineCallback)
+    getInterestsList(this.getInterestsCallback)
     getUser(this.props.computedMatch.params.id, this.getUserCallback)
   }
 
@@ -56,8 +59,14 @@ export default class EditUserProfileComponent extends React.Component {
   }
   getUserCallback(response) {
     if (response.status === 200) {
+      const { firstName, lastName, location, role } = response.data
       this.setState({
-        user: response.data, profilePicture: response.data.imageUrl
+        user: response.data,
+        profilePicture: response.data.imageUrl,
+        firstName,
+        lastName,
+        selectedLocation: { value: location.id, name: location.name },
+        selectedRole: { value: role.id, name: role.name }
       })
     }
     else {
@@ -97,15 +106,15 @@ export default class EditUserProfileComponent extends React.Component {
       this.setState({ rolesFetchError: true, roles: rolesArray })
     }
   }
-  getDisciplineCallback(response) {
+  getInterestsCallback(response) {
     if (response.status === 200) {
-      let disciplineArray = []
+      let interestsArray = []
       response.data.forEach(instance => {
-        disciplineArray.push({ value: instance.id, label: instance.name })
+        interestsArray.push({ value: instance.id, label: instance.name })
       })
-      this.setState({ disciplines: disciplineArray })
+      this.setState({ interests: interestsArray })
     } else {
-      const disciplineArray = [{ label: "Professional Development", value: 104 },
+      const interestsArray = [{ label: "Professional Development", value: 104 },
       { label: "Emotional Intelligence", value: 105 },
       { label: "Teamwork", value: 106 },
       { label: "Leadership", value: 107 },
@@ -116,7 +125,7 @@ export default class EditUserProfileComponent extends React.Component {
       { label: "Artificial Intelligence", value: 112 },
       { label: "Technology", value: 113 },
       ]
-      this.setState({ disciplineFetchError: true, disciplines: disciplineArray })
+      this.setState({ interestsFetchError: true, interests: interestsArray })
     }
   }
   toggleLocationError() {
@@ -125,8 +134,8 @@ export default class EditUserProfileComponent extends React.Component {
   toggleRolesError() {
     this.setState({ rolesFetchError: !this.state.rolesFetchError })
   }
-  toggleDisciplineError() {
-    this.setState({ disciplineFetchError: !this.state.disciplineFetchError })
+  toggleInterestsError() {
+    this.setState({ interestsFetchError: !this.state.interestsFetchError })
   }
   toggleEditError() {
     this.setState({ editProfileError: !this.state.editProfileError, })
@@ -165,32 +174,32 @@ export default class EditUserProfileComponent extends React.Component {
   onClickRoleHandler(selectedRole) {
     this.setState({ selectedRole })
   }
-  onClickDisciplinesHandler(selectedDisciplines) {
-    this.setState({ selectedDisciplines })
+  onClickInterestsHandler(selectedInterests) {
+    this.setState({ selectedInterests })
   }
   setProfilePicture(picturePath) {
     this.setState({ profilePicture: picturePath })
   }
-  getDisciplinePayload(disciplines) {
+  getInterestsPayload(interests) {
     const result = []
-    disciplines.forEach(discipline => {
-      result.push({ id: discipline.value })
+    interests.forEach(interest => {
+      result.push({ id: interest.value })
     })
     return result
   }
   submitHandler(e) {
     e.preventDefault()
-    const { firstName, lastName, selectedLocation, selectedRole, profilePicture, user, selectedDisciplines } = this.state
+    const { firstName, lastName, selectedLocation, selectedRole, profilePicture, user, selectedInterests } = this.state
     let isValidatedFirstName = this.validateName(firstName)
     let isValidatedLastName = this.validateName(lastName)
     let isValidatedLocation = this.validateArray(selectedLocation)
     let isValidatedRole = this.validateArray(selectedRole)
-    let isValidatedDisciplines = this.validateArray(selectedDisciplines)
-    if (!isValidatedFirstName || !isValidatedLastName || !isValidatedLocation || !isValidatedRole || !isValidatedDisciplines) {
-      this.setState({ firstNameError: !isValidatedFirstName, lastNameError: !isValidatedLastName, locationError: !isValidatedLocation, roleError: !isValidatedRole, interestsError: !isValidatedDisciplines })
+    let isValidatedInterests = this.validateArray(selectedInterests)
+    if (!isValidatedFirstName || !isValidatedLastName || !isValidatedLocation || !isValidatedRole || !isValidatedInterests) {
+      this.setState({ firstNameError: !isValidatedFirstName, lastNameError: !isValidatedLastName, locationError: !isValidatedLocation, roleError: !isValidatedRole, interestsError: !isValidatedInterests })
       return
     }
-    const disciplinesPayload = this.getDisciplinePayload(selectedDisciplines)
+    const interestsPayload = this.getInterestsPayload(selectedInterests)
     editUser({
       firstName,
       lastName,
@@ -198,14 +207,14 @@ export default class EditUserProfileComponent extends React.Component {
       roleId: selectedRole.value,
       password: null,
       imageUrl: profilePicture,
-      userInterests: disciplinesPayload,
+      userInterests: interestsPayload,
       username: user.username
     }, user.id, this.messageCallback)
 
   }
 
   render() {
-    const { name, firstNameError, lastNameError, locationError, roleError, redirect, locationFetchError, disciplineFetchError, rolesFetchError, profilePicture, editProfileSuccess, editProfileError, user } = this.state
+    const { firstName, lastName, firstNameError, selectedLocation, selectedRole, lastNameError, locationError, roleError, interestsError, redirect, locationFetchError, interestsFetchError, rolesFetchError, profilePicture, editProfileSuccess, editProfileError, user } = this.state
     const baseUrl = "https://bettertogether.buildit.systems/";
     const profile = profilePicture !== "" ? `${baseUrl}${profilePicture}` : "";
     return (
@@ -225,7 +234,7 @@ export default class EditUserProfileComponent extends React.Component {
                 <div className='row'>
                   <div className="small-12 columns">
                     <label>First Name:</label>
-                    <input type="text" placeholder="Please Enter Your First Name" name='firstName' autoComplete='first name' value={name} onChange={this.onChangeHandler.bind(this)} />
+                    <input type="text" placeholder="Please Enter Your First Name" name='firstName' autoComplete='first name' value={firstName} onChange={this.onChangeHandler.bind(this)} />
                     {firstNameError && (
                       <span className='edit-error'>Please type in a valid name.</span>
                     )}
@@ -234,7 +243,7 @@ export default class EditUserProfileComponent extends React.Component {
                 <div className='row'>
                   <div className="small-12 columns">
                     <label>Last Name:</label>
-                    <input type="text" placeholder="Please Enter Your Last Name" name='lastName' autoComplete='last name' value={name} onChange={this.onChangeHandler.bind(this)} />
+                    <input type="text" placeholder="Please Enter Your Last Name" name='lastName' autoComplete='last name' value={lastName} onChange={this.onChangeHandler.bind(this)} />
                     {lastNameError && (
                       <span className='edit-error'>Please type in a valid name.</span>
                     )}
@@ -244,7 +253,7 @@ export default class EditUserProfileComponent extends React.Component {
                   <div className="small-12 columns">
                     <label>Location:</label>
                     <Select
-                      placeholder='Please select a location'
+                      placeholder={selectedLocation.name ? selectedLocation.name : ''}
                       onChange={this.onClickLocationHandler.bind(this)}
                       options={this.state.locations}
                       isSearchable={false}
@@ -259,11 +268,11 @@ export default class EditUserProfileComponent extends React.Component {
                   <div className="small-12 columns">
                     <label>Role:</label>
                     <Select
-                      placeholder='Please select a role'
+                      placeholder={selectedRole.name ? selectedRole.name : ''}
                       onChange={this.onClickRoleHandler.bind(this)}
                       options={this.state.roles}
                       isSearchable={false}
-                      name='roles'
+                      name='role'
                     />
                     {roleError && (
                       <span className='edit-error'>Please select a role.</span>
@@ -274,16 +283,16 @@ export default class EditUserProfileComponent extends React.Component {
                   <div className="small-12 columns">
                     <label>What are your interests?</label>
                     <Select
-                      defaultValue={[]}
+                      defaultValue='Please select your interests'
                       isMulti
                       name="interests"
-                      options={this.state.disciplines}
+                      options={this.state.interests}
                       className="basic-multi-select"
                       classNamePrefix="select"
-                      onChange={this.onClickDisciplinesHandler.bind(this)}
+                      onChange={this.onClickInterestsHandler.bind(this)}
                       isSearchable={false}
                     />
-                    {roleError && (
+                    {interestsError && (
                       <span className='edit-error'>Please select your interests.</span>
                     )}
                   </div>
@@ -301,7 +310,7 @@ export default class EditUserProfileComponent extends React.Component {
         {editProfileError && (<MessageComponent message='Your profile was unsuccesfully changed. Please Try again later.' callback={this.toggleEditError.bind(this)} />)}
         {locationFetchError && (<MessageComponent message='Locations service is down. Please try again later' callback={this.toggleLocationError.bind(this)} />)}
         {rolesFetchError && (<MessageComponent message='Roles service is down. Please try again later' callback={this.toggleRolesError.bind(this)} />)}
-        {disciplineFetchError && (<MessageComponent message='Roles service is down. Please try again later' callback={this.toggleDisciplineError.bind(this)} />)}
+        {interestsFetchError && (<MessageComponent message='Roles service is down. Please try again later' callback={this.toggleInterestsError.bind(this)} />)}
         {redirect && (<Redirect to={`/user/${user.id}`} />)}
       </Fragment>
     )

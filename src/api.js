@@ -324,7 +324,7 @@ export function uploadImage(data, callback) {
     });
 }
 
-export const getDisciplineList = callback => {
+export const getInterestsList = callback => {
   tokenCheck();
   return axios
     .request({

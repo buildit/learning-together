@@ -26,7 +26,7 @@ describe('>>> EditUserProfile Component', () => {
     it('should trigger editUser api call if values are valid', () => {
       const wrapper = shallow(<Component {...props} />)
       const e = { preventDefault: jest.fn() }
-      wrapper.setState({ 'firstName': 'Jimmy', 'lastName': 'M', 'selectedLocation': { id: 1 }, 'selectedRole': { id: 2 }, 'password': null, 'imageUrl': '/blops', 'selectedDisciplines': [{ value: 1, label: 'blops' }], 'username': 'fuzzy.bear@wipro.com' })
+      wrapper.setState({ 'firstName': 'Jimmy', 'lastName': 'M', 'selectedLocation': { id: 1 }, 'selectedRole': { id: 2 }, 'password': null, 'imageUrl': '/blops', 'selectedInterests': [{ value: 1, label: 'blops' }], 'username': 'fuzzy.bear@wipro.com' })
       wrapper.instance().submitHandler(e)
       expect(editUser).toBeCalled()
     })
@@ -35,7 +35,14 @@ describe('>>> EditUserProfile Component', () => {
   describe('getUserCallback', () => {
     it('should set state profile picture and user', () => {
       const wrapper = shallow(<Component {...props} />)
-      const response = { data: { imageUrl: '/blop' }, status: 200 }
+      const response = {
+        data: {
+          imageUrl: '/blop',
+          location: { id: 1, name: 'Brooklyn' },
+          role: { id: 1, name: 'Frontend' }
+        },
+        status: 200
+      }
       wrapper.instance().getUserCallback(response)
       expect(wrapper.state('user')).toEqual(response.data)
       expect(wrapper.state('profilePicture')).toEqual('/blop')
@@ -57,12 +64,12 @@ describe('>>> EditUserProfile Component', () => {
       expect(wrapper.state('roles')).toEqual([{ value: 1, label: 'bob' }, { value: 2, label: 'bobette' }])
     })
   })
-  describe('getDisciplineCallback', () => {
+  describe('getInterestsCallback', () => {
     const myProps = { computedMatch: { params: { id: 1 } } }
     const wrapper = shallow(<Component {...myProps} />)
     const response = { data: [{ id: 1, name: 'bob' }, { id: 2, name: 'bobette' }], status: 200 }
-    wrapper.instance().getDisciplineCallback(response)
-    expect(wrapper.state('disciplines')).toEqual([{ value: 1, label: 'bob' }, { value: 2, label: 'bobette' }])
+    wrapper.instance().getInterestsCallback(response)
+    expect(wrapper.state('interests')).toEqual([{ value: 1, label: 'bob' }, { value: 2, label: 'bobette' }])
 
   })
   describe('toggleLocationError', () => {
@@ -84,13 +91,13 @@ describe('>>> EditUserProfile Component', () => {
     })
   })
 
-  describe('toggleDisciplineError', () => {
-    it('should change disciplineFetchError to opposite value', () => {
+  describe('toggleInterestsError', () => {
+    it('should change interestsFetchError to opposite value', () => {
       const wrapper = shallow(<Component {...props} />)
-      wrapper.instance().toggleDisciplineError()
-      expect(wrapper.state('disciplineFetchError')).toEqual(true)
-      wrapper.instance().toggleDisciplineError()
-      expect(wrapper.state('disciplineFetchError')).toEqual(false)
+      wrapper.instance().toggleInterestsError()
+      expect(wrapper.state('interestsFetchError')).toEqual(true)
+      wrapper.instance().toggleInterestsError()
+      expect(wrapper.state('interestsFetchError')).toEqual(false)
     })
   })
   describe('toggleEditError', () => {
@@ -167,11 +174,11 @@ describe('>>> EditUserProfile Component', () => {
       expect(wrapper.state('selectedRole')).toEqual('turkey')
     })
   })
-  describe('onClickDisciplinesHandler', () => {
-    it('should set selectedDisciplines state to input', () => {
+  describe('onClickInterestssHandler', () => {
+    it('should set selectedInterests state to input', () => {
       const wrapper = shallow(<Component {...props} />)
-      wrapper.instance().onClickDisciplinesHandler('turkey')
-      expect(wrapper.state('selectedDisciplines')).toEqual('turkey')
+      wrapper.instance().onClickInterestsHandler('turkey')
+      expect(wrapper.state('selectedInterests')).toEqual('turkey')
     })
   })
   describe('setProfilePicture', () => {
@@ -181,10 +188,10 @@ describe('>>> EditUserProfile Component', () => {
       expect(wrapper.state('profilePicture')).toEqual('/blop')
     })
   })
-  describe('getDisciplinePayload', () => {
-    it('should return array of mapped discipline values to id', () => {
+  describe('getInterestsPayload', () => {
+    it('should return array of mapped interests values to id', () => {
       const wrapper = shallow(<Component {...props} />)
-      expect(wrapper.instance().getDisciplinePayload([{ value: 1 }, { value: 2 }, { value: 3 }])).toEqual([{ id: 1 }, { id: 2 }, { id: 3 }])
+      expect(wrapper.instance().getInterestsPayload([{ value: 1 }, { value: 2 }, { value: 3 }])).toEqual([{ id: 1 }, { id: 2 }, { id: 3 }])
     })
   })
 })
