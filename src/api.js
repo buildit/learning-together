@@ -1,6 +1,5 @@
 import axios from "axios";
 import config from "./services/config";
-import { login } from "./services/msalUtils";
 import jwtDecode from "jwt-decode";
 import moment from "moment";
 const apiBase = "https://bettertogether.buildit.systems";
