@@ -11,27 +11,31 @@ class LoginComponent extends Component {
     this.state = {
       user: {},
       error: null,
-      isError: false,
       events: null,
       userAgentApplication: {},
       isLoading: false
     }
   }
+  componentDidMount() {
+    this.setState({ error: sessionStorage.getItem('errorMsg') })
+  }
   onClickLoginHandler(e) {
     this.setState({ isLoading: true })
+    sessionStorage.removeItem('errorMsg')
     login()
   }
-
+  messageCallback(response) {
+    sessionStorage.removeItem('errorMsg')
+    this.setState({ error: null })
+  }
 
   render() {
     const img = `${process.env.PUBLIC_URL}/images/cover/default.jpg`
     const style = {
       backgroundImage: `url(${img})`
     }
-    const { isError, error, isLoading } = this.state
-    if (isError) {
-      return <MessageComponent message={error} callback={this.messageCallback.bind(this)} />
-    }
+    const { error, isLoading } = this.state
+    console.log(error)
     return (
       <div className="welcome">
         <section className="cover-frame" style={style}>
@@ -44,6 +48,11 @@ class LoginComponent extends Component {
         </section>
         {
           isLoading && (<LoadingComponent />)
+        }
+        {
+          error && (
+            <MessageComponent message={error} callback={e => this.messageCallback.call(this)} />
+          )
         }
       </div>
     )
