@@ -22,6 +22,7 @@ export function tokenCheck() {
       console.log(err);
       localStorage.clear()
       sessionStorage.clear()
+      sessionStorage.setItem('errorMsg', 'Please try to login again. You may not have access to the application. If the issue persists, please contact an admin.')
       window.location.reload()
     });
 }

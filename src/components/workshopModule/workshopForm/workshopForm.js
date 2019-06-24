@@ -37,7 +37,7 @@ class WorkshopForm extends Component {
       roomSelected: props.data ? true : "",
       robinEventId: props.data ? props.data.robinEventId : null,
       updateRobinReservation: false,
-      disableRoomSelection: true
+      hideButton: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -275,7 +275,7 @@ class WorkshopForm extends Component {
         <option
           key={room.id}
           value={room.id}
-          disabled={this.props.edit && this.state.disableRoomSelection}
+          disabled={this.props.edit && this.props.disableRoomSelection}
         >
           {room.room}
         </option>
@@ -447,16 +447,21 @@ class WorkshopForm extends Component {
                     ""
                   )}
                 </div>
-                {this.props.edit && this.props.data.robinEventId && (
-                  <div className="medium-8 cell ">
-                    <button
-                      onClick={this.props.handleRobinUpdate}
-                      className="button custom-button"
-                    >
-                      Update Robin reservation
-                    </button>
-                  </div>
-                )}
+                {this.props.edit &&
+                  this.props.data.robinEventId &&
+                  !this.state.hideButton && (
+                    <div className="medium-8 cell ">
+                      <button
+                        onClick={e => {
+                          this.setState({ hideButton: !this.state.hideButton });
+                          this.props.handleRobinUpdate(e);
+                        }}
+                        className="button custom-button"
+                      >
+                        Update Robin reservation
+                      </button>
+                    </div>
+                  )}
                 <div className="medium-8 cell">
                   <label>
                     WebEx Link
