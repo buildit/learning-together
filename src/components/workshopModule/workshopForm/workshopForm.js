@@ -5,7 +5,7 @@ import { Link, Redirect } from "react-router-dom";
 import { getCategoryList, getLocationList, findRoom } from "../../../api.js";
 import { MessageComponent } from "../../messageModule";
 import { ImageUploaderComponent } from "../../userModule";
-import { NavbarComponent } from '../../navbarModule'
+import { NavbarComponent } from "../../navbarModule";
 import TimePicker from "rc-time-picker";
 import "rc-time-picker/assets/index.css";
 import "react-dates/initialize";
@@ -48,13 +48,13 @@ class WorkshopForm extends Component {
     this.redirectCallback = this.redirectCallback.bind(this);
     this.setWorkshopPicture = this.setWorkshopPicture.bind(this);
     this.getLocationCallBack = this.getLocationCallBack.bind(this);
-    this.getCategoryListCallback = this.getCategoryListCallback.bind(this)
+    this.getCategoryListCallback = this.getCategoryListCallback.bind(this);
     this.handleRobinUpdate = this.handleRobinUpdate.bind(this);
   }
 
   //TODO Handle Error
   componentDidMount() {
-    getCategoryList(this.getCategoryListCallback)
+    getCategoryList(this.getCategoryListCallback);
     getLocationList(this.getLocationCallBack);
   }
 
@@ -144,7 +144,7 @@ class WorkshopForm extends Component {
   }
   getCategoryListCallback(response) {
     if (response.status === 200) {
-      this.setState({ categoryList: response.data })
+      this.setState({ categoryList: response.data });
     } else {
       console.log(response);
     }
@@ -309,8 +309,8 @@ class WorkshopForm extends Component {
               <div className="grid-x grid-padding-x align-center">
                 <div className="medium-8 cell">
                   <label>
-                    Workshop Name
-                  <input
+                    Workshop Name - Required
+                    <input
                       type="text"
                       name="name"
                       value={this.state.name}
@@ -322,8 +322,8 @@ class WorkshopForm extends Component {
                 </div>
                 <div className="medium-8 cell">
                   <label>
-                    Category
-                  <select
+                    Category - Required
+                    <select
                       name="categorySelected"
                       value={this.state.categorySelected}
                       onChange={this.handleChange}
@@ -334,10 +334,12 @@ class WorkshopForm extends Component {
                 </div>
                 <div className="medium-8 cell">
                   <label>Workshop Image:</label>
-                  <ImageUploaderComponent setPicture={this.setWorkshopPicture} />
+                  <ImageUploaderComponent
+                    setPicture={this.setWorkshopPicture}
+                  />
                 </div>
                 <div className="medium-8 cell">
-                  <label>Date</label>
+                  <label>Date - Required</label>
                   <SingleDatePicker
                     date={this.state.startDate}
                     onDateChange={this.onDateChange}
@@ -348,7 +350,7 @@ class WorkshopForm extends Component {
                   <span className="error">{this.state.error.date}</span>
                 </div>
                 <div className="medium-8 cell">
-                  <label>Start time</label>
+                  <label>Start time - Required</label>
                   {
                     <TimePicker
                       className="custom-time-picker"
@@ -369,7 +371,7 @@ class WorkshopForm extends Component {
                   <span className="error">{this.state.error.time}</span>
                 </div>
                 <div className="medium-8 cell">
-                  <label>End time</label>
+                  <label>End time - Required</label>
                   <TimePicker
                     className="custom-time-picker"
                     name="endTime"
@@ -388,8 +390,8 @@ class WorkshopForm extends Component {
                 </div>
                 <div className="medium-8 cell">
                   <label>
-                    Location
-                  <select
+                    Location - Required
+                    <select
                       name="location"
                       value={this.state.location}
                       onChange={this.handleChange}
@@ -405,7 +407,9 @@ class WorkshopForm extends Component {
                         ? "Reserved Room"
                         : "Room"}
                       <input
-                        readOnly={this.props.edit && this.props.data.robinEventId}
+                        readOnly={
+                          this.props.edit && this.props.data.robinEventId
+                        }
                         name="room"
                         value={this.state.room}
                         onChange={this.handleChange}
@@ -418,30 +422,30 @@ class WorkshopForm extends Component {
                 )}
                 <div className="medium-8 cell">
                   {availableRooms.length > 0 &&
-                    this.state.location === 1 &&
-                    (!this.props.edit || !this.props.disableRoomSelection) ? (
-                      <label>
-                        Room Available
-                    <select
-                          name="roomSelected"
-                          value={this.state.roomSelected}
-                          onChange={this.handleChange}
-                        >
-                          <option value="">Select a room</option>
-                          {availableRooms}
-                        </select>
-                      </label>
-                    ) : (
-                      ""
-                    )}
+                  this.state.location === 1 &&
+                  (!this.props.edit || !this.props.disableRoomSelection) ? (
+                    <label>
+                      Room Available
+                      <select
+                        name="roomSelected"
+                        value={this.state.roomSelected}
+                        onChange={this.handleChange}
+                      >
+                        <option value="">Select a room</option>
+                        {availableRooms}
+                      </select>
+                    </label>
+                  ) : (
+                    ""
+                  )}
                   {availableRooms.length === 0 &&
-                    this.state.location === 1 &&
-                    this.state.startTime !== null &&
-                    this.state.endTime !== null ? (
-                      <p>All rooms are taken at this time. Pick another time.</p>
-                    ) : (
-                      ""
-                    )}
+                  this.state.location === 1 &&
+                  this.state.startTime !== null &&
+                  this.state.endTime !== null ? (
+                    <p>All rooms are taken at this time. Pick another time.</p>
+                  ) : (
+                    ""
+                  )}
                 </div>
                 {this.props.edit && this.props.data.robinEventId && (
                   <div className="medium-8 cell ">
@@ -450,13 +454,13 @@ class WorkshopForm extends Component {
                       className="button custom-button"
                     >
                       Update Robin reservation
-                  </button>
+                    </button>
                   </div>
                 )}
                 <div className="medium-8 cell">
                   <label>
                     WebEx Link
-                  <input
+                    <input
                       name="link"
                       value={this.state.link}
                       onChange={this.handleChange}
@@ -469,7 +473,7 @@ class WorkshopForm extends Component {
                 <div className="medium-8 cell">
                   <label>
                     Description
-                  <textarea
+                    <textarea
                       name="description"
                       type="text"
                       onChange={this.handleChange}
@@ -477,20 +481,24 @@ class WorkshopForm extends Component {
                       placeholder="workshop description"
                       style={{ height: "100px" }}
                     />
-                    <span className="error">{this.state.error.description}</span>
+                    <span className="error">
+                      {this.state.error.description}
+                    </span>
                   </label>
                 </div>
                 <div className="medium-8 cell">
                   <label>
                     Archive
-                  <input
+                    <input
                       name="archiveLink"
                       value={this.state.archiveLink}
                       onChange={this.handleChange}
                       type="url"
                       placeholder="archive link"
                     />
-                    <span className="error">{this.state.error.archiveLink}</span>
+                    <span className="error">
+                      {this.state.error.archiveLink}
+                    </span>
                   </label>
                 </div>
               </div>
@@ -511,7 +519,9 @@ class WorkshopForm extends Component {
             />
           )}
 
-          {this.state.redirect && <Redirect to={`/workshop/${this.props.id}`} />}
+          {this.state.redirect && (
+            <Redirect to={`/workshop/${this.props.id}`} />
+          )}
         </div>
       </Fragment>
     );

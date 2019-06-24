@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { WorkshopFormComponent } from "../workshopForm";
 import { createWorkshop, bookRoom } from "../../../api.js";
-import { MessageComponent } from "../../messageModule";
+import { MessageComponent, LoadingComponent } from "../../messageModule";
 import { Redirect } from "react-router-dom";
 
 class workshopCreate extends Component {
@@ -12,7 +12,8 @@ class workshopCreate extends Component {
       success: false,
       workshopId: null,
       error: false,
-      redirect: false
+      redirect: false,
+      isCreating: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.bookWorkshop = this.bookWorkshop.bind(this);
@@ -47,12 +48,13 @@ class workshopCreate extends Component {
   }
 
   async handleSubmit(data) {
+    this.setState({ isCreating: true });
     if (data.locationId === 1 && data.roomSelected) {
       try {
         let response = await this.reserveRoom(data);
         data.robinEventId = response;
         let workshopId = await this.bookWorkshop(data);
-        this.setState({ success: true, workshopId });
+        this.setState({ isCreating: false, success: true, workshopId });
       } catch (error) {
         //HANDLE ERROR
         this.setState({ error: true });
@@ -60,7 +62,7 @@ class workshopCreate extends Component {
     } else {
       try {
         let workshopId = await this.bookWorkshop(data);
-        this.setState({ success: true, workshopId });
+        this.setState({ isCreating: false, success: true, workshopId });
       } catch (error) {
         //HANDLE ERROR
         this.setState({ error: true });
@@ -69,6 +71,7 @@ class workshopCreate extends Component {
   }
 
   render() {
+
     return (
       <Fragment>
         <WorkshopFormComponent
@@ -82,6 +85,7 @@ class workshopCreate extends Component {
             callback={this.redirectCallback}
           />
         )}
+        {this.state.isCreating  && (<LoadingComponent />)}
         {this.state.redirect && <Redirect to={`/`} />}
       </Fragment>
     );
