@@ -12,7 +12,6 @@ class LoginComponent extends Component {
       user: {},
       error: null,
       events: null,
-      userAgentApplication: {},
       isLoading: false
     }
   }

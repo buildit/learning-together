@@ -1,5 +1,5 @@
 import config from './config'
-import { signIn } from '../api'
+import { signIn, tokenCheck } from '../api'
 
 export function login() {
   window.msal.loginPopup(config.scopes)
@@ -24,6 +24,7 @@ export function signInCallback(response) {
   if (response.status === 200) {
     localStorage.setItem('username', response.data.username)
     localStorage.setItem('userId', response.data.id)
+    tokenCheck()
     window.location.reload()
   }
   else {
