@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import moment from "moment";
 import { SingleDatePicker } from "react-dates";
 import { Link, Redirect } from "react-router-dom";
 import { getCategoryList, getLocationList, findRoom } from "../../../api.js";
 import { MessageComponent } from "../../messageModule";
 import { ImageUploaderComponent } from "../../userModule";
+import { NavbarComponent } from "../../navbarModule";
 import TimePicker from "rc-time-picker";
 import "rc-time-picker/assets/index.css";
 import "react-dates/initialize";
@@ -34,8 +35,11 @@ class WorkshopForm extends Component {
       room: props.data ? props.data.room : "",
       roomAvailable: props.data ? [] : [],
       roomSelected: props.data ? true : "",
-      robinEventId: props.data ? props.data.robinEventId : null
+      robinEventId: props.data ? props.data.robinEventId : null,
+      updateRobinReservation: false,
+      disableRoomSelection: true
     };
+
     this.handleChange = this.handleChange.bind(this);
     this.onDateChange = this.onDateChange.bind(this);
     this.onFocusChange = this.onFocusChange.bind(this);
@@ -45,6 +49,7 @@ class WorkshopForm extends Component {
     this.setWorkshopPicture = this.setWorkshopPicture.bind(this);
     this.getLocationCallBack = this.getLocationCallBack.bind(this);
     this.getCategoryListCallback = this.getCategoryListCallback.bind(this);
+    this.handleRobinUpdate = this.handleRobinUpdate.bind(this);
   }
 
   //TODO Handle Error
@@ -177,6 +182,15 @@ class WorkshopForm extends Component {
     this.setState({ calendarFocused: focused });
   }
 
+  handleRobinUpdate(e) {
+    e.preventDefault();
+
+    this.setState({
+      disableRoomSelection: false,
+      updateRobinReservation: true
+    });
+  }
+
   validateForm() {
     let invalid = false;
     let errors = {};
@@ -224,7 +238,8 @@ class WorkshopForm extends Component {
         imageUrl: this.state.workshopPicture,
         room: this.state.room,
         robinEventId: this.state.robinEventId,
-        roomSelected: this.state.roomSelected
+        roomSelected: this.state.roomSelected,
+        updateRobinReservation: this.state.updateRobinReservation
       };
       this.props.handleSubmit(data);
     }
@@ -239,16 +254,7 @@ class WorkshopForm extends Component {
   }
 
   render() {
-    const {
-      categoryList,
-      locationList,
-      roomAvailable,
-      location,
-      startTime,
-      endTime
-    } = this.state;
-
-    const categories = categoryList.map(category => {
+    const categories = this.state.categoryList.map(category => {
       return (
         <option key={category.id} value={category.id}>
           {category.name}
@@ -256,7 +262,7 @@ class WorkshopForm extends Component {
       );
     });
 
-    const locations = locationList.map(location => {
+    const locations = this.state.locationList.map(location => {
       return (
         <option key={location.id} value={location.id}>
           {location.name}
@@ -264,12 +270,12 @@ class WorkshopForm extends Component {
       );
     });
 
-    const availableRooms = roomAvailable.map(room => {
+    const availableRooms = this.state.roomAvailable.map(room => {
       return (
         <option
           key={room.id}
           value={room.id}
-          disabled={this.props.edit && this.props.disableRoomSelection}
+          disabled={this.props.edit && this.state.disableRoomSelection}
         >
           {room.room}
         </option>
@@ -277,231 +283,247 @@ class WorkshopForm extends Component {
     });
 
     if (
-      location === 1 &&
-      startTime !== null &&
-      endTime !== null &&
-      roomAvailable.length === 0
+      this.state.location === 1 &&
+      this.state.startTime !== null &&
+      this.state.endTime !== null &&
+      this.state.roomAvailable.length === 0
     ) {
-      findRoom(startTime, endTime).then(response => {
+      findRoom(this.state.startTime, this.state.endTime).then(response => {
         if (response.length === 0) {
-          return;
+          console.log("No rooms available - Pick another time");
         } else {
-          this.setState({ roomAvailable: response, roomSelected: "" });
+          this.setState({
+            roomAvailable: response,
+            roomSelected: ""
+          });
         }
       });
     }
 
     return (
-      <div className="workshop-form first-container">
-        <form onSubmit={this.handleSubmit}>
-          <div className="grid-container">
-            <div className="grid-x grid-padding-x align-center">
-              <div className="medium-8 cell">
-                <label>
-                  Workshop Name - Required
-                  <input
-                    type="text"
-                    name="name"
-                    value={this.state.name}
-                    onChange={this.handleChange}
-                    autoFocus
+      <Fragment>
+        <NavbarComponent />
+        <div className="workshop-form first-container">
+          <form onSubmit={this.handleSubmit}>
+            <div className="grid-container">
+              <div className="grid-x grid-padding-x align-center">
+                <div className="medium-8 cell">
+                  <label>
+                    Workshop Name - Required
+                    <input
+                      type="text"
+                      name="name"
+                      value={this.state.name}
+                      onChange={this.handleChange}
+                      autoFocus
+                    />
+                    <span className="error">{this.state.error.name}</span>
+                  </label>
+                </div>
+                <div className="medium-8 cell">
+                  <label>
+                    Category - Required
+                    <select
+                      name="categorySelected"
+                      value={this.state.categorySelected}
+                      onChange={this.handleChange}
+                    >
+                      {categories}
+                    </select>
+                  </label>
+                </div>
+                <div className="medium-8 cell">
+                  <label>Workshop Image:</label>
+                  <ImageUploaderComponent
+                    setPicture={this.setWorkshopPicture}
                   />
-                  <span className="error">{this.state.error.name}</span>
-                </label>
-              </div>
-              <div className="medium-8 cell">
-                <label>
-                  Category - Required
-                  <select
-                    name="categorySelected"
-                    value={this.state.categorySelected}
-                    onChange={this.handleChange}
-                  >
-                    {categories}
-                  </select>
-                </label>
-              </div>
-              <div className="medium-8 cell">
-                <label>Workshop Image:</label>
-                <ImageUploaderComponent setPicture={this.setWorkshopPicture} />
-              </div>
-              <div className="medium-8 cell">
-                <label>Date - Required </label>
-                <SingleDatePicker
-                  date={this.state.startDate}
-                  onDateChange={this.onDateChange}
-                  focused={this.state.calendarFocused}
-                  onFocusChange={this.onFocusChange}
-                  numberOfMonths={1}
-                />
-                <span className="error">{this.state.error.date}</span>
-              </div>
-              <div className="medium-8 cell">
-                <label>Start time - Required</label>
-                {
+                </div>
+                <div className="medium-8 cell">
+                  <label>Date - Required</label>
+                  <SingleDatePicker
+                    date={this.state.startDate}
+                    onDateChange={this.onDateChange}
+                    focused={this.state.calendarFocused}
+                    onFocusChange={this.onFocusChange}
+                    numberOfMonths={1}
+                  />
+                  <span className="error">{this.state.error.date}</span>
+                </div>
+                <div className="medium-8 cell">
+                  <label>Start time - Required</label>
+                  {
+                    <TimePicker
+                      className="custom-time-picker"
+                      name="startTime"
+                      defaultValue={null}
+                      showSecond={false}
+                      minuteStep={15}
+                      allowEmpty={false}
+                      use12Hours={true}
+                      focusOnOpen={true}
+                      onChange={(value, name = "startTime") =>
+                        this.handleChange(value, name)
+                      }
+                      value={this.state.startTime}
+                    />
+                  }
+
+                  <span className="error">{this.state.error.time}</span>
+                </div>
+                <div className="medium-8 cell">
+                  <label>End time - Required</label>
                   <TimePicker
                     className="custom-time-picker"
-                    name="startTime"
+                    name="endTime"
                     defaultValue={null}
                     showSecond={false}
                     minuteStep={15}
                     allowEmpty={false}
                     use12Hours={true}
                     focusOnOpen={true}
-                    onChange={(value, name = "startTime") =>
-                      this.handleChange(value, name)
-                    }
-                    value={this.state.startTime}
+                    onChange={(value, name = "endTime") => {
+                      this.handleChange(value, name);
+                    }}
+                    value={this.state.endTime}
                   />
-                }
-
-                <span className="error">{this.state.error.time}</span>
-              </div>
-              <div className="medium-8 cell">
-                <label>End time - Required</label>
-                <TimePicker
-                  className="custom-time-picker"
-                  name="endTime"
-                  defaultValue={null}
-                  showSecond={false}
-                  minuteStep={15}
-                  allowEmpty={false}
-                  use12Hours={true}
-                  focusOnOpen={true}
-                  onChange={(value, name = "endTime") => {
-                    this.handleChange(value, name);
-                  }}
-                  value={this.state.endTime}
-                />
-                <span className="error">{this.state.error.time}</span>
-              </div>
-              <div className="medium-8 cell">
-                <label>
-                  Location - Required
-                  <select
-                    name="location"
-                    value={this.state.location}
-                    onChange={this.handleChange}
-                  >
-                    {locations}
-                  </select>
-                </label>
-              </div>
-              {(this.state.location > 1 || this.props.edit) && (
+                  <span className="error">{this.state.error.time}</span>
+                </div>
                 <div className="medium-8 cell">
                   <label>
-                    {this.props.edit && this.props.data.robinEventId
-                      ? "Reserved Room"
-                      : "Room"}
-                    <input
-                      readOnly={this.props.edit && this.props.data.robinEventId}
-                      name="room"
-                      value={this.state.room}
-                      onChange={this.handleChange}
-                      type="text"
-                      placeholder="room"
-                    />
-                    <span className="error">{this.state.error.room}</span>
-                  </label>
-                </div>
-              )}
-              <div className="medium-8 cell">
-                {availableRooms.length > 0 &&
-                this.state.location === 1 &&
-                (!this.props.edit || !this.props.disableRoomSelection) ? (
-                  <label>
-                    Room Available
+                    Location - Required
                     <select
-                      name="roomSelected"
-                      value={this.state.roomSelected}
+                      name="location"
+                      value={this.state.location}
                       onChange={this.handleChange}
                     >
-                      <option value="">Select a room</option>
-                      {availableRooms}
+                      {locations}
                     </select>
                   </label>
-                ) : (
-                  ""
-                )}
-                {availableRooms.length === 0 &&
-                this.state.location === 1 &&
-                this.state.startTime !== null &&
-                this.state.endTime !== null ? (
-                  <p>All rooms are taken at this time. Pick another time.</p>
-                ) : (
-                  ""
-                )}
-              </div>
-              {this.props.edit && this.props.data.robinEventId && (
-                <div className="medium-8 cell ">
-                  <button
-                    onClick={this.props.handleRobinUpdate}
-                    className="button custom-button"
-                  >
-                    Update Robin reservation
-                  </button>
                 </div>
-              )}
-              <div className="medium-8 cell">
-                <label>
-                  WebEx Link
-                  <input
-                    name="link"
-                    value={this.state.link}
-                    onChange={this.handleChange}
-                    type="url"
-                    placeholder="webex link"
-                  />
-                  <span className="error">{this.state.error.link}</span>
-                </label>
-              </div>
-              <div className="medium-8 cell">
-                <label>
-                  Description
-                  <textarea
-                    name="description"
-                    type="text"
-                    onChange={this.handleChange}
-                    value={this.state.description}
-                    placeholder="workshop description"
-                    style={{ height: "100px" }}
-                  />
-                  <span className="error">{this.state.error.description}</span>
-                </label>
-              </div>
-              <div className="medium-8 cell">
-                <label>
-                  Archive
-                  <input
-                    name="archiveLink"
-                    value={this.state.archiveLink}
-                    onChange={this.handleChange}
-                    type="url"
-                    placeholder="archive link"
-                  />
-                  <span className="error">{this.state.error.archiveLink}</span>
-                </label>
+                {(this.state.location > 1 || this.props.edit) && (
+                  <div className="medium-8 cell">
+                    <label>
+                      {this.props.edit && this.props.data.robinEventId
+                        ? "Reserved Room"
+                        : "Room"}
+                      <input
+                        readOnly={
+                          this.props.edit && this.props.data.robinEventId
+                        }
+                        name="room"
+                        value={this.state.room}
+                        onChange={this.handleChange}
+                        type="text"
+                        placeholder="room"
+                      />
+                      <span className="error">{this.state.error.room}</span>
+                    </label>
+                  </div>
+                )}
+                <div className="medium-8 cell">
+                  {availableRooms.length > 0 &&
+                  this.state.location === 1 &&
+                  (!this.props.edit || !this.props.disableRoomSelection) ? (
+                    <label>
+                      Room Available
+                      <select
+                        name="roomSelected"
+                        value={this.state.roomSelected}
+                        onChange={this.handleChange}
+                      >
+                        <option value="">Select a room</option>
+                        {availableRooms}
+                      </select>
+                    </label>
+                  ) : (
+                    ""
+                  )}
+                  {availableRooms.length === 0 &&
+                  this.state.location === 1 &&
+                  this.state.startTime !== null &&
+                  this.state.endTime !== null ? (
+                    <p>All rooms are taken at this time. Pick another time.</p>
+                  ) : (
+                    ""
+                  )}
+                </div>
+                {this.props.edit && this.props.data.robinEventId && (
+                  <div className="medium-8 cell ">
+                    <button
+                      onClick={this.props.handleRobinUpdate}
+                      className="button custom-button"
+                    >
+                      Update Robin reservation
+                    </button>
+                  </div>
+                )}
+                <div className="medium-8 cell">
+                  <label>
+                    WebEx Link
+                    <input
+                      name="link"
+                      value={this.state.link}
+                      onChange={this.handleChange}
+                      type="url"
+                      placeholder="webex link"
+                    />
+                    <span className="error">{this.state.error.link}</span>
+                  </label>
+                </div>
+                <div className="medium-8 cell">
+                  <label>
+                    Description
+                    <textarea
+                      name="description"
+                      type="text"
+                      onChange={this.handleChange}
+                      value={this.state.description}
+                      placeholder="workshop description"
+                      style={{ height: "100px" }}
+                    />
+                    <span className="error">
+                      {this.state.error.description}
+                    </span>
+                  </label>
+                </div>
+                <div className="medium-8 cell">
+                  <label>
+                    Archive
+                    <input
+                      name="archiveLink"
+                      value={this.state.archiveLink}
+                      onChange={this.handleChange}
+                      type="url"
+                      placeholder="archive link"
+                    />
+                    <span className="error">
+                      {this.state.error.archiveLink}
+                    </span>
+                  </label>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="grid-x align-center">
-            <button className="button custom-button submit" type="submit">
-              {this.props.edit ? "Update" : "Create"}
-            </button>
-            <Link to="/" className="hollow button secondary custom-button">
-              Cancel{" "}
-            </Link>
-          </div>
-        </form>
-        {this.props.success && (
-          <MessageComponent
-            message="Success"
-            callback={this.redirectCallback}
-          />
-        )}
+            <div className="grid-x align-center">
+              <button className="button custom-button submit" type="submit">
+                {this.props.edit ? "Update" : "Create"}
+              </button>
+              <Link to="/" className="hollow button secondary custom-button">
+                Cancel{" "}
+              </Link>
+            </div>
+          </form>
+          {this.props.success && (
+            <MessageComponent
+              message="Success"
+              callback={this.redirectCallback}
+            />
+          )}
 
-        {this.state.redirect && <Redirect to={`/workshop/${this.props.id}`} />}
-      </div>
+          {this.state.redirect && (
+            <Redirect to={`/workshop/${this.props.id}`} />
+          )}
+        </div>
+      </Fragment>
     );
   }
 }
