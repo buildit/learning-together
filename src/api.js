@@ -19,7 +19,6 @@ export function tokenCheck() {
       }
     })
     .catch(err => {
-      debugger
       console.log(err);
       localStorage.clear()
       sessionStorage.clear()
