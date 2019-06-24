@@ -5,7 +5,7 @@ import jwtDecode from "jwt-decode";
 import moment from "moment";
 const apiBase = "https://bettertogether.buildit.systems";
 
-let getHeader = function() {
+let getHeader = function () {
   return {
     Authorization: `Bearer ${sessionStorage.getItem("msal.idtoken")}`,
     "Content-Type": "application/json"
@@ -21,7 +21,9 @@ export function tokenCheck() {
     })
     .catch(err => {
       console.log(err);
-      login();
+      localStorage.clear()
+      sessionStorage.clear()
+      window.location.reload()
     });
 }
 
@@ -255,11 +257,11 @@ export const editUser = (
       data,
       headers: getHeader()
     })
-    .then(function(response) {
+    .then(function (response) {
       // handle success
       return callback(response);
     })
-    .catch(function(error) {
+    .catch(function (error) {
       // handle error
       if (error.response.status === 401) {
         localStorage.clear();
@@ -280,11 +282,11 @@ export const createWorkshop = async data => {
         data,
         headers: getHeader()
       })
-      .then(function(response) {
+      .then(function (response) {
         // handle success
         return response;
       })
-      .catch(function(error) {
+      .catch(function (error) {
         // handle error
         if (error.response.status === 401) {
           localStorage.clear();
@@ -423,11 +425,11 @@ export const updateWorkshop = async (id, data) => {
         data,
         headers: getHeader()
       })
-      .then(function(response) {
+      .then(function (response) {
         // handle success
         return response;
       })
-      .catch(function(error) {
+      .catch(function (error) {
         // handle error
         console.log(error);
       });
@@ -449,13 +451,13 @@ export const fetchWorkshops = () => {
       method: "get",
       headers: getHeader()
     })
-    .then(function(response) {
+    .then(function (response) {
       // handle success
       if (response.data && response.status === 200) {
         return response.data;
       }
     })
-    .catch(function(error) {
+    .catch(function (error) {
       // handle error
       if (error.response.status === 401) {
         localStorage.clear();
@@ -474,10 +476,10 @@ export const cancelWorkshop = (id, callback) => {
       method: "delete",
       headers: getHeader()
     })
-    .then(function(response) {
+    .then(function (response) {
       callback(response);
     })
-    .catch(function(error) {
+    .catch(function (error) {
       if (error.response.status === 401) {
         localStorage.clear();
         sessionStorage.clear();
