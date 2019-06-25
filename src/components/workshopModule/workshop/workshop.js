@@ -7,8 +7,11 @@ import Moment from "react-moment";
 import { NavbarComponent } from "../../navbarModule";
 import { Link, Redirect, NavLink } from "react-router-dom";
 import { UserContext } from "../../../UserProvider";
-import { createAndSendEmail, addCalEvent } from '../../../services/outlookUtils';
-import ReactPlayer from 'react-player';
+import {
+  createAndSendEmail,
+  addCalEvent
+} from "../../../services/outlookUtils";
+import ReactPlayer from "react-player";
 
 import {
   getWorkshop,
@@ -53,7 +56,6 @@ export default class Workshop extends Component {
       userId: Number(userId)
     });
     getWorkshop(this.props.computedMatch.params.id, this.getWorkshopCallback);
-
   }
   componentDidUpdate(prevProps) {
     if (
@@ -82,7 +84,7 @@ export default class Workshop extends Component {
     }
   }
   enrollWorshopCallback(response) {
-    const { event } = this.state
+    const { event } = this.state;
     if (response.status === 200) {
       const subject = `You have enrolled for ${event.title}!`
       const content = `You have enrolled for the class ${event.title}! Hope your experience is engaging and fun!`
@@ -291,10 +293,6 @@ export default class Workshop extends Component {
                     {instructor.firstName} {instructor.lastName}
                   </NavLink>
                 </strong>
-                <br />
-                <a href="true" className="email">
-                  Contact Instructor
-                </a>
               </p>
             </div>
 
@@ -342,7 +340,11 @@ export default class Workshop extends Component {
         <section className="grid-container">
           <article className="grid-x grid-margin-x">
             <div className="cell small-12 medium-8 small-order-2 medium-order-1">
-              {isVideo ? <ReactPlayer url='https://youtu.be/iKhsC1Q4LDs'> </ReactPlayer> : <JumbotronComponent image={cover} />}
+              {isVideo ? (
+                <ReactPlayer url="https://youtu.be/iKhsC1Q4LDs"> </ReactPlayer>
+              ) : (
+                  <JumbotronComponent image={cover} />
+                )}
               <h4>
                 <b>Details</b>
               </h4>
