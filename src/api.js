@@ -480,6 +480,7 @@ export const cancelWorkshop = (id, callback) => {
       callback(response);
     })
     .catch(function (error) {
+      console.log('ERRRROR', error)
       if (error.response.status === 401) {
         localStorage.clear();
         sessionStorage.clear();

@@ -41,7 +41,9 @@ export default class Workshop extends Component {
     this.unenrollWorshopCallback = this.unenrollWorshopCallback.bind(this);
     this.messageCallback = this.messageCallback.bind(this);
     this.cancelWorkshopCallback = this.cancelWorkshopCallback.bind(this);
-  
+    this.outlookCalCallback = this.outlookCalCallback.bind(this);
+    this.outlookMailCallback = this.outlookMailCallback.bind(this)
+
   }
 
   componentDidMount() {
@@ -51,7 +53,7 @@ export default class Workshop extends Component {
       userId: Number(userId)
     });
     getWorkshop(this.props.computedMatch.params.id, this.getWorkshopCallback);
-    
+
   }
   componentDidUpdate(prevProps) {
     if (
@@ -86,11 +88,10 @@ export default class Workshop extends Component {
       const content = `You have enrolled for the class ${event.title}! Hope your experience is engaging and fun!`
       const recipients = [{ username: localStorage.getItem('username') }]
       createAndSendEmail({ subject, content, recipients })
-      addCalEvent(event)
+      addCalEvent(event, this.outlookCalCallback)
       this.setState({
         showMessage: true,
-        message: `You have successfully enrolled in ${event.title}!`,
-        addCalEvent: true
+        message: `You have successfully enrolled in ${event.title}!`
       });
       getWorkshop(this.props.computedMatch.params.id, this.getWorkshopCallback);
     } else {
@@ -101,6 +102,37 @@ export default class Workshop extends Component {
       });
     }
   }
+  outlookCalCallback(response) {
+    if (response.statusCode === 404) {
+      this.setState({
+        showMessage: true,
+        message: 'Outlook calendar is down. Please note the time and date for your workshop.'
+      })
+    } else {
+      this.setState({
+        addedToCal: true,
+        showMessage: true,
+        message: 'Workshop has been successfully added to your Calendar'
+      })
+    }
+  }
+
+  outlookMailCallback(response) {
+    if (response.statusCode === 404) {
+      this.setState({
+        showMessage: true,
+        message: 'Outlook is down. Please notify your attendees of the cancelled workshop.'
+
+      })
+    } else {
+      this.setState({
+        addedToCal: true,
+        showMessage: true,
+        message: 'We\'ve sent an email letting your attendees know you have cancelled the workshop'
+      })
+    }
+  }
+
   unenrollWorshopCallback(response) {
     if (response.status === 200) {
       this.setState({
@@ -120,7 +152,7 @@ export default class Workshop extends Component {
     this.setState({
       showMessage: false,
       message: "",
-      redirect: true
+      // redirect: true
     });
   }
 
@@ -131,10 +163,10 @@ export default class Workshop extends Component {
         showMessage: true,
         message: "You have cancelled your workshop"
       });
-      const { name, instructor, workshopAttendees } = this.state
       const subject = `${this.state.workshop.name} is cancelled`
+      const { name, instructor, workshopAttendees } = this.state
       const content = `Your class ${name} has been cancelled. Please contact the instructor ${instructor}`
-      createAndSendEmail({ subject, content, recipients: workshopAttendees })
+      createAndSendEmail({ subject, content, recipients: workshopAttendees }, this.outlookMailCallback)
     } else {
       //show error message
       this.setState({
@@ -196,15 +228,12 @@ export default class Workshop extends Component {
     return imagePath;
   }
 
-  addCalEvent(event) {
-    this.setState({
-      addedToCal: true
-    })
-    addCalEvent(event)
+  addCalEvent(event, outlookCalCallback) {
+    addCalEvent(event, outlookCalCallback)
   }
 
   render() {
-    const { workshop, userId, educatorId, showMessage, message, addedToCal, event} = this.state;
+    const { workshop, userId, educatorId, showMessage, message, addedToCal, event } = this.state;
     const attendees = workshop.workshopAttendees
       ? workshop.workshopAttendees
       : [];
@@ -218,8 +247,8 @@ export default class Workshop extends Component {
       : { firstName: "", lastName: "" };
     const isEducator = userId === educatorId;
     const isAttending = workshop && filterAttendees(userId, workshop);
-    const isVideo = this.state.workshop.archiveLink ? true : false ;
-    
+    const isVideo = this.state.workshop.archiveLink ? true : false;
+
     return (
       <Fragment>
         {showMessage && (
@@ -352,7 +381,7 @@ export default class Workshop extends Component {
                   {
                     addedToCal
                       ? <div><em>Added to Calendar!</em></div>
-                      : <button onClick={this.addCalEvent.bind(this, event)}>Add to Calendar</button>
+                      : <button className="addToCal" onClick={this.addCalEvent.bind(this, event, this.outlookCalCallback)}>Add to Calendar</button>
                   }
                 </div>
               </article>

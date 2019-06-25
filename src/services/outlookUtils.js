@@ -6,7 +6,7 @@ function getTimezoneName() {
   return jstz.determine().name()
 }
 
-export async function addCalEvent(event) {
+export async function addCalEvent(event, outlookCalCallback) {
   try {
     const accessToken = await window.msal.acquireTokenSilent(config.scopes)
     const body = {
@@ -28,14 +28,15 @@ export async function addCalEvent(event) {
         displayName: event.location
       }
     }
-    await addEvent(accessToken, body)
+    let response = await addEvent(accessToken, body)
+    return response
   }
   catch (err) {
-    console.log('err', err)
+    outlookCalCallback(err)
   }
 }
 
-export async function createAndSendEmail({ subject, content, recipients }) {
+export async function createAndSendEmail({ subject, content, recipients }, outlookMailCallback) {
   try {
     const message = { Message: {} }
     const recipientsArray = []
@@ -61,7 +62,8 @@ export async function createAndSendEmail({ subject, content, recipients }) {
     return sendEmail({ accessToken, message, saveToSentItems })
   }
   catch (err) {
-    console.log(err)
+    console.log('err', err)
+    // outlookMailCallback(err)
   }
 }
 
