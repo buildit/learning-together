@@ -20,10 +20,9 @@ class LoginComponent extends Component {
   }
   onClickLoginHandler(e) {
     this.setState({ isLoading: true })
-    sessionStorage.removeItem('errorMsg')
     login()
   }
-  messageCallback(response) {
+  messageCallback() {
     sessionStorage.removeItem('errorMsg')
     this.setState({ error: null })
   }
