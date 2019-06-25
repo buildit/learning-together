@@ -65,8 +65,14 @@ export default class EditUserProfileComponent extends React.Component {
         profilePicture: response.data.imageUrl,
         firstName,
         lastName,
-        selectedLocation: { value: location.id, name: location.name },
-        selectedRole: { value: role.id, name: role.name }
+        selectedLocation: {
+          value: location ? location.id : null,
+          name: location ? location.name : null
+        },
+        selectedRole: {
+          value: role ? role.id : null,
+          name: role ? role.name : null
+        }
       })
     }
     else {
