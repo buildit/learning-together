@@ -148,7 +148,13 @@ class WorkshopForm extends Component {
       this.setState({ locationList: response.data });
     } else {
       this.setState({
-        error: "Location service is down at this time. Please try again later."
+        error: "Location service is down at this time. Please try again later.",
+        locationList: [{ name: "London", id: 2 },
+        { name: "Brooklyn", id: 1 },
+        { name: "Edinburgh", id: 3 },
+        { name: "Dublin", id: 4 },
+        { name: "Denver", id: 5 },
+        { name: "Dallas", id: 6 }]
       });
     }
   }
@@ -156,9 +162,14 @@ class WorkshopForm extends Component {
     if (response.status === 200) {
       this.setState({ categoryList: response.data });
     } else {
-      console.log(response);
       this.setState({
-        error: "Category service is down at this time. Please try again later."
+        error: "Category service is down at this time. Please try again later.",
+        categoryList: [{ name: "London", id: 2 },
+        { name: "Brooklyn", id: 1 },
+        { name: "Edinburgh", id: 3 },
+        { name: "Dublin", id: 4 },
+        { name: "Denver", id: 5 },
+        { name: "Dallas", id: 6 }]
       });
     }
   }
