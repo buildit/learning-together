@@ -37,7 +37,8 @@ export default class Workshop extends Component {
       confirmCancel: false,
       redirect: false,
       addedToCal: false,
-      eventToCal: {}
+      eventToCal: {},
+      cancelWorkshop: false
     };
     this.getWorkshopCallback = this.getWorkshopCallback.bind(this);
     this.enrollWorshopCallback = this.enrollWorshopCallback.bind(this);
@@ -45,8 +46,7 @@ export default class Workshop extends Component {
     this.messageCallback = this.messageCallback.bind(this);
     this.cancelWorkshopCallback = this.cancelWorkshopCallback.bind(this);
     this.outlookCalCallback = this.outlookCalCallback.bind(this);
-    this.outlookMailCallback = this.outlookMailCallback.bind(this)
-
+    this.outlookMailCallback = this.outlookMailCallback.bind(this);
   }
 
   componentDidMount() {
@@ -86,11 +86,13 @@ export default class Workshop extends Component {
   enrollWorshopCallback(response) {
     const { event } = this.state;
     if (response.status === 200) {
-      const subject = `You have enrolled for ${event.title}!`
-      const content = `You have enrolled for the class ${event.title}! Hope your experience is engaging and fun!`
-      const recipients = [{ username: localStorage.getItem('username') }]
-      createAndSendEmail({ subject, content, recipients })
-      addCalEvent(event, this.outlookCalCallback)
+      const subject = `You have enrolled for ${event.title}!`;
+      const content = `You have enrolled for the class ${
+        event.title
+      }! Hope your experience is engaging and fun!`;
+      const recipients = [{ username: localStorage.getItem("username") }];
+      createAndSendEmail({ subject, content, recipients });
+      addCalEvent(event, this.outlookCalCallback);
       this.setState({
         showMessage: true,
         message: `You have successfully enrolled in ${event.title}!`
@@ -108,14 +110,15 @@ export default class Workshop extends Component {
     if (response.statusCode === 404) {
       this.setState({
         showMessage: true,
-        message: 'Outlook calendar is down. Please note the time and date for your workshop.'
-      })
+        message:
+          "Outlook calendar is down. Please note the time and date for your workshop."
+      });
     } else {
       this.setState({
         addedToCal: true,
         showMessage: true,
-        message: 'Workshop has been successfully added to your Calendar'
-      })
+        message: "Workshop has been successfully added to your Calendar"
+      });
     }
   }
 
@@ -123,15 +126,16 @@ export default class Workshop extends Component {
     if (response.statusCode === 404) {
       this.setState({
         showMessage: true,
-        message: 'Outlook is down. Please notify your attendees of the cancelled workshop.'
-
-      })
+        message:
+          "Outlook is down. Please notify your attendees of the cancelled workshop."
+      });
     } else {
       this.setState({
         addedToCal: true,
         showMessage: true,
-        message: 'We\'ve sent an email letting your attendees know you have cancelled the workshop'
-      })
+        message:
+          "We've sent an email letting your attendees know you have cancelled the workshop"
+      });
     }
   }
 
@@ -154,7 +158,7 @@ export default class Workshop extends Component {
     this.setState({
       showMessage: false,
       message: "",
-      // redirect: true
+      redirect: true
     });
   }
 
@@ -163,12 +167,16 @@ export default class Workshop extends Component {
       this.setState({
         confirmCancel: false,
         showMessage: true,
+        cancelWorkshop: true,
         message: "You have cancelled your workshop"
       });
-      const subject = `${this.state.workshop.name} is cancelled`
-      const { name, instructor, workshopAttendees } = this.state
-      const content = `Your class ${name} has been cancelled. Please contact the instructor ${instructor}`
-      createAndSendEmail({ subject, content, recipients: workshopAttendees }, this.outlookMailCallback)
+      const subject = `${this.state.workshop.name} is cancelled`;
+      const { name, instructor, workshopAttendees } = this.state;
+      const content = `Your class ${name} has been cancelled. Please contact the instructor ${instructor}`;
+      createAndSendEmail(
+        { subject, content, recipients: workshopAttendees },
+        this.outlookMailCallback
+      );
     } else {
       //show error message
       this.setState({
@@ -181,7 +189,9 @@ export default class Workshop extends Component {
 
   renderRedirect() {
     if (this.state.redirect) {
-      return <Redirect to={`/user/${this.state.userId}`} />;
+      return this.state.cancelWorkshop ? (
+        <Redirect to={`/user/${this.state.userId}`} />
+      ) : null;
     }
   }
 
@@ -199,8 +209,8 @@ export default class Workshop extends Component {
     const attendees =
       this.state.workshop.workshopAttendees.length > 0
         ? `There are ${
-        this.state.workshop.workshopAttendees.length
-        } attendee(s).`
+            this.state.workshop.workshopAttendees.length
+          } attendee(s).`
         : "";
     this.setState({
       confirmCancel: true,
@@ -231,11 +241,19 @@ export default class Workshop extends Component {
   }
 
   addCalEvent(event, outlookCalCallback) {
-    addCalEvent(event, outlookCalCallback)
+    addCalEvent(event, outlookCalCallback);
   }
 
   render() {
-    const { workshop, userId, educatorId, showMessage, message, addedToCal, event } = this.state;
+    const {
+      workshop,
+      userId,
+      educatorId,
+      showMessage,
+      message,
+      addedToCal,
+      event
+    } = this.state;
     const attendees = workshop.workshopAttendees
       ? workshop.workshopAttendees
       : [];
@@ -282,8 +300,8 @@ export default class Workshop extends Component {
                     alt="Instructor"
                   />
                 ) : (
-                    <FontAwesomeIcon icon="user-circle" size="3x" />
-                  )}
+                  <FontAwesomeIcon icon="user-circle" size="3x" />
+                )}
               </div>
 
               <p>
@@ -326,14 +344,14 @@ export default class Workshop extends Component {
                   UNENROLL
                 </button>
               ) : (
-                    <button
-                      type="button"
-                      className="button flex-child-auto large-flex-child-shrink"
-                      onClick={this.onClickEnroll.bind(this)}
-                    >
-                      ENROLL
+                <button
+                  type="button"
+                  className="button flex-child-auto large-flex-child-shrink"
+                  onClick={this.onClickEnroll.bind(this)}
+                >
+                  ENROLL
                 </button>
-                  )}
+              )}
             </div>
           </article>
         </section>
@@ -343,8 +361,8 @@ export default class Workshop extends Component {
               {isVideo ? (
                 <ReactPlayer url="https://youtu.be/iKhsC1Q4LDs"> </ReactPlayer>
               ) : (
-                  <JumbotronComponent image={cover} />
-                )}
+                <JumbotronComponent image={cover} />
+              )}
               <h4>
                 <b>Details</b>
               </h4>
@@ -380,11 +398,22 @@ export default class Workshop extends Component {
                     <Moment format="LT">{workshop.end}</Moment>
                     <br />
                   </p>
-                  {
-                    addedToCal
-                      ? <div><em>Added to Calendar!</em></div>
-                      : <button className="addToCal" onClick={this.addCalEvent.bind(this, event, this.outlookCalCallback)}>Add to Calendar</button>
-                  }
+                  {addedToCal ? (
+                    <div>
+                      <em>Added to Calendar!</em>
+                    </div>
+                  ) : (
+                    <button
+                      className="addToCal"
+                      onClick={this.addCalEvent.bind(
+                        this,
+                        event,
+                        this.outlookCalCallback
+                      )}
+                    >
+                      Add to Calendar
+                    </button>
+                  )}
                 </div>
               </article>
               <article className="detail">
