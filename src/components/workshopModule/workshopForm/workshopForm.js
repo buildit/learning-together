@@ -148,7 +148,13 @@ class WorkshopForm extends Component {
       this.setState({ locationList: response.data });
     } else {
       this.setState({
-        error: "Location service is down at this time. Please try again later."
+        error: "Location service is down at this time. Please try again later.",
+        locationList: [{ name: "London", id: 2 },
+        { name: "Brooklyn", id: 1 },
+        { name: "Edinburgh", id: 3 },
+        { name: "Dublin", id: 4 },
+        { name: "Denver", id: 5 },
+        { name: "Dallas", id: 6 }]
       });
     }
   }
@@ -156,9 +162,14 @@ class WorkshopForm extends Component {
     if (response.status === 200) {
       this.setState({ categoryList: response.data });
     } else {
-      console.log(response);
       this.setState({
-        error: "Category service is down at this time. Please try again later."
+        error: "Category service is down at this time. Please try again later.",
+        categoryList: [{ name: "London", id: 2 },
+        { name: "Brooklyn", id: 1 },
+        { name: "Edinburgh", id: 3 },
+        { name: "Dublin", id: 4 },
+        { name: "Denver", id: 5 },
+        { name: "Dallas", id: 6 }]
       });
     }
   }
@@ -438,28 +449,28 @@ class WorkshopForm extends Component {
                 )}
                 <div className="medium-8 cell">
                   {availableRooms.length > 0 &&
-                  this.state.location === 1 &&
-                  (!this.props.edit || !this.props.disableRoomSelection) ? (
-                    <label>
-                      Room Available
+                    this.state.location === 1 &&
+                    (!this.props.edit || !this.props.disableRoomSelection) ? (
+                      <label>
+                        Room Available
                       <select
-                        name="roomSelected"
-                        value={this.state.roomSelected}
-                        onChange={this.handleChange}
-                      >
-                        <option value="">Select a room</option>
-                        {availableRooms}
-                      </select>
-                    </label>
-                  ) : null}
+                          name="roomSelected"
+                          value={this.state.roomSelected}
+                          onChange={this.handleChange}
+                        >
+                          <option value="">Select a room</option>
+                          {availableRooms}
+                        </select>
+                      </label>
+                    ) : null}
                   {availableRooms.length === 0 &&
-                  this.state.location === 1 &&
-                  this.state.startTime !== null &&
-                  this.state.endTime !== null ? (
-                    <p>All rooms are taken at this time. Pick another time.</p>
-                  ) : (
-                    ""
-                  )}
+                    this.state.location === 1 &&
+                    this.state.startTime !== null &&
+                    this.state.endTime !== null ? (
+                      <p>All rooms are taken at this time. Pick another time.</p>
+                    ) : (
+                      ""
+                    )}
                 </div>
                 {this.props.edit &&
                   this.props.data.robinEventId &&
@@ -533,7 +544,7 @@ class WorkshopForm extends Component {
           </form>
           {this.props.success && (
             <MessageComponent
-              message="Success"
+              message="You have succesfully created your workshop!"
               callback={this.redirectCallback}
             />
           )}
