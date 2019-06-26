@@ -438,28 +438,28 @@ class WorkshopForm extends Component {
                 )}
                 <div className="medium-8 cell">
                   {availableRooms.length > 0 &&
-                  this.state.location === 1 &&
-                  (!this.props.edit || !this.props.disableRoomSelection) ? (
-                    <label>
-                      Room Available
+                    this.state.location === 1 &&
+                    (!this.props.edit || !this.props.disableRoomSelection) ? (
+                      <label>
+                        Room Available
                       <select
-                        name="roomSelected"
-                        value={this.state.roomSelected}
-                        onChange={this.handleChange}
-                      >
-                        <option value="">Select a room</option>
-                        {availableRooms}
-                      </select>
-                    </label>
-                  ) : null}
+                          name="roomSelected"
+                          value={this.state.roomSelected}
+                          onChange={this.handleChange}
+                        >
+                          <option value="">Select a room</option>
+                          {availableRooms}
+                        </select>
+                      </label>
+                    ) : null}
                   {availableRooms.length === 0 &&
-                  this.state.location === 1 &&
-                  this.state.startTime !== null &&
-                  this.state.endTime !== null ? (
-                    <p>All rooms are taken at this time. Pick another time.</p>
-                  ) : (
-                    ""
-                  )}
+                    this.state.location === 1 &&
+                    this.state.startTime !== null &&
+                    this.state.endTime !== null ? (
+                      <p>All rooms are taken at this time. Pick another time.</p>
+                    ) : (
+                      ""
+                    )}
                 </div>
                 {this.props.edit &&
                   this.props.data.robinEventId &&
@@ -533,7 +533,7 @@ class WorkshopForm extends Component {
           </form>
           {this.props.success && (
             <MessageComponent
-              message="Success"
+              message="You have succesfully created your workshop!"
               callback={this.redirectCallback}
             />
           )}
