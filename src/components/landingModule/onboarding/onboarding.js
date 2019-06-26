@@ -5,7 +5,7 @@ import './onboarding.scss';
 
 export default class Onboarding extends Component {
     render() {
-        if (this.props.user && this.props.user.userInterests === 0) {
+        if (this.props.user && this.props.user.userInterests.length === 0) {
             return (
                 <section className="grid-x complete-profile-callout">
                     <div className="cell medium-6">
