@@ -7,23 +7,23 @@ describe('Onboarding component', () => {
     const props = {
       user: {
         userId: 1,
-        userIntersts: []
+        userInterests: []
       }
     }
     const wrapper = shallow(<Onboarding {...props} />)
-    expect(wrapper.find('.button')).toHaveLength(0)
+    expect(wrapper.find('.button').length).toEqual(1)
   })
 
-  xit('should not render if user has already filled out interests', () => {
+  it('should not render if user has already filled out interests', () => {
     const props = {
       user: {
         userId: 1,
-        userIntersts: [
+        userInterests: [
           "agile", "UX", "Kotlin"
         ]
       }
     }
     const wrapper = shallow(<Onboarding {...props} />)
-    expect(wrapper.find('.button')).toHaveLength(1)
+    expect(wrapper.find('.button').length).toEqual(0)
   })
 })

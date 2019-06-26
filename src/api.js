@@ -17,6 +17,12 @@ export function tokenCheck() {
       if (jwtDecode(response).exp < Date.now()) {
         return response;
       }
+      else {
+        localStorage.clear()
+        sessionStorage.clear()
+        sessionStorage.setItem('errorMsg', 'Please try to login again. Your session expired.')
+        window.location.reload()
+      }
     })
     .catch(err => {
       console.log(err);
