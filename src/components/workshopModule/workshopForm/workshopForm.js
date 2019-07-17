@@ -26,7 +26,7 @@ class WorkshopForm extends Component {
       endDate: props.data ? moment(props.data.end) : null,
       calendarFocused: false,
       categoryList: [],
-      categorySelected: props.data ? props.data.categoryId : 1,
+      categorySelected: props.data ? props.data.categoryId : "",
       startTime: props.data ? moment(props.data.start) : null,
       endTime: props.data ? moment(props.data.end) : null,
       error: {},
@@ -149,12 +149,14 @@ class WorkshopForm extends Component {
     } else {
       this.setState({
         error: "Location service is down at this time. Please try again later.",
-        locationList: [{ name: "London", id: 2 },
-        { name: "Brooklyn", id: 1 },
-        { name: "Edinburgh", id: 3 },
-        { name: "Dublin", id: 4 },
-        { name: "Denver", id: 5 },
-        { name: "Dallas", id: 6 }]
+        locationList: [
+          { name: "London", id: 2 },
+          { name: "Brooklyn", id: 1 },
+          { name: "Edinburgh", id: 3 },
+          { name: "Dublin", id: 4 },
+          { name: "Denver", id: 5 },
+          { name: "Dallas", id: 6 }
+        ]
       });
     }
   }
@@ -164,12 +166,14 @@ class WorkshopForm extends Component {
     } else {
       this.setState({
         error: "Category service is down at this time. Please try again later.",
-        categoryList: [{ name: "London", id: 2 },
-        { name: "Brooklyn", id: 1 },
-        { name: "Edinburgh", id: 3 },
-        { name: "Dublin", id: 4 },
-        { name: "Denver", id: 5 },
-        { name: "Dallas", id: 6 }]
+        categoryList: [
+          { name: "London", id: 2 },
+          { name: "Brooklyn", id: 1 },
+          { name: "Edinburgh", id: 3 },
+          { name: "Dublin", id: 4 },
+          { name: "Denver", id: 5 },
+          { name: "Dallas", id: 6 }
+        ]
       });
     }
   }
@@ -229,9 +233,14 @@ class WorkshopForm extends Component {
       invalid = true;
     }
 
+    if (this.state.categorySelected === "") {
+      errors["category"] = "Pick a category";
+      invalid = true;
+    }
+
     if (
-      this.state.startTime === "" ||
-      this.state.endTime === "" ||
+      this.state.startTime === null ||
+      this.state.endTime === null ||
       this.state.startTime > this.state.endTime
     ) {
       errors["time"] = "Pick valid time";
@@ -355,8 +364,10 @@ class WorkshopForm extends Component {
                       value={this.state.categorySelected}
                       onChange={this.handleChange}
                     >
+                      <option value="">Select a category </option>
                       {categories}
                     </select>
+                    <span className="error">{this.state.error.category}</span>
                   </label>
                 </div>
                 <div className="medium-8 cell">
@@ -394,7 +405,6 @@ class WorkshopForm extends Component {
                       value={this.state.startTime}
                     />
                   }
-
                   <span className="error">{this.state.error.time}</span>
                 </div>
                 <div className="medium-8 cell">
@@ -449,28 +459,28 @@ class WorkshopForm extends Component {
                 )}
                 <div className="medium-8 cell">
                   {availableRooms.length > 0 &&
-                    this.state.location === 1 &&
-                    (!this.props.edit || !this.props.disableRoomSelection) ? (
-                      <label>
-                        Room Available
+                  this.state.location === 1 &&
+                  (!this.props.edit || !this.props.disableRoomSelection) ? (
+                    <label>
+                      Room Available
                       <select
-                          name="roomSelected"
-                          value={this.state.roomSelected}
-                          onChange={this.handleChange}
-                        >
-                          <option value="">Select a room</option>
-                          {availableRooms}
-                        </select>
-                      </label>
-                    ) : null}
+                        name="roomSelected"
+                        value={this.state.roomSelected}
+                        onChange={this.handleChange}
+                      >
+                        <option value="">Select a room</option>
+                        {availableRooms}
+                      </select>
+                    </label>
+                  ) : null}
                   {availableRooms.length === 0 &&
-                    this.state.location === 1 &&
-                    this.state.startTime !== null &&
-                    this.state.endTime !== null ? (
-                      <p>All rooms are taken at this time. Pick another time.</p>
-                    ) : (
-                      ""
-                    )}
+                  this.state.location === 1 &&
+                  this.state.startTime !== null &&
+                  this.state.endTime !== null ? (
+                    <p>All rooms are taken at this time. Pick another time.</p>
+                  ) : (
+                    ""
+                  )}
                 </div>
                 {this.props.edit &&
                   this.props.data.robinEventId &&
