@@ -89,7 +89,7 @@ export default class Workshop extends Component {
       const subject = `You have enrolled for ${event.title}!`;
       const content = `You have enrolled for the class ${
         event.title
-      }! Hope your experience is engaging and fun!`;
+        }! Hope your experience is engaging and fun!`;
       const recipients = [{ username: localStorage.getItem("username") }];
       createAndSendEmail({ subject, content, recipients });
       addCalEvent(event, this.outlookCalCallback);
@@ -209,8 +209,8 @@ export default class Workshop extends Component {
     const attendees =
       this.state.workshop.workshopAttendees.length > 0
         ? `There are ${
-            this.state.workshop.workshopAttendees.length
-          } attendee(s).`
+        this.state.workshop.workshopAttendees.length
+        } attendee(s).`
         : "";
     this.setState({
       confirmCancel: true,
@@ -300,8 +300,8 @@ export default class Workshop extends Component {
                     alt="Instructor"
                   />
                 ) : (
-                  <FontAwesomeIcon icon="user-circle" size="3x" />
-                )}
+                    <FontAwesomeIcon icon="user-circle" size="3x" />
+                  )}
               </div>
 
               <p>
@@ -344,14 +344,14 @@ export default class Workshop extends Component {
                   UNENROLL
                 </button>
               ) : (
-                <button
-                  type="button"
-                  className="button flex-child-auto large-flex-child-shrink"
-                  onClick={this.onClickEnroll.bind(this)}
-                >
-                  ENROLL
+                    <button
+                      type="button"
+                      className="button flex-child-auto large-flex-child-shrink"
+                      onClick={this.onClickEnroll.bind(this)}
+                    >
+                      ENROLL
                 </button>
-              )}
+                  )}
             </div>
           </article>
         </section>
@@ -361,8 +361,8 @@ export default class Workshop extends Component {
               {isVideo ? (
                 <ReactPlayer url="https://youtu.be/iKhsC1Q4LDs"> </ReactPlayer>
               ) : (
-                <JumbotronComponent image={cover} />
-              )}
+                  <JumbotronComponent image={cover} />
+                )}
               <h4>
                 <b>Details</b>
               </h4>
@@ -403,17 +403,17 @@ export default class Workshop extends Component {
                       <em>Added to Calendar!</em>
                     </div>
                   ) : (
-                    <button
-                      className="addToCal"
-                      onClick={this.addCalEvent.bind(
-                        this,
-                        event,
-                        this.outlookCalCallback
-                      )}
-                    >
-                      Add to Calendar
+                      <button
+                        className="addToCal"
+                        onClick={this.addCalEvent.bind(
+                          this,
+                          event,
+                          this.outlookCalCallback
+                        )}
+                      >
+                        Add to Calendar
                     </button>
-                  )}
+                    )}
                 </div>
               </article>
               <article className="detail">

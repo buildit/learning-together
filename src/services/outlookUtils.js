@@ -1,6 +1,15 @@
 import jstz from 'jstz'
 import { addEvent, sendEmail } from './graph.service'
-import config from './config'
+
+const tokenRequest = {
+  scopes: [
+    "User.Read",
+    "Calendars.ReadWrite",
+    "Mail.ReadWrite",
+    "Mail.Send",
+    "Mail.Send.Shared"
+  ]
+}
 
 function getTimezoneName() {
   return jstz.determine().name()
@@ -8,7 +17,7 @@ function getTimezoneName() {
 
 export async function addCalEvent(event, outlookCalCallback) {
   try {
-    const accessToken = await window.msal.acquireTokenSilent(config.scopes)
+    const accessToken = await window.msal.acquireTokenSilent(tokenRequest)
     const body = {
       subject: event.title,
       body: {
@@ -36,11 +45,11 @@ export async function addCalEvent(event, outlookCalCallback) {
   }
 }
 
-export async function createAndSendEmail({ subject, content, recipients }, outlookMailCallback) {
+export async function createAndSendEmail({ subject, content, recipients }) {
   try {
     const message = { Message: {} }
     const recipientsArray = []
-    const accessToken = await window.msal.acquireTokenSilent(config.scopes)
+    const accessToken = await window.msal.acquireTokenSilent(tokenRequest)
     message.Message.Subject = subject
     message.Message.Body = {
       "ContentType": "Text",
@@ -63,7 +72,6 @@ export async function createAndSendEmail({ subject, content, recipients }, outlo
   }
   catch (err) {
     console.log('err', err)
-    // outlookMailCallback(err)
   }
 }
 

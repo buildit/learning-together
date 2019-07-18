@@ -16,8 +16,8 @@ export function logout(userAgent) {
   localStorage.clear()
 }
 
-export function loginCallback() {
-  signIn(window.msal.getUser().displayableId, signInCallback)
+export function loginCallback(reponse) {
+  signIn(window.msal.getAccount().userName, signInCallback)
 }
 
 export function signInCallback(response) {
