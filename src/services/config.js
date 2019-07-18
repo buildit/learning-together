@@ -1,4 +1,4 @@
-module.exports = {
+const config = {
   msalConfig: {
     auth: {
       clientId: 'fd8a25a4-d4ae-4ec9-96e7-bec62ae45ca8'
@@ -15,4 +15,5 @@ module.exports = {
   ]
 
 }
+export default config
 
