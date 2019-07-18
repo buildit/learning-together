@@ -1,8 +1,16 @@
-import config from './config'
 import { signIn, tokenCheck } from '../api'
 
 export function login() {
-  window.msal.loginPopup(config.scopes)
+  const request = {
+    scopes: [
+      "User.Read",
+      "Calendars.ReadWrite",
+      "Mail.ReadWrite",
+      "Mail.Send",
+      "Mail.Send.Shared"
+    ]
+  }
+  window.msal.loginPopup(request)
     .then(response => {
       loginCallback(response)
     })
