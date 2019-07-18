@@ -1,8 +1,16 @@
-import config from './config'
 import { signIn, tokenCheck } from '../api'
 
 export function login() {
-  window.msal.loginPopup(config.scopes)
+  const request = {
+    scopes: [
+      "User.Read",
+      "Calendars.ReadWrite",
+      "Mail.ReadWrite",
+      "Mail.Send",
+      "Mail.Send.Shared"
+    ]
+  }
+  window.msal.loginPopup(request.scopes)
     .then(response => {
       loginCallback(response)
     })
@@ -16,8 +24,8 @@ export function logout(userAgent) {
   localStorage.clear()
 }
 
-export function loginCallback() {
-  signIn(window.msal.getUser().displayableId, signInCallback)
+export function loginCallback(reponse) {
+  signIn(window.msal.getAccount().userName, signInCallback)
 }
 
 export function signInCallback(response) {
