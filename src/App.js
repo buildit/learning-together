@@ -10,7 +10,7 @@ library.add(faMapMarker, faUserCircle, faPencilAlt, faSearch, faVideo, faBuildin
 class App extends Component {
   constructor() {
     super()
-    this.userAgentApplication = new UserAgentApplication(config.appId, null, null, { redirectUri: process.env.REACT_APP_URL })
+    this.userAgentApplication = new UserAgentApplication(config.msalConfig)
   }
   render() {
     return (

@@ -1,6 +1,4 @@
 import axios from "axios";
-import config from "./services/config";
-import jwtDecode from "jwt-decode";
 import moment from "moment";
 const apiBase = "https://bettertogether.buildit.systems";
 
@@ -11,10 +9,19 @@ let getHeader = function () {
   };
 };
 export function tokenCheck() {
+  const tokenRequest = {
+    scopes: [
+      "User.Read",
+      "Calendars.ReadWrite",
+      "Mail.ReadWrite",
+      "Mail.Send",
+      "Mail.Send.Shared"
+    ]
+  }
   window.msal
-    .acquireTokenSilent(config.scopes, config.authority)
+    .acquireTokenSilent(tokenRequest)
     .then(response => {
-      if (jwtDecode(response).exp < Date.now()) {
+      if (response.idToken.decodedIdToken.exp < Date.now()) {
         return response;
       }
       else {
@@ -697,17 +704,19 @@ export const findRoom = async (start, end) => {
   }
 };
 
-export const sendEmail = (message, saveToSentItems, callback) => {
-  tokenCheck();
+export const sendEmail = ({ message, saveToSentItems, accessToken }) => {
   return axios
     .request({
-      url: `https://outlook.office.com/api/v2.0/me/sendmail`,
+      url: `https:///graph.microsoft.com/api/v1.0/me/sendemail`,
       method: "post",
       data: { message, SavetoSentItems: saveToSentItems },
-      headers: getHeader()
+      headers: {
+        "Authorization": `Bearer ${accessToken}}`,
+        "Content-Type": "application/json"
+      }
     })
     .then(response => {
-      callback(response);
+      console.log(response)
     })
     .catch(error => {
       if (error.response.status === 401) {
@@ -715,6 +724,6 @@ export const sendEmail = (message, saveToSentItems, callback) => {
         sessionStorage.clear();
         window.location.refresh();
       }
-      callback(error);
+      console.log(error);
     });
 };
