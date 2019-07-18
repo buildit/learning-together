@@ -10,7 +10,7 @@ export function login() {
       "Mail.Send.Shared"
     ]
   }
-  window.msal.loginPopup(request)
+  window.msal.loginPopup(request.scopes)
     .then(response => {
       loginCallback(response)
     })
