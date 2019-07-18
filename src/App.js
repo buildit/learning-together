@@ -10,7 +10,7 @@ library.add(faMapMarker, faUserCircle, faPencilAlt, faSearch, faVideo, faBuildin
 class App extends Component {
   constructor() {
     super()
-    this.userAgentApplication = new UserAgentApplication(config.msalConfig)
+    this.userAgentApplication = new UserAgentApplication({ auth: { clientId: 'fd8a25a4-d4ae-4ec9-96e7-bec62ae45ca8' } })
   }
   render() {
     return (

@@ -38,7 +38,6 @@ export async function addEvent(accessToken, body) {
 
 export async function sendEmail({ accessToken, message, saveToSentItems }) {
   const client = getAuthenticatedClient(accessToken.accessToken)
-  debugger
   const response = await client
     .api('/me/sendmail')
     .post(message, saveToSentItems)
