@@ -1,5 +1,7 @@
 import axios from "axios";
 import moment from "moment";
+import jwtDecode from "jwt-decode"
+import config from "./services/config"
 const apiBase = "https://bettertogether.buildit.systems";
 
 let getHeader = function () {
@@ -19,9 +21,9 @@ export function tokenCheck() {
     ]
   }
   window.msal
-    .acquireTokenSilent(tokenRequest)
+    .acquireTokenSilent(tokenRequest.scopes, config.authority)
     .then(response => {
-      if (response.idToken.decodedIdToken.exp < Date.now()) {
+      if (jwtDecode(response).exp < Date.now()) {
         return response;
       }
       else {
