@@ -20,7 +20,7 @@
     "pure-react-carousel": "^1.19.4",
     "rc-time-picker": "^3.6.4",
     "react": "^16.8.6",
-    "react-adal": "^0.4.22",
+    "react-adal": "^0.5.1",
     "react-add-to-calendar": "^0.1.5",
     "react-dates": "^20.1.0",
     "react-dom": "^16.8.6",
