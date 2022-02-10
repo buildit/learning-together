@@ -14,7 +14,7 @@
     "jwt-decode": "^2.2.0",
     "moment": "^2.24.0",
     "msal": "^0.2.4",
-    "node-sass": "^4.11.0",
+    "node-sass": "^7.0.0",
     "npm": "^6.9.0",
     "nuka-carousel": "^4.5.4",
     "pure-react-carousel": "^1.19.4",
